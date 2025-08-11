@@ -1,0 +1,21 @@
+# GitHub Pages Jekyll configuration
+# Exclude markdown files from being served publicly
+exclude:
+  - "*.md"
+  - "README.md"
+  - "eula.md"
+  - "privacy-policy.md"
+
+# Include only the files you want to be publicly accessible
+include:
+  - "*.html"
+  - "*.css"
+  - "*.js"
+  - "Lekton/"
+  - "*.jpg"
+  - "*.png"
+  - "*.gif"
+  - "*.svg"
+
+# Disable Jekyll processing for faster builds
+plugins: []

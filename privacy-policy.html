@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Quiet AI</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌑</text></svg>">
+    <style>
+        @font-face {
+            font-family: 'Lekton';
+            src: url('Lekton/Lekton-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Lekton';
+            src: url('Lekton/Lekton-Bold.ttf') format('truetype');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lekton', 'Courier New', monospace;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            color: #e6e6e6;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            color: #b8b8b8;
+            margin-bottom: 0.5rem;
+        }
+
+        .header .last-updated {
+            font-size: 0.9rem;
+            color: #888;
+            font-style: italic;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin: 2rem 0 1rem 0;
+            font-weight: bold;
+            border-left: 4px solid #4a9eff;
+            padding-left: 1rem;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            color: #e6e6e6;
+            margin: 1.5rem 0 0.75rem 0;
+            font-weight: bold;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #d0d0d0;
+        }
+
+        ul {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            color: #d0d0d0;
+        }
+
+        .definition-term {
+            font-weight: bold;
+            color: #4a9eff;
+        }
+
+        .contact-section {
+            background: rgba(74, 158, 255, 0.1);
+            border: 1px solid rgba(74, 158, 255, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            border: none;
+            padding: 0;
+            margin-bottom: 1rem;
+        }
+
+        .email-link {
+            color: #4a9eff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .email-link:hover {
+            color: #6bb6ff;
+            text-decoration: underline;
+        }
+
+        .navigation {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .back-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-family: 'Lekton', monospace;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .highlight-box {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #ffa500;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .gdpr-section, .ccpa-section {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .gdpr-section h2, .ccpa-section h2 {
+            margin-top: 0;
+            border-left: 4px solid #28a745;
+        }
+
+        .table-of-contents {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .table-of-contents h3 {
+            margin-top: 0;
+            color: #4a9eff;
+        }
+
+        .table-of-contents ul {
+            margin-left: 0;
+            list-style: none;
+        }
+
+        .table-of-contents li {
+            margin-bottom: 0.25rem;
+        }
+
+        .table-of-contents a {
+            color: #b8b8b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .table-of-contents a:hover {
+            color: #4a9eff;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .navigation {
+                position: static;
+                margin-bottom: 1rem;
+                text-align: center;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="navigation">
+        <a href="/" class="back-button">← Back to Home</a>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Privacy Policy</h1>
+            <p class="subtitle">Quiet AI</p>
+            <p class="last-updated">Last updated: August 11, 2025</p>
+        </div>
+
+        <div class="highlight-box">
+            <p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
+            <p>We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy.</p>
+        </div>
+
+        <div class="table-of-contents">
+            <h3>Quick Navigation</h3>
+            <ul>
+                <li><a href="#definitions">Definitions</a></li>
+                <li><a href="#data-collection">Data Collection</a></li>
+                <li><a href="#data-use">How We Use Your Data</a></li>
+                <li><a href="#data-sharing">Data Sharing</a></li>
+                <li><a href="#your-rights">Your Rights</a></li>
+                <li><a href="#gdpr">GDPR Compliance</a></li>
+                <li><a href="#ccpa">CCPA Compliance</a></li>
+                <li><a href="#business-data">Business Customer Data</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </div>
+
+        <div class="section" id="definitions">
+            <h2>Interpretation and Definitions</h2>
+            
+            <h3>Interpretation</h3>
+            <p>The words of which the initial letter is capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.</p>
+
+            <h3>Definitions</h3>
+            <p>For the purposes of this Privacy Policy:</p>
+            <ul>
+                <li><span class="definition-term">"Account"</span> means a unique account created for You to access our Service or parts of our Service.</li>
+                <li><span class="definition-term">"Business"</span>, for the purpose of the CCPA (California Consumer Privacy Act), refers to the Company as the legal entity that collects Consumers' personal information and determines the purposes and means of the processing of Consumers' personal information.</li>
+                <li><span class="definition-term">"Company"</span> (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to Quiet AI, located at 19550 Vallco Pkwy, Cupertino, CA 95014. For the purpose of the GDPR, the Company is the Data Controller.</li>
+                <li><span class="definition-term">"Country"</span> refers to USA.</li>
+                <li><span class="definition-term">"Consumer"</span>, for the purpose of the CCPA, means a natural person who is a California resident.</li>
+                <li><span class="definition-term">"Cookies"</span> are small files that are placed on Your computer, mobile device or any other device by a website, containing the details of Your browsing history on that website among its many uses.</li>
+                <li><span class="definition-term">"Data Controller"</span>, for the purposes of the GDPR, refers to the Company as the legal person which determines the purposes and means of the processing of Personal Data.</li>
+                <li><span class="definition-term">"Device"</span> means any device that can access the Service such as a computer, a cellphone or a digital tablet.</li>
+                <li><span class="definition-term">"Personal Data"</span> is any information that relates to an identified or identifiable individual.</li>
+                <li><span class="definition-term">"Service"</span> refers to the Website.</li>
+                <li><span class="definition-term">"Service Provider"</span> means any natural or legal person who processes the data on behalf of the Company.</li>
+                <li><span class="definition-term">"Usage Data"</span> refers to data collected automatically, either generated by the use of the Service or from the Service infrastructure itself.</li>
+                <li><span class="definition-term">"Website"</span> refers to Quiet AI, accessible from https://tryquiet.ai and https://tryquiet.app</li>
+                <li><span class="definition-term">"You"</span> means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</li>
+            </ul>
+        </div>
+
+        <div class="section" id="data-collection">
+            <h2>Collecting and Using Your Personal Data</h2>
+            
+            <h3>Types of Data Collected</h3>
+            
+            <h4>Personal Data</h4>
+            <p>While using Our Service, We may ask You to provide Us with certain personally identifiable information that can be used to contact or identify You. Personally identifiable information may include, but is not limited to:</p>
+            <ul>
+                <li>Email address</li>
+                <li>First name and last name</li>
+                <li>Phone number</li>
+                <li>Address, State, Province, ZIP/Postal code, City</li>
+                <li>Usage Data</li>
+            </ul>
+
+            <h4>Usage Data</h4>
+            <p>Usage Data is collected automatically when using the Service.</p>
+            <p>Usage Data may include information such as Your Device's Internet Protocol address (e.g. IP address), browser type, browser version, the pages of our Service that You visit, the time and date of Your visit, the time spent on those pages, unique device identifiers and other diagnostic data.</p>
+            <p>When You access the Service through any device, We may collect information such as device type, IP address, operating system, browser type, and other diagnostic data necessary for service functionality and security.</p>
+
+            <h3>Tracking Technologies and Cookies</h3>
+            <p>We use Cookies and similar tracking technologies to track the activity on Our Service and store certain information. The technologies We use may include:</p>
+            <ul>
+                <li><strong>Cookies or Browser Cookies:</strong> A cookie is a small file placed on Your Device. You can instruct Your browser to refuse all Cookies or to indicate when a Cookie is being sent.</li>
+                <li><strong>Web Beacons:</strong> Certain sections of our Service and our emails may contain small electronic files known as web beacons.</li>
+            </ul>
+        </div>
+
+        <div class="section" id="data-use">
+            <h2>Use of Your Personal Data</h2>
+            <p>The Company may use Personal Data for the following purposes:</p>
+            <ul>
+                <li><strong>To provide and maintain our Service</strong>, including to monitor the usage of our Service.</li>
+                <li><strong>To manage Your Account</strong> to manage Your registration as a user of the Service.</li>
+                <li><strong>For the performance of a contract</strong> the development, compliance and undertaking of the purchase contract for the products, items or services You have purchased.</li>
+                <li><strong>To contact You</strong> by email, telephone calls, SMS, or other equivalent forms of electronic communication regarding updates or informative communications.</li>
+                <li><strong>To provide You with news</strong> special offers and general information about other goods, services and events which we offer.</li>
+                <li><strong>To manage Your requests</strong> to attend and manage Your requests to Us.</li>
+                <li><strong>For business transfers</strong> We may use Your information to evaluate or conduct a merger, divestiture, restructuring, reorganization, dissolution, or other sale.</li>
+                <li><strong>For other purposes</strong> such as data analysis, identifying usage trends, determining the effectiveness of our promotional campaigns.</li>
+            </ul>
+        </div>
+
+        <div class="section" id="data-sharing">
+            <h2>Sharing Your Personal Information</h2>
+            <p>We may share Your personal information in the following situations:</p>
+            <ul>
+                <li><strong>With Service Providers</strong> to monitor and analyze the use of our Service, for payment processing, to contact You.</li>
+                <li><strong>For business transfers</strong> in connection with any merger, sale of Company assets, financing, or acquisition.</li>
+                <li><strong>With Affiliates</strong> in which case we will require those affiliates to honor this Privacy Policy.</li>
+                <li><strong>With business partners</strong> to offer You certain products, services or promotions.</li>
+                <li><strong>With Your consent</strong> for any other purpose with Your consent.</li>
+            </ul>
+        </div>
+
+        <div class="section" id="your-rights">
+            <h2>Your Privacy Rights</h2>
+            
+            <h3>Retention of Your Personal Data</h3>
+            <p>The Company will retain Your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use Your Personal Data to comply with our legal obligations, resolve disputes, and enforce our legal agreements and policies.</p>
+
+            <h3>Security of Your Personal Data</h3>
+            <p>The security of Your Personal Data is important to Us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While We strive to use commercially acceptable means to protect Your Personal Data, We cannot guarantee its absolute security.</p>
+        </div>
+
+        <div class="gdpr-section" id="gdpr">
+            <h2>GDPR Privacy Rights</h2>
+            
+            <h3>Your Rights under the GDPR</h3>
+            <p>If You are within the EU, You have the following rights:</p>
+            <ul>
+                <li><strong>Request access to Your Personal Data</strong> - You can access, update or request deletion of Your Personal Data.</li>
+                <li><strong>Request correction</strong> - You have the right to have any incomplete or inaccurate information corrected.</li>
+                <li><strong>Object to processing</strong> - You have the right to object to our processing of Your Personal Data.</li>
+                <li><strong>Request erasure</strong> - You have the right to ask Us to delete or remove Personal Data when there is no good reason for Us to continue processing it.</li>
+                <li><strong>Request data transfer</strong> - We will provide Your Personal Data in a structured, commonly used, machine-readable format.</li>
+                <li><strong>Withdraw consent</strong> - You have the right to withdraw Your consent on using your Personal Data.</li>
+            </ul>
+        </div>
+
+        <div class="ccpa-section" id="ccpa">
+            <h2>CCPA Privacy Rights</h2>
+            
+            <h3>Your Rights under the CCPA</h3>
+            <p>If You are a California resident, You have the following rights:</p>
+            <ul>
+                <li><strong>The right to notice</strong> - You have the right to be notified which categories of Personal Data are being collected.</li>
+                <li><strong>The right to request</strong> - You have the right to request that We disclose information about Our collection, use, sale, disclosure for business purposes.</li>
+                <li><strong>The right to say no to the sale of Personal Data</strong> - You have the right to direct Us to not sell Your personal information.</li>
+                <li><strong>The right to delete Personal Data</strong> - You have the right to request the deletion of Your Personal Data, subject to certain exceptions.</li>
+                <li><strong>The right not to be discriminated against</strong> - You have the right not to be discriminated against for exercising any of Your consumer's rights.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Third-Party Services</h2>
+            
+            <h3>Analytics</h3>
+            <p>We may use third-party Service providers to monitor and analyze the use of our Service.</p>
+            <p><em>Currently, we do not use third-party analytics services. This section will be updated if we integrate such services in the future.</em></p>
+
+            <h3>Email Marketing</h3>
+            <p>We may use Your Personal Data to contact You with newsletters, marketing or promotional materials and other information that may be of interest to You.</p>
+            <p><em>Currently, we do not send marketing emails. This section will be updated if we implement email marketing in the future.</em></p>
+
+            <h3>Advertising</h3>
+            <p><em>We do not serve advertisements or use advertising networks. Our service is ad-free.</em></p>
+
+            <h3>Payments</h3>
+            <p>We may provide paid products and/or services within the Service. In that case, we may use third-party services for payment processing.</p>
+            <p><em>Currently, we do not process payments directly. This section will be updated if we implement payment processing in the future.</em></p>
+        </div>
+
+        <div class="section">
+            <h2>Children's Privacy</h2>
+            <p>Our Service is intended for business use and not directed to individuals under the age of 13. We do not knowingly collect personally identifiable information from anyone under the age of 13.</p>
+        </div>
+
+        <div class="section">
+            <h2>Changes to this Privacy Policy</h2>
+            <p>We may update Our Privacy Policy from time to time. We will notify You of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date at the top of this Privacy Policy.</p>
+            <p>You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.</p>
+        </div>
+
+        <div class="section" id="business-data">
+            <h2>Business Customer Data</h2>
+            <p>When you use our Service as part of an organization, your organization controls and administers your account. Your organization's privacy policies and data processing agreements may also apply to your use of our Service.</p>
+        </div>
+
+        <div class="section">
+            <h2>Data Processing Agreement</h2>
+            <p>For business customers who process personal data of EU individuals or require additional data protection terms, we provide a separate Data Processing Agreement (DPA) that includes Standard Contractual Clauses. Please contact us to execute a DPA.</p>
+        </div>
+
+        <div class="section">
+            <h2>Data Location and Security</h2>
+            <p>Your data is primarily stored and processed in the United States with appropriate security measures including encryption, access controls, and regular security assessments. We implement reasonable measures to ensure service availability and data backup.</p>
+        </div>
+
+        <div class="section">
+            <h2>Account Termination and Data Retention</h2>
+            <p>Upon account termination, we will delete or anonymize your data within 30 days, except where retention is required by law or legitimate business purposes. Different types of data may have different retention periods as outlined in our DPA.</p>
+        </div>
+
+        <div class="section">
+            <h2>Sub-processors</h2>
+            <p>We may engage third-party sub-processors to assist in providing our Service. A current list of sub-processors is available upon request. We ensure all sub-processors meet appropriate data protection standards.</p>
+        </div>
+
+        <div class="contact-section" id="contact">
+            <h2>Contact Us</h2>
+            <p>If you have any questions about this Privacy Policy, You can contact us by sending us an email: <a href="mailto:privacy@tryquiet.ai" class="email-link">privacy@tryquiet.ai</a></p>
+            <p>For Data Processing Agreement requests or enterprise privacy inquiries, please contact: <a href="mailto:legal@tryquiet.ai" class="email-link">legal@tryquiet.ai</a></p>
+        </div>
+    </div>
+</body>
+</html>
