@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import InvoiceProcessingAnimation from '@/components/landing/InvoiceProcessingAnimation'
 import VendorOnboardingAnimation from '@/components/landing/VendorOnboardingAnimation'
 import IntelligentCodingAnimation from '@/components/landing/IntelligentCodingAnimation'
+import InquiryResponsesAnimation from '@/components/landing/InquiryResponsesAnimation'
 import logo from '@/assets/images/logo.png'
 
 const APP_URL = 'https://tryquiet.app'
@@ -72,6 +73,10 @@ function LandingPage() {
             ) : selectedUseCase === 2 ? (
               <div className="aspect-[16/9] flex items-stretch overflow-hidden">
                 <IntelligentCodingAnimation key={`coding-${Date.now()}`} />
+              </div>
+            ) : selectedUseCase === 3 ? (
+              <div className="aspect-[16/9] flex items-stretch overflow-hidden">
+                <InquiryResponsesAnimation key={`inquiry-${Date.now()}`} />
               </div>
             ) : (
               <div className="bg-gray-100 rounded-2xl aspect-video flex items-center justify-center border border-gray-200">
