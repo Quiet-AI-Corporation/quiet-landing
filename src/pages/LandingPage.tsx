@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import InvoiceProcessingAnimation from '@/components/landing/InvoiceProcessingAnimation'
@@ -14,19 +15,45 @@ import logo from '@/assets/images/logo.png'
 const APP_URL = 'https://tryquiet.app'
 
 const USE_CASES = [
-  { label: 'Invoice Processing', imageAlt: 'Invoice processing screenshot' },
-  { label: 'Vendor Onboarding', imageAlt: 'Vendor onboarding screenshot' },
-  { label: 'Intelligent Coding', imageAlt: 'Intelligent coding screenshot' },
-  { label: 'Inquiry Responses', imageAlt: 'Inquiry responses screenshot' },
-  { label: 'Gathering Approvals', imageAlt: 'Gathering approvals screenshot' },
-  { label: 'Business Email Compromise Prevention', imageAlt: 'Business email compromise prevention screenshot' },
-  { label: 'Fake Invoice Deflection', imageAlt: 'Fake invoice deflection screenshot' },
-  { label: 'Duplicate Prevention', imageAlt: 'Duplicate prevention screenshot' },
+  { label: 'Invoice Processing', imageAlt: 'Invoice processing screenshot', duration: 10 },
+  { label: 'Vendor Onboarding', imageAlt: 'Vendor onboarding screenshot', duration: 8 },
+  { label: 'Intelligent Coding', imageAlt: 'Intelligent coding screenshot', duration: 10 },
+  { label: 'Inquiry Responses', imageAlt: 'Inquiry responses screenshot', duration: 8 },
+  { label: 'Gathering Approvals', imageAlt: 'Gathering approvals screenshot', duration: 9 },
+  { label: 'Business Email Compromise Prevention', imageAlt: 'Business email compromise prevention screenshot', duration: 8 },
+  { label: 'Fake Invoice Deflection', imageAlt: 'Fake invoice deflection screenshot', duration: 8 },
+  { label: 'Duplicate Prevention', imageAlt: 'Duplicate prevention screenshot', duration: 8 },
   { label: '3-Way Matching', imageAlt: '3-way matching screenshot', comingSoon: true },
 ]
 
+const PLAYABLE_COUNT = USE_CASES.filter(uc => !uc.comingSoon).length
+const DWELL_SECONDS = 7
+
 function LandingPage() {
   const [selectedUseCase, setSelectedUseCase] = useState(0)
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const scheduleNext = useCallback((index: number) => {
+    if (timerRef.current) clearTimeout(timerRef.current)
+    const uc = USE_CASES[index]
+    if (!uc.duration) return
+    timerRef.current = setTimeout(() => {
+      const next = (index + 1) % PLAYABLE_COUNT
+      setSelectedUseCase(next)
+    }, (uc.duration + DWELL_SECONDS) * 1000)
+  }, [])
+
+  // Schedule auto-advance whenever selectedUseCase changes
+  useEffect(() => {
+    scheduleNext(selectedUseCase)
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current)
+    }
+  }, [selectedUseCase, scheduleNext])
+
+  const handlePillClick = (index: number) => {
+    setSelectedUseCase(index)
+  }
 
   const handleLogin = () => {
     window.location.href = APP_URL
@@ -68,45 +95,55 @@ function LandingPage() {
           </p>
           {/* Hero graphic area — controlled by pills */}
           <div className="mt-12 max-w-4xl mx-auto">
-            {selectedUseCase === 0 ? (
-              <div className="aspect-[16/9] flex items-stretch overflow-hidden">
-                <InvoiceProcessingAnimation key={`invoice-${Date.now()}`} />
-              </div>
-            ) : selectedUseCase === 1 ? (
-              <div className="aspect-[16/9] flex items-stretch overflow-hidden">
-                <VendorOnboardingAnimation key={`vendor-${Date.now()}`} />
-              </div>
-            ) : selectedUseCase === 2 ? (
-              <div className="aspect-[16/9] flex items-stretch overflow-hidden">
-                <IntelligentCodingAnimation key={`coding-${Date.now()}`} />
-              </div>
-            ) : selectedUseCase === 3 ? (
-              <div className="aspect-[16/9] flex items-stretch overflow-hidden">
-                <InquiryResponsesAnimation key={`inquiry-${Date.now()}`} />
-              </div>
-            ) : selectedUseCase === 4 ? (
-              <div className="aspect-[16/9] flex items-stretch overflow-hidden">
-                <GatheringApprovalsAnimation key={`approvals-${Date.now()}`} />
-              </div>
-            ) : selectedUseCase === 5 ? (
-              <div className="aspect-[16/9] flex items-stretch overflow-hidden">
-                <BusinessEmailCompromiseAnimation key={`bec-${Date.now()}`} />
-              </div>
-            ) : selectedUseCase === 6 ? (
-              <div className="aspect-[16/9] flex items-stretch overflow-hidden">
-                <FakeInvoiceDeflectionAnimation key={`fake-invoice-${Date.now()}`} />
-              </div>
-            ) : selectedUseCase === 7 ? (
-              <div className="aspect-[16/9] flex items-stretch overflow-hidden">
-                <DuplicateDetectionAnimation key={`duplicate-${Date.now()}`} />
-              </div>
-            ) : (
-              <div className="bg-gray-100 rounded-2xl aspect-video flex items-center justify-center border border-gray-200">
-                <span className="text-gray-400 text-sm">
-                  {USE_CASES[selectedUseCase].imageAlt}
-                </span>
-              </div>
-            )}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={selectedUseCase}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                {selectedUseCase === 0 ? (
+                  <div className="aspect-[16/9] flex items-stretch overflow-hidden">
+                    <InvoiceProcessingAnimation />
+                  </div>
+                ) : selectedUseCase === 1 ? (
+                  <div className="aspect-[16/9] flex items-stretch overflow-hidden">
+                    <VendorOnboardingAnimation />
+                  </div>
+                ) : selectedUseCase === 2 ? (
+                  <div className="aspect-[16/9] flex items-stretch overflow-hidden">
+                    <IntelligentCodingAnimation />
+                  </div>
+                ) : selectedUseCase === 3 ? (
+                  <div className="aspect-[16/9] flex items-stretch overflow-hidden">
+                    <InquiryResponsesAnimation />
+                  </div>
+                ) : selectedUseCase === 4 ? (
+                  <div className="aspect-[16/9] flex items-stretch overflow-hidden">
+                    <GatheringApprovalsAnimation />
+                  </div>
+                ) : selectedUseCase === 5 ? (
+                  <div className="aspect-[16/9] flex items-stretch overflow-hidden">
+                    <BusinessEmailCompromiseAnimation />
+                  </div>
+                ) : selectedUseCase === 6 ? (
+                  <div className="aspect-[16/9] flex items-stretch overflow-hidden">
+                    <FakeInvoiceDeflectionAnimation />
+                  </div>
+                ) : selectedUseCase === 7 ? (
+                  <div className="aspect-[16/9] flex items-stretch overflow-hidden">
+                    <DuplicateDetectionAnimation />
+                  </div>
+                ) : (
+                  <div className="bg-gray-100 rounded-2xl aspect-video flex items-center justify-center border border-gray-200">
+                    <span className="text-gray-400 text-sm">
+                      {USE_CASES[selectedUseCase].imageAlt}
+                    </span>
+                  </div>
+                )}
+              </motion.div>
+            </AnimatePresence>
           </div>
 
           {/* Use-case pills */}
@@ -128,7 +165,7 @@ function LandingPage() {
               ) : (
                 <button
                   key={uc.label}
-                  onClick={() => setSelectedUseCase(i)}
+                  onClick={() => handlePillClick(i)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                     selectedUseCase === i
                       ? 'bg-gray-900 text-white'
