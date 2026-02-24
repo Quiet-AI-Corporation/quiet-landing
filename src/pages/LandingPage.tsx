@@ -8,6 +8,7 @@ import InquiryResponsesAnimation from '@/components/landing/InquiryResponsesAnim
 import GatheringApprovalsAnimation from '@/components/landing/GatheringApprovalsAnimation'
 import FakeInvoiceDeflectionAnimation from '@/components/landing/FakeInvoiceDeflectionAnimation'
 import BusinessEmailCompromiseAnimation from '@/components/landing/BusinessEmailCompromiseAnimation'
+import DuplicateDetectionAnimation from '@/components/landing/DuplicateDetectionAnimation'
 import logo from '@/assets/images/logo.png'
 
 const APP_URL = 'https://tryquiet.app'
@@ -94,6 +95,10 @@ function LandingPage() {
             ) : selectedUseCase === 6 ? (
               <div className="aspect-[16/9] flex items-stretch overflow-hidden">
                 <FakeInvoiceDeflectionAnimation key={`fake-invoice-${Date.now()}`} />
+              </div>
+            ) : selectedUseCase === 7 ? (
+              <div className="aspect-[16/9] flex items-stretch overflow-hidden">
+                <DuplicateDetectionAnimation key={`duplicate-${Date.now()}`} />
               </div>
             ) : (
               <div className="bg-gray-100 rounded-2xl aspect-video flex items-center justify-center border border-gray-200">
