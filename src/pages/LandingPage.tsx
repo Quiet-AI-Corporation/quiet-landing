@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { Link2, BookOpen, Inbox, Landmark } from 'lucide-react'
+import { Link2, BookOpen, Inbox, Landmark, Mail, Sparkles, UserCheck, ArrowRight } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
@@ -454,84 +454,65 @@ function LandingPage() {
         </div>
       </section>
 
-      {/* Trust bar */}
+      {/* How it works */}
       <section className="py-20 px-6 border-b border-gray-200">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-4">
+          <h2 className="text-3xl font-bold text-gray-900 text-center mb-2">
+            How it works
+          </h2>
+          <p className="text-lg text-gray-500 text-center mb-14 max-w-2xl mx-auto">
             A review-and-approve workflow for everything AP.
-          </h2>
-          <p className="text-lg text-gray-500 text-center mb-12 max-w-2xl mx-auto">
-            Quiet does the processing. You just check the work.
           </p>
-          <div className="mb-16">
-            <div className="bg-gray-100 rounded-2xl aspect-video flex items-center justify-center border border-gray-200">
-              <span className="text-gray-400 text-sm text-center max-w-lg px-4">Review-and-approve animation placeholder — A trace mapping the journey of an email into Quiet AI which results in: a request for W-9 information, a clarification on the purchase order, and a request for remittance info. Consolidated into an email which is sent. GL coding is done.</span>
-            </div>
-          </div>
-          <div className="grid md:grid-cols-3 gap-12">
-            <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Hands-free processing</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Invoices are captured, matched, and coded automatically. Your team reviews the
-                finished result, not the raw data.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Human-approved payments</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Payments are prepared and staged, never executed, until an authorized approver signs
-                off.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Communications you control</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Every email — to vendors, your team, and any third parties — is drafted for you.
-                Nothing is sent until you hit send.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Security */}
-      <section className="py-14 px-6 bg-gray-50 border-y border-gray-200">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-4">
-            Hard guardrails. Full paper trail.
-          </h2>
-          <p className="text-lg text-gray-500 text-center mb-10 max-w-2xl mx-auto">
-            Quiet uses AI to process invoices and draft communications. But the AI operates inside
-            hard boundaries — not guidelines, not best-effort policies, but structural rules it
-            cannot override.
+          {/* 3-box diagram */}
+          <div className="flex flex-col md:flex-row items-stretch gap-4 md:gap-0">
+            {/* Box 1 */}
+            <div className="flex-1 bg-gray-50 border border-gray-200 rounded-xl p-6 text-center">
+              <div className="w-10 h-10 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center mx-auto mb-3">
+                <Mail className="w-5 h-5 text-gray-500" />
+              </div>
+              <h3 className="text-base font-semibold text-gray-900 mb-1">Email arrives</h3>
+              <p className="text-sm text-gray-500 leading-relaxed">
+                An invoice or vendor message lands in your AP mailbox.
+              </p>
+            </div>
+
+            {/* Arrow */}
+            <div className="hidden md:flex items-center justify-center px-3">
+              <ArrowRight className="w-5 h-5 text-gray-300" />
+            </div>
+
+            {/* Box 2 */}
+            <div className="flex-1 bg-gray-50 border border-gray-200 rounded-xl p-6 text-center">
+              <div className="w-10 h-10 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center mx-auto mb-3">
+                <Sparkles className="w-5 h-5 text-blue-500" />
+              </div>
+              <h3 className="text-base font-semibold text-gray-900 mb-1">Quiet AI processes</h3>
+              <p className="text-sm text-gray-500 leading-relaxed">
+                Extracts data, codes GL, drafts replies, asks vendors for missing info, flags issues, and escalates to your team when something needs a human call.
+              </p>
+            </div>
+
+            {/* Arrow */}
+            <div className="hidden md:flex items-center justify-center px-3">
+              <ArrowRight className="w-5 h-5 text-gray-300" />
+            </div>
+
+            {/* Box 3 */}
+            <div className="flex-1 bg-gray-50 border border-gray-200 rounded-xl p-6 text-center">
+              <div className="w-10 h-10 rounded-full bg-green-50 border border-green-100 flex items-center justify-center mx-auto mb-3">
+                <UserCheck className="w-5 h-5 text-green-600" />
+              </div>
+              <h3 className="text-base font-semibold text-gray-900 mb-1">You review & execute</h3>
+              <p className="text-sm text-gray-500 leading-relaxed">
+                Course-correct the AI, send emails, and initiate payments with one click.
+              </p>
+            </div>
+          </div>
+
+          <p className="text-lg text-gray-500 text-center mt-12">
+            Quiet AI does the processing. You just check the work.
           </p>
-          <div className="mb-10">
-            <AuditLogAnimation />
-          </div>
-          <div className="grid md:grid-cols-3 gap-12">
-            <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Data access is scoped, not trusted</h3>
-              <p className="text-gray-600 leading-relaxed">
-                The AI can only access data relevant to the recipient it's drafting for. A vendor
-                asking about their invoice simply cannot surface another vendor's terms, your
-                internal notes, or your banking details.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Outputs are traceable, not hallucinated</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Every figure, date, and line item Quiet produces is tied to a source document in your
-                system. If it doesn't have the answer, it says so — it never makes something up.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Everything is auditable</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Every action has a paper trail. Who approved what, what the AI drafted, what changed,
-                and when. If a question comes up six months from now, the answer is already logged.
-              </p>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -617,6 +598,47 @@ function LandingPage() {
               sending emails, making payments, or touching your ERP. See exactly what it would do,
               with zero risk. Turn on automation when you're ready.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Security */}
+      <section className="py-14 px-6 bg-gray-50 border-y border-gray-200">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl font-bold text-gray-900 text-center mb-4">
+            Hard guardrails. Full paper trail.
+          </h2>
+          <p className="text-lg text-gray-500 text-center mb-10 max-w-2xl mx-auto">
+            Quiet AI processes invoices and drafts communications. But the AI operates inside
+            hard boundaries — not guidelines, not best-effort policies, but structural rules it
+            cannot override.
+          </p>
+          <div className="mb-10">
+            <AuditLogAnimation />
+          </div>
+          <div className="grid md:grid-cols-3 gap-12">
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Data access is scoped, not trusted</h3>
+              <p className="text-gray-600 leading-relaxed">
+                The AI can only access data relevant to the recipient it's drafting for. A vendor
+                asking about their invoice simply cannot surface another vendor's terms, your
+                internal notes, or your banking details.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Outputs are traceable, not hallucinated</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Every figure, date, and line item Quiet produces is tied to a source document in your
+                system. If it doesn't have the answer, it says so — it never makes something up.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Everything is auditable</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Every action has a paper trail. Who approved what, what the AI drafted, what changed,
+                and when. If a question comes up six months from now, the answer is already logged.
+              </p>
+            </div>
           </div>
         </div>
       </section>
