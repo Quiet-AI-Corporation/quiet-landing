@@ -12,6 +12,7 @@ import FakeInvoiceDeflectionAnimation from '@/components/landing/FakeInvoiceDefl
 import BusinessEmailCompromiseAnimation from '@/components/landing/BusinessEmailCompromiseAnimation'
 import DuplicateDetectionAnimation from '@/components/landing/DuplicateDetectionAnimation'
 import AuditLogAnimation from '@/components/landing/AuditLogAnimation'
+import DotGrid from '@/components/landing/DotGrid'
 import logo from '@/assets/images/logo.png'
 import gmailLogo from '@/assets/images/gmail_logo.webp'
 import outlookLogo from '@/assets/images/outlook_logo.webp'
@@ -178,6 +179,8 @@ function LandingPage() {
 
   return (
     <div className="min-h-screen bg-white">
+      <DotGrid />
+    <div className="relative z-10">
       {/* Nav */}
       <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -197,14 +200,16 @@ function LandingPage() {
       {/* Hero */}
       <section className="py-16 px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 tracking-tight leading-tight">
-            AP on Autopilot
-          </h1>
-          <p className="mt-6 text-xl text-gray-600 max-w-2xl mx-auto">
-            Quiet AI runs your AP mailbox — from invoice to payment.
-            <br />
-            You just review and approve.
-          </p>
+          <div className="w-fit mx-auto">
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 tracking-tight leading-tight bg-white rounded-xl py-2 px-4 w-fit mx-auto">
+              AP on Autopilot
+            </h1>
+            <p className="mt-3 text-xl text-gray-600 max-w-2xl mx-auto bg-white rounded-xl py-2 px-4 w-fit">
+              Quiet AI runs your AP mailbox — from invoice to payment.
+              <br />
+              You just review and approve.
+            </p>
+          </div>
           {/* Hero graphic area — controlled by pills */}
           <div className="mt-12 max-w-4xl mx-auto">
             <AnimatePresence mode="wait">
@@ -259,7 +264,7 @@ function LandingPage() {
           </div>
 
           {/* Use-case pills */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-2 bg-white rounded-full px-3 py-1">
             {USE_CASES.map((uc, i) =>
               uc.comingSoon ? (
                 <TooltipProvider key={uc.label} delayDuration={0}>
@@ -293,21 +298,24 @@ function LandingPage() {
       </section>
 
       {/* How it connects */}
-      <section className="py-14 px-6 bg-gray-50 border-y border-gray-200">
+      <section className="py-14 px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-4">
-            Plugs into the tools you already use
-          </h2>
-          <p className="text-lg text-gray-500 text-center mb-6 max-w-2xl mx-auto">
-            Quiet sits between your inbox, your bank, and your ERP — so your existing workflows
-            don't change, they just get faster. Up and running in minutes, not months.
-          </p>
+          <div className="mb-6">
+            <h2 className="text-3xl font-bold text-gray-900 text-center bg-white rounded-xl py-2 px-4 w-fit mx-auto">
+              Plugs into the tools you already use
+            </h2>
+            <p className="mt-3 text-lg text-gray-500 text-center max-w-2xl mx-auto bg-white rounded-xl py-2 px-4 w-fit">
+              Quiet sits between your inbox, your bank, and your ERP — so your existing workflows
+              don't change, they just get faster. Up and running in minutes, not months.
+            </p>
+          </div>
 
           {/* Diagram + Caption — side by side */}
           <div className="flex gap-8 items-stretch">
             {/* Diagram column */}
             <div className="w-96 shrink-0 flex flex-col items-center" onMouseLeave={handleDiagramLeave}>
               {/* Mailbox */}
+              <div className="w-full bg-white rounded-xl p-1">
               <div
                 className={`w-full rounded-xl px-6 py-4 text-center cursor-pointer transition-colors border ${selectedItem === 'mailbox' ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-white'}`}
                 onMouseEnter={() => handleItemHover('mailbox')}
@@ -317,6 +325,7 @@ function LandingPage() {
                   <img src={gmailLogo} alt="Gmail" className="h-6" />
                   <img src={outlookLogo} alt="Outlook" className="h-6" />
                 </div>
+              </div>
               </div>
 
               {/* Arrow: Mailbox ↔ Quiet */}
@@ -338,12 +347,14 @@ function LandingPage() {
               </div>
 
               {/* Quiet AI */}
+              <div className="w-full bg-white rounded-xl p-1">
               <div
                 className={`w-full rounded-xl px-6 py-4 flex items-center justify-center gap-2 cursor-pointer transition-colors border ${selectedItem === 'quiet' ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-white'}`}
                 onMouseEnter={() => handleItemHover('quiet')}
               >
                 <img src={logo} alt="Quiet" className="h-6" />
                 <div className="text-sm font-bold text-gray-900">Quiet AI</div>
+              </div>
               </div>
 
               {/* Bottom arrows — two side by side */}
@@ -378,15 +389,18 @@ function LandingPage() {
 
               {/* Bank + ERP */}
               <div className="w-full flex gap-3">
+                <div className="flex-1 bg-white rounded-xl p-1">
                 <div
-                  className={`flex-1 rounded-xl px-4 py-4 text-center cursor-pointer transition-colors border ${selectedItem === 'bank' ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-white'}`}
+                  className={`rounded-xl px-4 py-4 text-center cursor-pointer transition-colors border ${selectedItem === 'bank' ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-white'}`}
                   onMouseEnter={() => handleItemHover('bank')}
                 >
                   <div className="text-sm font-bold text-gray-900">Your AP Bank Account</div>
                   <p className="text-xs text-gray-400 italic mt-1">Most financial institutions supported</p>
                 </div>
+                </div>
+                <div className="flex-1 bg-white rounded-xl p-1">
                 <div
-                  className={`flex-1 rounded-xl px-4 py-4 text-center cursor-pointer transition-colors border ${selectedItem === 'erp' ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-white'}`}
+                  className={`rounded-xl px-4 py-4 text-center cursor-pointer transition-colors border ${selectedItem === 'erp' ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-white'}`}
                   onMouseEnter={() => handleItemHover('erp')}
                 >
                   <div className="text-sm font-bold text-gray-900">Your ERP</div>
@@ -401,6 +415,7 @@ function LandingPage() {
                       <img src={freshbooksLogo} alt="FreshBooks" className="h-5" />
                     </div>
                   </div>
+                </div>
                 </div>
               </div>
             </div>
@@ -455,19 +470,22 @@ function LandingPage() {
       </section>
 
       {/* How it works */}
-      <section className="py-20 px-6 border-b border-gray-200">
+      <section className="py-20 px-6">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-2">
-            How it works
-          </h2>
-          <p className="text-lg text-gray-500 text-center mb-14 max-w-2xl mx-auto">
-            A review-and-approve workflow for everything AP.
-          </p>
+          <div className="mb-14 w-fit mx-auto">
+            <h2 className="text-3xl font-bold text-gray-900 text-center bg-white rounded-xl py-2 px-4 w-fit mx-auto">
+              How it works
+            </h2>
+            <p className="mt-3 text-lg text-gray-500 text-center max-w-2xl mx-auto bg-white rounded-xl py-2 px-4 w-fit">
+              A review-and-approve workflow for everything AP.
+            </p>
+          </div>
 
           {/* 3-box diagram */}
           <div className="flex flex-col md:flex-row items-stretch gap-4 md:gap-0">
             {/* Box 1 */}
-            <div className="flex-1 bg-gray-50 border border-gray-200 rounded-xl p-6 text-center">
+            <div className="flex-1 bg-white rounded-xl p-1">
+            <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 text-center h-full">
               <div className="w-10 h-10 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center mx-auto mb-3">
                 <Mail className="w-5 h-5 text-gray-500" />
               </div>
@@ -476,6 +494,7 @@ function LandingPage() {
                 An invoice or vendor message lands in your AP mailbox.
               </p>
             </div>
+            </div>
 
             {/* Arrow */}
             <div className="hidden md:flex items-center justify-center px-3">
@@ -483,7 +502,8 @@ function LandingPage() {
             </div>
 
             {/* Box 2 */}
-            <div className="flex-1 bg-gray-50 border border-gray-200 rounded-xl p-6 text-center">
+            <div className="flex-1 bg-white rounded-xl p-1">
+            <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 text-center h-full">
               <div className="w-10 h-10 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center mx-auto mb-3">
                 <Sparkles className="w-5 h-5 text-blue-500" />
               </div>
@@ -492,6 +512,7 @@ function LandingPage() {
                 Extracts data, codes GL, drafts replies, asks vendors for missing info, flags issues, and escalates to your team when something needs a human call.
               </p>
             </div>
+            </div>
 
             {/* Arrow */}
             <div className="hidden md:flex items-center justify-center px-3">
@@ -499,7 +520,8 @@ function LandingPage() {
             </div>
 
             {/* Box 3 */}
-            <div className="flex-1 bg-gray-50 border border-gray-200 rounded-xl p-6 text-center">
+            <div className="flex-1 bg-white rounded-xl p-1">
+            <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 text-center h-full">
               <div className="w-10 h-10 rounded-full bg-green-50 border border-green-100 flex items-center justify-center mx-auto mb-3">
                 <UserCheck className="w-5 h-5 text-green-600" />
               </div>
@@ -508,61 +530,62 @@ function LandingPage() {
                 Course-correct the AI, send emails, and initiate payments with one click.
               </p>
             </div>
+            </div>
           </div>
 
-          <p className="text-lg text-gray-500 text-center mt-12">
+          <p className="text-lg text-gray-500 text-center mt-12 bg-white rounded-xl py-2 px-4 w-fit mx-auto">
             Quiet AI does the processing. You just check the work.
           </p>
         </div>
       </section>
 
       {/* Onboarding callout */}
-      <section className="py-14 px-6">
+      <section className="pt-4 pb-14 px-6">
         <div className="max-w-4xl mx-auto">
           {/* Badge + headline */}
-          <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 bg-blue-50 text-blue-700 text-sm font-medium rounded-full mb-6">
+          <div className="text-center mb-8 w-fit mx-auto">
+            <span className="inline-block px-4 py-1.5 bg-blue-50 text-blue-700 text-sm font-medium rounded-full">
               <Clock className="w-3.5 h-3.5 inline -mt-0.5" /> Under 30 minutes
             </span>
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="mt-3 text-3xl font-bold text-gray-900 bg-white rounded-xl py-2 px-4 w-fit mx-auto">
               Set up once. Automate forever.
             </h2>
-            <p className="text-lg text-gray-500">
+            <p className="mt-3 text-lg text-gray-500 bg-white rounded-xl py-2 px-4 w-fit mx-auto">
               No implementation fees. No long-term contracts. No IT involvement. No vendor disruption.
             </p>
           </div>
 
           {/* Steps */}
-          <div className="space-y-4 mb-16">
-            <div className="flex gap-6">
+          <div className="space-y-2 mb-16">
+            <div className="flex gap-4 bg-white rounded-xl p-2">
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold">1</div>
               <div>
                 <h3 className="font-bold text-gray-900 mb-1">Sign into your AP mailbox</h3>
                 <p className="text-gray-600">All you need is your email login — like ap@company.com. Sign in, grant Quiet AI access, and you're connected. No forwarding rules, no migration, no IT involvement.</p>
               </div>
             </div>
-            <div className="flex gap-6">
+            <div className="flex gap-4 bg-white rounded-xl p-2">
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold">2</div>
               <div>
                 <h3 className="font-bold text-gray-900 mb-1">Connect your accounting system</h3>
                 <p className="text-gray-600">Link QuickBooks, NetSuite, Sage, or whatever you use. Vendors, GL codes, and payment records stay in sync automatically.</p>
               </div>
             </div>
-            <div className="flex gap-6">
+            <div className="flex gap-4 bg-white rounded-xl p-2">
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold">3</div>
               <div>
                 <h3 className="font-bold text-gray-900 mb-1">Connect your bank account</h3>
                 <p className="text-gray-600">Link the account you pay vendors from. Quiet prepares payments for you — nothing moves until you approve it.</p>
               </div>
             </div>
-            <div className="flex gap-6">
+            <div className="flex gap-4 bg-white rounded-xl p-2">
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold">4</div>
               <div>
                 <h3 className="font-bold text-gray-900 mb-1">Set your approval rules</h3>
                 <p className="text-gray-600">Decide who can approve what — by amount, vendor, department, or however your team works.</p>
               </div>
             </div>
-            <div className="flex gap-6">
+            <div className="flex gap-4 bg-white rounded-xl p-2">
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold">5</div>
               <div>
                 <h3 className="font-bold text-gray-900 mb-1">You're live</h3>
@@ -605,38 +628,40 @@ function LandingPage() {
       </section>
 
       {/* Security */}
-      <section className="py-14 px-6 bg-gray-50 border-y border-gray-200">
+      <section className="py-14 px-6">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-4">
-            Hard guardrails. Full paper trail.
-          </h2>
-          <p className="text-lg text-gray-500 text-center mb-10 max-w-2xl mx-auto">
-            Quiet AI processes invoices and drafts communications. But the AI operates inside
-            hard boundaries — not guidelines, not best-effort policies, but structural rules it
-            cannot override.
-          </p>
-          <div className="mb-10">
+          <div className="mb-10 w-fit mx-auto">
+            <h2 className="text-3xl font-bold text-gray-900 text-center bg-white rounded-xl py-2 px-4 w-fit mx-auto">
+              Hard guardrails. Full paper trail.
+            </h2>
+            <p className="mt-3 text-lg text-gray-500 text-center max-w-2xl mx-auto bg-white rounded-xl py-2 px-4 w-fit">
+              Quiet AI processes invoices and drafts communications. But the AI operates inside
+              hard boundaries — not guidelines, not best-effort policies, but structural rules it
+              cannot override.
+            </p>
+          </div>
+          <div className="mb-10 bg-white rounded-2xl p-1 w-fit mx-auto">
             <AuditLogAnimation />
           </div>
           <div className="grid md:grid-cols-3 gap-12">
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Data access is scoped, not trusted</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <h3 className="text-base font-bold text-gray-900 bg-white rounded-xl py-2 px-3 w-fit">Data access is scoped, not trusted</h3>
+              <p className="mt-2 text-sm text-gray-600 leading-relaxed bg-white rounded-xl py-2 px-3 w-fit">
                 The AI can only access data relevant to the recipient it's drafting for. A vendor
                 asking about their invoice simply cannot surface another vendor's terms, your
                 internal notes, or your banking details.
               </p>
             </div>
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Outputs are traceable, not hallucinated</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <h3 className="text-base font-bold text-gray-900 bg-white rounded-xl py-2 px-3 w-fit">Traceable, not hallucinated</h3>
+              <p className="mt-2 text-sm text-gray-600 leading-relaxed bg-white rounded-xl py-2 px-3 w-fit">
                 Every figure, date, and line item Quiet produces is tied to a source document in your
                 system. If it doesn't have the answer, it says so — it never makes something up.
               </p>
             </div>
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Everything is auditable</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <h3 className="text-base font-bold text-gray-900 bg-white rounded-xl py-2 px-3 w-fit">Everything is auditable</h3>
+              <p className="mt-2 text-sm text-gray-600 leading-relaxed bg-white rounded-xl py-2 px-3 w-fit">
                 Every action has a paper trail. Who approved what, what the AI drafted, what changed,
                 and when. If a question comes up six months from now, the answer is already logged.
               </p>
@@ -646,14 +671,16 @@ function LandingPage() {
       </section>
 
       {/* Roadmap */}
-      <section className="py-24 px-6 bg-gray-50 border-y border-gray-200">
+      <section className="py-24 px-6">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl font-bold text-gray-900 bg-white rounded-xl py-2 px-4 w-fit mx-auto">
             We're just getting started
           </h2>
-          <p className="text-lg text-gray-600 mb-8">
-            POs and 3-way matching are coming soon. Want to shape what comes after? We build with
-            our customers.
+          <p className="mt-3 text-lg text-gray-600 bg-white rounded-xl py-1 px-4 w-fit mx-auto">
+            POs and 3-way matching are coming soon.
+          </p>
+          <p className="mt-1 text-lg text-gray-600 mb-8 bg-white rounded-xl py-1 px-4 w-fit mx-auto">
+            Want to shape what comes after? We build with our customers.
           </p>
           <div className="flex items-center justify-center gap-4">
             <Button size="lg" className="text-lg px-8 py-6">
@@ -684,7 +711,7 @@ function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-gray-200 py-8 px-6">
+      <footer className="border-t border-gray-200 py-8 px-6 bg-white">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <span className="text-sm text-gray-500">&copy; 2026 Quiet AI</span>
           <div className="flex items-center gap-4">
@@ -703,6 +730,7 @@ function LandingPage() {
           </div>
         </div>
       </footer>
+    </div>
     </div>
   )
 }

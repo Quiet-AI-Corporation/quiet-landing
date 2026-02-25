@@ -62,7 +62,7 @@ function IntelligentCodingAnimation() {
       {/* Left — Coding guidance */}
       <div className="flex-1 min-w-0 flex flex-col overflow-hidden">
         <div>
-          <div className="p-4">
+          <div className="p-4 bg-white rounded-xl">
             <div className="flex items-center gap-2 text-sm font-bold text-gray-600 uppercase tracking-widest mb-4">
               <img src={logo} alt="Quiet" className="h-5" />
               Quiet AI Coding Assistant
