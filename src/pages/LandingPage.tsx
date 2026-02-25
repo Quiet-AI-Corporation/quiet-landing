@@ -183,7 +183,7 @@ function LandingPage() {
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <img src={logo} alt="Quiet" className="h-8" />
-            <span className="font-semibold text-lg text-gray-900">Quiet</span>
+            <span className="font-semibold text-lg text-gray-900">Quiet AI</span>
           </div>
           <div className="flex items-center gap-3">
             <Button variant="ghost" onClick={handleLogin}>
@@ -198,13 +198,12 @@ function LandingPage() {
       <section className="py-16 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 tracking-tight leading-tight">
-            Accounts payable
-            <br />
-            on autopilot
+            AP on Autopilot
           </h1>
           <p className="mt-6 text-xl text-gray-600 max-w-2xl mx-auto">
-            Stop processing invoices. Start approving them. Quiet automates the grunt work of
-            AP — you keep the controls.
+            Quiet AI runs your AP mailbox — from invoice to payment.
+            <br />
+            You just review and approve.
           </p>
           {/* Hero graphic area — controlled by pills */}
           <div className="mt-12 max-w-4xl mx-auto">
