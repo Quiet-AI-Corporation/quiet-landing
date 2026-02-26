@@ -125,7 +125,7 @@ function LandingPage() {
       title: 'Quiet AI',
       subtitle: 'Intelligent AP orchestration engine',
       body: [
-        'Workflow orchestration — Orchestrates key workflows for invoice intake, vendor onboarding, line item coding, inquiry responses, and approvals',
+        'Workflow orchestration — for invoice intake, vendor onboarding, line item coding, inquiry responses, approvals, and fuzzy edge cases where deterministic logic fails',
         'Duplicate invoices & fraud attempts — Caught and flagged for your inspection',
         'Intelligent clarification — When something\'s ambiguous, Quiet asks you instead of guessing',
         'Your configuration — You can set approval workflows, GL coding guidelines, and validation rules',
@@ -192,7 +192,7 @@ function LandingPage() {
             <Button variant="ghost" onClick={handleLogin}>
               Sign In
             </Button>
-            <Button onClick={handleSignup}>Get Started</Button>
+            <Button onClick={handleSignup}>Get Access</Button>
           </div>
         </div>
       </nav>
@@ -685,48 +685,28 @@ function LandingPage() {
           <p className="mt-1 text-lg text-gray-600 mb-8 bg-white rounded-xl py-1 px-4 w-fit mx-auto">
             Want to shape what comes after? We build with our customers.
           </p>
-          <div className="flex items-center justify-center gap-4">
-            <Button size="lg" className="text-lg px-8 py-6">
-              Request a Feature
-            </Button>
-            <Button size="lg" variant="outline" className="text-lg px-8 py-6">
-              Join the Waitlist
+          <div className="flex items-center justify-center bg-white rounded-xl w-fit mx-auto">
+            <Button size="lg" onClick={handleSignup} className="text-lg px-8 py-6">
+              Build with Us
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="bg-gray-900 py-24 px-6">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-white mb-4">Ready to automate your AP?</h2>
-          <p className="text-lg text-gray-400 mb-8">
-            Set up in minutes. No implementation fees. No long-term contracts.
-          </p>
-          <Button
-            size="lg"
-            onClick={handleSignup}
-            className="text-lg px-8 py-6 bg-white text-gray-900 hover:bg-gray-100"
-          >
-            Get Started Free
-          </Button>
-        </div>
-      </section>
-
       {/* Footer */}
-      <footer className="border-t border-gray-200 py-8 px-6 bg-white">
+      <footer className="border-t border-gray-800 py-8 px-6 bg-gray-900">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <span className="text-sm text-gray-500">&copy; 2026 Quiet AI</span>
+          <span className="text-sm text-gray-400">&copy; 2026 Quiet AI</span>
           <div className="flex items-center gap-4">
             <a
               href="/privacy-policy.html"
-              className="text-sm text-gray-500 hover:text-gray-900 underline"
+              className="text-sm text-gray-400 hover:text-white underline"
             >
               Privacy Policy
             </a>
             <a
               href="/eula.html"
-              className="text-sm text-gray-500 hover:text-gray-900 underline"
+              className="text-sm text-gray-400 hover:text-white underline"
             >
               Terms of Service
             </a>
