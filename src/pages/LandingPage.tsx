@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
+import { Link2, BookOpen, Inbox, Landmark } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
@@ -11,6 +12,14 @@ import FakeInvoiceDeflectionAnimation from '@/components/landing/FakeInvoiceDefl
 import BusinessEmailCompromiseAnimation from '@/components/landing/BusinessEmailCompromiseAnimation'
 import DuplicateDetectionAnimation from '@/components/landing/DuplicateDetectionAnimation'
 import logo from '@/assets/images/logo.png'
+import gmailLogo from '@/assets/images/gmail_logo.webp'
+import outlookLogo from '@/assets/images/outlook_logo.webp'
+import netsuiteLogo from '@/assets/images/netsuite_logo.webp'
+import qboLogo from '@/assets/images/qbo_logo.webp'
+import sageLogo from '@/assets/images/sage_logo.webp'
+import plaidLogo from '@/assets/images/plaid_logo.webp'
+import xeroLogo from '@/assets/images/xero_logo.webp'
+import freshbooksLogo from '@/assets/images/freshbooks_logo.webp'
 
 const APP_URL = 'https://tryquiet.app'
 
@@ -31,7 +40,9 @@ const DWELL_SECONDS = 7
 
 function LandingPage() {
   const [selectedUseCase, setSelectedUseCase] = useState(0)
+  const [selectedItem, setSelectedItem] = useState<string>('mailbox')
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const diagramTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const scheduleNext = useCallback((index: number) => {
     if (timerRef.current) clearTimeout(timerRef.current)
@@ -53,6 +64,107 @@ function LandingPage() {
 
   const handlePillClick = (index: number) => {
     setSelectedUseCase(index)
+  }
+
+  const DIAGRAM_CYCLE = ['mailbox', 'mailbox-dot', 'quiet', 'bank-dot', 'bank', 'erp-dot', 'erp'] as const
+
+  const scheduleDiagramNext = useCallback((current: string) => {
+    if (diagramTimerRef.current) clearTimeout(diagramTimerRef.current)
+    if (diagramHoveredRef.current) return
+    diagramTimerRef.current = setTimeout(() => {
+      const idx = DIAGRAM_CYCLE.indexOf(current as typeof DIAGRAM_CYCLE[number])
+      const next = DIAGRAM_CYCLE[(idx + 1) % DIAGRAM_CYCLE.length]
+      setSelectedItem(next)
+    }, 3000)
+  }, [])
+
+  useEffect(() => {
+    scheduleDiagramNext(selectedItem)
+    return () => {
+      if (diagramTimerRef.current) clearTimeout(diagramTimerRef.current)
+    }
+  }, [selectedItem, scheduleDiagramNext])
+
+  const diagramHoveredRef = useRef(false)
+
+  const handleItemHover = (id: string) => {
+    diagramHoveredRef.current = true
+    if (diagramTimerRef.current) clearTimeout(diagramTimerRef.current)
+    setSelectedItem(id)
+  }
+
+  const handleDiagramLeave = () => {
+    diagramHoveredRef.current = false
+    scheduleDiagramNext(selectedItem)
+  }
+
+  const diagramCaptions: Record<string, { title: string; subtitle: string; body: string[] }> = {
+    'mailbox': {
+      title: 'Your AP Mailbox',
+      subtitle: 'Where invoices and vendor correspondence land',
+      body: [
+        'Existing inbox — Hooks up to ap@yourcompany.com or wherever vendors send invoices today',
+        'Full visibility — Sees invoices, payment inquiries, W-9s, updated remit-to info, and everything else your vendors (and your employees) send',
+        'No change for vendors — No new portals for them, no manual file uploading for you',
+        'Gmail today — Outlook on the way',
+      ],
+    },
+    'mailbox-dot': {
+      title: 'API Connection',
+      subtitle: 'Vendor emails in. Email drafts, approval requests, and confirmations back out',
+      body: [
+        'Inbound — All emails and attachments flow into Quiet AI automatically',
+        'Outbound — Drafts flow back: vendor replies, clarification requests, payment confirmations',
+        'Approvals — Approval requests and responses route through the same mailbox connection',
+        'Your control — Nothing sends until you approve it inside Quiet',
+      ],
+    },
+    'quiet': {
+      title: 'Quiet AI',
+      subtitle: 'Intelligent AP orchestration engine',
+      body: [
+        'Workflow orchestration — Orchestrates key workflows for invoice intake, vendor onboarding, line item coding, inquiry responses, and approvals',
+        'Duplicate invoices & fraud attempts — Caught and flagged for your inspection',
+        'Intelligent clarification — When something\'s ambiguous, Quiet asks you instead of guessing',
+        'Your configuration — You can set approval workflows, GL coding guidelines, and validation rules',
+      ],
+    },
+    'bank-dot': {
+      title: 'Connected to your bank via Plaid',
+      subtitle: 'Payments staged but never auto-sent',
+      body: [
+        'Review first — Quiet prepares each payment and presents it for your review',
+        'You approve — Quiet moves the money from your bank account to the vendor',
+        'Auto-sync — Payment status syncs back so your records stay current automatically',
+      ],
+    },
+    'bank': {
+      title: 'Your AP Bank Account',
+      subtitle: 'The same operating account you already use',
+      body: [
+        'Broad support — Quiet AI works with most major financial institutions via Plaid',
+        'Staged drafts — Payments are always staged as drafts, nothing is sent until you give final approval',
+        'Auto-sync — Once payments clear, status syncs back automatically',
+      ],
+    },
+    'erp-dot': {
+      title: 'API Connection',
+      subtitle: 'Two-way sync keeps everything current',
+      body: [
+        'Pulls in — Your vendor list, GL accounts, and other accounting categories stay current',
+        'Pushes back — Coded invoices and payment records sync automatically',
+        'No drift — No duplicate entry, no divergence between systems',
+      ],
+    },
+    'erp': {
+      title: 'Your ERP',
+      subtitle: 'Your accounting source of truth',
+      body: [
+        'Your data — GL, chart of accounts, vendor master list, and payment history in QuickBooks, Netsuite, Xero, Sage, or many others',
+        'Source of truth — Your books stay here, Quiet doesn\'t replace them',
+        'Zero config — No remapping, no configuration spreadsheets',
+      ],
+    },
   }
 
   const handleLogin = () => {
@@ -82,7 +194,7 @@ function LandingPage() {
       </nav>
 
       {/* Hero */}
-      <section className="py-28 px-6">
+      <section className="py-16 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 tracking-tight leading-tight">
             Accounts payable
@@ -180,6 +292,168 @@ function LandingPage() {
         </div>
       </section>
 
+      {/* How it connects */}
+      <section className="py-14 px-6 bg-gray-50 border-y border-gray-200">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold text-gray-900 text-center mb-4">
+            Plugs into the tools you already use
+          </h2>
+          <p className="text-lg text-gray-500 text-center mb-6 max-w-2xl mx-auto">
+            Quiet sits between your inbox, your bank, and your ERP — so your existing workflows
+            don't change, they just get faster. Up and running in minutes, not months.
+          </p>
+
+          {/* Diagram + Caption — side by side */}
+          <div className="flex gap-8 items-stretch">
+            {/* Diagram column */}
+            <div className="w-96 shrink-0 flex flex-col items-center" onMouseLeave={handleDiagramLeave}>
+              {/* Mailbox */}
+              <div
+                className={`w-full rounded-xl px-6 py-4 text-center cursor-pointer transition-colors border ${selectedItem === 'mailbox' ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-white'}`}
+                onMouseEnter={() => handleItemHover('mailbox')}
+              >
+                <div className="text-sm font-bold text-gray-900">Your AP Mailbox</div>
+                <div className="flex items-center justify-center gap-3 mt-1.5">
+                  <img src={gmailLogo} alt="Gmail" className="h-6" />
+                  <img src={outlookLogo} alt="Outlook" className="h-6" />
+                </div>
+              </div>
+
+              {/* Arrow: Mailbox ↔ Quiet */}
+              <div className="relative flex justify-center" style={{ height: 56 }}>
+                <svg width="24" height="56" className="overflow-visible shrink-0">
+                  <defs>
+                    <marker id="arrowhead" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+                      <path d="M 0 0 L 10 5 L 0 10 z" fill="#9ca3af" />
+                    </marker>
+                  </defs>
+                  <line x1="12" y1="2" x2="12" y2="54" stroke="#9ca3af" strokeWidth="1.5" markerStart="url(#arrowhead)" markerEnd="url(#arrowhead)" />
+                </svg>
+                <div
+                  className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-7 h-7 rounded-full border flex items-center justify-center cursor-pointer transition-colors ${selectedItem === 'mailbox-dot' ? 'bg-blue-50 border-blue-500' : 'bg-white border-gray-300'}`}
+                  onMouseEnter={() => handleItemHover('mailbox-dot')}
+                >
+                  <Link2 className={`w-3.5 h-3.5 ${selectedItem === 'mailbox-dot' ? 'text-blue-500' : 'text-gray-400'}`} />
+                </div>
+              </div>
+
+              {/* Quiet AI */}
+              <div
+                className={`w-full rounded-xl px-6 py-4 flex items-center justify-center gap-2 cursor-pointer transition-colors border ${selectedItem === 'quiet' ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-white'}`}
+                onMouseEnter={() => handleItemHover('quiet')}
+              >
+                <img src={logo} alt="Quiet" className="h-6" />
+                <div className="text-sm font-bold text-gray-900">Quiet AI</div>
+              </div>
+
+              {/* Bottom arrows — two side by side */}
+              <div className="w-full flex">
+                <div className="flex-1 flex justify-center">
+                  <div className="relative flex justify-center" style={{ height: 56 }}>
+                    <svg width="24" height="56" className="overflow-visible shrink-0">
+                      <line x1="12" y1="2" x2="12" y2="54" stroke="#9ca3af" strokeWidth="1.5" markerStart="url(#arrowhead)" markerEnd="url(#arrowhead)" />
+                    </svg>
+                    <div
+                      className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-7 h-7 rounded-full border flex items-center justify-center cursor-pointer transition-colors ${selectedItem === 'bank-dot' ? 'bg-blue-50 border-blue-500' : 'bg-white border-gray-300'}`}
+                      onMouseEnter={() => handleItemHover('bank-dot')}
+                    >
+                      <img src={plaidLogo} alt="Plaid" className="w-4 h-4" />
+                    </div>
+                  </div>
+                </div>
+                <div className="flex-1 flex justify-center">
+                  <div className="relative flex justify-center" style={{ height: 56 }}>
+                    <svg width="24" height="56" className="overflow-visible shrink-0">
+                      <line x1="12" y1="2" x2="12" y2="54" stroke="#9ca3af" strokeWidth="1.5" markerStart="url(#arrowhead)" markerEnd="url(#arrowhead)" />
+                    </svg>
+                    <div
+                      className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-7 h-7 rounded-full border flex items-center justify-center cursor-pointer transition-colors ${selectedItem === 'erp-dot' ? 'bg-blue-50 border-blue-500' : 'bg-white border-gray-300'}`}
+                      onMouseEnter={() => handleItemHover('erp-dot')}
+                    >
+                      <Link2 className={`w-3.5 h-3.5 ${selectedItem === 'erp-dot' ? 'text-blue-500' : 'text-gray-400'}`} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Bank + ERP */}
+              <div className="w-full flex gap-3">
+                <div
+                  className={`flex-1 rounded-xl px-4 py-4 text-center cursor-pointer transition-colors border ${selectedItem === 'bank' ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-white'}`}
+                  onMouseEnter={() => handleItemHover('bank')}
+                >
+                  <div className="text-sm font-bold text-gray-900">Your AP Bank Account</div>
+                  <p className="text-xs text-gray-400 italic mt-1">Most financial institutions supported</p>
+                </div>
+                <div
+                  className={`flex-1 rounded-xl px-4 py-4 text-center cursor-pointer transition-colors border ${selectedItem === 'erp' ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-white'}`}
+                  onMouseEnter={() => handleItemHover('erp')}
+                >
+                  <div className="text-sm font-bold text-gray-900">Your ERP</div>
+                  <div className="flex flex-col items-center mt-1.5 -mb-1">
+                    <div className="flex items-center justify-center gap-2">
+                      <img src={netsuiteLogo} alt="NetSuite" className="h-6" />
+                      <img src={qboLogo} alt="QuickBooks Online" className="h-6" />
+                      <img src={sageLogo} alt="Sage" className="h-6" />
+                    </div>
+                    <div className="flex items-center justify-center gap-2 mt-0.5">
+                      <img src={xeroLogo} alt="Xero" className="h-7" />
+                      <img src={freshbooksLogo} alt="FreshBooks" className="h-5" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Caption box — fixed size to prevent layout shifts */}
+            <div className="flex-1">
+              <div className="rounded-xl border border-gray-200 bg-white p-5 h-full overflow-y-auto">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={selectedItem}
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                    transition={{ duration: 0.25, ease: 'easeInOut' }}
+                  >
+                    <div className="flex items-center gap-2 mb-1">
+                      {selectedItem === 'quiet' ? (
+                        <img src={logo} alt="Quiet" className="w-4 h-4 shrink-0" />
+                      ) : selectedItem === 'mailbox' ? (
+                        <Inbox className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+                      ) : selectedItem === 'bank-dot' ? (
+                        <img src={plaidLogo} alt="Plaid" className="w-4 h-4 shrink-0" />
+                      ) : selectedItem === 'erp' ? (
+                        <BookOpen className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+                      ) : selectedItem === 'bank' ? (
+                        <Landmark className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+                      ) : selectedItem.endsWith('-dot') ? (
+                        <Link2 className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+                      ) : (
+                        <div className="w-2 h-2 rounded-full bg-blue-500 shrink-0" />
+                      )}
+                      <h4 className="text-sm font-bold text-gray-900">{diagramCaptions[selectedItem].title}</h4>
+                    </div>
+                    <p className="text-xs text-gray-500 mb-3">{diagramCaptions[selectedItem].subtitle}</p>
+                    <div className="border-t border-gray-100 pt-3">
+                      <ul className="text-sm text-gray-700 leading-relaxed space-y-1.5 list-disc list-outside pl-4">
+                        {diagramCaptions[selectedItem].body.map((item, i) => (
+                          <li key={i}>
+                            {item.includes(' — ') ? (
+                              <><span className="font-semibold">{item.split(' — ')[0]}</span> — {item.split(' — ').slice(1).join(' — ')}</>
+                            ) : item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Trust bar */}
       <section className="py-20 px-6 border-b border-gray-200">
         <div className="max-w-5xl mx-auto">
@@ -215,114 +489,6 @@ function LandingPage() {
                 Every email — to vendors, your team, and any third parties — is drafted for you.
                 Nothing is sent until you hit send.
               </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* How it connects */}
-      <section className="py-24 px-6 bg-gray-50 border-y border-gray-200">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-4">
-            Plugs into the tools you already use
-          </h2>
-          <p className="text-lg text-gray-500 text-center mb-16 max-w-2xl mx-auto">
-            Quiet sits between your inbox, your bank, and your ERP — so your existing workflows
-            don't change, they just get faster. Up and running in minutes, not months.
-          </p>
-
-          {/* Diagram */}
-          <div className="flex flex-col items-center gap-4">
-            {/* Top: Email Inbox */}
-            <div className="group rounded-xl border border-gray-300 bg-white px-8 py-5 text-center transition-all duration-200 hover:scale-110 hover:border-blue-500 hover:shadow-lg cursor-default">
-              <div className="font-bold text-gray-900">Your Email Inbox</div>
-              <p className="max-h-0 overflow-hidden opacity-0 group-hover:max-h-24 group-hover:opacity-100 group-hover:mt-2 transition-all duration-200 text-sm text-gray-600">
-                Invoices are pulled automatically from your AP inbox. No scanning, no forwarding, no
-                manual upload.
-              </p>
-            </div>
-
-            {/* Arrow down + label */}
-            <div className="flex flex-col items-center gap-1">
-              <span className="text-xs text-gray-400 uppercase tracking-widest">invoices arrive</span>
-              <span className="text-gray-300 text-2xl">↓</span>
-            </div>
-
-            {/* Middle row: Bank ← Quiet → ERP */}
-            <div className="flex items-start justify-center gap-6 md:gap-12 w-full">
-              {/* Bank */}
-              <div className="flex-1 max-w-[200px] text-center">
-                <div className="group rounded-xl border border-gray-300 bg-white px-6 py-5 transition-all duration-200 hover:scale-110 hover:border-blue-500 hover:shadow-lg cursor-default">
-                  <div className="font-bold text-gray-900">Your Bank Account</div>
-                  <p className="max-h-0 overflow-hidden opacity-0 group-hover:max-h-24 group-hover:opacity-100 group-hover:mt-2 transition-all duration-200 text-sm text-gray-600">
-                    Payments are staged and ready to go. One click to approve, and the money moves.
-                  </p>
-                </div>
-                <p className="mt-3 text-sm text-gray-500">
-                  Stages payments for approval
-                </p>
-              </div>
-
-              {/* Arrows + Quiet */}
-              <div className="flex items-center gap-3 pt-3">
-                <span className="text-gray-300 text-xl">←</span>
-                <div className="rounded-xl border-2 border-blue-500 bg-white px-8 py-5 text-center">
-                  <div className="font-bold text-gray-900">Quiet</div>
-                </div>
-                <span className="text-gray-300 text-xl">→</span>
-              </div>
-
-              {/* ERP */}
-              <div className="flex-1 max-w-[200px] text-center">
-                <div className="group rounded-xl border border-gray-300 bg-white px-6 py-5 transition-all duration-200 hover:scale-110 hover:border-blue-500 hover:shadow-lg cursor-default">
-                  <div className="font-bold text-gray-900">Your ERP</div>
-                  <p className="max-h-0 overflow-hidden opacity-0 group-hover:max-h-24 group-hover:opacity-100 group-hover:mt-2 transition-all duration-200 text-sm text-gray-600">
-                    Vendors, GL codes, and payment records sync both ways. No double entry.
-                  </p>
-                </div>
-                <p className="mt-3 text-sm text-gray-500">
-                  Syncs vendors, GL codes, and payment records
-                </p>
-              </div>
-            </div>
-
-            {/* Caption under Quiet */}
-            <p className="text-sm text-gray-500 text-center -mt-1">
-              Captures, matches, codes, and queues for review
-            </p>
-
-            {/* Arrow down from Quiet to Outbox */}
-            <div className="flex flex-col items-center gap-1 mt-2">
-              <span className="text-gray-300 text-2xl">↓</span>
-              <span className="text-xs text-gray-400 uppercase tracking-widest">drafts messages</span>
-            </div>
-
-            {/* Email Outbox node */}
-            <div className="group rounded-xl border border-gray-300 bg-white px-8 py-5 text-center transition-all duration-200 hover:scale-110 hover:border-blue-500 hover:shadow-lg cursor-default">
-              <div className="font-bold text-gray-900">Email Outbox</div>
-              <div className="max-h-0 overflow-hidden opacity-0 group-hover:max-h-96 group-hover:opacity-100 group-hover:mt-3 transition-all duration-200 text-left">
-                <div className="border-t border-gray-100 pt-3 space-y-3">
-                  <div>
-                    <div className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">External — Vendor Communications</div>
-                    <ul className="space-y-1 text-sm text-gray-600">
-                      <li><span className="font-medium">Remittance advice</span> — auto-generated with invoice numbers and amounts</li>
-                      <li><span className="font-medium">Missing info requests</span> — W-9s, bank details, corrected invoices</li>
-                      <li><span className="font-medium">Payment status updates</span> — let vendors know when to expect payment</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Internal — Team Notifications</div>
-                    <ul className="space-y-1 text-sm text-gray-600">
-                      <li><span className="font-medium">Approval requests</span> — summary email with one-click approve</li>
-                      <li><span className="font-medium">Coding review nudges</span> — flags the right person when AI is unsure</li>
-                      <li><span className="font-medium">Exception alerts</span> — duplicates, unusual amounts, missing POs</li>
-                    </ul>
-                  </div>
-                  <p className="text-xs text-gray-400 text-center pt-1">
-                    Every message is a draft until you approve it.
-                  </p>
-                </div>
-              </div>
             </div>
           </div>
         </div>
