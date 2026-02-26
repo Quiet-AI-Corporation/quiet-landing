@@ -198,13 +198,16 @@ function LandingPage() {
       </nav>
 
       {/* Hero */}
-      <section className="py-16 px-6">
+      <section className="py-12 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <div className="w-fit mx-auto">
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 tracking-tight leading-tight bg-white rounded-xl py-2 px-4 w-fit mx-auto">
-              AP on Autopilot
+            <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 bg-white rounded-xl py-1.5 px-3 w-fit mx-auto">
+              Agentic AI for Accounts Payable
+            </p>
+            <h1 className="mt-1 text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight bg-white rounded-xl py-2 px-4 w-fit mx-auto">
+              The sound of AP running smoothly
             </h1>
-            <p className="mt-3 text-xl text-gray-600 max-w-2xl mx-auto bg-white rounded-xl py-2 px-4 w-fit">
+            <p className="mt-1 text-xl text-gray-600 max-w-2xl mx-auto bg-white rounded-xl py-2 px-4 w-fit">
               Quiet AI runs your AP mailbox — from invoice to payment.
               <br />
               You just review and approve.
@@ -298,13 +301,13 @@ function LandingPage() {
       </section>
 
       {/* How it connects */}
-      <section className="py-14 px-6">
+      <section className="py-10 px-6">
         <div className="max-w-4xl mx-auto">
           <div className="mb-6">
             <h2 className="text-3xl font-bold text-gray-900 text-center bg-white rounded-xl py-2 px-4 w-fit mx-auto">
               Plugs into the tools you already use
             </h2>
-            <p className="mt-3 text-lg text-gray-500 text-center max-w-2xl mx-auto bg-white rounded-xl py-2 px-4 w-fit">
+            <p className="mt-1 text-lg text-gray-500 text-center max-w-2xl mx-auto bg-white rounded-xl py-2 px-4 w-fit">
               Quiet sits between your inbox, your bank, and your ERP — so your existing workflows
               don't change, they just get faster. Up and running in minutes, not months.
             </p>
@@ -470,13 +473,13 @@ function LandingPage() {
       </section>
 
       {/* How it works */}
-      <section className="py-20 px-6">
+      <section className="py-10 px-6">
         <div className="max-w-5xl mx-auto">
-          <div className="mb-14 w-fit mx-auto">
+          <div className="mb-8 w-fit mx-auto">
             <h2 className="text-3xl font-bold text-gray-900 text-center bg-white rounded-xl py-2 px-4 w-fit mx-auto">
               How it works
             </h2>
-            <p className="mt-3 text-lg text-gray-500 text-center max-w-2xl mx-auto bg-white rounded-xl py-2 px-4 w-fit">
+            <p className="mt-1 text-lg text-gray-500 text-center max-w-2xl mx-auto bg-white rounded-xl py-2 px-4 w-fit">
               A review-and-approve workflow for everything AP.
             </p>
           </div>
@@ -497,7 +500,7 @@ function LandingPage() {
             </div>
 
             {/* Arrow */}
-            <div className="hidden md:flex items-center justify-center px-3">
+            <div className="hidden md:flex items-center justify-center px-3 bg-white rounded-lg py-2">
               <ArrowRight className="w-5 h-5 text-gray-300" />
             </div>
 
@@ -515,7 +518,7 @@ function LandingPage() {
             </div>
 
             {/* Arrow */}
-            <div className="hidden md:flex items-center justify-center px-3">
+            <div className="hidden md:flex items-center justify-center px-3 bg-white rounded-lg py-2">
               <ArrowRight className="w-5 h-5 text-gray-300" />
             </div>
 
@@ -540,7 +543,7 @@ function LandingPage() {
       </section>
 
       {/* Onboarding callout */}
-      <section className="pt-4 pb-14 px-6">
+      <section className="pt-4 pb-10 px-6">
         <div className="max-w-4xl mx-auto">
           {/* Badge + headline */}
           <div className="text-center mb-8 w-fit mx-auto">
@@ -550,13 +553,13 @@ function LandingPage() {
             <h2 className="mt-3 text-3xl font-bold text-gray-900 bg-white rounded-xl py-2 px-4 w-fit mx-auto">
               Set up once. Automate forever.
             </h2>
-            <p className="mt-3 text-lg text-gray-500 bg-white rounded-xl py-2 px-4 w-fit mx-auto">
+            <p className="mt-1 text-lg text-gray-500 bg-white rounded-xl py-2 px-4 w-fit mx-auto">
               No implementation fees. No long-term contracts. No IT involvement. No vendor disruption.
             </p>
           </div>
 
           {/* Steps */}
-          <div className="space-y-2 mb-16">
+          <div className="space-y-2 mb-10">
             <div className="flex gap-4 bg-white rounded-xl p-2">
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold">1</div>
               <div>
@@ -628,19 +631,19 @@ function LandingPage() {
       </section>
 
       {/* Security */}
-      <section className="py-14 px-6">
+      <section className="py-10 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="mb-10 w-fit mx-auto">
             <h2 className="text-3xl font-bold text-gray-900 text-center bg-white rounded-xl py-2 px-4 w-fit mx-auto">
               Hard guardrails. Full paper trail.
             </h2>
-            <p className="mt-3 text-lg text-gray-500 text-center max-w-2xl mx-auto bg-white rounded-xl py-2 px-4 w-fit">
+            <p className="mt-1 text-lg text-gray-500 text-center max-w-2xl mx-auto bg-white rounded-xl py-2 px-4 w-fit">
               Quiet AI processes invoices and drafts communications. But the AI operates inside
               hard boundaries — not guidelines, not best-effort policies, but structural rules it
               cannot override.
             </p>
           </div>
-          <div className="mb-10 bg-white rounded-2xl p-1 w-fit mx-auto">
+          <div className="mb-6 bg-white rounded-2xl p-1 w-fit mx-auto">
             <AuditLogAnimation />
           </div>
           <div className="grid md:grid-cols-3 gap-12">
@@ -671,12 +674,12 @@ function LandingPage() {
       </section>
 
       {/* Roadmap */}
-      <section className="py-24 px-6">
+      <section className="py-12 px-6">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-gray-900 bg-white rounded-xl py-2 px-4 w-fit mx-auto">
             We're just getting started
           </h2>
-          <p className="mt-3 text-lg text-gray-600 bg-white rounded-xl py-1 px-4 w-fit mx-auto">
+          <p className="mt-1 text-lg text-gray-600 bg-white rounded-xl py-1 px-4 w-fit mx-auto">
             POs and 3-way matching are coming soon.
           </p>
           <p className="mt-1 text-lg text-gray-600 mb-8 bg-white rounded-xl py-1 px-4 w-fit mx-auto">
