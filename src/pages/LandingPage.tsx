@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import InvoiceProcessingAnimation from '@/components/landing/InvoiceProcessingAnimation'
 import VendorOnboardingAnimation from '@/components/landing/VendorOnboardingAnimation'
 import IntelligentCodingAnimation from '@/components/landing/IntelligentCodingAnimation'
@@ -101,28 +102,38 @@ function LandingPage() {
                 </span>
               </div>
             )}
-            {USE_CASES[selectedUseCase].comingSoon && (
-              <p className="mt-4 text-sm text-gray-400 italic">Coming soon</p>
-            )}
           </div>
 
           {/* Use-case pills */}
           <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
-            {USE_CASES.map((uc, i) => (
-              <button
-                key={uc.label}
-                onClick={() => setSelectedUseCase(i)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                  selectedUseCase === i
-                    ? 'bg-gray-900 text-white'
-                    : uc.comingSoon
-                      ? 'bg-gray-50 text-gray-400 border border-dashed border-gray-300 hover:bg-gray-100'
+            {USE_CASES.map((uc, i) =>
+              uc.comingSoon ? (
+                <TooltipProvider key={uc.label} delayDuration={0}>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <span
+                        className="px-4 py-2 rounded-full text-sm font-medium bg-gray-50 text-gray-400 border border-dashed border-gray-300 cursor-default"
+                      >
+                        {uc.label} ✦
+                      </span>
+                    </TooltipTrigger>
+                    <TooltipContent>Coming soon</TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              ) : (
+                <button
+                  key={uc.label}
+                  onClick={() => setSelectedUseCase(i)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                    selectedUseCase === i
+                      ? 'bg-gray-900 text-white'
                       : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
-              >
-                {uc.label}{uc.comingSoon ? ' ✦' : ''}
-              </button>
-            ))}
+                  }`}
+                >
+                  {uc.label}
+                </button>
+              )
+            )}
           </div>
         </div>
       </section>
