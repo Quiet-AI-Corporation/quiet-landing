@@ -173,9 +173,6 @@ function LandingPage() {
     window.location.href = APP_URL
   }
 
-  const handleSignup = () => {
-    window.location.href = APP_URL
-  }
 
   return (
     <div className="min-h-screen bg-white">

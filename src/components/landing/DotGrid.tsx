@@ -27,7 +27,7 @@ function DotGrid() {
       ctx!.scale(dpr, dpr)
     }
 
-    function draw(now: number) {
+    function draw(_now: number) {
       const w = window.innerWidth
       const h = window.innerHeight
       ctx!.clearRect(0, 0, w, h)
