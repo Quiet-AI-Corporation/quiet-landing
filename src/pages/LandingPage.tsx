@@ -192,7 +192,9 @@ function LandingPage() {
             <Button variant="ghost" onClick={handleLogin}>
               Sign In
             </Button>
-            <Button onClick={handleSignup}>Get Access</Button>
+            <Button asChild>
+              <a href="mailto:hello@tryquiet.ai?subject=Interested%20in%20Quiet%20AI&body=Hi%20Quiet%20team%2C%0A%0AI%27m%20interested%20in%20learning%20more%20about%20Quiet%20AI%20for%20accounts%20payable%20automation.%0A%0A%5BYou%27re%20welcome%20to%20tell%20us%20more%20about%20your%20company%20and%20current%20AP%20stack%20here.%20Or%20play%20it%20coy%20and%20save%20it%20for%20later%5D%0A%0ABest%2C%0A%5BYour%20name%5D">Get Access</a>
+            </Button>
           </div>
         </div>
       </nav>
@@ -686,8 +688,8 @@ function LandingPage() {
             Want to shape what comes after? We build with our customers.
           </p>
           <div className="flex items-center justify-center bg-white rounded-xl w-fit mx-auto">
-            <Button size="lg" onClick={handleSignup} className="text-lg px-8 py-6">
-              Build with Us
+            <Button size="lg" asChild className="text-lg px-8 py-6">
+              <a href="mailto:hello@tryquiet.ai?subject=Let%27s%20build%20together&body=Hi%20Quiet%20team%2C%0A%0AI%27d%20love%20to%20collaborate%20and%20help%20shape%20the%20product.%0A%0A%5BYou%27re%20welcome%20to%20tell%20us%20more%20about%20your%20company%20and%20current%20AP%20stack%20here.%20Or%20play%20it%20coy%20and%20save%20it%20for%20later%5D%0A%0ABest%2C%0A%5BYour%20name%5D">Build with Us</a>
             </Button>
           </div>
         </div>
