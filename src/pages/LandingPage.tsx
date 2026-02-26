@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { Link2, BookOpen, Inbox, Landmark, Mail, Sparkles, UserCheck, ArrowRight } from 'lucide-react'
+import { Link2, BookOpen, Inbox, Landmark, Mail, Sparkles, UserCheck, ArrowRight, Clock } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
@@ -517,23 +517,23 @@ function LandingPage() {
       </section>
 
       {/* Onboarding callout */}
-      <section className="py-24 px-6">
+      <section className="py-14 px-6">
         <div className="max-w-4xl mx-auto">
           {/* Badge + headline */}
           <div className="text-center mb-16">
             <span className="inline-block px-4 py-1.5 bg-blue-50 text-blue-700 text-sm font-medium rounded-full mb-6">
-              Under 30 minutes
+              <Clock className="w-3.5 h-3.5 inline -mt-0.5" /> Under 30 minutes
             </span>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               Set up once. Automate forever.
             </h2>
             <p className="text-lg text-gray-500">
-              Five steps, no IT involvement, no vendor disruption.
+              No implementation fees. No long-term contracts. No IT involvement. No vendor disruption.
             </p>
           </div>
 
           {/* Steps */}
-          <div className="space-y-8 mb-16">
+          <div className="space-y-4 mb-16">
             <div className="flex gap-6">
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold">1</div>
               <div>
@@ -571,33 +571,35 @@ function LandingPage() {
             </div>
           </div>
 
-          {/* Callout box */}
-          <div className="rounded-2xl border border-gray-200 bg-gray-50 p-8">
-            <h3 className="font-bold text-gray-900 mb-4">Zero disruption for your vendors.</h3>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-3">
-                <span className="text-green-500 font-bold mt-0.5">✓</span>
-                <span className="text-gray-600">They keep emailing the same address they always have</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-green-500 font-bold mt-0.5">✓</span>
-                <span className="text-gray-600">Replies come from your inbox, in your name</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-green-500 font-bold mt-0.5">✓</span>
-                <span className="text-gray-600">No portal, no login, no change to their workflow</span>
-              </li>
-            </ul>
-          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Callout box */}
+            <div className="rounded-2xl border border-gray-200 bg-gray-50 p-8">
+              <h3 className="font-bold text-gray-900 mb-4">Zero disruption for your vendors.</h3>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3">
+                  <span className="text-green-500 font-bold mt-0.5">✓</span>
+                  <span className="text-gray-600">They keep emailing the same address they always have</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-green-500 font-bold mt-0.5">✓</span>
+                  <span className="text-gray-600">Replies come from your inbox, in your name</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-green-500 font-bold mt-0.5">✓</span>
+                  <span className="text-gray-600">No portal, no login, no change to their workflow</span>
+                </li>
+              </ul>
+            </div>
 
-          {/* Read-only trial callout */}
-          <div className="rounded-2xl border border-blue-200 bg-blue-50 p-8 mt-6">
-            <h3 className="font-bold text-gray-900 mb-2">Try it in read-only mode first.</h3>
-            <p className="text-gray-600">
-              Quiet can run in observation mode — reading your inbox and organizing invoices without
-              sending emails, making payments, or touching your ERP. See exactly what it would do,
-              with zero risk. Turn on automation when you're ready.
-            </p>
+            {/* Read-only trial callout */}
+            <div className="rounded-2xl border border-blue-200 bg-blue-50 p-8">
+              <h3 className="font-bold text-gray-900 mb-2">Try it in read-only mode first.</h3>
+              <p className="text-gray-600">
+                Quiet can run in observation mode — reading your inbox and organizing invoices without
+                sending emails, making payments, or touching your ERP. See exactly what it would do,
+                with zero risk. Turn on automation when you're ready.
+              </p>
+            </div>
           </div>
         </div>
       </section>
