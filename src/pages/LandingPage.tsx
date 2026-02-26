@@ -60,7 +60,7 @@ function LandingPage() {
           {/* Hero graphic area — controlled by pills */}
           <div className="mt-12 max-w-4xl mx-auto">
             {selectedUseCase === 0 ? (
-              <div className="aspect-[16/8.5] flex items-stretch overflow-hidden">
+              <div className="aspect-[16/9] flex items-stretch overflow-hidden">
                 <InvoiceProcessingAnimation key={`invoice-${Date.now()}`} />
               </div>
             ) : (
