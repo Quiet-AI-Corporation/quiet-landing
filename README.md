@@ -16,4 +16,9 @@ The page will be available at `https://[your-username].github.io/[repository-nam
 
 ## Local Development
 
-Simply open `index.html` in a web browser to view the page locally. 
+```bash
+npm install
+npm run dev
+```
+
+This starts the dev server at `http://localhost:5174`.
