@@ -6,6 +6,7 @@ import IntelligentCodingAnimation from '@/components/landing/IntelligentCodingAn
 import InquiryResponsesAnimation from '@/components/landing/InquiryResponsesAnimation'
 import GatheringApprovalsAnimation from '@/components/landing/GatheringApprovalsAnimation'
 import FakeInvoiceDeflectionAnimation from '@/components/landing/FakeInvoiceDeflectionAnimation'
+import BusinessEmailCompromiseAnimation from '@/components/landing/BusinessEmailCompromiseAnimation'
 import logo from '@/assets/images/logo.png'
 
 const APP_URL = 'https://tryquiet.app'
@@ -16,7 +17,7 @@ const USE_CASES = [
   { label: 'Intelligent Coding', imageAlt: 'Intelligent coding screenshot' },
   { label: 'Inquiry Responses', imageAlt: 'Inquiry responses screenshot' },
   { label: 'Gathering Approvals', imageAlt: 'Gathering approvals screenshot' },
-  { label: 'Fraud Prevention', imageAlt: 'Fraud prevention screenshot' },
+  { label: 'Business Email Compromise Prevention', imageAlt: 'Business email compromise prevention screenshot' },
   { label: 'Fake Invoice Deflection', imageAlt: 'Fake invoice deflection screenshot' },
   { label: 'Duplicate Prevention', imageAlt: 'Duplicate prevention screenshot' },
   { label: '3-Way Matching', imageAlt: '3-way matching screenshot', comingSoon: true },
@@ -84,6 +85,10 @@ function LandingPage() {
             ) : selectedUseCase === 4 ? (
               <div className="aspect-[16/9] flex items-stretch overflow-hidden">
                 <GatheringApprovalsAnimation key={`approvals-${Date.now()}`} />
+              </div>
+            ) : selectedUseCase === 5 ? (
+              <div className="aspect-[16/9] flex items-stretch overflow-hidden">
+                <BusinessEmailCompromiseAnimation key={`bec-${Date.now()}`} />
               </div>
             ) : selectedUseCase === 6 ? (
               <div className="aspect-[16/9] flex items-stretch overflow-hidden">
