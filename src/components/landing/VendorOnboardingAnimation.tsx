@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Paperclip, AlertTriangle, Building2, Loader2, User, Mail, Send } from 'lucide-react'
+import { Paperclip, AlertTriangle, Building2, Loader2, User, Send } from 'lucide-react'
 import gmailLogo from '@/assets/images/gmail_logo.webp'
 import logo from '@/assets/images/logo.png'
 
