@@ -11,6 +11,7 @@ import GatheringApprovalsAnimation from '@/components/landing/GatheringApprovals
 import FakeInvoiceDeflectionAnimation from '@/components/landing/FakeInvoiceDeflectionAnimation'
 import BusinessEmailCompromiseAnimation from '@/components/landing/BusinessEmailCompromiseAnimation'
 import DuplicateDetectionAnimation from '@/components/landing/DuplicateDetectionAnimation'
+import AuditLogAnimation from '@/components/landing/AuditLogAnimation'
 import logo from '@/assets/images/logo.png'
 import gmailLogo from '@/assets/images/gmail_logo.webp'
 import outlookLogo from '@/assets/images/outlook_logo.webp'
@@ -495,16 +496,19 @@ function LandingPage() {
       </section>
 
       {/* Security */}
-      <section className="py-24 px-6 bg-gray-50 border-y border-gray-200">
+      <section className="py-14 px-6 bg-gray-50 border-y border-gray-200">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-900 text-center mb-4">
             Hard guardrails. Full paper trail.
           </h2>
-          <p className="text-lg text-gray-500 text-center mb-16 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-500 text-center mb-10 max-w-2xl mx-auto">
             Quiet uses AI to process invoices and draft communications. But the AI operates inside
             hard boundaries — not guidelines, not best-effort policies, but structural rules it
             cannot override.
           </p>
+          <div className="mb-10">
+            <AuditLogAnimation />
+          </div>
           <div className="grid md:grid-cols-3 gap-12">
             <div>
               <h3 className="text-lg font-bold text-gray-900 mb-2">Data access is scoped, not trusted</h3>
