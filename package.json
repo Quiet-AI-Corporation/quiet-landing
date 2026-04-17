@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "encrypt-pricing": "staticrypt src/pages/pricing-boxbot.html -d . --template src/pages/pricing-password-template.html --template-title 'Quiet Pricing' --template-instructions 'Enter the password shared with you to view pricing.' --template-button 'View pricing' --template-placeholder 'Password' && cp pricing-boxbot.html public/pricing-boxbot.html"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.1",
@@ -26,6 +27,7 @@
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
+    "staticrypt": "^3.5.4",
     "tailwindcss": "^3.4.16",
     "typescript": "^5.7.2",
     "vite": "^6.0.3"
