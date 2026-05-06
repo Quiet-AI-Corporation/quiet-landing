@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "encrypt-pricing": "staticrypt src/pages/pricing-boxbot.html -d . --template src/pages/pricing-password-template.html --template-title 'Quiet Pricing' --template-instructions 'Enter the password shared with you to view pricing.' --template-button 'View pricing' --template-placeholder 'Password' && cp pricing-boxbot.html public/pricing-boxbot.html"
+    "encrypt-pricing": "staticrypt src/pages/pricing-boxbot.html -d . --template src/pages/pricing-password-template.html --template-title 'Quiet Pricing' --template-instructions 'Enter the password shared with you to view pricing.' --template-button 'View pricing' --template-placeholder 'Password' && cp pricing-boxbot.html public/pricing-boxbot.html",
+    "encrypt-pricing-burkland": "staticrypt src/pages/pricing-burkland.html -d . --template src/pages/pricing-password-template.html --template-title 'Quiet Pricing' --template-instructions 'Enter the password shared with you to view pricing.' --template-button 'View pricing' --template-placeholder 'Password' && cp pricing-burkland.html public/pricing-burkland.html"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.1",
