@@ -64,14 +64,14 @@ export const SCENES: Scene[] = [
     label: 'PO sent to vendor',
     caption:
       'Approval check passes. PO emails out. Vendor acknowledges the order.',
-    duration: 6.5,
+    duration: 7,
   },
   {
     id: 'ship',
     label: 'Vendor ships',
     caption:
       'Shipping notification parsed — tracking number and ETA captured automatically.',
-    duration: 5.5,
+    duration: 7,
   },
   {
     id: 'receive',
@@ -1030,7 +1030,7 @@ function SceneSend() {
             transition={{ delay: 0.4, duration: 0.4 }}
             className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm"
           >
-            <div className="bg-gray-100 px-3 py-1.5 flex items-center gap-2">
+            <div className="bg-gray-100 px-3 h-8 flex items-center gap-2">
               <Send className="w-3.5 h-3.5 text-gray-500" />
               <span className="text-xs font-medium text-gray-700">
                 Outgoing PO
@@ -1044,14 +1044,14 @@ function SceneSend() {
                 Sent
               </motion.span>
             </div>
-            <div className="p-3 text-xs">
-              <div className="mb-1.5">
+            <div className="p-3 text-xs space-y-2.5">
+              <div>
                 <span className="text-gray-500">To: </span>
                 <span className="text-gray-900 font-medium">
                   sales@northwind.co
                 </span>
               </div>
-              <div className="font-semibold text-gray-900 mb-1.5">
+              <div className="font-semibold text-gray-900">
                 PO-2026-0042 — Confirming order, $24,025
               </div>
               <p className="text-gray-700 leading-relaxed">
@@ -1074,21 +1074,21 @@ function SceneSend() {
             transition={{ delay: 2.2, duration: 0.4 }}
             className="bg-white border border-blue-200 rounded-xl overflow-hidden shadow-sm"
           >
-            <div className="bg-blue-50 px-3 py-1.5 flex items-center gap-2">
+            <div className="bg-blue-50 px-3 h-8 flex items-center gap-2">
               <Mail className="w-3.5 h-3.5 text-blue-600" />
               <span className="text-xs font-medium text-blue-800">
                 Vendor reply
               </span>
               <span className="ml-auto text-[10px] text-blue-600">14 min</span>
             </div>
-            <div className="p-3 text-xs">
-              <div className="mb-1.5">
+            <div className="p-3 text-xs space-y-2.5">
+              <div>
                 <span className="text-gray-500">From: </span>
                 <span className="text-gray-900 font-medium">
                   sales@northwind.co
                 </span>
               </div>
-              <div className="font-semibold text-gray-900 mb-1.5">
+              <div className="font-semibold text-gray-900">
                 Re: PO-2026-0042 — Order acknowledged
               </div>
               <p className="text-gray-700 leading-relaxed">
@@ -1098,11 +1098,11 @@ function SceneSend() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 3.0, duration: 0.3 }}
-                className="mt-2 inline-flex items-center gap-1.5 px-2 py-1 bg-green-50 border border-green-200 rounded-md"
+                className="mt-2 inline-flex items-center gap-1.5 px-2 py-1 bg-blue-50 border border-blue-100 rounded-md"
               >
-                <CheckCircle2 className="w-3 h-3 text-green-600" />
-                <span className="text-[10px] font-medium text-green-800">
-                  Quiet parsed: ORDER ACKNOWLEDGED · Ship Mar 6
+                <img src={logo} alt="Quiet" className="h-3" />
+                <span className="text-[10px] font-medium text-blue-800">
+                  Quiet AI noted order acknowledgement
                 </span>
               </motion.div>
             </div>
@@ -1114,12 +1114,14 @@ function SceneSend() {
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 3.6, duration: 0.4 }}
-          className="flex items-center gap-2 px-3 py-2 rounded-lg bg-green-50 border border-green-100"
+          className="flex items-center justify-center gap-2"
         >
-          <CheckCircle2 className="w-4 h-4 text-green-600" />
-          <span className="text-sm text-green-800 font-medium">
-            PO confirmed · status: Open · expected Mar 6
-          </span>
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full">
+            <img src={logo} alt="Quiet" className="h-3.5" />
+            <span className="text-xs font-medium text-blue-700">
+              Quiet AI confirmed open PO #2026-0042
+            </span>
+          </div>
         </motion.div>
       </div>
     </div>
@@ -1141,42 +1143,39 @@ function SceneShip() {
           >
             <div className="bg-gray-50 px-3 py-2 border-b border-gray-100 flex items-center gap-2">
               <Mail className="w-3.5 h-3.5 text-gray-500" />
-              <span className="text-xs font-semibold text-gray-700">
+              <span className="text-xs font-medium text-gray-700">
                 Shipping notification
               </span>
-              <span className="ml-auto text-[10px] text-gray-500">
-                from sales@northwind.co
-              </span>
+              <span className="ml-auto text-[10px] text-gray-500">Mar 6</span>
             </div>
-            <div className="p-3 text-xs">
-              <div className="font-semibold text-gray-900 mb-1.5">
-                PO-2026-0042 has shipped
+            <div className="p-3 text-xs space-y-2.5">
+              <div>
+                <span className="text-gray-500">From: </span>
+                <span className="text-gray-900 font-medium">
+                  sales@northwind.co
+                </span>
+              </div>
+              <div className="font-semibold text-gray-900">
+                Your order has shipped
               </div>
               <p className="text-gray-700 leading-relaxed">
-                Your order shipped today via FedEx Freight. Tracking number
-                below, ETA tomorrow EOD.
+                250 units of the SS-304 mounting brackets on PO-2026-0042 have
+                shipped via FedEx Freight. Attached is a shipping confirmation
+                document.
               </p>
-              <div className="mt-2 grid grid-cols-2 gap-2">
-                <div className="rounded-md bg-gray-50 border border-gray-100 px-2 py-1.5">
-                  <div className="text-[10px] text-gray-500">Tracking</div>
-                  <div className="text-xs font-medium text-gray-900 truncate">
-                    7831 4429 0188
-                  </div>
-                </div>
-                <div className="rounded-md bg-gray-50 border border-gray-100 px-2 py-1.5">
-                  <div className="text-[10px] text-gray-500">ETA</div>
-                  <div className="text-xs font-medium text-gray-900">
-                    Mar 7 · EOD
-                  </div>
-                </div>
+              <div className="flex flex-wrap gap-1.5">
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-gray-50 border border-gray-200 rounded-full text-[10px] text-gray-600">
+                  <Paperclip className="w-2.5 h-2.5" />
+                  ShipConfirm-558129.pdf
+                </span>
               </div>
               <motion.div
-                initial={{ opacity: 0, y: 4 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.6, duration: 0.4 }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.6, duration: 0.3 }}
                 className="mt-2 inline-flex items-center gap-1.5 px-2 py-1 bg-blue-50 border border-blue-100 rounded-md"
               >
-                <Sparkles className="w-3 h-3 text-blue-600" />
+                <img src={logo} alt="Quiet" className="h-3" />
                 <span className="text-[10px] font-medium text-blue-800">
                   Quiet parsed: tracking + ETA captured
                 </span>
@@ -1191,8 +1190,11 @@ function SceneShip() {
             transition={{ delay: 0.5, duration: 0.4 }}
             className="col-span-2 bg-white rounded-xl border border-gray-200 p-4 shadow-sm flex flex-col"
           >
-            <div className="text-xs font-bold text-gray-600 uppercase tracking-wider mb-3">
-              PO-2026-0042 · In transit
+            <div className="text-xs font-bold text-gray-600 uppercase tracking-wider">
+              Shipment in transit
+            </div>
+            <div className="text-[10px] text-gray-500 mb-3">
+              Tracking: <span className="text-blue-600 underline">7831 4429 0188</span>
             </div>
 
             {/* Route */}
@@ -1264,13 +1266,15 @@ function SceneShip() {
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 4.2, duration: 0.4 }}
-          className="mt-4 flex items-center justify-center gap-2 text-sm text-gray-700"
+          className="mt-4 flex items-center justify-center gap-2"
         >
-          <Sparkles className="w-4 h-4 text-blue-600" />
-          <span>
-            Quiet keeps watching the inbox — when the dock signs for the
-            shipment, the next step kicks off automatically.
-          </span>
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full">
+            <img src={logo} alt="Quiet" className="h-3.5" />
+            <span className="text-xs font-medium text-blue-700">
+              Quiet AI will begin matching when a receipt is provided
+            </span>
+            <Loader2 className="w-3 h-3 text-blue-600 animate-spin" />
+          </div>
         </motion.div>
       </div>
     </div>
@@ -1283,19 +1287,19 @@ const RECEIPT_LINES = [
     description: 'SS-304 mounting bracket',
     ordered: 250,
     received: 250,
-    delay: 1.4,
+    delay: 2.0,
   },
   {
     description: 'Powder-coat finish (gray)',
     ordered: 250,
     received: 250,
-    delay: 1.8,
+    delay: 2.6,
   },
   {
     description: 'Crating & freight',
     ordered: 1,
     received: 1,
-    delay: 2.2,
+    delay: 3.2,
   },
 ]
 
@@ -1355,11 +1359,11 @@ function SceneReceive() {
                 initial={{ opacity: 0, scale: 1.4, rotate: -8 }}
                 animate={{ opacity: 1, scale: 1, rotate: -8 }}
                 transition={{
-                  delay: 0.7,
+                  delay: 1.2,
                   duration: 0.4,
                   ease: 'backOut',
                 }}
-                className="absolute bottom-3 right-2 inline-flex items-center gap-1 px-1.5 py-0.5 border-2 border-green-600 rounded text-[8px] font-bold text-green-700 tracking-wider"
+                className="absolute bottom-3 right-2 inline-flex items-center gap-1 px-1.5 py-0.5 border-2 border-gray-400 rounded text-[8px] font-bold text-gray-600 tracking-wider"
               >
                 <Stamp className="w-2.5 h-2.5" />
                 RECEIVED
@@ -1371,12 +1375,12 @@ function SceneReceive() {
             <motion.div
               initial={{ opacity: 0, y: 4 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2, duration: 0.4 }}
-              className="inline-flex items-center gap-1.5 px-2 py-1 bg-blue-50 border border-blue-100 rounded-md"
+              transition={{ delay: 1.8, duration: 0.4 }}
+              className="inline-flex items-center gap-1.5 px-2 py-1 bg-blue-50 border border-blue-100 rounded-full"
             >
-              <Sparkles className="w-3 h-3 text-blue-600" />
-              <span className="text-[10px] font-medium text-blue-800">
-                Quiet parsed packing slip · matched to PO
+              <img src={logo} alt="Quiet" className="h-3" />
+              <span className="text-[10px] font-medium text-blue-700">
+                Quiet AI matched receipt to PO-2026-0042
               </span>
             </motion.div>
           </div>
@@ -1394,11 +1398,29 @@ function SceneReceive() {
             <span className="text-sm font-semibold text-gray-900">
               Item receipt IR-0381
             </span>
-            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-blue-50 border border-blue-100 rounded-full text-xs text-blue-700">
+            <span className="text-xs text-gray-500">for</span>
+            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-gray-100 rounded-full text-xs font-medium text-gray-700">
               <ScrollText className="w-3 h-3" />
               PO-2026-0042
             </span>
-            <Loader2 className="w-3.5 h-3.5 text-blue-600 animate-spin ml-auto" />
+            <div className="relative w-3.5 h-3.5 ml-auto">
+              <motion.div
+                initial={{ opacity: 1 }}
+                animate={{ opacity: 0 }}
+                transition={{ delay: 4.0, duration: 0.2 }}
+                className="absolute inset-0"
+              >
+                <Loader2 className="w-3.5 h-3.5 text-blue-600 animate-spin" />
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 4.0, duration: 0.3 }}
+                className="absolute inset-0"
+              >
+                <Check className="w-3.5 h-3.5 text-blue-600" />
+              </motion.div>
+            </div>
           </div>
 
           <div className="p-4 flex-1 space-y-2">
@@ -1414,7 +1436,7 @@ function SceneReceive() {
                 initial={{ opacity: 0, y: 4 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: l.delay, duration: 0.3 }}
-                className="grid grid-cols-12 gap-2 text-sm items-center px-1 py-1 rounded bg-green-50/40"
+                className="grid grid-cols-12 gap-2 text-sm items-center px-1 py-1 rounded"
               >
                 <div className="col-span-7 text-gray-900 truncate">
                   {l.description}
@@ -1442,34 +1464,18 @@ function SceneReceive() {
             ))}
 
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 2.8, duration: 0.3 }}
-              className="grid grid-cols-12 gap-2 pt-1 border-t border-gray-200 px-1 text-xs"
-            >
-              <div className="col-span-7 text-right text-gray-700">
-                Fully received
-              </div>
-              <div className="col-span-2 text-right text-gray-900 font-medium">
-                501
-              </div>
-              <div className="col-span-2 text-right text-gray-900 font-medium">
-                501
-              </div>
-              <div className="col-span-1" />
-            </motion.div>
-
-            <motion.div
               initial={{ opacity: 0, y: 4 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 3.2, duration: 0.4 }}
-              className="flex items-center gap-2 pt-2"
+              transition={{ delay: 4.0, duration: 0.4 }}
+              className="pt-2 flex justify-center"
             >
-              <CheckCircle2 className="w-4 h-4 text-green-500" />
-              <span className="text-xs text-gray-700">
-                Receipt logged · PO closed for receiving · awaiting vendor
-                invoice.
-              </span>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full">
+                <img src={logo} alt="Quiet" className="h-3.5" />
+                <span className="text-xs font-medium text-blue-700">
+                  Quiet AI logged receipt. Awaiting vendor invoice.
+                </span>
+                <Loader2 className="w-3 h-3 text-blue-600 animate-spin" />
+              </div>
             </motion.div>
           </div>
         </motion.div>
