@@ -11,6 +11,7 @@ import GatheringApprovalsAnimation from '@/components/landing/GatheringApprovals
 import FakeInvoiceDeflectionAnimation from '@/components/landing/FakeInvoiceDeflectionAnimation'
 import BusinessEmailCompromiseAnimation from '@/components/landing/BusinessEmailCompromiseAnimation'
 import DuplicateDetectionAnimation from '@/components/landing/DuplicateDetectionAnimation'
+import ThreeWayMatchAnimation from '@/components/landing/ThreeWayMatchAnimation'
 import AuditLogAnimation from '@/components/landing/AuditLogAnimation'
 import DotGrid from '@/components/landing/DotGrid'
 import logo from '@/assets/images/logo.png'
@@ -25,7 +26,14 @@ import freshbooksLogo from '@/assets/images/freshbooks_logo.webp'
 
 const APP_URL = 'https://tryquiet.app'
 
-const USE_CASES = [
+type UseCase = {
+  label: string
+  imageAlt: string
+  duration?: number
+  comingSoon?: boolean
+}
+
+const USE_CASES: UseCase[] = [
   { label: 'Invoice Processing', imageAlt: 'Invoice processing screenshot', duration: 10 },
   { label: 'Vendor Onboarding', imageAlt: 'Vendor onboarding screenshot', duration: 8 },
   { label: 'Intelligent Coding', imageAlt: 'Intelligent coding screenshot', duration: 10 },
@@ -34,7 +42,7 @@ const USE_CASES = [
   { label: 'Business Email Compromise Prevention', imageAlt: 'Business email compromise prevention screenshot', duration: 8 },
   { label: 'Fake Invoice Deflection', imageAlt: 'Fake invoice deflection screenshot', duration: 8 },
   { label: 'Duplicate Prevention', imageAlt: 'Duplicate prevention screenshot', duration: 8 },
-  { label: '3-Way Matching', imageAlt: '3-way matching screenshot', comingSoon: true },
+  { label: '3-Way Matching', imageAlt: '3-way matching screenshot', duration: 10 },
 ]
 
 const PLAYABLE_COUNT = USE_CASES.filter(uc => !uc.comingSoon).length
@@ -253,6 +261,10 @@ function LandingPage() {
                 ) : selectedUseCase === 7 ? (
                   <div className="aspect-[16/9] flex items-stretch overflow-hidden">
                     <DuplicateDetectionAnimation />
+                  </div>
+                ) : selectedUseCase === 8 ? (
+                  <div className="aspect-[16/9] flex items-stretch overflow-hidden">
+                    <ThreeWayMatchAnimation />
                   </div>
                 ) : (
                   <div className="bg-gray-100 rounded-2xl aspect-video flex items-center justify-center border border-gray-200">
