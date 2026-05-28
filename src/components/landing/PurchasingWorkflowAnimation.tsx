@@ -36,7 +36,7 @@ export const SCENES: Scene[] = [
     label: 'Quote arrives',
     caption:
       '8:14 AM — A vendor quote lands in your purchasing inbox.',
-    duration: 5.5,
+    duration: 8,
   },
   {
     id: 'extract',
@@ -134,109 +134,124 @@ function SceneQuote() {
               </div>
             ))}
 
-            {/* New incoming email */}
+            {/* New incoming email — row that expands into detail card on "click" */}
             <motion.div
               initial={{ opacity: 0, y: -12, scale: 0.98 }}
               animate={{
                 opacity: 1,
                 y: 0,
-                scale: 1,
+                scale: [1, 1, 1.02, 1],
                 backgroundColor: [
+                  'rgba(255,255,255,0)',
+                  'rgba(255,255,255,0)',
                   'rgba(59,130,246,0.15)',
                   'rgba(59,130,246,0.15)',
-                  'rgba(255,255,255,1)',
+                  'rgba(255,255,255,0)',
                 ],
               }}
               transition={{
-                opacity: { delay: 0.4, duration: 0.4 },
-                y: { delay: 0.4, duration: 0.4 },
-                scale: { delay: 0.4, duration: 0.4 },
+                opacity: { delay: 1.0, duration: 0.4 },
+                y: { delay: 1.0, duration: 0.4 },
+                scale: {
+                  delay: 2.2,
+                  duration: 0.5,
+                  times: [0, 0, 0.4, 1],
+                },
                 backgroundColor: {
-                  delay: 0.4,
-                  duration: 1.6,
-                  times: [0, 0.5, 1],
+                  delay: 2.2,
+                  duration: 0.8,
+                  times: [0, 0.05, 0.2, 0.6, 1],
                 },
               }}
-              className="flex items-center gap-3 px-3 py-2 rounded-md text-sm border border-gray-200"
+              className="rounded-lg text-sm overflow-hidden"
             >
+              {/* Collapsed email row — hides after click */}
               <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: [0, 1, 1, 0.85] }}
+                initial={{ opacity: 1, height: 'auto' }}
+                animate={{ opacity: 0, height: 0 }}
                 transition={{
-                  delay: 0.4,
-                  duration: 1.6,
-                  times: [0, 0.2, 0.7, 1],
+                  opacity: { delay: 2.7, duration: 0.25 },
+                  height: { delay: 2.7, duration: 0.35 },
                 }}
-                className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0"
-              />
-              <span className="w-28 truncate font-semibold text-gray-900">
-                sales@northwind.co
-              </span>
-              <span className="flex-1 truncate text-gray-800">
-                Quote Q-2026-1284 — Stainless brackets, 250 units
-              </span>
-              <Paperclip className="w-3 h-3 text-gray-400" />
-              <span className="text-xs text-gray-500">8:14 AM</span>
+                className="flex items-center gap-3 px-3 py-2"
+              >
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: [0, 1, 1, 0] }}
+                  transition={{
+                    delay: 1.0,
+                    duration: 1.8,
+                    times: [0, 0.15, 0.65, 0.75],
+                  }}
+                  className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0"
+                />
+                <span className="w-28 truncate font-semibold text-gray-900">
+                  sales@northwind.co
+                </span>
+                <span className="flex-1 truncate text-gray-800">
+                  Quote Q-2026-1284 — Stainless brackets, 250 units
+                </span>
+                <Paperclip className="w-3 h-3 text-gray-400" />
+                <span className="text-xs text-gray-500">8:14 AM</span>
+              </motion.div>
+
+              {/* Expanded email detail card — appears after click */}
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                transition={{
+                  opacity: { delay: 2.85, duration: 0.4 },
+                  height: { delay: 2.7, duration: 0.45 },
+                }}
+                className="border border-gray-200 rounded-lg bg-white shadow-sm"
+              >
+                <div className="p-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full bg-gray-200 text-gray-700 flex items-center justify-center text-xs font-medium flex-shrink-0">
+                      NW
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-sm font-medium text-gray-900 truncate">
+                          sales@northwind.co
+                        </span>
+                        <span className="text-xs text-gray-400 flex-shrink-0">
+                          8:14 AM
+                        </span>
+                      </div>
+                      <div className="text-sm font-semibold text-gray-900 mt-1">
+                        Quote Q-2026-1284 — Stainless brackets, 250 units
+                      </div>
+                      <p className="text-sm text-gray-700 mt-2">
+                        Hi! Per your RFQ — attached is our quote for 250 SS-304
+                        mounting brackets plus crating. Pricing valid 30 days. Lead
+                        time 7 business days from PO.
+                      </p>
+                      <div className="mt-3">
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-xs text-gray-600">
+                          <Paperclip className="w-3.5 h-3.5" />
+                          <span>Quote_Q-2026-1284.pdf</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
             </motion.div>
           </div>
-
-          {/* Preview of opened email */}
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            transition={{ delay: 2.0, duration: 0.5 }}
-            className="border-t border-gray-100"
-          >
-            <div className="p-4">
-              <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-full bg-gray-200 text-gray-700 flex items-center justify-center text-xs font-medium flex-shrink-0">
-                  NW
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-sm font-medium text-gray-900 truncate">
-                      sales@northwind.co
-                    </span>
-                    <span className="text-xs text-gray-400 flex-shrink-0">
-                      8:14 AM
-                    </span>
-                  </div>
-                  <div className="text-sm font-semibold text-gray-900 mt-1">
-                    Quote Q-2026-1284 — Stainless brackets, 250 units
-                  </div>
-                  <p className="text-sm text-gray-700 mt-2">
-                    Hi! Per your RFQ — attached is our quote for 250 SS-304
-                    mounting brackets plus crating. Pricing valid 30 days. Lead
-                    time 7 business days from PO.
-                  </p>
-                  <motion.div
-                    initial={{ opacity: 0, y: 4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 2.6, duration: 0.4 }}
-                    className="mt-3"
-                  >
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-xs text-gray-600">
-                      <Paperclip className="w-3.5 h-3.5" />
-                      <span>Quote_Q-2026-1284.pdf</span>
-                    </span>
-                  </motion.div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
         </motion.div>
 
         {/* Quiet detected pill */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 3.6, duration: 0.4 }}
+          transition={{ delay: 5.0, duration: 0.4 }}
           className="mt-4 flex items-center justify-center gap-2"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full">
             <img src={logo} alt="Quiet" className="h-3.5" />
             <span className="text-xs font-medium text-blue-700">
-              Quote detected — handing to Quiet AI
+              Quote detected. Quiet AI is on it
             </span>
             <Loader2 className="w-3 h-3 text-blue-600 animate-spin" />
           </div>
