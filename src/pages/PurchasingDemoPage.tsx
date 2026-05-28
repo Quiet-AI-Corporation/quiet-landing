@@ -141,7 +141,7 @@ function PurchasingDemoPage() {
             />
 
             {/* Stages */}
-            <div className="relative grid grid-cols-8 gap-0">
+            <div className="relative grid grid-cols-9 gap-0">
               {SCENES.map((scene, i) => {
                 const isActive = i === sceneIndex && !isFinished
                 const isComplete = i < sceneIndex || isFinished
@@ -250,7 +250,7 @@ function PurchasingDemoPage() {
                       transition={{ delay: 0.55, duration: 0.4 }}
                       className="mt-2 text-gray-600"
                     >
-                      Eight steps, one human approval, zero spreadsheets.
+                      Nine steps, one human approval, zero spreadsheets.
                     </motion.p>
                     <motion.div
                       initial={{ opacity: 0, y: 8 }}

@@ -53,6 +53,13 @@ export const SCENES: Scene[] = [
     duration: 9,
   },
   {
+    id: 'approve',
+    label: 'PO is approved',
+    caption:
+      'PO total exceeds the purchasing threshold — routed to Maria for approval.',
+    duration: 9,
+  },
+  {
     id: 'send',
     label: 'PO sent to vendor',
     caption:
@@ -848,20 +855,76 @@ function ScenePO() {
   )
 }
 
-// ===== Scene 4: Approval & PO sent =====
-function SceneSend() {
+// Shared email card for the approval scene
+function ApprovalEmailCard({
+  delay,
+  direction,
+  variant,
+  icon,
+  title,
+  badge,
+  addressLabel,
+  address,
+  subject,
+  body,
+  footer,
+}: {
+  delay: number
+  direction: 'left' | 'right'
+  variant: 'outgoing' | 'incoming'
+  icon: React.ReactNode
+  title: string
+  badge: React.ReactNode
+  addressLabel: string
+  address: string
+  subject: string
+  body: string
+  footer?: React.ReactNode
+}) {
+  const isIncoming = variant === 'incoming'
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: direction === 'left' ? -10 : 10 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay, duration: 0.4 }}
+      className={`bg-white border ${isIncoming ? 'border-blue-200' : 'border-gray-200'} rounded-xl overflow-hidden shadow-sm`}
+    >
+      <div className={`${isIncoming ? 'bg-blue-50' : 'bg-gray-100'} px-3 h-8 flex items-center gap-2`}>
+        {icon}
+        <span className={`text-xs font-medium ${isIncoming ? 'text-blue-800' : 'text-gray-700'}`}>
+          {title}
+        </span>
+        {badge}
+      </div>
+      <div className="p-3 text-xs space-y-2.5">
+        <div>
+          <span className="text-gray-500">{addressLabel}: </span>
+          <span className="text-gray-900 font-medium">{address}</span>
+        </div>
+        <div className="font-semibold text-gray-900">{subject}</div>
+        <p className="text-gray-700 leading-relaxed">{body}</p>
+        {footer}
+      </div>
+    </motion.div>
+  )
+}
+
+// ===== Scene 4: PO is approved =====
+function SceneApproval() {
   return (
     <div className="w-full h-full flex items-center justify-center px-6">
       <div className="w-full max-w-3xl space-y-3">
-        {/* Top: threshold check */}
+        {/* Top: PO approval rules card */}
         <motion.div
           initial={{ opacity: 0, y: -6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="flex items-center gap-3 px-4 py-2.5 bg-white border border-gray-200 rounded-xl shadow-sm"
+          className="bg-white border border-gray-200 rounded-xl p-3 shadow-sm"
         >
-          <img src={logo} alt="Quiet" className="h-4" />
-          <span className="text-sm text-gray-700">
+          <div className="text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">
+            PO approval rules
+          </div>
+          <p className="text-xs text-gray-700">
             PO total{' '}
             <span className="font-semibold text-gray-900">$24,025</span> exceeds
             the{' '}
@@ -870,37 +933,101 @@ function SceneSend() {
             <span className="font-semibold text-blue-700">
               maria@yourcompany.com
             </span>
-          </span>
-          <div className="ml-auto relative h-5 min-w-[8rem] flex items-center justify-end">
-            <motion.div
-              initial={{ opacity: 1 }}
-              animate={{ opacity: 0 }}
-              transition={{ delay: 1.8, duration: 0.3 }}
-              className="absolute right-0"
-            >
-              <Loader2 className="w-3.5 h-3.5 text-blue-600 animate-spin" />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.9, duration: 0.3 }}
-              className="absolute right-0 inline-flex items-center gap-1.5 px-2 py-0.5 bg-green-50 border border-green-200 rounded-full"
-            >
-              <CheckCircle2 className="w-3 h-3 text-green-600" />
-              <span className="text-[10px] font-medium text-green-800">
-                Maria approved · 1m
-              </span>
-            </motion.div>
-          </div>
+          </p>
         </motion.div>
 
+        {/* Email exchange */}
+        <div className="grid grid-cols-2 gap-3">
+          <ApprovalEmailCard
+            delay={2.2}
+            direction="left"
+            variant="outgoing"
+            icon={<Send className="w-3.5 h-3.5 text-gray-500" />}
+            title="Approval Request"
+            badge={
+              <motion.span
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 3.0, duration: 0.3 }}
+                className="ml-auto px-2 py-0.5 bg-green-100 text-green-700 text-xs font-medium rounded-full"
+              >
+                Sent
+              </motion.span>
+            }
+            addressLabel="To"
+            address="maria@yourcompany.com"
+            subject="PO-2026-0042 — Approval required, $24,025"
+            body="Hi Maria — PO #2026-0042 for $24,025 from Northwind Supply exceeds the $10k threshold and requires your approval before we can send it to the vendor."
+            footer={
+              <div className="mt-2 flex flex-wrap gap-1.5">
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-gray-50 border border-gray-200 rounded-full text-[10px] text-gray-600">
+                  <Paperclip className="w-2.5 h-2.5" />
+                  PO-2026-0042.pdf
+                </span>
+              </div>
+            }
+          />
+          <ApprovalEmailCard
+            delay={4.0}
+            direction="right"
+            variant="incoming"
+            icon={<Mail className="w-3.5 h-3.5 text-blue-600" />}
+            title="Approver reply"
+            badge={
+              <span className="ml-auto text-[10px] text-blue-600">1 min</span>
+            }
+            addressLabel="From"
+            address="maria@yourcompany.com"
+            subject="Re: PO-2026-0042 — Approved"
+            body="Approved. Go ahead and send to the vendor."
+            footer={
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 4.8, duration: 0.3 }}
+                className="mt-2 inline-flex items-center gap-1.5 px-2 py-1 bg-blue-50 border border-blue-100 rounded-md"
+              >
+                <img src={logo} alt="Quiet" className="h-3" />
+                <span className="text-[10px] font-medium text-blue-800">
+                  Quiet AI noted Maria's approval
+                </span>
+              </motion.div>
+            }
+          />
+        </div>
+
+        {/* Quiet AI status pill */}
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 5.4, duration: 0.4 }}
+          className="flex items-center justify-center gap-2"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full">
+            <img src={logo} alt="Quiet" className="h-3.5" />
+            <span className="text-xs font-medium text-blue-700">
+              PO internally approved. Routing to vendor for authorization
+            </span>
+            <Loader2 className="w-3 h-3 text-blue-600 animate-spin" />
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  )
+}
+
+// ===== Scene 5: PO sent to vendor =====
+function SceneSend() {
+  return (
+    <div className="w-full h-full flex items-center justify-center px-6">
+      <div className="w-full max-w-3xl space-y-3">
         {/* Email exchange */}
         <div className="grid grid-cols-2 gap-3">
           {/* Outgoing PO email */}
           <motion.div
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 2.2, duration: 0.4 }}
+            transition={{ delay: 0.4, duration: 0.4 }}
             className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm"
           >
             <div className="bg-gray-100 px-3 py-1.5 flex items-center gap-2">
@@ -911,7 +1038,7 @@ function SceneSend() {
               <motion.span
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 3.0, duration: 0.3 }}
+                transition={{ delay: 1.2, duration: 0.3 }}
                 className="ml-auto px-2 py-0.5 bg-green-100 text-green-700 text-xs font-medium rounded-full"
               >
                 Sent
@@ -944,7 +1071,7 @@ function SceneSend() {
           <motion.div
             initial={{ opacity: 0, x: 10 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 4.0, duration: 0.4 }}
+            transition={{ delay: 2.2, duration: 0.4 }}
             className="bg-white border border-blue-200 rounded-xl overflow-hidden shadow-sm"
           >
             <div className="bg-blue-50 px-3 py-1.5 flex items-center gap-2">
@@ -970,7 +1097,7 @@ function SceneSend() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 4.8, duration: 0.3 }}
+                transition={{ delay: 3.0, duration: 0.3 }}
                 className="mt-2 inline-flex items-center gap-1.5 px-2 py-1 bg-green-50 border border-green-200 rounded-md"
               >
                 <CheckCircle2 className="w-3 h-3 text-green-600" />
@@ -986,7 +1113,7 @@ function SceneSend() {
         <motion.div
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 5.4, duration: 0.4 }}
+          transition={{ delay: 3.6, duration: 0.4 }}
           className="flex items-center gap-2 px-3 py-2 rounded-lg bg-green-50 border border-green-100"
         >
           <CheckCircle2 className="w-4 h-4 text-green-600" />
@@ -999,7 +1126,7 @@ function SceneSend() {
   )
 }
 
-// ===== Scene 5: Vendor ships =====
+// ===== Scene 6: Vendor ships =====
 function SceneShip() {
   return (
     <div className="w-full h-full flex items-center justify-center px-6">
@@ -1150,7 +1277,7 @@ function SceneShip() {
   )
 }
 
-// ===== Scene 6: Items received =====
+// ===== Scene 7: Items received =====
 const RECEIPT_LINES = [
   {
     description: 'SS-304 mounting bracket',
@@ -1351,7 +1478,7 @@ function SceneReceive() {
   )
 }
 
-// ===== Scene 7: 3-way match =====
+// ===== Scene 8: 3-way match =====
 const MATCH_LINES = [
   {
     description: 'SS-304 mounting bracket',
@@ -1519,7 +1646,7 @@ function SceneMatch() {
   )
 }
 
-// ===== Scene 8: Payment scheduled + ERP synced =====
+// ===== Scene 9: Payment scheduled + ERP synced =====
 function SceneClose() {
   return (
     <div className="w-full h-full flex items-center justify-center px-6">
@@ -1701,11 +1828,12 @@ function PurchasingWorkflowAnimation({ sceneIndex }: { sceneIndex: number }) {
           {sceneIndex === 0 && <SceneQuote />}
           {sceneIndex === 1 && <SceneExtract />}
           {sceneIndex === 2 && <ScenePO />}
-          {sceneIndex === 3 && <SceneSend />}
-          {sceneIndex === 4 && <SceneShip />}
-          {sceneIndex === 5 && <SceneReceive />}
-          {sceneIndex === 6 && <SceneMatch />}
-          {sceneIndex === 7 && <SceneClose />}
+          {sceneIndex === 3 && <SceneApproval />}
+          {sceneIndex === 4 && <SceneSend />}
+          {sceneIndex === 5 && <SceneShip />}
+          {sceneIndex === 6 && <SceneReceive />}
+          {sceneIndex === 7 && <SceneMatch />}
+          {sceneIndex === 8 && <SceneClose />}
         </motion.div>
       </AnimatePresence>
     </div>
