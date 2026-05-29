@@ -2,16 +2,8 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { Link2, BookOpen, Inbox, Landmark, Mail, Sparkles, UserCheck, ArrowRight, Clock } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
-import InvoiceProcessingAnimation from '@/components/landing/InvoiceProcessingAnimation'
-import VendorOnboardingAnimation from '@/components/landing/VendorOnboardingAnimation'
-import IntelligentCodingAnimation from '@/components/landing/IntelligentCodingAnimation'
-import InquiryResponsesAnimation from '@/components/landing/InquiryResponsesAnimation'
-import GatheringApprovalsAnimation from '@/components/landing/GatheringApprovalsAnimation'
-import FakeInvoiceDeflectionAnimation from '@/components/landing/FakeInvoiceDeflectionAnimation'
-import BusinessEmailCompromiseAnimation from '@/components/landing/BusinessEmailCompromiseAnimation'
-import DuplicateDetectionAnimation from '@/components/landing/DuplicateDetectionAnimation'
-import ThreeWayMatchAnimation from '@/components/landing/ThreeWayMatchAnimation'
+import { TooltipProvider } from '@/components/ui/tooltip'
+import PurchasingWorkflowPlayer from '@/components/landing/PurchasingWorkflowPlayer'
 import AuditLogAnimation from '@/components/landing/AuditLogAnimation'
 import DotGrid from '@/components/landing/DotGrid'
 import logo from '@/assets/images/logo.png'
@@ -26,55 +18,9 @@ import freshbooksLogo from '@/assets/images/freshbooks_logo.webp'
 
 const APP_URL = 'https://tryquiet.app'
 
-type UseCase = {
-  label: string
-  imageAlt: string
-  duration?: number
-  comingSoon?: boolean
-}
-
-const USE_CASES: UseCase[] = [
-  { label: 'Invoice Processing', imageAlt: 'Invoice processing screenshot', duration: 10 },
-  { label: 'Vendor Onboarding', imageAlt: 'Vendor onboarding screenshot', duration: 8 },
-  { label: 'Intelligent Coding', imageAlt: 'Intelligent coding screenshot', duration: 10 },
-  { label: 'Inquiry Responses', imageAlt: 'Inquiry responses screenshot', duration: 8 },
-  { label: 'Gathering Approvals', imageAlt: 'Gathering approvals screenshot', duration: 9 },
-  { label: 'Business Email Compromise Prevention', imageAlt: 'Business email compromise prevention screenshot', duration: 8 },
-  { label: 'Fake Invoice Deflection', imageAlt: 'Fake invoice deflection screenshot', duration: 8 },
-  { label: 'Duplicate Prevention', imageAlt: 'Duplicate prevention screenshot', duration: 8 },
-  { label: '3-Way Matching', imageAlt: '3-way matching screenshot', duration: 10 },
-]
-
-const PLAYABLE_COUNT = USE_CASES.filter(uc => !uc.comingSoon).length
-const DWELL_SECONDS = 7
-
 function LandingPage() {
-  const [selectedUseCase, setSelectedUseCase] = useState(0)
   const [selectedItem, setSelectedItem] = useState<string>('mailbox')
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const diagramTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-
-  const scheduleNext = useCallback((index: number) => {
-    if (timerRef.current) clearTimeout(timerRef.current)
-    const uc = USE_CASES[index]
-    if (!uc.duration) return
-    timerRef.current = setTimeout(() => {
-      const next = (index + 1) % PLAYABLE_COUNT
-      setSelectedUseCase(next)
-    }, (uc.duration + DWELL_SECONDS) * 1000)
-  }, [])
-
-  // Schedule auto-advance whenever selectedUseCase changes
-  useEffect(() => {
-    scheduleNext(selectedUseCase)
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current)
-    }
-  }, [selectedUseCase, scheduleNext])
-
-  const handlePillClick = (index: number) => {
-    setSelectedUseCase(index)
-  }
 
   const DIAGRAM_CYCLE = ['mailbox', 'mailbox-dot', 'quiet', 'bank-dot', 'bank', 'erp-dot', 'erp'] as const
 
@@ -183,6 +129,7 @@ function LandingPage() {
 
 
   return (
+    <TooltipProvider>
     <div className="min-h-screen bg-white">
       <DotGrid />
     <div className="relative z-10">
@@ -209,104 +156,39 @@ function LandingPage() {
         <div className="max-w-4xl mx-auto text-center">
           <div className="w-fit mx-auto">
             <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 bg-white rounded-xl py-1.5 px-3 w-fit mx-auto">
-              Agentic AI for Accounts Payable
+              Agentic AI for Procurement
             </p>
             <h1 className="mt-1 text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight bg-white rounded-xl py-2 px-4 w-fit mx-auto">
-              The sound of AP running smoothly
+              Purchasing, without the noise
             </h1>
             <p className="mt-1 text-xl text-gray-600 max-w-2xl mx-auto bg-white rounded-xl py-2 px-4 w-fit">
-              Quiet AI runs your AP mailbox — from invoice to payment.
+              Quiet AI runs purchasing from vendor quote to booked bill.
               <br />
-              You just review and approve.
+              You just approve.
             </p>
           </div>
-          {/* Hero graphic area — controlled by pills */}
-          <div className="mt-12 max-w-4xl mx-auto">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={selectedUseCase}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                {selectedUseCase === 0 ? (
-                  <div className="aspect-[16/9] flex items-stretch overflow-hidden">
-                    <InvoiceProcessingAnimation />
-                  </div>
-                ) : selectedUseCase === 1 ? (
-                  <div className="aspect-[16/9] flex items-stretch overflow-hidden">
-                    <VendorOnboardingAnimation />
-                  </div>
-                ) : selectedUseCase === 2 ? (
-                  <div className="aspect-[16/9] flex items-stretch overflow-hidden">
-                    <IntelligentCodingAnimation />
-                  </div>
-                ) : selectedUseCase === 3 ? (
-                  <div className="aspect-[16/9] flex items-stretch overflow-hidden">
-                    <InquiryResponsesAnimation />
-                  </div>
-                ) : selectedUseCase === 4 ? (
-                  <div className="aspect-[16/9] flex items-stretch overflow-hidden">
-                    <GatheringApprovalsAnimation />
-                  </div>
-                ) : selectedUseCase === 5 ? (
-                  <div className="aspect-[16/9] flex items-stretch overflow-hidden">
-                    <BusinessEmailCompromiseAnimation />
-                  </div>
-                ) : selectedUseCase === 6 ? (
-                  <div className="aspect-[16/9] flex items-stretch overflow-hidden">
-                    <FakeInvoiceDeflectionAnimation />
-                  </div>
-                ) : selectedUseCase === 7 ? (
-                  <div className="aspect-[16/9] flex items-stretch overflow-hidden">
-                    <DuplicateDetectionAnimation />
-                  </div>
-                ) : selectedUseCase === 8 ? (
-                  <div className="aspect-[16/9] flex items-stretch overflow-hidden">
-                    <ThreeWayMatchAnimation />
-                  </div>
-                ) : (
-                  <div className="bg-gray-100 rounded-2xl aspect-video flex items-center justify-center border border-gray-200">
-                    <span className="text-gray-400 text-sm">
-                      {USE_CASES[selectedUseCase].imageAlt}
-                    </span>
-                  </div>
-                )}
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* Use-case pills */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-2 bg-white rounded-full px-3 py-1">
-            {USE_CASES.map((uc, i) =>
-              uc.comingSoon ? (
-                <TooltipProvider key={uc.label} delayDuration={0}>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <span
-                        className="px-4 py-2 rounded-full text-sm font-medium bg-gray-50 text-gray-400 border border-dashed border-gray-300 cursor-default"
-                      >
-                        {uc.label} ✦
-                      </span>
-                    </TooltipTrigger>
-                    <TooltipContent>Coming soon</TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              ) : (
-                <button
-                  key={uc.label}
-                  onClick={() => handlePillClick(i)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                    selectedUseCase === i
-                      ? 'bg-gray-900 text-white'
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                  }`}
-                >
-                  {uc.label}
-                </button>
-              )
-            )}
+        </div>
+        {/* Purchasing workflow player */}
+        <div className="mt-12 max-w-6xl mx-auto relative z-10 bg-white rounded-2xl p-4">
+          <PurchasingWorkflowPlayer />
+        </div>
+        <div className="mt-12 text-center relative z-10 bg-white rounded-2xl py-8 px-4 max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+            Want to see this on your own Purchases?
+          </h2>
+          <p className="mt-2 text-gray-600">
+            We can have you live and ordering against real vendors in under
+            an hour.
+          </p>
+          <div className="mt-6 flex items-center justify-center gap-3">
+            <Button size="lg" asChild>
+              <a href="mailto:hello@tryquiet.ai?subject=Interested%20in%20Quiet%20AI%20purchasing&body=Hi%20Quiet%20team%2C%0A%0AI%27d%20love%20a%20demo%20on%20our%20own%20purchases.%0A%0ABest%2C%0A%5BYour%20name%5D">
+                Get a demo
+              </a>
+            </Button>
+            <Button variant="outline" size="lg" asChild>
+              <a href="#">Back to home</a>
+            </Button>
           </div>
         </div>
       </section>
@@ -726,6 +608,7 @@ function LandingPage() {
       </footer>
     </div>
     </div>
+    </TooltipProvider>
   )
 }
 
