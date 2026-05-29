@@ -37,70 +37,70 @@ export const SCENES: Scene[] = [
     label: 'Quote arrives',
     caption:
       '8:14 AM — A vendor quote lands in your purchasing inbox.',
-    duration: 8,
+    duration: 10,
   },
   {
     id: 'extract',
     label: 'AI extracts quote',
     caption:
       'Quiet pulls vendor, line items, prices, and validity straight from the PDF.',
-    duration: 9,
+    duration: 10,
   },
   {
     id: 'po',
     label: 'PO drafted',
     caption:
       'Quote becomes a Purchase Order — GL-coded, department-tagged, ready for review.',
-    duration: 9,
+    duration: 10,
   },
   {
     id: 'approve',
     label: 'PO is approved',
     caption:
       'PO total exceeds the purchasing threshold — routed to Maria for approval.',
-    duration: 9,
+    duration: 10,
   },
   {
     id: 'send',
     label: 'PO sent to vendor',
     caption:
       'Approval check passes. PO emails out. Vendor acknowledges the order.',
-    duration: 7,
+    duration: 10,
   },
   {
     id: 'ship',
     label: 'Vendor ships',
     caption:
       'Shipping notification parsed — tracking number and ETA captured automatically.',
-    duration: 7,
+    duration: 10,
   },
   {
     id: 'receive',
     label: 'Items received',
     caption:
       'Packing slip arrives. Receipt is logged and line items match the PO.',
-    duration: 6,
+    duration: 10,
   },
   {
     id: 'ap',
     label: 'Automated AP',
     caption:
       'Vendor invoice arrives. Quiet verifies the vendor, scans the PDF, matches to the PO and receipt, and codes the bill — hands-free.',
-    duration: 8,
+    duration: 10,
   },
   {
     id: 'match',
     label: '3-way match',
     caption:
       'Invoice lines up perfectly with the PO and receipt — no humans needed.',
-    duration: 9.5,
+    duration: 10,
   },
   {
     id: 'close',
     label: 'Payment & ERP synced',
     caption:
       'Payment sent. Bill booked in QuickBooks.',
-    duration: 5.5,
+    duration: 10,
   },
 ]
 
