@@ -56,11 +56,11 @@ function LandingPage() {
 
   const diagramCaptions: Record<string, { title: string; subtitle: string; body: string[] }> = {
     'mailbox': {
-      title: 'Your AP Mailbox',
-      subtitle: 'Where invoices and vendor correspondence land',
+      title: 'Your Purchasing Mailbox',
+      subtitle: 'Where purchase orders, invoices, and vendor correspondence land',
       body: [
-        'Existing inbox — Hooks up to ap@yourcompany.com or wherever vendors send invoices today',
-        'Full visibility — Sees invoices, payment inquiries, W-9s, updated remit-to info, and everything else your vendors (and your employees) send',
+        'Existing inbox — Hooks up to purchasing@yourcompany.com or wherever vendors send quotes and invoices today',
+        'Full visibility — Sees quotes, purchase orders, invoices, payment inquiries, W-9s, and everything else your vendors and team send',
         'No change for vendors — No new portals for them, no manual file uploading for you',
         'Gmail today — Outlook on the way',
       ],
@@ -79,7 +79,7 @@ function LandingPage() {
       title: 'Quiet AI',
       subtitle: 'Intelligent AP orchestration engine',
       body: [
-        'Workflow orchestration — for invoice intake, vendor onboarding, line item coding, inquiry responses, approvals, and fuzzy edge cases where deterministic logic fails',
+        'Workflow orchestration — for quote intake, PO drafting, invoice processing, vendor onboarding, line item coding, approval orchestration, and fuzzy edge cases where deterministic logic fails',
         'Duplicate invoices & fraud attempts — Caught and flagged for your inspection',
         'Intelligent clarification — When something\'s ambiguous, Quiet asks you instead of guessing',
         'Your configuration — You can set approval workflows, GL coding guidelines, and validation rules',
@@ -95,7 +95,7 @@ function LandingPage() {
       ],
     },
     'bank': {
-      title: 'Your AP Bank Account',
+      title: 'Your Bank Account',
       subtitle: 'The same operating account you already use',
       body: [
         'Broad support — Quiet AI works with most major financial institutions via Plaid',
@@ -108,7 +108,7 @@ function LandingPage() {
       subtitle: 'Two-way sync keeps everything current',
       body: [
         'Pulls in — Your vendor list, GL accounts, and other accounting categories stay current',
-        'Pushes back — Coded invoices and payment records sync automatically',
+        'Pushes back — POs, coded invoices, and payment records sync automatically',
         'No drift — No duplicate entry, no divergence between systems',
       ],
     },
@@ -145,7 +145,7 @@ function LandingPage() {
               Sign In
             </Button>
             <Button asChild>
-              <a href="mailto:hello@tryquiet.ai?subject=Interested%20in%20Quiet%20AI&body=Hi%20Quiet%20team%2C%0A%0AI%27m%20interested%20in%20learning%20more%20about%20Quiet%20AI%20for%20accounts%20payable%20automation.%0A%0A%5BYou%27re%20welcome%20to%20tell%20us%20more%20about%20your%20company%20and%20current%20AP%20stack%20here.%20Or%20play%20it%20coy%20and%20save%20it%20for%20later%5D%0A%0ABest%2C%0A%5BYour%20name%5D">Get Access</a>
+              <a href="mailto:hello@tryquiet.ai?subject=Interested%20in%20Quiet%20AI&body=Hi%20Quiet%20team%2C%0A%0AI%27m%20interested%20in%20learning%20more%20about%20Quiet%20AI%20for%20accounts%20payable%20automation.%0A%0A%5BYou%27re%20welcome%20to%20tell%20us%20more%20about%20your%20company%20and%20current%20purchasing%20stack%20here.%20Or%20play%20it%20coy%20and%20save%20it%20for%20later%5D%0A%0ABest%2C%0A%5BYour%20name%5D">Get Access</a>
             </Button>
           </div>
         </div>
@@ -174,7 +174,7 @@ function LandingPage() {
         </div>
         <div className="mt-12 text-center relative z-10 bg-white rounded-2xl py-8 px-4 max-w-4xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-            Want to see this on your own Purchases?
+            Want to see this on your own purchases?
           </h2>
           <p className="mt-2 text-gray-600">
             We can have you live and ordering against real vendors in under
@@ -216,7 +216,7 @@ function LandingPage() {
                 className={`w-full rounded-xl px-6 py-4 text-center cursor-pointer transition-colors border ${selectedItem === 'mailbox' ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-white'}`}
                 onMouseEnter={() => handleItemHover('mailbox')}
               >
-                <div className="text-sm font-bold text-gray-900">Your AP Mailbox</div>
+                <div className="text-sm font-bold text-gray-900">Your Purchasing Mailbox</div>
                 <div className="flex items-center justify-center gap-3 mt-1.5">
                   <img src={gmailLogo} alt="Gmail" className="h-6" />
                   <img src={outlookLogo} alt="Outlook" className="h-6" />
@@ -290,7 +290,7 @@ function LandingPage() {
                   className={`rounded-xl px-4 py-4 text-center cursor-pointer transition-colors border ${selectedItem === 'bank' ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-white'}`}
                   onMouseEnter={() => handleItemHover('bank')}
                 >
-                  <div className="text-sm font-bold text-gray-900">Your AP Bank Account</div>
+                  <div className="text-sm font-bold text-gray-900">Your Bank Account</div>
                   <p className="text-xs text-gray-400 italic mt-1">Most financial institutions supported</p>
                 </div>
                 </div>
@@ -373,7 +373,7 @@ function LandingPage() {
               How it works
             </h2>
             <p className="mt-1 text-lg text-gray-500 text-center max-w-2xl mx-auto bg-white rounded-xl py-2 px-4 w-fit">
-              A review-and-approve workflow for everything AP.
+              A review-and-approve workflow for every purchase.
             </p>
           </div>
 
@@ -387,7 +387,7 @@ function LandingPage() {
               </div>
               <h3 className="text-base font-semibold text-gray-900 mb-1">Email arrives</h3>
               <p className="text-sm text-gray-500 leading-relaxed">
-                An invoice or vendor message lands in your AP mailbox.
+                A quote, invoice, or vendor message lands in your purchasing mailbox.
               </p>
             </div>
             </div>
@@ -405,7 +405,7 @@ function LandingPage() {
               </div>
               <h3 className="text-base font-semibold text-gray-900 mb-1">Quiet AI processes</h3>
               <p className="text-sm text-gray-500 leading-relaxed">
-                Extracts data, codes GL, drafts replies, asks vendors for missing info, flags issues, and escalates to your team when something needs a human call.
+                Extracts data, codes GL, generates POs, drafts replies, asks vendors for missing info, flags issues, and escalates when something needs a human call.
               </p>
             </div>
             </div>
@@ -456,8 +456,8 @@ function LandingPage() {
             <div className="flex gap-4 bg-white rounded-xl p-2">
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold">1</div>
               <div>
-                <h3 className="font-bold text-gray-900 mb-1">Sign into your AP mailbox</h3>
-                <p className="text-gray-600">All you need is your email login — like ap@company.com. Sign in, grant Quiet AI access, and you're connected. No forwarding rules, no migration, no IT involvement.</p>
+                <h3 className="font-bold text-gray-900 mb-1">Sign into your purchasing mailbox</h3>
+                <p className="text-gray-600">All you need is your email login — like purchasing@company.com. Sign in, grant Quiet AI access, and you're connected. No forwarding rules, no migration, no IT involvement.</p>
               </div>
             </div>
             <div className="flex gap-4 bg-white rounded-xl p-2">
@@ -514,7 +514,7 @@ function LandingPage() {
             <div className="rounded-2xl border border-blue-200 bg-blue-50 p-8">
               <h3 className="font-bold text-gray-900 mb-2">Try it in read-only mode first.</h3>
               <p className="text-gray-600">
-                Quiet can run in observation mode — reading your inbox and organizing invoices without
+                Quiet can run in observation mode — reading your inbox and organizing quotes, POs, and invoices without
                 sending emails, making payments, or touching your ERP. See exactly what it would do,
                 with zero risk. Turn on automation when you're ready.
               </p>
@@ -572,15 +572,12 @@ function LandingPage() {
           <h2 className="text-3xl font-bold text-gray-900 bg-white rounded-xl py-2 px-4 w-fit mx-auto">
             We're just getting started
           </h2>
-          <p className="mt-1 text-lg text-gray-600 bg-white rounded-xl py-1 px-4 w-fit mx-auto">
-            POs and 3-way matching are coming soon.
-          </p>
           <p className="mt-1 text-lg text-gray-600 mb-8 bg-white rounded-xl py-1 px-4 w-fit mx-auto">
-            Want to shape what comes after? We build with our customers.
+            Want to shape what comes next? We build with our customers.
           </p>
           <div className="flex items-center justify-center bg-white rounded-xl w-fit mx-auto">
             <Button size="lg" asChild className="text-lg px-8 py-6">
-              <a href="mailto:hello@tryquiet.ai?subject=Let%27s%20build%20together&body=Hi%20Quiet%20team%2C%0A%0AI%27d%20love%20to%20collaborate%20and%20help%20shape%20the%20product.%0A%0A%5BYou%27re%20welcome%20to%20tell%20us%20more%20about%20your%20company%20and%20current%20AP%20stack%20here.%20Or%20play%20it%20coy%20and%20save%20it%20for%20later%5D%0A%0ABest%2C%0A%5BYour%20name%5D">Build with Us</a>
+              <a href="mailto:hello@tryquiet.ai?subject=Let%27s%20build%20together&body=Hi%20Quiet%20team%2C%0A%0AI%27d%20love%20to%20collaborate%20and%20help%20shape%20the%20product.%0A%0A%5BYou%27re%20welcome%20to%20tell%20us%20more%20about%20your%20company%20and%20current%20purchasing%20stack%20here.%20Or%20play%20it%20coy%20and%20save%20it%20for%20later%5D%0A%0ABest%2C%0A%5BYour%20name%5D">Build with Us</a>
             </Button>
           </div>
         </div>
