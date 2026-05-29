@@ -81,6 +81,13 @@ export const SCENES: Scene[] = [
     duration: 6,
   },
   {
+    id: 'ap',
+    label: 'Automated AP',
+    caption:
+      'Vendor invoice arrives. Quiet verifies the vendor, scans the PDF, matches to the PO and receipt, and codes the bill — hands-free.',
+    duration: 8,
+  },
+  {
     id: 'match',
     label: '3-way match',
     caption:
@@ -1484,7 +1491,268 @@ function SceneReceive() {
   )
 }
 
-// ===== Scene 8: 3-way match =====
+// ===== Scene 8: Automated AP =====
+const AP_CHECK_ITEMS = [
+  'Northwind Mfg: vendor on file, ACH verified',
+  'Invoice PDF scanned & parsed',
+  'Matched to PO-2026-0042 and receipt IR-0381',
+]
+
+const AP_DRAFT_ITEM = 'GL coding applied — bill ready'
+
+const AP_CHECK_START = 1.0
+const AP_CHECK_STAGGER = 0.7
+const AP_DRAFT_START = AP_CHECK_START + AP_CHECK_ITEMS.length * AP_CHECK_STAGGER // 3.1
+const AP_DRAFT_DONE = AP_DRAFT_START + 1.4 // 4.5
+const AP_INVOICE_START = AP_DRAFT_DONE + 0.8 // 5.3
+const AP_FIELD_STAGGER = 0.12
+
+const AP_LINE_ITEMS = [
+  { description: 'SS-304 mounting bracket (250)', amount: '$22,125.00', gl: '6700 — Raw Materials' },
+  { description: 'Powder-coat finish, gray (250)', amount: '$1,050.00', gl: '6700 — Raw Materials' },
+  { description: 'Custom crating & freight', amount: '$850.00', gl: '6800 — Freight & Shipping' },
+]
+
+function SceneAP() {
+  return (
+    <div className="w-full h-full flex items-center justify-center px-6">
+      <div className="w-full max-w-4xl grid grid-cols-5 gap-4 items-start">
+        {/* Left — Invoice email + AI Review checklist */}
+        <div className="col-span-2 flex flex-col gap-3">
+          {/* Invoice email card */}
+          <motion.div
+            initial={{ opacity: 0, x: -8 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+            className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm"
+          >
+            <div className="bg-gray-50 px-3 py-2 border-b border-gray-100 flex items-center gap-2">
+              <Mail className="w-3.5 h-3.5 text-gray-500" />
+              <span className="text-xs font-medium text-gray-700">Vendor invoice</span>
+              <span className="ml-auto text-[10px] text-gray-500">Mar 9</span>
+            </div>
+            <div className="p-3 text-xs space-y-2.5">
+              <div>
+                <span className="text-gray-500">From: </span>
+                <span className="text-gray-900 font-medium">sales@northwind.co</span>
+              </div>
+              <div className="font-semibold text-gray-900">
+                Invoice INV-NW-99412 — PO-2026-0042
+              </div>
+              <p className="text-gray-700 leading-relaxed">
+                Please find attached our invoice for the SS-304 mounting bracket order per PO-2026-0042. Net-30 terms apply.
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-gray-50 border border-gray-200 rounded-full text-[10px] text-gray-600">
+                  <Paperclip className="w-2.5 h-2.5" />
+                  INV-NW-99412.pdf
+                </span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* AI Review checklist */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.4, ease: 'easeOut' }}
+            className="p-4 bg-white rounded-xl border border-gray-200 shadow-sm"
+          >
+            <div className="flex items-center gap-2 text-[10px] font-bold text-gray-600 uppercase tracking-widest mb-3">
+              <img src={logo} alt="Quiet" className="h-4" />
+              Quiet AI Review
+            </div>
+            <div className="flex flex-col gap-2">
+              {AP_CHECK_ITEMS.map((title, i) => (
+                <motion.div
+                  key={title}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{
+                    delay: AP_CHECK_START + i * AP_CHECK_STAGGER,
+                    duration: 0.4,
+                  }}
+                  className="flex items-center gap-2"
+                >
+                  <motion.span
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{
+                      delay: AP_CHECK_START + i * AP_CHECK_STAGGER + 0.3,
+                      duration: 0.2,
+                    }}
+                    className="text-green-500 font-bold text-[13px]"
+                  >
+                    ✓
+                  </motion.span>
+                  <span className="text-[13px] font-medium text-gray-900">
+                    {title}
+                  </span>
+                </motion.div>
+              ))}
+
+              {/* Drafting item — spinner that turns into checkmark */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{
+                  delay: AP_DRAFT_START,
+                  duration: 0.4,
+                }}
+                className="flex items-center gap-2"
+              >
+                <span className="inline-flex items-center justify-center relative">
+                  <motion.span
+                    initial={{ opacity: 1 }}
+                    animate={{ opacity: 0 }}
+                    transition={{ delay: AP_DRAFT_DONE, duration: 0.15 }}
+                    className="absolute"
+                  >
+                    <Loader2 className="w-3.5 h-3.5 text-blue-600 animate-spin" />
+                  </motion.span>
+                  <motion.span
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: AP_DRAFT_DONE, duration: 0.15 }}
+                    className="text-green-500 font-bold text-[13px]"
+                  >
+                    ✓
+                  </motion.span>
+                </span>
+                <span className="text-[13px] font-medium text-gray-900">
+                  {AP_DRAFT_ITEM}
+                </span>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Right — Invoice card + status pill */}
+        <div className="col-span-3 flex flex-col gap-3">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: AP_INVOICE_START, duration: 0.5, ease: 'easeOut' }}
+            className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm"
+          >
+            {/* Header */}
+            <div className="px-5 py-3 border-b border-gray-100 flex items-center justify-between gap-3">
+              <div className="flex items-center gap-2 min-w-0">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: AP_INVOICE_START + 0.1, duration: 0.3 }}
+                  className="text-base font-semibold text-gray-900 truncate"
+                >
+                  INV-NW-99412
+                </motion.div>
+                <motion.span
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: AP_INVOICE_START + 0.2, duration: 0.3 }}
+                  className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-gray-100 rounded-full text-sm font-medium text-gray-700 flex-shrink-0"
+                >
+                  <Building2 className="w-3.5 h-3.5" />
+                  Northwind Mfg.
+                </motion.span>
+              </div>
+              <motion.span
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: AP_INVOICE_START + 1.8, duration: 0.3 }}
+                className="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full flex-shrink-0"
+              >
+                Ready to Pay
+              </motion.span>
+            </div>
+
+            <div className="px-5 py-3 space-y-5">
+              {/* Invoice info grid */}
+              <motion.div
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: AP_INVOICE_START + AP_FIELD_STAGGER, duration: 0.3 }}
+              >
+                <div className="grid grid-cols-3 gap-3">
+                  <div>
+                    <div className="text-xs text-gray-500">Invoice #</div>
+                    <div className="text-sm font-semibold text-gray-900">INV-NW-99412</div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-500">PO Ref</div>
+                    <div className="text-sm font-semibold text-gray-900">PO-2026-0042</div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-500">Due Date</div>
+                    <div className="text-sm text-gray-900">Apr 8, 2026</div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Line items */}
+              <motion.div
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: AP_INVOICE_START + AP_FIELD_STAGGER * 2, duration: 0.3 }}
+              >
+                <div className="space-y-2">
+                  <div className="grid grid-cols-12 gap-3 text-xs font-medium text-gray-500">
+                    <div className="col-span-9">Line Item</div>
+                    <div className="col-span-3 text-right">Amount</div>
+                  </div>
+                  {AP_LINE_ITEMS.map((item, i) => (
+                    <motion.div
+                      key={item.description}
+                      initial={{ opacity: 0, y: 4 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: AP_INVOICE_START + AP_FIELD_STAGGER * 3 + i * AP_FIELD_STAGGER, duration: 0.3 }}
+                    >
+                      <div className="grid grid-cols-12 gap-3 text-sm">
+                        <div className="col-span-9 text-gray-900 truncate">{item.description}</div>
+                        <div className="col-span-3 text-right font-medium text-gray-900">{item.amount}</div>
+                      </div>
+                      <div className="pl-3 mt-1 flex items-center gap-1 text-xs">
+                        <Sparkles className="w-3 h-3 text-blue-600" />
+                        <span className="text-blue-600">{item.gl}</span>
+                      </div>
+                    </motion.div>
+                  ))}
+                  {/* Total */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: AP_INVOICE_START + AP_FIELD_STAGGER * 6 + 0.2, duration: 0.3 }}
+                    className="grid grid-cols-12 gap-3 pt-2 mt-2 border-t border-gray-200"
+                  >
+                    <div className="col-span-9 text-right text-sm font-medium text-gray-700">Total</div>
+                    <div className="col-span-3 text-right text-sm font-semibold text-gray-900">$24,025.00</div>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Status pill */}
+          <motion.div
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: AP_INVOICE_START + 1.8, duration: 0.4 }}
+            className="flex items-center justify-center"
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full">
+              <img src={logo} alt="Quiet" className="h-3.5" />
+              <span className="text-xs font-medium text-blue-700">
+                Quiet AI coded bill — ready for 3-way match
+              </span>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// ===== Scene 9: 3-way match =====
 const MATCH_LINES = [
   {
     description: 'SS-304 mounting bracket',
@@ -1652,7 +1920,7 @@ function SceneMatch() {
   )
 }
 
-// ===== Scene 9: Payment scheduled + ERP synced =====
+// ===== Scene 10: Payment scheduled + ERP synced =====
 function SceneClose() {
   return (
     <div className="w-full h-full flex items-center justify-center px-6">
@@ -1780,6 +2048,7 @@ function SceneClose() {
                 'Feb 26 · PO sent to vendor',
                 'Mar 6 · Shipment parsed',
                 'Mar 7 · Items received',
+                'Mar 9 · Invoice received & AP processed',
                 'Mar 9 · Invoice 3-way matched',
                 'Mar 9 · Booked + payment scheduled',
               ].map((line, i) => (
@@ -1838,8 +2107,9 @@ function PurchasingWorkflowAnimation({ sceneIndex }: { sceneIndex: number }) {
           {sceneIndex === 4 && <SceneSend />}
           {sceneIndex === 5 && <SceneShip />}
           {sceneIndex === 6 && <SceneReceive />}
-          {sceneIndex === 7 && <SceneMatch />}
-          {sceneIndex === 8 && <SceneClose />}
+          {sceneIndex === 7 && <SceneAP />}
+          {sceneIndex === 8 && <SceneMatch />}
+          {sceneIndex === 9 && <SceneClose />}
         </motion.div>
       </AnimatePresence>
     </div>
