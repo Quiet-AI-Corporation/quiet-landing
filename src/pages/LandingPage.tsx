@@ -186,9 +186,6 @@ function LandingPage() {
                 Get a demo
               </a>
             </Button>
-            <Button variant="outline" size="lg" asChild>
-              <a href="#">Back to home</a>
-            </Button>
           </div>
         </div>
       </section>
