@@ -1,4 +1,5 @@
-import { AnimatePresence, motion } from 'framer-motion'
+import { useEffect } from 'react'
+import { AnimatePresence, motion, useMotionValue, useTransform, animate } from 'framer-motion'
 import {
   Paperclip,
   Sparkles,
@@ -15,7 +16,6 @@ import {
   Truck,
   ClipboardCheck,
   Boxes,
-  Receipt,
   ScrollText,
   Stamp,
 } from 'lucide-react'
@@ -92,7 +92,7 @@ export const SCENES: Scene[] = [
     label: '3-way match',
     caption:
       'Invoice lines up perfectly with the PO and receipt — no humans needed.',
-    duration: 6.5,
+    duration: 9.5,
   },
   {
     id: 'close',
@@ -1753,168 +1753,492 @@ function SceneAP() {
 }
 
 // ===== Scene 9: 3-way match =====
-const MATCH_LINES = [
-  {
-    description: 'SS-304 mounting bracket',
-    po: '250 × $88.50',
-    received: '250',
-    invoice: '$22,125.00',
-  },
-  {
-    description: 'Powder-coat finish (gray)',
-    po: '250 × $4.20',
-    received: '250',
-    invoice: '$1,050.00',
-  },
-  {
-    description: 'Custom crating & freight',
-    po: '1 × $850.00',
-    received: '1',
-    invoice: '$850.00',
-  },
+type MatchLineItem = { name: string; qty: number; unit: number }
+const MATCH_PO_LINES: MatchLineItem[] = [
+  { name: 'SS-304 mounting bracket', qty: 250, unit: 88.5 },
+  { name: 'Powder-coat finish (gray)', qty: 250, unit: 4.2 },
+  { name: 'Custom crating & freight', qty: 1, unit: 850 },
+]
+const MATCH_PO_TOTAL = MATCH_PO_LINES.reduce((sum, l) => sum + l.qty * l.unit, 0)
+const MATCH_PO_ID = 'PO-2026-0042'
+const MATCH_INV_ID = 'INV-NW-99412'
+const MATCH_GR_ID = 'IR-0381'
+
+const matchCurrency = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  maximumFractionDigits: 2,
+})
+
+const MATCH_HL_TIMES = [0, 0.15, 0.85, 1] as const
+const MATCH_HL_COLORS = [
+  'rgba(191, 219, 254, 0)',
+  'rgba(191, 219, 254, 1)',
+  'rgba(191, 219, 254, 1)',
+  'rgba(191, 219, 254, 0)',
 ]
 
-function SceneMatch() {
-  // Timing
-  const T_INVOICE_IN = 0.4
-  const T_HEADERS = 1.0
-  const T_LINES_START = 1.4
-  const T_LINES_GAP = 0.5
-  const T_VERDICT = T_LINES_START + MATCH_LINES.length * T_LINES_GAP + 0.4 // ~3.3
+function MatchCountUp({
+  to,
+  delay,
+  duration,
+  format,
+}: {
+  to: number
+  delay: number
+  duration: number
+  format: (n: number) => string
+}) {
+  const count = useMotionValue(0)
+  const display = useTransform(count, (latest) => format(Math.round(latest)))
 
+  useEffect(() => {
+    const controls = animate(count, to, { delay, duration, ease: 'easeOut' })
+    return controls.stop
+  }, [count, to, delay, duration])
+
+  return <motion.span>{display}</motion.span>
+}
+
+function MatchHealthBar({
+  label,
+  to,
+  max,
+  fillDelay,
+  fillDuration,
+  format,
+  fillColor,
+}: {
+  label: string
+  to: number
+  max: number
+  fillDelay: number
+  fillDuration: number
+  format: (n: number) => string
+  fillColor: string
+}) {
+  const pct = max === 0 ? 0 : (to / max) * 100
+  return (
+    <div>
+      <div className="flex items-baseline justify-between mb-0.5">
+        <span className="text-xs text-gray-500">{label}</span>
+        <span className="text-xs font-medium text-gray-700 tabular-nums">
+          <MatchCountUp to={to} delay={fillDelay} duration={fillDuration} format={format} />
+          {' / '}
+          {format(max)}
+        </span>
+      </div>
+      <div className="h-1.5 rounded-full bg-gray-100 overflow-hidden">
+        <motion.div
+          initial={{ width: '0%' }}
+          animate={{ width: `${pct}%` }}
+          transition={{ delay: fillDelay, duration: fillDuration, ease: 'easeOut' }}
+          className={`h-full ${fillColor}`}
+        />
+      </div>
+    </div>
+  )
+}
+
+function MatchHighlightSpan({
+  delay,
+  duration,
+  className,
+  children,
+}: {
+  delay: number
+  duration: number
+  className?: string
+  children: React.ReactNode
+}) {
+  return (
+    <motion.span
+      initial={{ backgroundColor: MATCH_HL_COLORS[0] }}
+      animate={{ backgroundColor: MATCH_HL_COLORS }}
+      transition={{ delay, duration, times: [...MATCH_HL_TIMES] }}
+      className={`rounded px-0.5 -mx-0.5 ${className ?? ''}`}
+    >
+      {children}
+    </motion.span>
+  )
+}
+
+// Timing constants
+const M_CARD_DUR = 0.5
+const M_INV_START = 0.8
+const M_GR_START = 1.2
+
+const M_PO_REF_DELAY = 1.8
+const M_PO_REF_DUR = 1.2
+const M_INV_MATCHED = 3.0
+
+const M_LINE_HL_DELAY = 3.2
+const M_LINE_HL_DUR = 1.0
+const M_GR_MATCHED = 4.2
+
+const M_PAY_PRESS = 4.5
+const M_PAY_PRESS_DUR = 0.3
+const M_INV_STATUS_FLIP = M_PAY_PRESS + M_PAY_PRESS_DUR
+const M_PAID_BAR_FILL = M_INV_STATUS_FLIP + 0.05
+const M_PAID_BAR_DUR = 0.8
+
+const M_MARK_PRESS = M_PAID_BAR_FILL + M_PAID_BAR_DUR + 0.3 // ~5.95
+const M_MARK_PRESS_DUR = 0.3
+const M_GR_STATUS_FLIP = M_MARK_PRESS + M_MARK_PRESS_DUR
+const M_RECV_BAR_START = M_GR_STATUS_FLIP + 0.05
+const M_RECV_BAR_DUR = 0.6
+const M_RECV_BAR_GAP = 0.5
+
+const M_FIELD_FADE = 0.35
+
+function SceneMatch() {
   return (
     <div className="w-full h-full flex items-center justify-center px-6">
-      <div className="w-full max-w-5xl space-y-3">
-        {/* Top banner: invoice arrived */}
+      <div className="flex gap-5 w-full max-w-5xl text-left items-start">
+        {/* Left — Purchase Order */}
         <motion.div
-          initial={{ opacity: 0, y: -6 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: T_INVOICE_IN, duration: 0.4 }}
-          className="flex items-center gap-3 px-4 py-2.5 bg-white border border-gray-200 rounded-xl shadow-sm"
+          transition={{ duration: M_CARD_DUR, ease: 'easeOut' }}
+          className="flex-1 min-w-0"
         >
-          <Mail className="w-4 h-4 text-blue-600" />
-          <span className="text-sm text-gray-700">
-            Vendor invoice{' '}
-            <span className="font-semibold text-gray-900">INV-NW-99412</span>{' '}
-            from{' '}
-            <span className="font-semibold text-gray-900">Northwind Mfg.</span>{' '}
-            — running 3-way match against PO and receipt
-          </span>
-          <Loader2 className="w-3.5 h-3.5 text-blue-600 animate-spin ml-auto" />
+          <div className="bg-white rounded-xl border border-gray-200 overflow-hidden w-full">
+            {/* Header */}
+            <div className="px-4 py-2 border-b border-gray-100 flex items-center gap-2 min-w-0">
+              <div className="text-sm font-semibold text-gray-900 truncate">
+                Purchase Order{' '}
+                <MatchHighlightSpan delay={M_PO_REF_DELAY} duration={M_PO_REF_DUR}>
+                  #{MATCH_PO_ID}
+                </MatchHighlightSpan>
+              </div>
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-gray-100 rounded-full text-xs font-medium text-gray-700 flex-shrink-0">
+                <Building2 className="w-3 h-3" />
+                Northwind Mfg.
+              </span>
+            </div>
+
+            {/* Body */}
+            <div className="px-4 py-3 space-y-3">
+              {/* Total Paid bar */}
+              <MatchHealthBar
+                label="Total Paid"
+                to={MATCH_PO_TOTAL}
+                max={MATCH_PO_TOTAL}
+                fillDelay={M_PAID_BAR_FILL}
+                fillDuration={M_PAID_BAR_DUR}
+                format={(n) => matchCurrency.format(n)}
+                fillColor="bg-blue-500"
+              />
+
+              {/* Line items */}
+              <div className="border-t border-gray-100 pt-3 space-y-3">
+                <div className="grid grid-cols-12 gap-3 text-xs font-medium text-gray-500">
+                  <div className="col-span-5">Line Item</div>
+                  <div className="col-span-2 text-right">Qty</div>
+                  <div className="col-span-2 text-right">Unit</div>
+                  <div className="col-span-3 text-right">Amount</div>
+                </div>
+                {MATCH_PO_LINES.map((line, idx) => {
+                  const isFirst = idx === 0
+                  const rowChildren = (
+                    <>
+                      <div className="col-span-5 text-gray-900 truncate">{line.name}</div>
+                      <div className="col-span-2 text-right text-gray-900 tabular-nums">
+                        {line.qty}
+                      </div>
+                      <div className="col-span-2 text-right text-gray-700 tabular-nums">
+                        {matchCurrency.format(line.unit)}
+                      </div>
+                      <div className="col-span-3 text-right font-medium text-gray-900 tabular-nums">
+                        {matchCurrency.format(line.qty * line.unit)}
+                      </div>
+                    </>
+                  )
+                  return (
+                    <div key={line.name} className="space-y-1.5">
+                      {isFirst ? (
+                        <motion.div
+                          initial={{ backgroundColor: MATCH_HL_COLORS[0] }}
+                          animate={{ backgroundColor: MATCH_HL_COLORS }}
+                          transition={{
+                            delay: M_LINE_HL_DELAY,
+                            duration: M_LINE_HL_DUR,
+                            times: [...MATCH_HL_TIMES],
+                          }}
+                          className="grid grid-cols-12 gap-3 text-sm rounded -mx-2 px-2 -my-0.5 py-0.5"
+                        >
+                          {rowChildren}
+                        </motion.div>
+                      ) : (
+                        <div className="grid grid-cols-12 gap-3 text-sm">{rowChildren}</div>
+                      )}
+                      <MatchHealthBar
+                        label="Received"
+                        to={line.qty}
+                        max={line.qty}
+                        fillDelay={M_RECV_BAR_START + idx * M_RECV_BAR_GAP}
+                        fillDuration={M_RECV_BAR_DUR}
+                        format={(n) => `${n}`}
+                        fillColor="bg-blue-500"
+                      />
+                    </div>
+                  )
+                })}
+              </div>
+
+              {/* Total */}
+              <div className="grid grid-cols-12 gap-3 pt-2 border-t border-gray-200">
+                <div className="col-span-9 text-right text-sm font-medium text-gray-700">Total</div>
+                <div className="col-span-3 text-right text-sm font-semibold text-gray-900 tabular-nums">
+                  {matchCurrency.format(MATCH_PO_TOTAL)}
+                </div>
+              </div>
+            </div>
+          </div>
         </motion.div>
 
-        {/* Match table: 3 columns of evidence */}
-        <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
-          {/* Column headers */}
+        {/* Right — Invoice + Goods Receipt */}
+        <div className="flex-1 min-w-0 flex flex-col gap-3 overflow-hidden">
+          {/* Invoice */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: T_HEADERS, duration: 0.3 }}
-            className="grid grid-cols-12 gap-2 px-4 py-2 bg-gray-50 border-b border-gray-100 text-[11px] font-bold uppercase tracking-wider text-gray-500"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: M_INV_START, duration: M_CARD_DUR, ease: 'easeOut' }}
+            className="bg-white rounded-xl border border-gray-200 overflow-hidden"
           >
-            <div className="col-span-4">Line</div>
-            <div className="col-span-2 flex items-center gap-1">
-              <ScrollText className="w-3 h-3" />
-              PO
-            </div>
-            <div className="col-span-2 flex items-center gap-1">
-              <ClipboardCheck className="w-3 h-3" />
-              Receipt
-            </div>
-            <div className="col-span-3 flex items-center gap-1">
-              <Receipt className="w-3 h-3" />
-              Invoice
-            </div>
-            <div className="col-span-1 text-right">Match</div>
-          </motion.div>
-
-          {/* Match rows */}
-          <div className="divide-y divide-gray-100">
-            {MATCH_LINES.map((l, i) => {
-              const rowDelay = T_LINES_START + i * T_LINES_GAP
-              return (
-                <motion.div
-                  key={l.description}
+            {/* Header */}
+            <div className="px-4 py-2 border-b border-gray-100 flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2 min-w-0">
+                <div className="text-sm font-semibold text-gray-900 truncate">
+                  Invoice #{MATCH_INV_ID}
+                </div>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-gray-100 rounded-full text-xs font-medium text-gray-700 flex-shrink-0">
+                  <Building2 className="w-3 h-3" />
+                  Northwind Mfg.
+                </span>
+              </div>
+              {/* Status pill */}
+              <div className="relative flex-shrink-0 h-5">
+                <span className="invisible inline-block px-2.5 py-0.5 text-xs font-medium rounded-full whitespace-nowrap">
+                  Ready to Pay
+                </span>
+                <motion.span
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: 0 }}
+                  transition={{ delay: M_INV_STATUS_FLIP, duration: M_FIELD_FADE }}
+                  className="absolute right-0 top-0 inline-flex px-2.5 py-0.5 bg-blue-100 text-blue-800 text-xs font-medium rounded-full whitespace-nowrap"
+                >
+                  Ready to Pay
+                </motion.span>
+                <motion.span
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: rowDelay, duration: 0.3 }}
-                  className="grid grid-cols-12 gap-2 items-center px-4 py-2.5 text-sm"
+                  transition={{ delay: M_INV_STATUS_FLIP, duration: M_FIELD_FADE }}
+                  className="absolute right-0 top-0 inline-flex px-2.5 py-0.5 bg-green-100 text-green-800 text-xs font-medium rounded-full whitespace-nowrap"
                 >
-                  <div className="col-span-4 text-gray-900 truncate">
-                    {l.description}
-                  </div>
-                  <div className="col-span-2 text-gray-700">{l.po}</div>
-                  <div className="col-span-2 text-gray-700">{l.received}</div>
-                  <div className="col-span-3 text-gray-700">{l.invoice}</div>
-                  <div className="col-span-1 flex justify-end">
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.5 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{
-                        delay: rowDelay + 0.2,
-                        duration: 0.3,
-                        ease: 'backOut',
-                      }}
-                      className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-100"
-                    >
-                      <CheckCircle2 className="w-3.5 h-3.5 text-green-700" />
-                    </motion.div>
-                  </div>
-                </motion.div>
-              )
-            })}
-          </div>
+                  Paid
+                </motion.span>
+              </div>
+            </div>
 
-          {/* Total row */}
+            <div className="px-4 py-2 space-y-3">
+              {/* PO Reference + Due Date */}
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <div className="text-xs text-gray-500">PO Reference</div>
+                  <div className="text-sm font-medium text-gray-900">
+                    <MatchHighlightSpan delay={M_PO_REF_DELAY} duration={M_PO_REF_DUR}>
+                      {MATCH_PO_ID}
+                    </MatchHighlightSpan>
+                  </div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-500">Due Date</div>
+                  <div className="text-sm text-gray-900">Apr 15, 2026</div>
+                </div>
+              </div>
+
+              {/* Line items */}
+              <div className="space-y-1.5">
+                <div className="grid grid-cols-12 gap-2 text-xs font-medium text-gray-500">
+                  <div className="col-span-5">Line Item</div>
+                  <div className="col-span-2 text-right">Qty</div>
+                  <div className="col-span-2 text-right">Unit</div>
+                  <div className="col-span-3 text-right">Amount</div>
+                </div>
+                {MATCH_PO_LINES.map((line) => (
+                  <div key={line.name} className="grid grid-cols-12 gap-2 text-sm">
+                    <div className="col-span-5 text-gray-900 truncate">{line.name}</div>
+                    <div className="col-span-2 text-right text-gray-900 tabular-nums">{line.qty}</div>
+                    <div className="col-span-2 text-right text-gray-700 tabular-nums">
+                      {matchCurrency.format(line.unit)}
+                    </div>
+                    <div className="col-span-3 text-right font-medium text-gray-900 tabular-nums">
+                      {matchCurrency.format(line.qty * line.unit)}
+                    </div>
+                  </div>
+                ))}
+                <div className="grid grid-cols-12 gap-2 pt-1.5 mt-1 border-t border-gray-200">
+                  <div className="col-span-9 text-right text-sm font-medium text-gray-700">Total</div>
+                  <div className="col-span-3 text-right text-sm font-semibold text-gray-900 tabular-nums">
+                    {matchCurrency.format(MATCH_PO_TOTAL)}
+                  </div>
+                </div>
+              </div>
+
+              {/* Matched + Pay → Paid */}
+              <div className="relative h-9">
+                <motion.div
+                  initial={{ opacity: 0, x: -6 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: M_INV_MATCHED, duration: M_FIELD_FADE }}
+                  className="absolute left-0 top-1/2 -translate-y-1/2 inline-flex items-center gap-1 text-xs"
+                >
+                  <Sparkles className="w-3 h-3 text-blue-600" />
+                  <span className="text-blue-600">Matched to {MATCH_PO_ID}</span>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: 0 }}
+                  transition={{ delay: M_INV_STATUS_FLIP, duration: M_FIELD_FADE }}
+                  className="absolute right-0 top-0"
+                >
+                  <motion.div
+                    animate={{ scale: [1, 0.95, 1] }}
+                    transition={{
+                      delay: M_PAY_PRESS,
+                      duration: M_PAY_PRESS_DUR,
+                      times: [0, 0.5, 1],
+                    }}
+                    className="bg-blue-600 text-white text-sm font-medium px-6 py-2 rounded-md shadow-sm"
+                  >
+                    Pay
+                  </motion.div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: M_INV_STATUS_FLIP + 0.05, duration: M_FIELD_FADE }}
+                  className="absolute right-0 top-0 inline-flex items-center gap-1.5 bg-green-50 text-green-700 border border-green-200 text-sm font-medium px-6 py-2 rounded-md"
+                >
+                  <span className="text-green-600">✓</span>
+                  Paid
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Goods Receipt */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: T_VERDICT - 0.4, duration: 0.3 }}
-            className="grid grid-cols-12 gap-2 items-center px-4 py-2 bg-gray-50 border-t border-gray-100 text-sm font-medium"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: M_GR_START, duration: M_CARD_DUR, ease: 'easeOut' }}
+            className="bg-white rounded-xl border border-gray-200 overflow-hidden"
           >
-            <div className="col-span-4 text-gray-700">Totals</div>
-            <div className="col-span-2 text-gray-900">$24,025.00</div>
-            <div className="col-span-2 text-gray-900">501 / 501</div>
-            <div className="col-span-3 text-gray-900">$24,025.00</div>
-            <div className="col-span-1" />
+            {/* Header */}
+            <div className="px-4 py-2 border-b border-gray-100 flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2 min-w-0">
+                <div className="flex items-center gap-1.5 text-sm font-semibold text-gray-900 truncate">
+                  <Package className="w-3.5 h-3.5 text-gray-500" />
+                  Goods Receipt #{MATCH_GR_ID}
+                </div>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-gray-100 rounded-full text-xs font-medium text-gray-700 flex-shrink-0">
+                  <Building2 className="w-3 h-3" />
+                  Northwind Mfg.
+                </span>
+              </div>
+              {/* Status pill */}
+              <div className="relative flex-shrink-0 h-5">
+                <span className="invisible inline-block px-2.5 py-0.5 text-xs font-medium rounded-full whitespace-nowrap">
+                  Pending
+                </span>
+                <motion.span
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: 0 }}
+                  transition={{ delay: M_GR_STATUS_FLIP, duration: M_FIELD_FADE }}
+                  className="absolute right-0 top-0 inline-flex px-2.5 py-0.5 bg-amber-100 text-amber-800 text-xs font-medium rounded-full whitespace-nowrap"
+                >
+                  Pending
+                </motion.span>
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: M_GR_STATUS_FLIP, duration: M_FIELD_FADE }}
+                  className="absolute right-0 top-0 inline-flex px-2.5 py-0.5 bg-green-100 text-green-800 text-xs font-medium rounded-full whitespace-nowrap"
+                >
+                  Received
+                </motion.span>
+              </div>
+            </div>
+
+            <div className="px-4 py-2 space-y-2.5">
+              {/* Line items */}
+              <div className="grid grid-cols-12 gap-2 text-sm">
+                <div className="col-span-7 text-gray-900">
+                  <MatchHighlightSpan delay={M_LINE_HL_DELAY} duration={M_LINE_HL_DUR}>
+                    SS-304 mounting bracket
+                  </MatchHighlightSpan>
+                </div>
+                <div className="col-span-2 text-right text-gray-500">Qty</div>
+                <div className="col-span-3 text-right font-medium text-gray-900 tabular-nums">250</div>
+              </div>
+              <div className="grid grid-cols-12 gap-2 text-sm">
+                <div className="col-span-7 text-gray-900">Powder-coat finish (gray)</div>
+                <div className="col-span-2 text-right text-gray-500">Qty</div>
+                <div className="col-span-3 text-right font-medium text-gray-900 tabular-nums">250</div>
+              </div>
+              <div className="grid grid-cols-12 gap-2 text-sm">
+                <div className="col-span-7 text-gray-900">Custom crating &amp; freight</div>
+                <div className="col-span-2 text-right text-gray-500">Qty</div>
+                <div className="col-span-3 text-right font-medium text-gray-900 tabular-nums">1</div>
+              </div>
+
+              {/* Matched + Mark Received → Received */}
+              <div className="relative h-9">
+                <motion.div
+                  initial={{ opacity: 0, x: -6 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: M_GR_MATCHED, duration: M_FIELD_FADE }}
+                  className="absolute left-0 top-1/2 -translate-y-1/2 inline-flex items-center gap-1 text-xs"
+                >
+                  <Sparkles className="w-3 h-3 text-blue-600" />
+                  <span className="text-blue-600">Matched to {MATCH_PO_ID}</span>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: 0 }}
+                  transition={{ delay: M_GR_STATUS_FLIP, duration: M_FIELD_FADE }}
+                  className="absolute right-0 top-0"
+                >
+                  <motion.div
+                    animate={{ scale: [1, 0.95, 1] }}
+                    transition={{
+                      delay: M_MARK_PRESS,
+                      duration: M_MARK_PRESS_DUR,
+                      times: [0, 0.5, 1],
+                    }}
+                    className="bg-blue-600 text-white text-sm font-medium px-6 py-2 rounded-md shadow-sm"
+                  >
+                    Mark Received
+                  </motion.div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: M_GR_STATUS_FLIP + 0.05, duration: M_FIELD_FADE }}
+                  className="absolute right-0 top-0 inline-flex items-center gap-1.5 bg-green-50 text-green-700 border border-green-200 text-sm font-medium px-6 py-2 rounded-md"
+                >
+                  <span className="text-green-600">✓</span>
+                  Received
+                </motion.div>
+              </div>
+            </div>
           </motion.div>
         </div>
-
-        {/* Verdict + auto-approval */}
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: T_VERDICT, duration: 0.4 }}
-          className="grid grid-cols-2 gap-3"
-        >
-          <div className="px-4 py-2.5 rounded-xl bg-green-50 border border-green-200 flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-green-700 flex-shrink-0" />
-            <div>
-              <div className="text-sm font-semibold text-green-900">
-                3-way match passed
-              </div>
-              <div className="text-xs text-green-800">
-                PO, receipt and invoice all agree to the penny.
-              </div>
-            </div>
-          </div>
-          <motion.div
-            initial={{ opacity: 0, y: 4 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: T_VERDICT + 0.3, duration: 0.4 }}
-            className="px-4 py-2.5 rounded-xl bg-blue-50 border border-blue-200 flex items-center gap-2"
-          >
-            <Sparkles className="w-4 h-4 text-blue-700 flex-shrink-0" />
-            <div>
-              <div className="text-sm font-semibold text-blue-900">
-                Auto-approved for payment
-              </div>
-              <div className="text-xs text-blue-800">
-                Matches policy — no human touch required.
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
       </div>
     </div>
   )
