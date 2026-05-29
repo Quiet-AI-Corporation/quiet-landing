@@ -18,6 +18,7 @@ import {
   Boxes,
   ScrollText,
   Stamp,
+  BookOpen,
 } from 'lucide-react'
 import gmailLogo from '@/assets/images/gmail_logo.webp'
 import qboLogo from '@/assets/images/qbo_logo.webp'
@@ -98,7 +99,7 @@ export const SCENES: Scene[] = [
     id: 'close',
     label: 'Payment & ERP synced',
     caption:
-      'Payment scheduled. Bill booked in QuickBooks. Procure-to-pay loop closed.',
+      'Payment sent. Bill booked in QuickBooks.',
     duration: 5.5,
   },
 ]
@@ -2249,21 +2250,6 @@ function SceneClose() {
   return (
     <div className="w-full h-full flex items-center justify-center px-6">
       <div className="w-full max-w-4xl space-y-3">
-        {/* Top: header */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.4 }}
-          className="text-center"
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-50 border border-green-200 rounded-full">
-            <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
-            <span className="text-xs font-medium text-green-800">
-              Procure-to-pay loop closed
-            </span>
-          </div>
-        </motion.div>
-
         {/* Three result cards */}
         <div className="grid grid-cols-3 gap-3">
           {/* Payment scheduled */}
@@ -2276,13 +2262,16 @@ function SceneClose() {
             <div className="bg-gray-50 px-3 py-2 border-b border-gray-100 flex items-center gap-2">
               <Landmark className="w-3.5 h-3.5 text-gray-500" />
               <span className="text-xs font-semibold text-gray-700">
-                Payment scheduled
+                Payment Sent
               </span>
             </div>
             <div className="p-3 text-xs space-y-1.5">
               <div className="flex items-center justify-between">
                 <span className="text-gray-500">Vendor</span>
-                <span className="font-medium text-gray-900">Northwind</span>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-gray-100 rounded-full text-xs font-medium text-gray-700">
+                  <Building2 className="w-3 h-3" />
+                  Northwind Mfg.
+                </span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-gray-500">Method</span>
@@ -2295,17 +2284,9 @@ function SceneClose() {
               <div className="flex items-center justify-between">
                 <span className="text-gray-500">Send date</span>
                 <span className="font-medium text-gray-900">
-                  Apr 5 · net 30
+                  Apr 5
                 </span>
               </div>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.0, duration: 0.3 }}
-                className="mt-1 inline-flex items-center gap-1 px-1.5 py-0.5 bg-amber-100 text-amber-700 text-[10px] font-medium rounded-full"
-              >
-                <Clock className="w-2.5 h-2.5" /> Queued · 29 days
-              </motion.div>
             </div>
           </motion.div>
 
@@ -2317,7 +2298,7 @@ function SceneClose() {
             className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm"
           >
             <div className="bg-gray-50 px-3 py-2 border-b border-gray-100 flex items-center gap-2">
-              <img src={qboLogo} alt="QuickBooks" className="w-3.5 h-3.5" />
+              <BookOpen className="w-3.5 h-3.5 text-gray-500" />
               <span className="text-xs font-semibold text-gray-700">
                 ERP synced
               </span>
@@ -2325,27 +2306,37 @@ function SceneClose() {
             <div className="p-3 text-xs space-y-1.5">
               <div className="flex items-center justify-between">
                 <span className="text-gray-500">PO</span>
-                <span className="font-medium text-gray-900">2026-0042</span>
+                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-green-50 border border-green-200 rounded-full text-xs font-medium text-green-800">
+                  <img src={qboLogo} alt="QBO" className="w-3 h-3" />
+                  2026-0042
+                </span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-gray-500">Bill</span>
-                <span className="font-medium text-gray-900">INV-NW-99412</span>
+                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-green-50 border border-green-200 rounded-full text-xs font-medium text-green-800">
+                  <img src={qboLogo} alt="QBO" className="w-3 h-3" />
+                  INV-NW-99412
+                </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-gray-500">GL</span>
-                <span className="font-medium text-gray-900">1300 / 6700</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-gray-500">Status</span>
-                <span className="font-medium text-gray-900">Open · queued</span>
+                <span className="text-gray-500">Payment</span>
+                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-green-50 border border-green-200 rounded-full text-xs font-medium text-green-800">
+                  <img src={qboLogo} alt="QBO" className="w-3 h-3" />
+                  $24,025.00
+                </span>
               </div>
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.6, duration: 0.3 }}
-                className="mt-1 inline-flex items-center gap-1 px-1.5 py-0.5 bg-blue-100 text-blue-700 text-[10px] font-medium rounded-full"
+                className="mt-1 flex justify-center"
               >
-                <CheckCircle2 className="w-2.5 h-2.5" /> Booked
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full">
+                  <img src={logo} alt="Quiet" className="h-3.5" />
+                  <span className="text-[10px] font-medium text-blue-700">
+                    Quiet AI synced to QuickBooks
+                  </span>
+                </div>
               </motion.div>
             </div>
           </motion.div>
@@ -2391,21 +2382,6 @@ function SceneClose() {
           </motion.div>
         </div>
 
-        {/* Closing line */}
-        <motion.div
-          initial={{ opacity: 0, y: 6 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 4.0, duration: 0.5 }}
-          className="flex items-center justify-center gap-2 text-sm text-gray-700 pt-2"
-        >
-          <Package className="w-4 h-4 text-gray-400" />
-          <span>
-            Quote to booked bill in{' '}
-            <span className="font-semibold text-gray-900">11 days</span> —{' '}
-            <span className="font-semibold text-gray-900">one click</span> from
-            your team, the rest from Quiet.
-          </span>
-        </motion.div>
       </div>
     </div>
   )
