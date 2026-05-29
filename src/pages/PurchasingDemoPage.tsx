@@ -261,7 +261,7 @@ function PurchasingDemoPage() {
                 </Tooltip>
               )}
 
-              <div className="aspect-[16/9]">
+              <div className="aspect-[2/1]">
                 <PurchasingWorkflowAnimation sceneIndex={sceneIndex} />
               </div>
 
@@ -322,56 +322,15 @@ function PurchasingDemoPage() {
               </AnimatePresence>
             </div>
 
-            {/* Caption */}
-            <div className="mt-5">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={sceneIndex}
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  transition={{ duration: 0.25 }}
-                >
-                  <div className="text-xs font-semibold uppercase tracking-widest text-blue-600">
-                    Step {sceneIndex + 1} of {SCENES.length} ·{' '}
-                    {SCENES[sceneIndex].label}
-                  </div>
-                  <div className="mt-1 text-base text-gray-700">
-                    {SCENES[sceneIndex].caption}
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
           </div>
         </section>
 
-        {/* Story strip */}
+        {/* CTA */}
         <section className="px-6 py-16">
           <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="rounded-xl bg-white border border-gray-200 p-5">
-                <div className="text-3xl font-bold text-gray-900">~11 days</div>
-                <div className="mt-1 text-sm text-gray-600">
-                  Quote to booked bill, including shipping and net-30 schedule
-                </div>
-              </div>
-              <div className="rounded-xl bg-white border border-gray-200 p-5">
-                <div className="text-3xl font-bold text-gray-900">1 click</div>
-                <div className="mt-1 text-sm text-gray-600">
-                  The PO approval — everything before and after is hands-off
-                </div>
-              </div>
-              <div className="rounded-xl bg-white border border-gray-200 p-5">
-                <div className="text-3xl font-bold text-gray-900">3-way</div>
-                <div className="mt-1 text-sm text-gray-600">
-                  PO, receipt and invoice reconciled automatically before payment
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-12 text-center">
+            <div className="text-center">
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-                Want to see this on your own POs?
+                Want to see this on your own Purchases?
               </h2>
               <p className="mt-2 text-gray-600">
                 We can have you live and ordering against real vendors in under
@@ -379,7 +338,7 @@ function PurchasingDemoPage() {
               </p>
               <div className="mt-6 flex items-center justify-center gap-3">
                 <Button size="lg" asChild>
-                  <a href="mailto:hello@tryquiet.ai?subject=Interested%20in%20Quiet%20AI%20purchasing&body=Hi%20Quiet%20team%2C%0A%0AI%27d%20love%20a%20demo%20on%20our%20own%20POs.%0A%0ABest%2C%0A%5BYour%20name%5D">
+                  <a href="mailto:hello@tryquiet.ai?subject=Interested%20in%20Quiet%20AI%20purchasing&body=Hi%20Quiet%20team%2C%0A%0AI%27d%20love%20a%20demo%20on%20our%20own%20purchases.%0A%0ABest%2C%0A%5BYour%20name%5D">
                     Get a demo
                   </a>
                 </Button>
