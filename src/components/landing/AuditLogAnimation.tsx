@@ -130,7 +130,7 @@ function AuditLogAnimation() {
         {entries.map((entry, i) => (
           <div
             key={i}
-            className={`flex items-baseline gap-2 py-1.5 ${entry.sub ? 'pl-[4.5rem]' : ''}`}
+            className={`flex items-baseline gap-2 py-1.5 ${entry.sub ? 'pl-8 md:pl-[4.5rem]' : ''}`}
           >
             {!entry.sub && (
               <span className="text-xs text-gray-400 flex-shrink-0 w-14 tabular-nums">{entry.time}</span>

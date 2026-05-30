@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import PurchasingWorkflowPlayer from '@/components/landing/PurchasingWorkflowPlayer'
+import PurchasingWorkflowStatic from '@/components/landing/PurchasingWorkflowStatic'
 import AuditLogAnimation from '@/components/landing/AuditLogAnimation'
 import DotGrid from '@/components/landing/DotGrid'
 import logo from '@/assets/images/logo.png'
@@ -169,8 +170,13 @@ function LandingPage() {
           </div>
         </div>
         {/* Purchasing workflow player */}
-        <div className="mt-12 max-w-6xl mx-auto relative z-10 bg-white rounded-2xl p-4">
-          <PurchasingWorkflowPlayer />
+        <div className="mt-2 md:mt-12 max-w-6xl mx-auto relative z-10 bg-white rounded-2xl p-4">
+          <div className="hidden md:block">
+            <PurchasingWorkflowPlayer />
+          </div>
+          <div className="block md:hidden">
+            <PurchasingWorkflowStatic />
+          </div>
         </div>
         <div className="mt-12 text-center relative z-10 bg-white rounded-2xl py-8 px-4 max-w-4xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
@@ -204,9 +210,9 @@ function LandingPage() {
           </div>
 
           {/* Diagram + Caption — side by side */}
-          <div className="flex gap-8 items-stretch">
+          <div className="flex flex-col md:flex-row gap-8 items-stretch">
             {/* Diagram column */}
-            <div className="w-96 shrink-0 flex flex-col items-center" onMouseLeave={handleDiagramLeave}>
+            <div className="w-full md:w-96 md:shrink-0 flex flex-col items-center" onMouseLeave={handleDiagramLeave}>
               {/* Mailbox */}
               <div className="w-full bg-white rounded-xl p-1">
               <div
