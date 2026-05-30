@@ -36,7 +36,7 @@ export const SCENES: Scene[] = [
     id: 'quote',
     label: 'Quote arrives',
     caption:
-      '8:14 AM — A vendor quote lands in your purchasing inbox.',
+      'A vendor quote lands in your purchasing inbox.',
     duration: 10,
   },
   {
@@ -57,7 +57,7 @@ export const SCENES: Scene[] = [
     id: 'approve',
     label: 'PO is approved',
     caption:
-      'PO total exceeds the purchasing threshold — routed to Maria for approval.',
+      'PO total exceeds the purchasing threshold — routed to approver for sign-off.',
     duration: 10,
   },
   {
