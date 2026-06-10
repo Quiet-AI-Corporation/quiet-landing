@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import LandingPage from './pages/LandingPage'
 import WorkflowDemoPage from './pages/WorkflowDemoPage'
 import PurchasingDemoPage from './pages/PurchasingDemoPage'
+import ThankYouPage from './pages/ThankYouPage'
 import './index.css'
 
 function readRoute(): string {
@@ -26,6 +27,7 @@ function Root() {
 
   if (route === 'demo') return <WorkflowDemoPage />
   if (route === 'purchasing-demo') return <PurchasingDemoPage />
+  if (route === 'thank-you') return <ThankYouPage />
   return <LandingPage />
 }
 
