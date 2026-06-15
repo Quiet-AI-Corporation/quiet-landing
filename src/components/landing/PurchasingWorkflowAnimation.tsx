@@ -1,9 +1,7 @@
-import { useEffect } from 'react'
-import { AnimatePresence, motion, useMotionValue, useTransform, animate } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import {
   Paperclip,
   Sparkles,
-  Building2,
   Loader2,
   ShieldCheck,
   Send,
@@ -15,7 +13,6 @@ import {
   Package,
   Truck,
   ClipboardCheck,
-  Boxes,
   ScrollText,
   Stamp,
   BookOpen,
@@ -134,20 +131,20 @@ function SceneQuote() {
 
           {/* Inbox list */}
           <div className="p-3 space-y-1.5">
-            {[
-              { from: 'Slack', subject: 'Weekly digest', time: 'Tue' },
-              { from: 'Pied Piper', subject: 'PO #88141 update', time: 'Mon' },
-            ].map((m) => (
-              <div
-                key={m.subject}
-                className="flex items-center gap-3 px-3 py-2 rounded-md text-xs text-gray-500"
-              >
-                <div className="w-1.5 h-1.5 rounded-full bg-transparent flex-shrink-0" />
-                <span className="w-28 truncate">{m.from}</span>
-                <span className="flex-1 truncate">{m.subject}</span>
-                <span>{m.time}</span>
-              </div>
-            ))}
+            {/* Placeholder row — gray pills instead of text */}
+            <div className="flex items-center gap-3 px-3 py-2 rounded-md">
+              <div className="w-1.5 h-1.5 rounded-full bg-transparent flex-shrink-0" />
+              <div className="w-28"><div className="h-2.5 w-12 rounded-full bg-gray-200" /></div>
+              <div className="flex-1"><div className="h-2.5 w-24 rounded-full bg-gray-200" /></div>
+              <div className="h-2.5 w-8 rounded-full bg-gray-200" />
+            </div>
+            {/* Placeholder row */}
+            <div className="flex items-center gap-3 px-3 py-2 rounded-md">
+              <div className="w-1.5 h-1.5 rounded-full bg-transparent flex-shrink-0" />
+              <div className="w-28"><div className="h-2.5 w-16 rounded-full bg-gray-200" /></div>
+              <div className="flex-1"><div className="h-2.5 w-32 rounded-full bg-gray-200" /></div>
+              <div className="h-2.5 w-8 rounded-full bg-gray-200" />
+            </div>
 
             {/* New incoming email — row that expands into detail card on "click" */}
             <motion.div
@@ -238,9 +235,7 @@ function SceneQuote() {
                         Quote Q-2026-1284 — Stainless brackets, 250 units
                       </div>
                       <p className="text-sm text-gray-700 mt-2">
-                        Hi! Per your RFQ — attached is our quote for 250 SS-304
-                        mounting brackets plus crating. Pricing valid 30 days. Lead
-                        time 7 business days from PO.
+                        Attached is our quote for mounting brackets. Pricing valid 30 days. Lead time 7 business days from PO.
                       </p>
                       <div className="mt-3">
                         <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-xs text-gray-600">
@@ -280,8 +275,6 @@ function SceneQuote() {
 const QUOTE_FIELDS = [
   { label: 'Vendor', value: 'Northwind Mfg.', delay: 1.0 },
   { label: 'Quote #', value: 'Q-2026-1284', delay: 1.5 },
-  { label: 'Valid until', value: 'Mar 28, 2026', delay: 2.0 },
-  { label: 'Lead time', value: '7 business days', delay: 2.5 },
 ]
 const QUOTE_LINES = [
   {
@@ -315,47 +308,29 @@ function SceneExtract() {
       <div className="flex-1 min-w-0 flex items-center justify-center">
         <div className="relative w-full max-w-xs aspect-[8.5/11] bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
           <div className="p-4 space-y-2">
-            <div className="text-[10px] font-bold uppercase tracking-wider text-gray-400">
-              NORTHWIND MFG.
-            </div>
-            <div className="text-[8px] text-gray-400">
-              4400 Industrial Pkwy, Akron OH
-            </div>
+            <div className="h-2 w-20 rounded-full bg-gray-200" />
+            <div className="h-1.5 w-28 rounded-full bg-gray-100" />
             <div className="h-px bg-gray-100 my-2" />
-            <div className="text-xs font-bold text-gray-900">
+            <div className="text-sm font-bold text-gray-900">
               Quote Q-2026-1284
             </div>
-            <div className="space-y-0.5">
-              <div className="text-[8px] text-gray-400">
-                Issued: Feb 26, 2026
-              </div>
-              <div className="text-[8px] text-gray-400">
-                Valid: 30 days · Lead time 7 bus. days
-              </div>
-            </div>
-            <div className="h-px bg-gray-100 my-2" />
             <div className="space-y-1">
-              <div className="text-[8px] text-gray-700">
-                SS-304 mounting bracket · 250
-              </div>
-              <div className="text-[8px] text-gray-400">
-                @ $88.50 = $22,125.00
-              </div>
-              <div className="text-[8px] text-gray-700">
-                Powder-coat finish (gray) · 250
-              </div>
-              <div className="text-[8px] text-gray-400">
-                @ $4.20 = $1,050.00
-              </div>
-              <div className="text-[8px] text-gray-700">
-                Custom crating & freight
-              </div>
-              <div className="text-[8px] text-gray-400">$850.00</div>
+              <div className="h-1.5 w-24 rounded-full bg-gray-200" />
+              <div className="h-1.5 w-32 rounded-full bg-gray-200" />
             </div>
             <div className="h-px bg-gray-100 my-2" />
-            <div className="flex justify-between text-[8px] font-bold text-gray-900">
-              <span>TOTAL</span>
-              <span>$24,025.00</span>
+            <div className="space-y-1.5">
+              <div className="h-1.5 w-full rounded-full bg-gray-200" />
+              <div className="h-1.5 w-20 rounded-full bg-gray-100" />
+              <div className="h-1.5 w-full rounded-full bg-gray-200" />
+              <div className="h-1.5 w-16 rounded-full bg-gray-100" />
+              <div className="h-1.5 w-3/4 rounded-full bg-gray-200" />
+              <div className="h-1.5 w-12 rounded-full bg-gray-100" />
+            </div>
+            <div className="h-px bg-gray-100 my-2" />
+            <div className="flex justify-between">
+              <div className="h-2 w-10 rounded-full bg-gray-300" />
+              <div className="h-2 w-14 rounded-full bg-gray-300" />
             </div>
           </div>
 
@@ -387,8 +362,8 @@ function SceneExtract() {
             className="absolute left-0 right-0 h-px bg-blue-500"
           />
 
-          <div className="absolute top-2 right-2 px-1.5 py-0.5 bg-gray-900 text-white text-[8px] font-medium rounded">
-            QUOTE · PDF
+          <div className="absolute top-2 right-2 px-2 py-0.5 bg-gray-900 text-white text-[10px] font-medium rounded">
+            PDF
           </div>
         </div>
       </div>
@@ -456,46 +431,54 @@ function SceneExtract() {
               <div className="text-xs text-gray-500 mb-1 mt-1">
                 Line items
               </div>
-              <div className="grid grid-cols-12 gap-2 text-[10px] font-medium text-gray-400 px-1 pb-1">
-                <div className="col-span-6">Description</div>
-                <div className="col-span-2 text-right">Qty</div>
-                <div className="col-span-2 text-right">Unit</div>
-                <div className="col-span-2 text-right">Total</div>
-              </div>
               <div className="space-y-1">
                 {QUOTE_LINES.map((l) => (
-                  <motion.div
-                    key={l.description}
-                    initial={{ opacity: 0, y: 4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: l.delay, duration: 0.3 }}
-                    className="grid grid-cols-12 gap-2 text-xs items-center px-1 py-0.5"
-                  >
-                    <span className="col-span-6 text-gray-800 truncate flex items-center gap-1">
-                      <Sparkles className="w-3 h-3 text-blue-600 flex-shrink-0" />
-                      {l.description}
-                    </span>
-                    <span className="col-span-2 text-right text-gray-700">
-                      {l.qty}
-                    </span>
-                    <span className="col-span-2 text-right text-gray-500">
-                      {l.unit}
-                    </span>
-                    <span className="col-span-2 text-right font-medium text-gray-900">
-                      {l.amount}
-                    </span>
-                  </motion.div>
+                  <div key={l.description} className="relative h-6">
+                    <motion.div
+                      initial={{ opacity: 1 }}
+                      animate={{ opacity: 0 }}
+                      transition={{ delay: l.delay, duration: 0.15 }}
+                      className="absolute inset-0 bg-gray-100 rounded"
+                    />
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: l.delay, duration: 0.3 }}
+                      className="absolute inset-0 grid grid-cols-12 gap-2 text-sm items-center px-1"
+                    >
+                      <span className="col-span-6 text-gray-800 truncate flex items-center gap-1">
+                        <Sparkles className="w-3 h-3 text-blue-600 flex-shrink-0" />
+                        {l.description}
+                      </span>
+                      <span className="col-span-2 text-right text-gray-700">
+                        {l.qty}
+                      </span>
+                      <span className="col-span-2 text-right text-gray-500">
+                        {l.unit}
+                      </span>
+                      <span className="col-span-2 text-right font-medium text-gray-900">
+                        {l.amount}
+                      </span>
+                    </motion.div>
+                  </div>
                 ))}
               </div>
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 4.8, duration: 0.3 }}
-                className="flex items-center justify-between text-sm font-semibold border-t border-gray-200 pt-1.5 mt-1.5"
-              >
-                <span className="text-gray-700">Quote total</span>
-                <span className="text-gray-900">$24,025.00</span>
-              </motion.div>
+              <div className="relative h-6 border-t border-gray-200 mt-1.5">
+                <motion.div
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: 0 }}
+                  transition={{ delay: 4.8, duration: 0.15 }}
+                  className="absolute inset-0 mt-1.5 bg-gray-100 rounded"
+                />
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 4.8, duration: 0.3 }}
+                  className="absolute inset-0 flex items-center justify-end text-sm font-semibold pt-1.5"
+                >
+                  <span className="text-gray-900">$24,025.00</span>
+                </motion.div>
+              </div>
             </div>
 
             {/* Quiet AI pill */}
@@ -616,27 +599,13 @@ function ScenePO() {
           <div className="text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">
             Source
           </div>
-          <div className="flex items-center gap-1.5">
-            <ScrollText className="w-3 h-3 text-blue-600" />
-            <span className="text-xs text-blue-600 font-medium">Q-2026-1284</span>
-          </div>
-          <div className="pl-4 mt-1.5 space-y-1">
-            <div className="flex items-center gap-1.5 text-xs">
-              <span className="text-gray-500">From:</span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-gray-100 rounded-full font-medium text-gray-700">
-                <Building2 className="w-3 h-3" />
-                Northwind Mfg.
-              </span>
-            </div>
-            <div className="flex items-baseline gap-1.5 text-xs">
-              <span className="text-gray-500">Total:</span>
-              <span className="text-sm font-semibold text-gray-900">$24,025.00</span>
-            </div>
-            <div className="flex items-baseline gap-1.5 text-xs">
-              <span className="text-gray-500">Line items:</span>
-              <span className="text-gray-900">3</span>
-            </div>
-          </div>
+          <p className="text-xs text-gray-700">
+            Drafting PO based on quote{' '}
+            <span className="inline-flex items-center gap-1 text-blue-600 font-medium">
+              <ScrollText className="w-3 h-3" />
+              Q-2026-1284
+            </span>
+          </p>
         </div>
 
         {/* Card 2 — Coding Rules */}
@@ -656,7 +625,7 @@ function ScenePO() {
                   className="rounded-md p-1.5 -mx-1"
                 >
                   <p className="text-gray-700">
-                    Raw material items should be coded to{' '}
+                    Code raw materials to{' '}
                     <span className="font-semibold text-blue-700">1300 — Raw Materials</span>
                   </p>
                 </motion.div>
@@ -673,7 +642,7 @@ function ScenePO() {
                   className="rounded-md p-1.5 -mx-1"
                 >
                   <p className="text-gray-700">
-                    Freight charges should be coded to{' '}
+                    Code freight to{' '}
                     <span className="font-semibold text-blue-700">6700 — Freight In</span>
                   </p>
                 </motion.div>
@@ -690,10 +659,10 @@ function ScenePO() {
                   className="rounded-md p-1.5 -mx-1"
                 >
                   <p className="text-gray-700">
-                    Manufacturing materials belong to{' '}
-                    <span className="font-semibold text-blue-700">Production</span> dept.
+                    Code manufacturing materials to{' '}
+                    <span className="font-semibold text-blue-700">Production</span>.
                     Everything else to{' '}
-                    <span className="font-semibold text-blue-700">Operations</span>.
+                    <span className="font-semibold text-blue-700">Operations</span>
                   </p>
                 </motion.div>
               )
@@ -721,15 +690,6 @@ function ScenePO() {
               >
                 Purchase Order PO-2026-0042
               </motion.div>
-              <motion.span
-                initial={{ opacity: 0, scale: 0.85 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.5, duration: 0.3 }}
-                className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-gray-100 rounded-full text-xs font-medium text-gray-700"
-              >
-                <Building2 className="w-3 h-3" />
-                Northwind Mfg.
-              </motion.span>
             </div>
             <div className="relative w-3.5 h-3.5">
               <motion.div
@@ -751,7 +711,7 @@ function ScenePO() {
             </div>
           </div>
 
-          <div className="p-3 space-y-2">
+          <div className="p-3 space-y-2 flex-1 flex flex-col">
             <div className="grid grid-cols-12 gap-2 text-xs font-medium text-gray-500 px-1">
               <div className="col-span-4">Line item</div>
               <div className="col-span-3">GL Account</div>
@@ -827,25 +787,12 @@ function ScenePO() {
               )
             })}
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: PO_TOTAL_DELAY, duration: 0.3 }}
-              className="grid grid-cols-12 gap-2 pt-2 border-t border-gray-200 px-1"
-            >
-              <div className="col-span-9 text-right text-sm font-medium text-gray-700">
-                PO total
-              </div>
-              <div className="col-span-3 text-right text-sm font-semibold text-gray-900">
-                $24,025.00
-              </div>
-            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 4 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: PO_PILL_DELAY, duration: 0.4 }}
-              className="flex items-center justify-center gap-2 pt-0.5"
+              className="flex items-center justify-center gap-2 pt-4 mt-auto"
             >
               <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full">
                 <img src={logo} alt="Quiet" className="h-3.5" />
@@ -869,7 +816,6 @@ function ApprovalEmailCard({
   direction,
   variant,
   icon,
-  title,
   badge,
   addressLabel,
   address,
@@ -881,7 +827,6 @@ function ApprovalEmailCard({
   direction: 'left' | 'right'
   variant: 'outgoing' | 'incoming'
   icon: React.ReactNode
-  title: string
   badge: React.ReactNode
   addressLabel: string
   address: string
@@ -897,18 +842,14 @@ function ApprovalEmailCard({
       transition={{ delay, duration: 0.4 }}
       className={`bg-white border ${isIncoming ? 'border-blue-200' : 'border-gray-200'} rounded-xl overflow-hidden shadow-sm`}
     >
-      <div className={`${isIncoming ? 'bg-blue-50' : 'bg-gray-100'} px-3 h-8 flex items-center gap-2`}>
+      <div className={`${isIncoming ? 'bg-blue-50' : 'bg-gray-100'} px-3 py-2 flex items-center gap-2`}>
         {icon}
-        <span className={`text-xs font-medium ${isIncoming ? 'text-blue-800' : 'text-gray-700'}`}>
-          {title}
+        <span className={`text-sm font-medium ${isIncoming ? 'text-blue-800' : 'text-gray-700'}`}>
+          {addressLabel}: {address}
         </span>
         {badge}
       </div>
-      <div className="p-3 text-xs space-y-2.5">
-        <div>
-          <span className="text-gray-500">{addressLabel}: </span>
-          <span className="text-gray-900 font-medium">{address}</span>
-        </div>
+      <div className="p-3 text-sm space-y-2.5">
         <div className="font-semibold text-gray-900">{subject}</div>
         <p className="text-gray-700 leading-relaxed">{body}</p>
         {footer}
@@ -933,14 +874,8 @@ function SceneApproval() {
             PO approval rules
           </div>
           <p className="text-xs text-gray-700">
-            PO total{' '}
-            <span className="font-semibold text-gray-900">$24,025</span> exceeds
-            the{' '}
-            <span className="font-semibold text-gray-900">$10,000</span>{' '}
-            purchasing threshold — routing to{' '}
-            <span className="font-semibold text-blue-700">
-              maria@yourcompany.com
-            </span>
+            If total &gt; <span className="font-semibold text-gray-900">$10,000</span>,{' '}
+            <span className="font-semibold text-blue-700">maria@yourcompany.com</span> must approve
           </p>
         </motion.div>
 
@@ -951,7 +886,6 @@ function SceneApproval() {
             direction="left"
             variant="outgoing"
             icon={<Send className="w-3.5 h-3.5 text-gray-500" />}
-            title="Approval Request"
             badge={
               <motion.span
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -964,8 +898,8 @@ function SceneApproval() {
             }
             addressLabel="To"
             address="maria@yourcompany.com"
-            subject="PO-2026-0042 — Approval required, $24,025"
-            body="Hi Maria — PO #2026-0042 for $24,025 from Northwind Supply exceeds the $10k threshold and requires your approval before we can send it to the vendor."
+            subject="PO from Northwind"
+            body="Maria, The attached PO requires your approval before we can send it to the vendor."
             footer={
               <div className="mt-2 flex flex-wrap gap-1.5">
                 <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-gray-50 border border-gray-200 rounded-full text-[10px] text-gray-600">
@@ -980,27 +914,12 @@ function SceneApproval() {
             direction="right"
             variant="incoming"
             icon={<Mail className="w-3.5 h-3.5 text-blue-600" />}
-            title="Approver reply"
-            badge={
-              <span className="ml-auto text-[10px] text-blue-600">1 min</span>
-            }
+            badge={null}
             addressLabel="From"
             address="maria@yourcompany.com"
-            subject="Re: PO-2026-0042 — Approved"
-            body="Approved. Go ahead and send to the vendor."
-            footer={
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 4.8, duration: 0.3 }}
-                className="mt-2 inline-flex items-center gap-1.5 px-2 py-1 bg-blue-50 border border-blue-100 rounded-md"
-              >
-                <img src={logo} alt="Quiet" className="h-3" />
-                <span className="text-[10px] font-medium text-blue-800">
-                  Quiet AI noted Maria's approval
-                </span>
-              </motion.div>
-            }
+            subject="Re: PO from Northwind"
+            body="Approved."
+            footer={null}
           />
         </div>
 
@@ -1038,10 +957,10 @@ function SceneSend() {
             transition={{ delay: 0.4, duration: 0.4 }}
             className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm"
           >
-            <div className="bg-gray-100 px-3 h-8 flex items-center gap-2">
+            <div className="bg-gray-100 px-3 py-2 flex items-center gap-2">
               <Send className="w-3.5 h-3.5 text-gray-500" />
-              <span className="text-xs font-medium text-gray-700">
-                Outgoing PO
+              <span className="text-sm font-medium text-gray-700">
+                To: sales@northwind.co
               </span>
               <motion.span
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -1052,19 +971,12 @@ function SceneSend() {
                 Sent
               </motion.span>
             </div>
-            <div className="p-3 text-xs space-y-2.5">
-              <div>
-                <span className="text-gray-500">To: </span>
-                <span className="text-gray-900 font-medium">
-                  sales@northwind.co
-                </span>
-              </div>
+            <div className="p-3 text-sm space-y-2.5">
               <div className="font-semibold text-gray-900">
-                PO-2026-0042 — Confirming order, $24,025
+                Issuing PO
               </div>
               <p className="text-gray-700 leading-relaxed">
-                Hi team — please find PO #2026-0042 attached. Ship to our
-                Akron-3 dock, attn. Receiving. Confirm ETA at your earliest.
+                Hi there, please find PO attached. We'd appreciate confirmation and acceptance at your earliest convenience.
               </p>
               <div className="mt-2 flex flex-wrap gap-1.5">
                 <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-gray-50 border border-gray-200 rounded-full text-[10px] text-gray-600">
@@ -1082,37 +994,19 @@ function SceneSend() {
             transition={{ delay: 2.2, duration: 0.4 }}
             className="bg-white border border-blue-200 rounded-xl overflow-hidden shadow-sm"
           >
-            <div className="bg-blue-50 px-3 h-8 flex items-center gap-2">
+            <div className="bg-blue-50 px-3 py-2 flex items-center gap-2">
               <Mail className="w-3.5 h-3.5 text-blue-600" />
-              <span className="text-xs font-medium text-blue-800">
-                Vendor reply
+              <span className="text-sm font-medium text-blue-800">
+                From: sales@northwind.co
               </span>
-              <span className="ml-auto text-[10px] text-blue-600">14 min</span>
             </div>
-            <div className="p-3 text-xs space-y-2.5">
-              <div>
-                <span className="text-gray-500">From: </span>
-                <span className="text-gray-900 font-medium">
-                  sales@northwind.co
-                </span>
-              </div>
+            <div className="p-3 text-sm space-y-2.5">
               <div className="font-semibold text-gray-900">
-                Re: PO-2026-0042 — Order acknowledged
+                Re: Issuing PO
               </div>
               <p className="text-gray-700 leading-relaxed">
                 Order received. Expected ship date Mar 6. Tracking to follow.
               </p>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 3.0, duration: 0.3 }}
-                className="mt-2 inline-flex items-center gap-1.5 px-2 py-1 bg-blue-50 border border-blue-100 rounded-md"
-              >
-                <img src={logo} alt="Quiet" className="h-3" />
-                <span className="text-[10px] font-medium text-blue-800">
-                  Quiet AI noted order acknowledgement
-                </span>
-              </motion.div>
             </div>
           </motion.div>
         </div>
@@ -1127,8 +1021,9 @@ function SceneSend() {
           <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full">
             <img src={logo} alt="Quiet" className="h-3.5" />
             <span className="text-xs font-medium text-blue-700">
-              Quiet AI confirmed open PO #2026-0042
+              Quiet AI confirmed PO is authorized
             </span>
+            <Check className="w-3 h-3 text-blue-600" />
           </div>
         </motion.div>
       </div>
@@ -1151,43 +1046,39 @@ function SceneShip() {
           >
             <div className="bg-gray-50 px-3 py-2 border-b border-gray-100 flex items-center gap-2">
               <Mail className="w-3.5 h-3.5 text-gray-500" />
-              <span className="text-xs font-medium text-gray-700">
-                Shipping notification
+              <span className="text-sm font-medium text-gray-700">
+                From: sales@northwind.co
               </span>
-              <span className="ml-auto text-[10px] text-gray-500">Mar 6</span>
             </div>
-            <div className="p-3 text-xs space-y-2.5">
-              <div>
-                <span className="text-gray-500">From: </span>
-                <span className="text-gray-900 font-medium">
-                  sales@northwind.co
-                </span>
-              </div>
+            <div className="p-3 text-sm space-y-2.5">
               <div className="font-semibold text-gray-900">
-                Your order has shipped
+                Order shipped - see attached
               </div>
-              <p className="text-gray-700 leading-relaxed">
-                250 units of the SS-304 mounting brackets on PO-2026-0042 have
-                shipped via FedEx Freight. Attached is a shipping confirmation
-                document.
-              </p>
               <div className="flex flex-wrap gap-1.5">
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-gray-50 border border-gray-200 rounded-full text-[10px] text-gray-600">
+                <motion.span
+                  animate={{
+                    backgroundColor: [
+                      'rgb(249,250,251)', 'rgb(219,234,254)', 'rgb(219,234,254)', 'rgb(249,250,251)',
+                    ],
+                    borderColor: [
+                      'rgb(229,231,235)', 'rgb(96,165,250)', 'rgb(96,165,250)', 'rgb(229,231,235)',
+                    ],
+                    color: [
+                      'rgb(75,85,99)', 'rgb(29,78,216)', 'rgb(29,78,216)', 'rgb(75,85,99)',
+                    ],
+                  }}
+                  transition={{
+                    delay: 1.0,
+                    duration: 3.0,
+                    times: [0, 0.1, 0.83, 1],
+                    ease: 'easeInOut',
+                  }}
+                  className="inline-flex items-center gap-1 px-2 py-0.5 bg-gray-50 border border-gray-200 rounded-full text-[10px] text-gray-600"
+                >
                   <Paperclip className="w-2.5 h-2.5" />
                   ShipConfirm-558129.pdf
-                </span>
+                </motion.span>
               </div>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.6, duration: 0.3 }}
-                className="mt-2 inline-flex items-center gap-1.5 px-2 py-1 bg-blue-50 border border-blue-100 rounded-md"
-              >
-                <img src={logo} alt="Quiet" className="h-3" />
-                <span className="text-[10px] font-medium text-blue-800">
-                  Quiet parsed: tracking + ETA captured
-                </span>
-              </motion.div>
             </div>
           </motion.div>
 
@@ -1195,19 +1086,19 @@ function SceneShip() {
           <motion.div
             initial={{ opacity: 0, x: 8 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.5, duration: 0.4 }}
+            transition={{ delay: 4.0, duration: 0.4 }}
             className="col-span-2 bg-white rounded-xl border border-gray-200 p-4 shadow-sm flex flex-col"
           >
-            <div className="text-xs font-bold text-gray-600 uppercase tracking-wider">
-              Shipment in transit
+            <div className="text-sm font-bold text-gray-600 uppercase tracking-wider">
+              Shipment Details
             </div>
-            <div className="text-[10px] text-gray-500 mb-3">
+            <div className="text-xs text-gray-500 mb-3">
               Tracking: <span className="text-blue-600 underline">7831 4429 0188</span>
             </div>
 
             {/* Route */}
             <div className="flex-1 flex flex-col justify-center">
-              <div className="flex items-center justify-between text-[10px] text-gray-500 mb-1">
+              <div className="flex items-center justify-between text-xs text-gray-500 mb-1">
                 <span>Northwind</span>
                 <span>Akron-3 dock</span>
               </div>
@@ -1216,7 +1107,7 @@ function SceneShip() {
                   <motion.div
                     initial={{ width: '0%' }}
                     animate={{ width: ['0%', '70%'] }}
-                    transition={{ delay: 1.2, duration: 2.4, ease: 'easeOut' }}
+                    transition={{ delay: 4.6, duration: 2.4, ease: 'easeOut' }}
                     className="absolute inset-y-0 left-0 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full"
                   />
                 </div>
@@ -1224,7 +1115,7 @@ function SceneShip() {
                 <motion.div
                   initial={{ left: '0%' }}
                   animate={{ left: ['0%', '66%'] }}
-                  transition={{ delay: 1.2, duration: 2.4, ease: 'easeOut' }}
+                  transition={{ delay: 4.6, duration: 2.4, ease: 'easeOut' }}
                   className="absolute top-1/2 -translate-y-1/2"
                 >
                   <div className="w-6 h-6 rounded-full bg-white border border-blue-200 shadow flex items-center justify-center">
@@ -1238,20 +1129,20 @@ function SceneShip() {
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 1.6, duration: 0.3 }}
-                  className="flex items-center gap-2 text-[11px] text-gray-700"
+                  transition={{ delay: 5.0, duration: 0.3 }}
+                  className="flex items-center gap-2 text-sm text-gray-700"
                 >
                   <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
-                  Picked up · Mar 6 11:42 AM
+                  Picked up
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 2.2, duration: 0.3 }}
-                  className="flex items-center gap-2 text-[11px] text-gray-700"
+                  transition={{ delay: 5.6, duration: 0.3 }}
+                  className="flex items-center gap-2 text-sm text-gray-700"
                 >
                   <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-                  In transit · ETA Mar 7 EOD
+                  In transit
                 </motion.div>
               </div>
             </div>
@@ -1259,31 +1150,68 @@ function SceneShip() {
             <motion.div
               initial={{ opacity: 0, y: 4 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 3.4, duration: 0.4 }}
+              transition={{ delay: 6.8, duration: 0.4 }}
               className="mt-3 flex items-center gap-1.5 px-2 py-1 bg-amber-50 border border-amber-100 rounded-md"
             >
-              <Clock className="w-3 h-3 text-amber-700" />
-              <span className="text-[10px] font-medium text-amber-800">
+              <Clock className="w-3.5 h-3.5 text-amber-700" />
+              <span className="text-xs font-medium text-amber-800">
                 Waiting on receiving dock
               </span>
             </motion.div>
           </motion.div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 6 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 4.2, duration: 0.4 }}
-          className="mt-4 flex items-center justify-center gap-2"
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full">
-            <img src={logo} alt="Quiet" className="h-3.5" />
-            <span className="text-xs font-medium text-blue-700">
-              Quiet AI will begin matching when a receipt is provided
-            </span>
-            <Loader2 className="w-3 h-3 text-blue-600 animate-spin" />
-          </div>
-        </motion.div>
+        {/* Bottom status pills */}
+        <div className="mt-4 relative h-8 flex items-center justify-center">
+          {/* Phase 1+2: Extracting with spinner → checkmark, then fade out */}
+          <motion.div
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: [0, 1, 1, 1, 0] }}
+            transition={{ delay: 1.0, duration: 3.5, times: [0, 0.08, 0.7, 0.88, 1] }}
+            className="absolute inset-0 flex items-center justify-center"
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full">
+              <img src={logo} alt="Quiet" className="h-3.5" />
+              <span className="text-xs font-medium text-blue-700">
+                Quiet AI is extracting shipping info
+              </span>
+              <div className="relative w-3 h-3">
+                <motion.div
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: 0 }}
+                  transition={{ delay: 3.5, duration: 0.2 }}
+                  className="absolute inset-0"
+                >
+                  <Loader2 className="w-3 h-3 text-blue-600 animate-spin" />
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 3.5, duration: 0.3 }}
+                  className="absolute inset-0"
+                >
+                  <Check className="w-3 h-3 text-blue-600" />
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Phase 3: Matching message (5.5s →) */}
+          <motion.div
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 7.6, duration: 0.4 }}
+            className="absolute inset-0 flex items-center justify-center"
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full">
+              <img src={logo} alt="Quiet" className="h-3.5" />
+              <span className="text-xs font-medium text-blue-700">
+                Quiet AI will begin matching when a receipt is provided
+              </span>
+              <Loader2 className="w-3 h-3 text-blue-600 animate-spin" />
+            </div>
+          </motion.div>
+        </div>
       </div>
     </div>
   )
@@ -1295,127 +1223,114 @@ const RECEIPT_LINES = [
     description: 'SS-304 mounting bracket',
     ordered: 250,
     received: 250,
-    delay: 2.0,
+    delay: 1.2,
   },
   {
     description: 'Powder-coat finish (gray)',
     ordered: 250,
     received: 250,
-    delay: 2.6,
+    delay: 1.8,
   },
   {
     description: 'Crating & freight',
     ordered: 1,
     received: 1,
-    delay: 3.2,
+    delay: 2.4,
   },
 ]
 
 function SceneReceive() {
   return (
-    <div className="w-full h-full flex items-center justify-center px-6">
-      <div className="w-full max-w-4xl grid grid-cols-5 gap-4">
-        {/* Left — packing slip / dock photo card */}
-        <motion.div
-          initial={{ opacity: 0, x: -8 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.4 }}
-          className="col-span-2 bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm flex flex-col"
-        >
-          <div className="bg-gray-50 px-3 py-2 border-b border-gray-100 flex items-center gap-2">
-            <Boxes className="w-3.5 h-3.5 text-gray-500" />
-            <span className="text-xs font-semibold text-gray-700">
-              Akron-3 receiving dock
-            </span>
-            <span className="ml-auto text-[10px] text-gray-500">Mar 7</span>
-          </div>
-
-          {/* Stylized packing slip */}
-          <div className="p-4 flex-1 flex items-center justify-center">
-            <div className="relative w-44 aspect-[8.5/11] bg-white rounded-md border border-gray-200 shadow-md overflow-hidden">
-              <div className="p-3 space-y-1.5">
-                <div className="text-[9px] font-bold uppercase tracking-wider text-gray-400">
-                  Packing slip
-                </div>
-                <div className="text-[10px] font-bold text-gray-900">
-                  PS-558129
-                </div>
-                <div className="text-[8px] text-gray-400">
-                  Ref PO-2026-0042
-                </div>
-                <div className="h-px bg-gray-100 my-1" />
-                <div className="space-y-0.5">
-                  <div className="text-[8px] text-gray-700">
-                    Brackets SS-304 · 250
-                  </div>
-                  <div className="text-[8px] text-gray-700">
-                    Powder coat · 250
-                  </div>
-                  <div className="text-[8px] text-gray-700">Crate · 1</div>
-                </div>
-                <div className="h-px bg-gray-100 my-1" />
-                <div className="text-[8px] text-gray-500">
-                  Carrier: FedEx Freight
-                </div>
-                <div className="text-[8px] text-gray-500">
-                  Received by: J. Patel
-                </div>
-              </div>
-
-              {/* Stamp */}
-              <motion.div
-                initial={{ opacity: 0, scale: 1.4, rotate: -8 }}
-                animate={{ opacity: 1, scale: 1, rotate: -8 }}
-                transition={{
-                  delay: 1.2,
-                  duration: 0.4,
-                  ease: 'backOut',
-                }}
-                className="absolute bottom-3 right-2 inline-flex items-center gap-1 px-1.5 py-0.5 border-2 border-gray-400 rounded text-[8px] font-bold text-gray-600 tracking-wider"
-              >
-                <Stamp className="w-2.5 h-2.5" />
-                RECEIVED
-              </motion.div>
+    <div className="w-full h-full flex items-center justify-center gap-5 px-6 py-2">
+      <div className="w-full flex items-stretch gap-5">
+      {/* Left — Packing slip PDF being scanned */}
+      <div className="flex-1 min-w-0 flex items-center justify-center">
+        <div className="relative w-full max-w-xs aspect-[8.5/11] bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+          <div className="p-4 space-y-2">
+            <div className="h-2 w-20 rounded-full bg-gray-200" />
+            <div className="h-1.5 w-28 rounded-full bg-gray-100" />
+            <div className="h-px bg-gray-100 my-2" />
+            <div className="text-sm font-bold text-gray-900">
+              Packing Slip
             </div>
+            <div className="space-y-1">
+              <div className="h-1.5 w-24 rounded-full bg-gray-200" />
+              <div className="h-1.5 w-32 rounded-full bg-gray-200" />
+            </div>
+            <div className="h-px bg-gray-100 my-2" />
+            <div className="space-y-1.5">
+              <div className="h-1.5 w-full rounded-full bg-gray-200" />
+              <div className="h-1.5 w-16 rounded-full bg-gray-100" />
+              <div className="h-1.5 w-full rounded-full bg-gray-200" />
+              <div className="h-1.5 w-12 rounded-full bg-gray-100" />
+              <div className="h-1.5 w-3/4 rounded-full bg-gray-200" />
+            </div>
+            <div className="h-px bg-gray-100 my-2" />
+            <div className="h-1.5 w-20 rounded-full bg-gray-200" />
+            <div className="h-1.5 w-24 rounded-full bg-gray-200" />
           </div>
 
-          <div className="px-3 pb-3">
-            <motion.div
-              initial={{ opacity: 0, y: 4 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.8, duration: 0.4 }}
-              className="inline-flex items-center gap-1.5 px-2 py-1 bg-blue-50 border border-blue-100 rounded-full"
-            >
-              <img src={logo} alt="Quiet" className="h-3" />
-              <span className="text-[10px] font-medium text-blue-700">
-                Quiet AI matched receipt to PO-2026-0042
-              </span>
-            </motion.div>
+          {/* Received stamp */}
+          <div
+            className="absolute bottom-4 right-3 inline-flex items-center gap-1 px-2 py-1 border-2 border-green-500 rounded text-[11px] font-bold text-green-600 tracking-wider"
+            style={{ transform: 'rotate(-8deg)' }}
+          >
+            <Stamp className="w-3 h-3" />
+            RECEIVED
           </div>
-        </motion.div>
 
-        {/* Right — Item receipt panel */}
-        <motion.div
-          initial={{ opacity: 0, x: 8 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.2, duration: 0.4 }}
-          className="col-span-3 bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm flex flex-col"
-        >
+          {/* Scanning glow */}
+          <motion.div
+            initial={{ top: '0%' }}
+            animate={{ top: ['0%', '100%', '0%'] }}
+            transition={{
+              delay: 0.4,
+              duration: 4.4,
+              times: [0, 0.5, 1],
+              ease: 'easeInOut',
+            }}
+            className="absolute left-0 right-0 h-12 pointer-events-none"
+            style={{
+              background:
+                'linear-gradient(180deg, rgba(59,130,246,0) 0%, rgba(59,130,246,0.25) 50%, rgba(59,130,246,0) 100%)',
+            }}
+          />
+          <motion.div
+            initial={{ top: '0%' }}
+            animate={{ top: ['0%', '100%', '0%'] }}
+            transition={{
+              delay: 0.4,
+              duration: 4.4,
+              times: [0, 0.5, 1],
+              ease: 'easeInOut',
+            }}
+            className="absolute left-0 right-0 h-px bg-blue-500"
+          />
+
+          <div className="absolute top-2 right-2 px-2 py-0.5 bg-gray-900 text-white text-[10px] font-medium rounded">
+            PDF
+          </div>
+        </div>
+      </div>
+
+      {/* Right — Item receipt panel (populates after scan) */}
+      <motion.div
+        initial={{ opacity: 0, x: 8 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.2, duration: 0.4 }}
+        className="flex-[1.3] min-w-0"
+      >
+        <div className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm h-full flex flex-col">
           <div className="px-4 py-2 border-b border-gray-100 flex items-center gap-2">
             <ClipboardCheck className="w-4 h-4 text-gray-500" />
             <span className="text-sm font-semibold text-gray-900">
-              Item receipt IR-0381
-            </span>
-            <span className="text-xs text-gray-500">for</span>
-            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-gray-100 rounded-full text-xs font-medium text-gray-700">
-              <ScrollText className="w-3 h-3" />
-              PO-2026-0042
+              Item receipt
             </span>
             <div className="relative w-3.5 h-3.5 ml-auto">
               <motion.div
                 initial={{ opacity: 1 }}
                 animate={{ opacity: 0 }}
-                transition={{ delay: 4.0, duration: 0.2 }}
+                transition={{ delay: 5.0, duration: 0.2 }}
                 className="absolute inset-0"
               >
                 <Loader2 className="w-3.5 h-3.5 text-blue-600 animate-spin" />
@@ -1423,7 +1338,7 @@ function SceneReceive() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 4.0, duration: 0.3 }}
+                transition={{ delay: 5.0, duration: 0.3 }}
                 className="absolute inset-0"
               >
                 <Check className="w-3.5 h-3.5 text-blue-600" />
@@ -1439,42 +1354,40 @@ function SceneReceive() {
               <div className="col-span-1" />
             </div>
             {RECEIPT_LINES.map((l) => (
-              <motion.div
-                key={l.description}
-                initial={{ opacity: 0, y: 4 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: l.delay, duration: 0.3 }}
-                className="grid grid-cols-12 gap-2 text-sm items-center px-1 py-1 rounded"
-              >
-                <div className="col-span-7 text-gray-900 truncate">
-                  {l.description}
-                </div>
-                <div className="col-span-2 text-right text-gray-700">
-                  {l.ordered}
-                </div>
-                <div className="col-span-2 text-right font-medium text-gray-900">
-                  {l.received}
-                </div>
-                <div className="col-span-1 flex justify-end">
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{
-                      delay: l.delay + 0.1,
-                      duration: 0.25,
-                      ease: 'backOut',
-                    }}
-                  >
+              <div key={l.description} className="relative h-7">
+                <motion.div
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: 0 }}
+                  transition={{ delay: l.delay + 2.0, duration: 0.15 }}
+                  className="absolute inset-0 bg-gray-100 rounded"
+                />
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: l.delay + 2.0, duration: 0.3 }}
+                  className="absolute inset-0 grid grid-cols-12 gap-2 text-sm items-center px-1"
+                >
+                  <span className="col-span-7 text-gray-900 truncate flex items-center gap-1">
+                    <Sparkles className="w-3 h-3 text-blue-600 flex-shrink-0" />
+                    {l.description}
+                  </span>
+                  <span className="col-span-2 text-right text-gray-700">
+                    {l.ordered}
+                  </span>
+                  <span className="col-span-2 text-right font-medium text-gray-900">
+                    {l.received}
+                  </span>
+                  <span className="col-span-1 flex justify-end">
                     <CheckCircle2 className="w-4 h-4 text-green-600" />
-                  </motion.div>
-                </div>
-              </motion.div>
+                  </span>
+                </motion.div>
+              </div>
             ))}
 
             <motion.div
               initial={{ opacity: 0, y: 4 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 4.0, duration: 0.4 }}
+              transition={{ delay: 5.4, duration: 0.4 }}
               className="pt-2 flex justify-center"
             >
               <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full">
@@ -1486,7 +1399,8 @@ function SceneReceive() {
               </div>
             </motion.div>
           </div>
-        </motion.div>
+        </div>
+      </motion.div>
       </div>
     </div>
   )
@@ -1494,12 +1408,10 @@ function SceneReceive() {
 
 // ===== Scene 8: Automated AP =====
 const AP_CHECK_ITEMS = [
-  'Northwind Mfg: vendor on file, ACH verified',
-  'Invoice PDF scanned & parsed',
-  'Matched to PO-2026-0042 and receipt IR-0381',
+  'Vendor on file, ACH verified',
 ]
 
-const AP_DRAFT_ITEM = 'GL coding applied — bill ready'
+const AP_DRAFT_ITEM = 'Applied GL codes per your rules'
 
 const AP_CHECK_START = 1.0
 const AP_CHECK_STAGGER = 0.7
@@ -1529,19 +1441,14 @@ function SceneAP() {
           >
             <div className="bg-gray-50 px-3 py-2 border-b border-gray-100 flex items-center gap-2">
               <Mail className="w-3.5 h-3.5 text-gray-500" />
-              <span className="text-xs font-medium text-gray-700">Vendor invoice</span>
-              <span className="ml-auto text-[10px] text-gray-500">Mar 9</span>
+              <span className="text-sm font-medium text-gray-700">From: sales@northwind.co</span>
             </div>
-            <div className="p-3 text-xs space-y-2.5">
-              <div>
-                <span className="text-gray-500">From: </span>
-                <span className="text-gray-900 font-medium">sales@northwind.co</span>
-              </div>
+            <div className="p-3 text-sm space-y-2.5">
               <div className="font-semibold text-gray-900">
-                Invoice INV-NW-99412 — PO-2026-0042
+                Invoice owed
               </div>
               <p className="text-gray-700 leading-relaxed">
-                Please find attached our invoice for the SS-304 mounting bracket order per PO-2026-0042. Net-30 terms apply.
+                Please see attached invoice. Net-30 terms apply.
               </p>
               <div className="flex flex-wrap gap-1.5">
                 <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-gray-50 border border-gray-200 rounded-full text-[10px] text-gray-600">
@@ -1559,7 +1466,7 @@ function SceneAP() {
             transition={{ delay: 0.6, duration: 0.4, ease: 'easeOut' }}
             className="p-4 bg-white rounded-xl border border-gray-200 shadow-sm"
           >
-            <div className="flex items-center gap-2 text-[10px] font-bold text-gray-600 uppercase tracking-widest mb-3">
+            <div className="flex items-center gap-2 text-xs font-bold text-gray-600 uppercase tracking-wider mb-3">
               <img src={logo} alt="Quiet" className="h-4" />
               Quiet AI Review
             </div>
@@ -1647,15 +1554,6 @@ function SceneAP() {
                 >
                   INV-NW-99412
                 </motion.div>
-                <motion.span
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: AP_INVOICE_START + 0.2, duration: 0.3 }}
-                  className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-gray-100 rounded-full text-sm font-medium text-gray-700 flex-shrink-0"
-                >
-                  <Building2 className="w-3.5 h-3.5" />
-                  Northwind Mfg.
-                </motion.span>
               </div>
               <motion.span
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -1674,11 +1572,7 @@ function SceneAP() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: AP_INVOICE_START + AP_FIELD_STAGGER, duration: 0.3 }}
               >
-                <div className="grid grid-cols-3 gap-3">
-                  <div>
-                    <div className="text-xs text-gray-500">Invoice #</div>
-                    <div className="text-sm font-semibold text-gray-900">INV-NW-99412</div>
-                  </div>
+                <div className="grid grid-cols-2 gap-3">
                   <div>
                     <div className="text-xs text-gray-500">PO Ref</div>
                     <div className="text-sm font-semibold text-gray-900">PO-2026-0042</div>
@@ -1725,7 +1619,7 @@ function SceneAP() {
                     transition={{ delay: AP_INVOICE_START + AP_FIELD_STAGGER * 6 + 0.2, duration: 0.3 }}
                     className="grid grid-cols-12 gap-3 pt-2 mt-2 border-t border-gray-200"
                   >
-                    <div className="col-span-9 text-right text-sm font-medium text-gray-700">Total</div>
+                    <div className="col-span-9" />
                     <div className="col-span-3 text-right text-sm font-semibold text-gray-900">$24,025.00</div>
                   </motion.div>
                 </div>
@@ -1743,8 +1637,9 @@ function SceneAP() {
             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full">
               <img src={logo} alt="Quiet" className="h-3.5" />
               <span className="text-xs font-medium text-blue-700">
-                Quiet AI coded bill — ready for 3-way match
+                Bill coded, Quiet AI is ready for 3 way match
               </span>
+              <Check className="w-3 h-3 text-blue-600" />
             </div>
           </motion.div>
         </div>
@@ -1761,9 +1656,6 @@ const MATCH_PO_LINES: MatchLineItem[] = [
   { name: 'Custom crating & freight', qty: 1, unit: 850 },
 ]
 const MATCH_PO_TOTAL = MATCH_PO_LINES.reduce((sum, l) => sum + l.qty * l.unit, 0)
-const MATCH_PO_ID = 'PO-2026-0042'
-const MATCH_INV_ID = 'INV-NW-99412'
-const MATCH_GR_ID = 'IR-0381'
 
 const matchCurrency = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -1771,126 +1663,80 @@ const matchCurrency = new Intl.NumberFormat('en-US', {
   maximumFractionDigits: 2,
 })
 
-const MATCH_HL_TIMES = [0, 0.15, 0.85, 1] as const
-const MATCH_HL_COLORS = [
-  'rgba(191, 219, 254, 0)',
-  'rgba(191, 219, 254, 1)',
-  'rgba(191, 219, 254, 1)',
-  'rgba(191, 219, 254, 0)',
-]
-
-function MatchCountUp({
-  to,
-  delay,
-  duration,
-  format,
-}: {
-  to: number
-  delay: number
-  duration: number
-  format: (n: number) => string
-}) {
-  const count = useMotionValue(0)
-  const display = useTransform(count, (latest) => format(Math.round(latest)))
-
-  useEffect(() => {
-    const controls = animate(count, to, { delay, duration, ease: 'easeOut' })
-    return controls.stop
-  }, [count, to, delay, duration])
-
-  return <motion.span>{display}</motion.span>
-}
 
 function MatchHealthBar({
-  label,
   to,
   max,
   fillDelay,
   fillDuration,
-  format,
   fillColor,
+  secondFillDelay,
+  secondFillDuration,
+  secondFillColor,
 }: {
-  label: string
   to: number
   max: number
   fillDelay: number
   fillDuration: number
-  format: (n: number) => string
   fillColor: string
+  secondFillDelay?: number
+  secondFillDuration?: number
+  secondFillColor?: string
 }) {
   const pct = max === 0 ? 0 : (to / max) * 100
   return (
-    <div>
-      <div className="flex items-baseline justify-between mb-0.5">
-        <span className="text-xs text-gray-500">{label}</span>
-        <span className="text-xs font-medium text-gray-700 tabular-nums">
-          <MatchCountUp to={to} delay={fillDelay} duration={fillDuration} format={format} />
-          {' / '}
-          {format(max)}
-        </span>
-      </div>
-      <div className="h-1.5 rounded-full bg-gray-100 overflow-hidden">
+    <div className="h-1.5 rounded-full bg-gray-100 overflow-hidden relative">
+      <motion.div
+        initial={{ width: '0%' }}
+        animate={{ width: `${pct}%` }}
+        transition={{ delay: fillDelay, duration: fillDuration, ease: 'easeOut' }}
+        className={`absolute inset-y-0 left-0 ${fillColor}`}
+      />
+      {secondFillColor && (
         <motion.div
           initial={{ width: '0%' }}
           animate={{ width: `${pct}%` }}
-          transition={{ delay: fillDelay, duration: fillDuration, ease: 'easeOut' }}
-          className={`h-full ${fillColor}`}
+          transition={{ delay: secondFillDelay, duration: secondFillDuration, ease: 'easeOut' }}
+          className={`absolute inset-y-0 left-0 ${secondFillColor}`}
         />
-      </div>
+      )}
     </div>
   )
 }
 
-function MatchHighlightSpan({
-  delay,
-  duration,
-  className,
-  children,
-}: {
-  delay: number
-  duration: number
-  className?: string
-  children: React.ReactNode
-}) {
-  return (
-    <motion.span
-      initial={{ backgroundColor: MATCH_HL_COLORS[0] }}
-      animate={{ backgroundColor: MATCH_HL_COLORS }}
-      transition={{ delay, duration, times: [...MATCH_HL_TIMES] }}
-      className={`rounded px-0.5 -mx-0.5 ${className ?? ''}`}
-    >
-      {children}
-    </motion.span>
-  )
-}
 
 // Timing constants
 const M_CARD_DUR = 0.5
-const M_INV_START = 0.8
-const M_GR_START = 1.2
+const M_FIELD_FADE = 0.35
 
-const M_PO_REF_DELAY = 1.8
-const M_PO_REF_DUR = 1.2
-const M_INV_MATCHED = 3.0
+// 1. PO appears
+// (PO is already visible from the start)
 
-const M_LINE_HL_DELAY = 3.2
-const M_LINE_HL_DUR = 1.0
-const M_GR_MATCHED = 4.2
+// 2. Receipt appears
+const M_GR_START = 0.8
 
-const M_PAY_PRESS = 4.5
-const M_PAY_PRESS_DUR = 0.3
-const M_INV_STATUS_FLIP = M_PAY_PRESS + M_PAY_PRESS_DUR
-const M_PAID_BAR_FILL = M_INV_STATUS_FLIP + 0.05
-const M_PAID_BAR_DUR = 0.8
+// 3. "Matched to PO" on receipt
+const M_GR_MATCHED = 2.0
 
-const M_MARK_PRESS = M_PAID_BAR_FILL + M_PAID_BAR_DUR + 0.3 // ~5.95
+// 4. Receipt "Mark Received" pressed, bars fill light blue
+const M_MARK_PRESS = 3.0
 const M_MARK_PRESS_DUR = 0.3
 const M_GR_STATUS_FLIP = M_MARK_PRESS + M_MARK_PRESS_DUR
 const M_RECV_BAR_START = M_GR_STATUS_FLIP + 0.05
 const M_RECV_BAR_DUR = 0.6
-const M_RECV_BAR_GAP = 0.5
 
-const M_FIELD_FADE = 0.35
+// 5. Invoice appears
+const M_INV_START = M_RECV_BAR_START + M_RECV_BAR_DUR + 0.5
+
+// 6. "Matched to PO" on invoice
+const M_INV_MATCHED = M_INV_START + 1.0
+
+// 7. Invoice "Pay" pressed, bars fill dark blue
+const M_PAY_PRESS = M_INV_MATCHED + 1.0
+const M_PAY_PRESS_DUR = 0.3
+const M_INV_STATUS_FLIP = M_PAY_PRESS + M_PAY_PRESS_DUR
+const M_PAID_BAR_FILL = M_INV_STATUS_FLIP + 0.05
+const M_PAID_BAR_DUR = 0.6
 
 function SceneMatch() {
   return (
@@ -1907,40 +1753,21 @@ function SceneMatch() {
             {/* Header */}
             <div className="px-4 py-2 border-b border-gray-100 flex items-center gap-2 min-w-0">
               <div className="text-sm font-semibold text-gray-900 truncate">
-                Purchase Order{' '}
-                <MatchHighlightSpan delay={M_PO_REF_DELAY} duration={M_PO_REF_DUR}>
-                  #{MATCH_PO_ID}
-                </MatchHighlightSpan>
+                Purchase Order
               </div>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-gray-100 rounded-full text-xs font-medium text-gray-700 flex-shrink-0">
-                <Building2 className="w-3 h-3" />
-                Northwind Mfg.
-              </span>
             </div>
 
             {/* Body */}
             <div className="px-4 py-3 space-y-3">
-              {/* Total Paid bar */}
-              <MatchHealthBar
-                label="Total Paid"
-                to={MATCH_PO_TOTAL}
-                max={MATCH_PO_TOTAL}
-                fillDelay={M_PAID_BAR_FILL}
-                fillDuration={M_PAID_BAR_DUR}
-                format={(n) => matchCurrency.format(n)}
-                fillColor="bg-blue-500"
-              />
-
               {/* Line items */}
-              <div className="border-t border-gray-100 pt-3 space-y-3">
+              <div className="space-y-3">
                 <div className="grid grid-cols-12 gap-3 text-xs font-medium text-gray-500">
                   <div className="col-span-5">Line Item</div>
                   <div className="col-span-2 text-right">Qty</div>
                   <div className="col-span-2 text-right">Unit</div>
                   <div className="col-span-3 text-right">Amount</div>
                 </div>
-                {MATCH_PO_LINES.map((line, idx) => {
-                  const isFirst = idx === 0
+                {MATCH_PO_LINES.map((line) => {
                   const rowChildren = (
                     <>
                       <div className="col-span-5 text-gray-900 truncate">{line.name}</div>
@@ -1957,30 +1784,16 @@ function SceneMatch() {
                   )
                   return (
                     <div key={line.name} className="space-y-1.5">
-                      {isFirst ? (
-                        <motion.div
-                          initial={{ backgroundColor: MATCH_HL_COLORS[0] }}
-                          animate={{ backgroundColor: MATCH_HL_COLORS }}
-                          transition={{
-                            delay: M_LINE_HL_DELAY,
-                            duration: M_LINE_HL_DUR,
-                            times: [...MATCH_HL_TIMES],
-                          }}
-                          className="grid grid-cols-12 gap-3 text-sm rounded -mx-2 px-2 -my-0.5 py-0.5"
-                        >
-                          {rowChildren}
-                        </motion.div>
-                      ) : (
-                        <div className="grid grid-cols-12 gap-3 text-sm">{rowChildren}</div>
-                      )}
+                      <div className="grid grid-cols-12 gap-3 text-sm">{rowChildren}</div>
                       <MatchHealthBar
-                        label="Received"
                         to={line.qty}
                         max={line.qty}
-                        fillDelay={M_RECV_BAR_START + idx * M_RECV_BAR_GAP}
+                        fillDelay={M_RECV_BAR_START}
                         fillDuration={M_RECV_BAR_DUR}
-                        format={(n) => `${n}`}
-                        fillColor="bg-blue-500"
+                        fillColor="bg-blue-300"
+                        secondFillDelay={M_PAID_BAR_FILL}
+                        secondFillDuration={M_PAID_BAR_DUR}
+                        secondFillColor="bg-blue-600"
                       />
                     </div>
                   )
@@ -1989,9 +1802,21 @@ function SceneMatch() {
 
               {/* Total */}
               <div className="grid grid-cols-12 gap-3 pt-2 border-t border-gray-200">
-                <div className="col-span-9 text-right text-sm font-medium text-gray-700">Total</div>
+                <div className="col-span-9" />
                 <div className="col-span-3 text-right text-sm font-semibold text-gray-900 tabular-nums">
                   {matchCurrency.format(MATCH_PO_TOTAL)}
+                </div>
+              </div>
+
+              {/* Legend */}
+              <div className="flex items-center gap-4 pt-2">
+                <div className="flex items-center gap-2 text-sm text-gray-700">
+                  <div className="w-1.5 h-1.5 rounded-full bg-blue-300" />
+                  Received
+                </div>
+                <div className="flex items-center gap-2 text-sm text-gray-700">
+                  <div className="w-1.5 h-1.5 rounded-full bg-blue-600" />
+                  Paid
                 </div>
               </div>
             </div>
@@ -2000,137 +1825,6 @@ function SceneMatch() {
 
         {/* Right — Invoice + Goods Receipt */}
         <div className="flex-1 min-w-0 flex flex-col gap-3 overflow-hidden">
-          {/* Invoice */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: M_INV_START, duration: M_CARD_DUR, ease: 'easeOut' }}
-            className="bg-white rounded-xl border border-gray-200 overflow-hidden"
-          >
-            {/* Header */}
-            <div className="px-4 py-2 border-b border-gray-100 flex items-center justify-between gap-2">
-              <div className="flex items-center gap-2 min-w-0">
-                <div className="text-sm font-semibold text-gray-900 truncate">
-                  Invoice #{MATCH_INV_ID}
-                </div>
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-gray-100 rounded-full text-xs font-medium text-gray-700 flex-shrink-0">
-                  <Building2 className="w-3 h-3" />
-                  Northwind Mfg.
-                </span>
-              </div>
-              {/* Status pill */}
-              <div className="relative flex-shrink-0 h-5">
-                <span className="invisible inline-block px-2.5 py-0.5 text-xs font-medium rounded-full whitespace-nowrap">
-                  Ready to Pay
-                </span>
-                <motion.span
-                  initial={{ opacity: 1 }}
-                  animate={{ opacity: 0 }}
-                  transition={{ delay: M_INV_STATUS_FLIP, duration: M_FIELD_FADE }}
-                  className="absolute right-0 top-0 inline-flex px-2.5 py-0.5 bg-blue-100 text-blue-800 text-xs font-medium rounded-full whitespace-nowrap"
-                >
-                  Ready to Pay
-                </motion.span>
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: M_INV_STATUS_FLIP, duration: M_FIELD_FADE }}
-                  className="absolute right-0 top-0 inline-flex px-2.5 py-0.5 bg-green-100 text-green-800 text-xs font-medium rounded-full whitespace-nowrap"
-                >
-                  Paid
-                </motion.span>
-              </div>
-            </div>
-
-            <div className="px-4 py-2 space-y-3">
-              {/* PO Reference + Due Date */}
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <div className="text-xs text-gray-500">PO Reference</div>
-                  <div className="text-sm font-medium text-gray-900">
-                    <MatchHighlightSpan delay={M_PO_REF_DELAY} duration={M_PO_REF_DUR}>
-                      {MATCH_PO_ID}
-                    </MatchHighlightSpan>
-                  </div>
-                </div>
-                <div>
-                  <div className="text-xs text-gray-500">Due Date</div>
-                  <div className="text-sm text-gray-900">Apr 15, 2026</div>
-                </div>
-              </div>
-
-              {/* Line items */}
-              <div className="space-y-1.5">
-                <div className="grid grid-cols-12 gap-2 text-xs font-medium text-gray-500">
-                  <div className="col-span-5">Line Item</div>
-                  <div className="col-span-2 text-right">Qty</div>
-                  <div className="col-span-2 text-right">Unit</div>
-                  <div className="col-span-3 text-right">Amount</div>
-                </div>
-                {MATCH_PO_LINES.map((line) => (
-                  <div key={line.name} className="grid grid-cols-12 gap-2 text-sm">
-                    <div className="col-span-5 text-gray-900 truncate">{line.name}</div>
-                    <div className="col-span-2 text-right text-gray-900 tabular-nums">{line.qty}</div>
-                    <div className="col-span-2 text-right text-gray-700 tabular-nums">
-                      {matchCurrency.format(line.unit)}
-                    </div>
-                    <div className="col-span-3 text-right font-medium text-gray-900 tabular-nums">
-                      {matchCurrency.format(line.qty * line.unit)}
-                    </div>
-                  </div>
-                ))}
-                <div className="grid grid-cols-12 gap-2 pt-1.5 mt-1 border-t border-gray-200">
-                  <div className="col-span-9 text-right text-sm font-medium text-gray-700">Total</div>
-                  <div className="col-span-3 text-right text-sm font-semibold text-gray-900 tabular-nums">
-                    {matchCurrency.format(MATCH_PO_TOTAL)}
-                  </div>
-                </div>
-              </div>
-
-              {/* Matched + Pay → Paid */}
-              <div className="relative h-9">
-                <motion.div
-                  initial={{ opacity: 0, x: -6 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: M_INV_MATCHED, duration: M_FIELD_FADE }}
-                  className="absolute left-0 top-1/2 -translate-y-1/2 inline-flex items-center gap-1 text-xs"
-                >
-                  <Sparkles className="w-3 h-3 text-blue-600" />
-                  <span className="text-blue-600">Matched to {MATCH_PO_ID}</span>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 1 }}
-                  animate={{ opacity: 0 }}
-                  transition={{ delay: M_INV_STATUS_FLIP, duration: M_FIELD_FADE }}
-                  className="absolute right-0 top-0"
-                >
-                  <motion.div
-                    animate={{ scale: [1, 0.95, 1] }}
-                    transition={{
-                      delay: M_PAY_PRESS,
-                      duration: M_PAY_PRESS_DUR,
-                      times: [0, 0.5, 1],
-                    }}
-                    className="bg-blue-600 text-white text-sm font-medium px-6 py-2 rounded-md shadow-sm"
-                  >
-                    Pay
-                  </motion.div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: M_INV_STATUS_FLIP + 0.05, duration: M_FIELD_FADE }}
-                  className="absolute right-0 top-0 inline-flex items-center gap-1.5 bg-green-50 text-green-700 border border-green-200 text-sm font-medium px-6 py-2 rounded-md"
-                >
-                  <span className="text-green-600">✓</span>
-                  Paid
-                </motion.div>
-              </div>
-            </div>
-          </motion.div>
-
           {/* Goods Receipt */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -2143,33 +1837,16 @@ function SceneMatch() {
               <div className="flex items-center gap-2 min-w-0">
                 <div className="flex items-center gap-1.5 text-sm font-semibold text-gray-900 truncate">
                   <Package className="w-3.5 h-3.5 text-gray-500" />
-                  Goods Receipt #{MATCH_GR_ID}
+                  Receipt
                 </div>
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-gray-100 rounded-full text-xs font-medium text-gray-700 flex-shrink-0">
-                  <Building2 className="w-3 h-3" />
-                  Northwind Mfg.
-                </span>
-              </div>
-              {/* Status pill */}
-              <div className="relative flex-shrink-0 h-5">
-                <span className="invisible inline-block px-2.5 py-0.5 text-xs font-medium rounded-full whitespace-nowrap">
-                  Pending
-                </span>
-                <motion.span
-                  initial={{ opacity: 1 }}
-                  animate={{ opacity: 0 }}
-                  transition={{ delay: M_GR_STATUS_FLIP, duration: M_FIELD_FADE }}
-                  className="absolute right-0 top-0 inline-flex px-2.5 py-0.5 bg-amber-100 text-amber-800 text-xs font-medium rounded-full whitespace-nowrap"
-                >
-                  Pending
-                </motion.span>
                 <motion.span
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: M_GR_STATUS_FLIP, duration: M_FIELD_FADE }}
-                  className="absolute right-0 top-0 inline-flex px-2.5 py-0.5 bg-green-100 text-green-800 text-xs font-medium rounded-full whitespace-nowrap"
+                  transition={{ delay: M_GR_MATCHED, duration: M_FIELD_FADE }}
+                  className="inline-flex items-center gap-1 text-xs text-blue-600"
                 >
-                  Received
+                  <Sparkles className="w-3 h-3" />
+                  Matched to PO
                 </motion.span>
               </div>
             </div>
@@ -2178,9 +1855,7 @@ function SceneMatch() {
               {/* Line items */}
               <div className="grid grid-cols-12 gap-2 text-sm">
                 <div className="col-span-7 text-gray-900">
-                  <MatchHighlightSpan delay={M_LINE_HL_DELAY} duration={M_LINE_HL_DUR}>
-                    SS-304 mounting bracket
-                  </MatchHighlightSpan>
+                  SS-304 mounting bracket
                 </div>
                 <div className="col-span-2 text-right text-gray-500">Qty</div>
                 <div className="col-span-3 text-right font-medium text-gray-900 tabular-nums">250</div>
@@ -2196,17 +1871,8 @@ function SceneMatch() {
                 <div className="col-span-3 text-right font-medium text-gray-900 tabular-nums">1</div>
               </div>
 
-              {/* Matched + Mark Received → Received */}
+              {/* Mark Received → Received */}
               <div className="relative h-9">
-                <motion.div
-                  initial={{ opacity: 0, x: -6 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: M_GR_MATCHED, duration: M_FIELD_FADE }}
-                  className="absolute left-0 top-1/2 -translate-y-1/2 inline-flex items-center gap-1 text-xs"
-                >
-                  <Sparkles className="w-3 h-3 text-blue-600" />
-                  <span className="text-blue-600">Matched to {MATCH_PO_ID}</span>
-                </motion.div>
 
                 <motion.div
                   initial={{ opacity: 1 }}
@@ -2239,8 +1905,91 @@ function SceneMatch() {
               </div>
             </div>
           </motion.div>
+
+          {/* Invoice */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: M_INV_START, duration: M_CARD_DUR, ease: 'easeOut' }}
+            className="bg-white rounded-xl border border-gray-200 overflow-hidden"
+          >
+            {/* Header */}
+            <div className="px-4 py-2 border-b border-gray-100 flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2 min-w-0">
+                <div className="text-sm font-semibold text-gray-900 truncate">
+                  Invoice
+                </div>
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: M_INV_MATCHED, duration: M_FIELD_FADE }}
+                  className="inline-flex items-center gap-1 text-xs text-blue-600"
+                >
+                  <Sparkles className="w-3 h-3" />
+                  Matched to PO
+                </motion.span>
+              </div>
+            </div>
+
+            <div className="px-4 py-2 space-y-3">
+              {/* Line items */}
+              <div className="space-y-1.5">
+                {MATCH_PO_LINES.map((line) => (
+                  <div key={line.name} className="grid grid-cols-12 gap-2 text-sm">
+                    <div className="col-span-5 text-gray-900 truncate">{line.name}</div>
+                    <div className="col-span-2 text-right text-gray-900 tabular-nums">{line.qty}</div>
+                    <div className="col-span-2 text-right text-gray-700 tabular-nums">
+                      {matchCurrency.format(line.unit)}
+                    </div>
+                    <div className="col-span-3 text-right font-medium text-gray-900 tabular-nums">
+                      {matchCurrency.format(line.qty * line.unit)}
+                    </div>
+                  </div>
+                ))}
+                <div className="grid grid-cols-12 gap-2 pt-1.5 mt-1 border-t border-gray-200">
+                  <div className="col-span-9" />
+                  <div className="col-span-3 text-right text-sm font-semibold text-gray-900 tabular-nums">
+                    {matchCurrency.format(MATCH_PO_TOTAL)}
+                  </div>
+                </div>
+              </div>
+
+              {/* Pay → Paid */}
+              <div className="relative h-9">
+                <motion.div
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: 0 }}
+                  transition={{ delay: M_INV_STATUS_FLIP, duration: M_FIELD_FADE }}
+                  className="absolute right-0 top-0"
+                >
+                  <motion.div
+                    animate={{ scale: [1, 0.95, 1] }}
+                    transition={{
+                      delay: M_PAY_PRESS,
+                      duration: M_PAY_PRESS_DUR,
+                      times: [0, 0.5, 1],
+                    }}
+                    className="bg-blue-600 text-white text-sm font-medium px-6 py-2 rounded-md shadow-sm"
+                  >
+                    Pay
+                  </motion.div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: M_INV_STATUS_FLIP + 0.05, duration: M_FIELD_FADE }}
+                  className="absolute right-0 top-0 inline-flex items-center gap-1.5 bg-green-50 text-green-700 border border-green-200 text-sm font-medium px-6 py-2 rounded-md"
+                >
+                  <span className="text-green-600">✓</span>
+                  Paid
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
+
     </div>
   )
 }
@@ -2261,18 +2010,11 @@ function SceneClose() {
           >
             <div className="bg-gray-50 px-3 py-2 border-b border-gray-100 flex items-center gap-2">
               <Landmark className="w-3.5 h-3.5 text-gray-500" />
-              <span className="text-xs font-semibold text-gray-700">
+              <span className="text-sm font-semibold text-gray-700">
                 Payment Sent
               </span>
             </div>
-            <div className="p-3 text-xs space-y-1.5">
-              <div className="flex items-center justify-between">
-                <span className="text-gray-500">Vendor</span>
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-gray-100 rounded-full text-xs font-medium text-gray-700">
-                  <Building2 className="w-3 h-3" />
-                  Northwind Mfg.
-                </span>
-              </div>
+            <div className="p-3 text-sm space-y-1.5">
               <div className="flex items-center justify-between">
                 <span className="text-gray-500">Method</span>
                 <span className="font-medium text-gray-900">ACH</span>
@@ -2299,28 +2041,28 @@ function SceneClose() {
           >
             <div className="bg-gray-50 px-3 py-2 border-b border-gray-100 flex items-center gap-2">
               <BookOpen className="w-3.5 h-3.5 text-gray-500" />
-              <span className="text-xs font-semibold text-gray-700">
+              <span className="text-sm font-semibold text-gray-700">
                 ERP synced
               </span>
             </div>
-            <div className="p-3 text-xs space-y-1.5">
+            <div className="p-3 text-sm space-y-1.5">
               <div className="flex items-center justify-between">
                 <span className="text-gray-500">PO</span>
-                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-green-50 border border-green-200 rounded-full text-xs font-medium text-green-800">
+                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-green-50 border border-green-200 rounded-full text-sm font-medium text-green-800">
                   <img src={qboLogo} alt="QBO" className="w-3 h-3" />
                   2026-0042
                 </span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-gray-500">Bill</span>
-                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-green-50 border border-green-200 rounded-full text-xs font-medium text-green-800">
+                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-green-50 border border-green-200 rounded-full text-sm font-medium text-green-800">
                   <img src={qboLogo} alt="QBO" className="w-3 h-3" />
                   INV-NW-99412
                 </span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-gray-500">Payment</span>
-                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-green-50 border border-green-200 rounded-full text-xs font-medium text-green-800">
+                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-green-50 border border-green-200 rounded-full text-sm font-medium text-green-800">
                   <img src={qboLogo} alt="QBO" className="w-3 h-3" />
                   $24,025.00
                 </span>
@@ -2329,11 +2071,11 @@ function SceneClose() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.6, duration: 0.3 }}
-                className="mt-1 flex justify-center"
+                className="!mt-4 pt-2 flex justify-center"
               >
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full">
                   <img src={logo} alt="Quiet" className="h-3.5" />
-                  <span className="text-[10px] font-medium text-blue-700">
+                  <span className="text-xs font-medium text-blue-700">
                     Quiet AI synced to QuickBooks
                   </span>
                 </div>
@@ -2350,11 +2092,11 @@ function SceneClose() {
           >
             <div className="bg-gray-50 px-3 py-2 border-b border-gray-100 flex items-center gap-2">
               <ShieldCheck className="w-3.5 h-3.5 text-gray-500" />
-              <span className="text-xs font-semibold text-gray-700">
+              <span className="text-sm font-semibold text-gray-700">
                 Audit trail
               </span>
             </div>
-            <div className="p-3 space-y-1 text-[10px]">
+            <div className="p-3 space-y-1 text-xs">
               {[
                 'Feb 26 · Quote received',
                 'Feb 26 · Quote parsed',
