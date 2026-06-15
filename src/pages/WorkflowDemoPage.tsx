@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowLeft, Play, RotateCcw, Pause } from 'lucide-react'
+import { Play, RotateCcw, Pause } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import Nav from '@/components/layout/Nav'
+import Footer from '@/components/layout/Footer'
 import EndToEndWorkflowAnimation, {
   SCENES,
 } from '@/components/landing/EndToEndWorkflowAnimation'
@@ -98,22 +100,7 @@ function WorkflowDemoPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-50">
-      {/* Nav */}
-      <nav className="sticky top-0 z-50 bg-white/85 backdrop-blur border-b border-gray-100">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <a
-            href="#"
-            className="flex items-center gap-2 group"
-          >
-            <ArrowLeft className="w-4 h-4 text-gray-400 group-hover:text-gray-700 transition-colors" />
-            <img src={logo} alt="Quiet" className="h-8" />
-            <span className="font-semibold text-lg text-gray-900">Quiet AI</span>
-          </a>
-          <span className="text-xs font-semibold uppercase tracking-widest text-gray-400">
-            Live demo
-          </span>
-        </div>
-      </nav>
+      <Nav />
 
       {/* Hero */}
       <section className="pt-12 pb-6 px-6">
@@ -369,26 +356,7 @@ function WorkflowDemoPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-gray-200 py-8 px-6">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <span className="text-sm text-gray-400">&copy; 2026 Quiet AI</span>
-          <div className="flex items-center gap-4">
-            <a
-              href="/privacy-policy.html"
-              className="text-sm text-gray-400 hover:text-gray-700 underline"
-            >
-              Privacy Policy
-            </a>
-            <a
-              href="/eula.html"
-              className="text-sm text-gray-400 hover:text-gray-700 underline"
-            >
-              Terms of Service
-            </a>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }
