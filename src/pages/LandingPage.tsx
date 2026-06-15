@@ -138,10 +138,10 @@ function LandingPage() {
   }
 
   const capabilities = [
-    { icon: FileText, title: 'Accounts Payable', caption: 'No humans needed until it\'s time to pay' },
-    { icon: ClipboardList, title: 'PO Lifecycle Management', caption: 'AI turns quotes into POs and gets them approved' },
-    { icon: CheckSquare, title: '3 Way Match', caption: 'Touchless match between receipts, invoices, and purchase orders' },
-    { icon: DollarSign, title: 'Cash Management', caption: 'A complete picture of money in and money out' },
+    { icon: FileText, title: 'Accounts Payable', caption: 'No humans needed until it\'s time to pay', href: '#accounts-payable' },
+    { icon: ClipboardList, title: 'PO Lifecycle Management', caption: 'AI turns quotes into POs and gets them approved', href: undefined },
+    { icon: CheckSquare, title: '3 Way Match', caption: 'Touchless match between receipts, invoices, and purchase orders', href: undefined },
+    { icon: DollarSign, title: 'Cash Management', caption: 'A complete picture of money in and money out', href: undefined },
   ]
 
   const integrations = {
@@ -197,6 +197,8 @@ function LandingPage() {
                   <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${openDropdown === id ? 'rotate-180' : ''}`} />
                 </button>
               ))}
+              <span className="text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-colors px-3 py-2 rounded-lg cursor-pointer">Setup</span>
+              <span className="text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-colors px-3 py-2 rounded-lg cursor-pointer">Pricing</span>
             </div>
 
             <div className="flex items-center gap-3">
@@ -231,20 +233,23 @@ function LandingPage() {
                         Mix and match product modules. Let AI automate the pieces you need and do the rest yourself.
                       </p>
                       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                        {capabilities.map(({ icon: Icon, title, caption }) => (
-                          <div
-                            key={title}
-                            className="group flex flex-col gap-3 p-4 rounded-xl border border-gray-100 hover:border-blue-300 hover:bg-blue-50/40 transition-all duration-150 cursor-pointer"
-                          >
-                            <div className="h-9 w-9 rounded-lg bg-gray-100 group-hover:bg-blue-100 flex items-center justify-center transition-colors">
-                              <Icon className="h-[18px] w-[18px] text-gray-600 group-hover:text-blue-600 transition-colors" />
+                        {capabilities.map(({ icon: Icon, title, caption, href }) => {
+                          const card = (
+                            <div
+                              key={title}
+                              className="group flex flex-col gap-3 p-4 rounded-xl border border-gray-100 hover:border-blue-300 hover:bg-blue-50/40 transition-all duration-150 cursor-pointer"
+                            >
+                              <div className="h-9 w-9 rounded-lg bg-gray-100 group-hover:bg-blue-100 flex items-center justify-center transition-colors">
+                                <Icon className="h-[18px] w-[18px] text-gray-600 group-hover:text-blue-600 transition-colors" />
+                              </div>
+                              <div>
+                                <p className="text-sm font-semibold text-gray-900">{title}</p>
+                                <p className="text-xs text-gray-500 mt-1 leading-relaxed">{caption}</p>
+                              </div>
                             </div>
-                            <div>
-                              <p className="text-sm font-semibold text-gray-900">{title}</p>
-                              <p className="text-xs text-gray-500 mt-1 leading-relaxed">{caption}</p>
-                            </div>
-                          </div>
-                        ))}
+                          )
+                          return href ? <a key={title} href={href}>{card}</a> : card
+                        })}
                       </div>
                     </div>
                   )}
@@ -315,15 +320,13 @@ function LandingPage() {
         <div className="max-w-4xl mx-auto text-center">
           <div className="w-fit mx-auto">
             <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 bg-white rounded-xl py-1.5 px-3 w-fit mx-auto">
-              Agentic AI for Procurement
+              Agentic AI for Financial Operations
             </p>
             <h1 className="mt-1 text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight bg-white rounded-xl py-2 px-4 w-fit mx-auto">
-              Purchasing, without the noise
+              Your last back-office hire
             </h1>
             <p className="mt-1 text-xl text-gray-600 max-w-2xl mx-auto bg-white rounded-xl py-2 px-4 w-fit">
-              Quiet AI runs purchasing from vendor quote to booked bill.
-              <br />
-              You just approve.
+              Quiet AI handles AP, purchasing, matching, and cash management, so you don't have to.
             </p>
           </div>
         </div>
