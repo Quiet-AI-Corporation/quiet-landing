@@ -75,7 +75,7 @@ const tiers: {
 ]
 
 const faqs = [
-  { q: 'How does billing work?', a: 'Monthly subscription, billed at the start of each period. No long-term contracts required. Annual billing is also available.' },
+  { q: 'How does billing work?', a: 'Monthly subscription, billed at the start of each period. Any overages are billed retroactively after the end of the month. No long-term contracts required. Annual billing is also available.' },
   { q: 'What counts as an invoice?', a: 'Each unique invoice document processed through Quiet AI counts as one invoice, regardless of line items.' },
   { q: 'Can I change plans?', a: 'Upgrade or downgrade anytime. Changes take effect on your next billing cycle.' },
   { q: 'Is there a free trial?', a: 'Yes. No credit card required.' },
