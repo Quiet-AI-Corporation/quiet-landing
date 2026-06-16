@@ -35,7 +35,7 @@ function CashManagementPage() {
               A complete picture of money in and money out
             </h1>
             <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
-              Real-time cash position, payment scheduling, and forecasting — powered by your actual AP and AR data.
+              Real-time cash position, payment scheduling, and forecasting, powered by your actual AP and AR data.
             </p>
             <div className="mt-8 flex items-center justify-center gap-4">
               <Button asChild size="lg">
@@ -55,7 +55,7 @@ function CashManagementPage() {
             <div className="grid md:grid-cols-3 gap-6 text-left">
               {[
                 'Cash position lives in a spreadsheet that\'s out of date the moment it\'s saved',
-                'Upcoming payables and receivables aren\'t connected — you\'re guessing at runway',
+                'Upcoming payables and receivables aren\'t connected, so you\'re guessing at runway',
                 'Payment timing decisions are made on gut feel, not data',
               ].map((text, i) => (
                 <div key={i} className="bg-white rounded-xl p-6 border border-gray-200">
@@ -108,7 +108,7 @@ function CashManagementPage() {
         <section className="py-16 px-6 bg-gray-900 text-white">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-4">See your cash position in real time</h2>
-            <p className="text-gray-400 mb-8">Know exactly where your money is — and where it's going.</p>
+            <p className="text-gray-400 mb-8">Know exactly where your money is and where it's going.</p>
             <Button asChild size="lg" className="bg-white text-gray-900 hover:bg-gray-100">
               <a href="https://quietai.fillout.com/book">Get a Demo</a>
             </Button>
