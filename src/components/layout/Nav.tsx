@@ -139,8 +139,9 @@ function Nav() {
                       </div>
                       <div className="space-y-3 mt-4">
                         {integrations.communication.map(({ title, caption, logoType }) => (
-                          <div
+                          <a
                             key={title}
+                            href="#integrations"
                             className="group flex gap-3 p-3 rounded-xl border border-gray-100 hover:border-blue-300 hover:bg-blue-50/40 transition-all duration-150 cursor-pointer"
                           >
                             <div className="mt-0.5 flex-shrink-0 h-9 w-9 rounded-lg bg-gray-50 flex items-center justify-center relative overflow-hidden">
@@ -158,7 +159,7 @@ function Nav() {
                               <p className="text-sm font-semibold text-gray-900">{title}</p>
                               <p className="text-xs text-gray-500 mt-0.5 leading-relaxed">{caption}</p>
                             </div>
-                          </div>
+                          </a>
                         ))}
                       </div>
                     </div>
@@ -171,13 +172,14 @@ function Nav() {
                       </div>
                       <div className="grid grid-cols-3 gap-3 mt-4">
                         {integrations.erp.map(({ logo: logoSrc, title }) => (
-                          <div
+                          <a
                             key={title}
+                            href="#integrations"
                             className="group flex flex-col items-center gap-2 p-4 rounded-xl border border-gray-100 hover:border-blue-300 hover:bg-blue-50/40 transition-all duration-150 cursor-pointer"
                           >
                             <img src={logoSrc} alt={title} className="h-8 w-8 object-contain" />
                             <p className="text-xs font-medium text-gray-700">{title}</p>
-                          </div>
+                          </a>
                         ))}
                       </div>
                     </div>

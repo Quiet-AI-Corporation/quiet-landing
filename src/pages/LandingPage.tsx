@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { Link2, BookOpen, Inbox, Landmark, Mail, Sparkles, UserCheck, ArrowRight, Clock, MessageSquare } from 'lucide-react'
+import { Link2, BookOpen, Inbox, Landmark, UserCheck, ArrowRight, Clock, MessageSquare, Lock, Eye, Shield } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { TooltipProvider } from '@/components/ui/tooltip'
@@ -64,7 +64,7 @@ function LandingPage() {
         'Existing inbox — Hooks up to purchasing@yourcompany.com or wherever vendors send quotes and invoices today',
         'Full visibility — Sees quotes, purchase orders, invoices, payment inquiries, W-9s, and everything else your vendors and team send',
         'No change for vendors — No new portals for them, no manual file uploading for you',
-        'Gmail today — Outlook on the way',
+        'Gmail and Outlook — Both fully supported',
       ],
     },
     'mailbox-dot': {
@@ -74,7 +74,7 @@ function LandingPage() {
         'Inbound — All emails and attachments flow into Quiet AI automatically',
         'Outbound — Drafts flow back: vendor replies, clarification requests, payment confirmations',
         'Approvals — Approval requests and responses route through the same mailbox connection',
-        'Your control — Nothing sends until you approve it inside Quiet',
+        'Your control — Nothing sends until you approve it inside Quiet AI',
       ],
     },
     'quiet': {
@@ -83,7 +83,7 @@ function LandingPage() {
       body: [
         'Workflow orchestration — for quote intake, PO drafting, invoice processing, vendor onboarding, line item coding, approval orchestration, and fuzzy edge cases where deterministic logic fails',
         'Duplicate invoices & fraud attempts — Caught and flagged for your inspection',
-        'Intelligent clarification — When something\'s ambiguous, Quiet asks you instead of guessing',
+        'Intelligent clarification — When something\'s ambiguous, Quiet AI asks you instead of guessing',
         'Your configuration — You can set approval workflows, GL coding guidelines, and validation rules',
       ],
     },
@@ -91,7 +91,7 @@ function LandingPage() {
       title: 'API Connection',
       subtitle: 'A conversational interface to your purchasing workflows',
       body: [
-        'Direct channel — Talk to the Quiet agent right from Slack',
+        'Direct channel — Talk to the Quiet AI agent right from Slack',
         'Push & pull — Submit documents, ask questions, and get notified all in one place',
         'Approvals in-thread — Approve or reject requests without leaving Slack',
       ],
@@ -100,7 +100,7 @@ function LandingPage() {
       title: 'Slack',
       subtitle: 'Talk to the agent over Slack',
       body: [
-        'Submit documents — Send quotes, POs, and invoices directly to the Quiet agent',
+        'Submit documents — Send quotes, POs, and invoices directly to the Quiet AI agent',
         'Approval requests — Handle approval requests and respond without switching apps',
         'Clarifying asks — When the AI agent needs more info, it asks you in Slack and you reply in-thread',
         'Full visibility — Check status, ask questions, and get updates on any purchase',
@@ -110,8 +110,8 @@ function LandingPage() {
       title: 'Connected to your bank via Plaid',
       subtitle: 'Payments staged but never auto-sent',
       body: [
-        'Review first — Quiet prepares each payment and presents it for your review',
-        'You approve — Quiet moves the money from your bank account to the vendor',
+        'Review first — Quiet AI prepares each payment and presents it for your review',
+        'You approve — Quiet AI moves the money from your bank account to the vendor',
         'Auto-sync — Payment status syncs back so your records stay current automatically',
       ],
     },
@@ -128,8 +128,8 @@ function LandingPage() {
       title: 'API Connection',
       subtitle: 'Two-way sync keeps everything current',
       body: [
-        'Pulls in — Your vendor list, GL accounts, and other accounting categories stay current',
-        'Pushes back — POs, coded invoices, and payment records sync automatically',
+        'Pulls in — Your vendor list, GL accounts, POs, and other accounting categories stay current',
+        'Pushes back — New POs, coded invoices, and payment records sync automatically',
         'No drift — No duplicate entry, no divergence between systems',
       ],
     },
@@ -137,8 +137,8 @@ function LandingPage() {
       title: 'Your ERP',
       subtitle: 'Your accounting source of truth',
       body: [
-        'Your data — GL, chart of accounts, vendor master list, and payment history in QuickBooks, Netsuite, Xero, Sage, or many others',
-        'Source of truth — Your books stay here, Quiet doesn\'t replace them',
+        'Your data — GL, chart of accounts, vendor master list, POs, and payment history in QuickBooks, Netsuite, Xero, Sage, or many others',
+        'Source of truth — Your books stay here, Quiet AI doesn\'t replace them',
         'Zero config — No remapping, no configuration spreadsheets',
       ],
     },
@@ -162,7 +162,7 @@ function LandingPage() {
               Your last back-office hire
             </h1>
             <p className="mt-1 text-xl text-gray-600 max-w-2xl mx-auto bg-white rounded-xl py-2 px-4 w-fit">
-              Quiet AI handles AP, purchasing, matching, and cash management, so you don't have to.
+              AP, purchasing, matching, and cash management in 10 human minutes per week.
             </p>
           </div>
         </div>
@@ -175,13 +175,121 @@ function LandingPage() {
             <PurchasingWorkflowStatic />
           </div>
         </div>
+        {/* How it works */}
+        <div className="mt-12 max-w-5xl mx-auto relative z-10">
+          <div className="mb-8 w-fit mx-auto">
+            <h2 className="text-3xl font-bold text-gray-900 text-center bg-white rounded-xl py-2 px-4 w-fit mx-auto">
+              How it works
+            </h2>
+            <p className="mt-1 text-lg text-gray-500 text-center max-w-2xl mx-auto bg-white rounded-xl py-2 px-4 w-fit">
+              Zero-touch until you're needed. Full control, always.
+            </p>
+          </div>
+
+          {/* 3-box diagram — CSS grid aligns icon/heading/paragraph rows across all 3 boxes */}
+          <div className="hidden md:grid md:grid-cols-[1fr_auto_1fr_auto_1fr] items-start">
+            {/* Box 1 */}
+            <div className="bg-white rounded-xl p-1 h-full">
+            <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 text-center h-full grid grid-rows-[40px_auto_1fr] gap-y-1">
+              <div className="flex items-center justify-center gap-2 mx-auto">
+                <img src={gmailLogo} alt="Gmail" className="h-6 w-6 object-contain" />
+                <img src={outlookLogo} alt="Outlook" className="h-6 w-6 object-contain" />
+                <img src={slackLogo} alt="Slack" className="h-6 w-6 object-contain" />
+              </div>
+              <h3 className="text-base font-semibold text-gray-900">Message arrives</h3>
+              <p className="text-sm text-gray-500 leading-relaxed pt-2">
+                A purchase request from your team in Slack, an inbound invoice from a vendor, a pricing inquiry, a W-9. Anything that touches your purchasing workflow.
+              </p>
+            </div>
+            </div>
+
+            {/* Arrow */}
+            <div className="flex items-center justify-center px-3 py-2 self-center">
+              <ArrowRight className="w-5 h-5 text-gray-300" />
+            </div>
+
+            {/* Box 2 */}
+            <div className="bg-white rounded-xl p-1 h-full">
+            <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 text-center h-full grid grid-rows-[40px_auto_1fr] gap-y-1">
+              <div className="flex items-center justify-center mx-auto">
+                <img src={logo} alt="Quiet AI" className="h-8" />
+              </div>
+              <h3 className="text-base font-semibold text-gray-900">Quiet AI handles it</h3>
+              <p className="text-sm text-gray-500 leading-relaxed pt-2">
+                Reads the message, figures out what it is, and takes the next step: drafting a PO, coding an invoice, responding to a vendor, requesting approval, or flagging something that needs your attention.
+              </p>
+            </div>
+            </div>
+
+            {/* Arrow */}
+            <div className="flex items-center justify-center px-3 py-2 self-center">
+              <ArrowRight className="w-5 h-5 text-gray-300" />
+            </div>
+
+            {/* Box 3 */}
+            <div className="bg-white rounded-xl p-1 h-full">
+            <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 text-center h-full grid grid-rows-[40px_auto_1fr] gap-y-1">
+              <div className="flex items-center justify-center mx-auto">
+                <div className="w-10 h-10 rounded-full bg-green-50 border border-green-100 flex items-center justify-center">
+                  <UserCheck className="w-5 h-5 text-green-600" />
+                </div>
+              </div>
+              <h3 className="text-base font-semibold text-gray-900">You stay in control</h3>
+              <p className="text-sm text-gray-500 leading-relaxed pt-2">
+                Most workflows run start to finish without you. When there's a payment to approve, a PO to sign off on, or an exception that needs judgment, the AI brings it to you. You can step in and course-correct at any point, but you only have to when it matters.
+              </p>
+            </div>
+            </div>
+          </div>
+
+          {/* Mobile stacked layout */}
+          <div className="flex flex-col gap-4 md:hidden">
+            <div className="bg-white rounded-xl p-1">
+            <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 text-center">
+              <div className="h-10 flex items-center justify-center gap-2 mx-auto mb-3">
+                <img src={gmailLogo} alt="Gmail" className="h-6 w-6 object-contain" />
+                <img src={outlookLogo} alt="Outlook" className="h-6 w-6 object-contain" />
+                <img src={slackLogo} alt="Slack" className="h-6 w-6 object-contain" />
+              </div>
+              <h3 className="text-base font-semibold text-gray-900 mb-1">Message arrives</h3>
+              <p className="text-sm text-gray-500 leading-relaxed">
+                A purchase request from your team in Slack, an inbound invoice from a vendor, a pricing inquiry, a W-9. Anything that touches your purchasing workflow.
+              </p>
+            </div>
+            </div>
+            <div className="bg-white rounded-xl p-1">
+            <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 text-center">
+              <div className="h-10 flex items-center justify-center mx-auto mb-3">
+                <img src={logo} alt="Quiet AI" className="h-8" />
+              </div>
+              <h3 className="text-base font-semibold text-gray-900 mb-1">Quiet AI handles it</h3>
+              <p className="text-sm text-gray-500 leading-relaxed">
+                Reads the message, figures out what it is, and takes the next step: drafting a PO, coding an invoice, responding to a vendor, requesting approval, or flagging something that needs your attention.
+              </p>
+            </div>
+            </div>
+            <div className="bg-white rounded-xl p-1">
+            <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 text-center">
+              <div className="h-10 flex items-center justify-center mx-auto mb-3">
+                <div className="w-10 h-10 rounded-full bg-green-50 border border-green-100 flex items-center justify-center">
+                  <UserCheck className="w-5 h-5 text-green-600" />
+                </div>
+              </div>
+              <h3 className="text-base font-semibold text-gray-900 mb-1">You stay in control</h3>
+              <p className="text-sm text-gray-500 leading-relaxed">
+                Most workflows run start to finish without you. When there's a payment to approve, a PO to sign off on, or an exception that needs judgment, the AI brings it to you. You can step in and course-correct at any point, but you only have to when it matters.
+              </p>
+            </div>
+            </div>
+          </div>
+        </div>
+
         <div className="mt-12 text-center relative z-10 bg-white rounded-2xl py-8 px-4 max-w-4xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
             Want to see this on your own purchases?
           </h2>
-          <p className="mt-2 text-gray-600">
-            We can have you live and ordering against real vendors in under
-            an hour.
+          <p className="mt-1 text-lg text-gray-500 text-center max-w-2xl mx-auto bg-white rounded-xl py-2 px-4 w-fit">
+            Live in &lt; 1 hour. Or start in Observation Mode to see what Quiet AI <em>would</em> do.
           </p>
           <div className="mt-6 flex items-center justify-center gap-3">
             <Button size="lg" asChild>
@@ -196,13 +304,13 @@ function LandingPage() {
       {/* How it connects */}
       <section className="py-10 px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="mb-6">
+          <div id="integrations" className="mb-6 scroll-mt-20">
             <h2 className="text-3xl font-bold text-gray-900 text-center bg-white rounded-xl py-2 px-4 w-fit mx-auto">
               Plugs into the tools you already use
             </h2>
             <p className="mt-1 text-lg text-gray-500 text-center max-w-2xl mx-auto bg-white rounded-xl py-2 px-4 w-fit">
-              Quiet sits between your inbox, your bank, and your ERP — so your existing workflows
-              don't change, they just get faster. Up and running in minutes, not months.
+              Quiet AI sits between your inbox, your bank, and your ERP so your existing workflows
+              don't change, they just get faster.
             </p>
           </div>
 
@@ -218,9 +326,9 @@ function LandingPage() {
                   onMouseEnter={() => handleItemHover('mailbox')}
                 >
                   <div className="text-sm font-bold text-gray-900">Purchasing / AP Mailboxes</div>
-                  <div className="flex items-center justify-center gap-3 mt-1.5">
-                    <img src={gmailLogo} alt="Gmail" className="h-6" />
-                    <img src={outlookLogo} alt="Outlook" className="h-6" />
+                  <div className="flex-1 flex items-end justify-center gap-3 mt-1.5">
+                    <img src={gmailLogo} alt="Gmail" className="h-6 w-6 object-contain" />
+                    <img src={outlookLogo} alt="Outlook" className="h-6 w-6 object-contain" />
                   </div>
                 </div>
                 </div>
@@ -230,8 +338,8 @@ function LandingPage() {
                   onMouseEnter={() => handleItemHover('slack')}
                 >
                   <div className="text-sm font-bold text-gray-900">Slack</div>
-                  <div className="flex items-center justify-center mt-1.5">
-                    <img src={slackLogo} alt="Slack" className="h-6" />
+                  <div className="flex-1 flex items-end justify-center mt-1.5">
+                    <img src={slackLogo} alt="Slack" className="h-6 w-6 object-contain" />
                   </div>
                 </div>
                 </div>
@@ -278,7 +386,7 @@ function LandingPage() {
                 className={`w-full rounded-xl px-6 py-4 flex items-center justify-center gap-2 cursor-pointer transition-colors border ${selectedItem === 'quiet' ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-white'}`}
                 onMouseEnter={() => handleItemHover('quiet')}
               >
-                <img src={logo} alt="Quiet" className="h-6" />
+                <img src={logo} alt="Quiet AI" className="h-6" />
                 <div className="text-sm font-bold text-gray-900">Quiet AI</div>
               </div>
               </div>
@@ -359,7 +467,7 @@ function LandingPage() {
                   >
                     <div className="flex items-center gap-2 mb-1">
                       {selectedItem === 'quiet' ? (
-                        <img src={logo} alt="Quiet" className="w-4 h-4 shrink-0" />
+                        <img src={logo} alt="Quiet AI" className="w-4 h-4 shrink-0" />
                       ) : selectedItem === 'mailbox' ? (
                         <Inbox className="w-3.5 h-3.5 text-blue-500 shrink-0" />
                       ) : selectedItem === 'slack' ? (
@@ -397,73 +505,26 @@ function LandingPage() {
         </div>
       </section>
 
-      {/* How it works */}
-      <section className="py-10 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="mb-8 w-fit mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 text-center bg-white rounded-xl py-2 px-4 w-fit mx-auto">
-              How it works
-            </h2>
-            <p className="mt-1 text-lg text-gray-500 text-center max-w-2xl mx-auto bg-white rounded-xl py-2 px-4 w-fit">
-              A review-and-approve workflow for every purchase.
-            </p>
+      {/* Enterprise Security */}
+      <section className="py-10 pb-20 px-6">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold text-gray-900 text-center bg-white rounded-xl py-2 px-4 w-fit mx-auto mb-10">Your data, locked down</h2>
+          <div className="grid md:grid-cols-4 gap-6">
+            {[
+              { icon: Lock, title: 'Encrypted end-to-end', text: 'AES-256 at rest, HTTPS-only in transit, with full HSTS and security headers' },
+              { icon: Eye, title: 'Your data stays yours', text: 'Commercial API terms mean your data is never used for model training' },
+              { icon: Shield, title: 'Isolated by design', text: 'Every query is scoped to your organization. No cross-tenant data access, ever' },
+              { icon: BookOpen, title: 'Full audit trail', text: 'Every action is logged: who did what, when, and what changed' },
+            ].map((s, i) => (
+              <div key={i} className="text-center">
+                <div className="w-10 h-10 rounded-lg bg-gray-100 text-gray-700 flex items-center justify-center mx-auto mb-3">
+                  <s.icon className="w-5 h-5" />
+                </div>
+                <p className="text-gray-900 text-sm font-semibold">{s.title}</p>
+                <p className="text-gray-500 text-sm mt-1">{s.text}</p>
+              </div>
+            ))}
           </div>
-
-          {/* 3-box diagram */}
-          <div className="flex flex-col md:flex-row items-stretch gap-4 md:gap-0">
-            {/* Box 1 */}
-            <div className="flex-1 bg-white rounded-xl p-1">
-            <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 text-center h-full">
-              <div className="w-10 h-10 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center mx-auto mb-3">
-                <Mail className="w-5 h-5 text-gray-500" />
-              </div>
-              <h3 className="text-base font-semibold text-gray-900 mb-1">Email arrives</h3>
-              <p className="text-sm text-gray-500 leading-relaxed">
-                A quote, invoice, or vendor message lands in your purchasing mailbox.
-              </p>
-            </div>
-            </div>
-
-            {/* Arrow */}
-            <div className="hidden md:flex items-center justify-center px-3 bg-white rounded-lg py-2">
-              <ArrowRight className="w-5 h-5 text-gray-300" />
-            </div>
-
-            {/* Box 2 */}
-            <div className="flex-1 bg-white rounded-xl p-1">
-            <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 text-center h-full">
-              <div className="w-10 h-10 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center mx-auto mb-3">
-                <Sparkles className="w-5 h-5 text-blue-500" />
-              </div>
-              <h3 className="text-base font-semibold text-gray-900 mb-1">Quiet AI processes</h3>
-              <p className="text-sm text-gray-500 leading-relaxed">
-                Extracts data, codes GL, generates POs, drafts replies, asks vendors for missing info, flags issues, and escalates when something needs a human call.
-              </p>
-            </div>
-            </div>
-
-            {/* Arrow */}
-            <div className="hidden md:flex items-center justify-center px-3 bg-white rounded-lg py-2">
-              <ArrowRight className="w-5 h-5 text-gray-300" />
-            </div>
-
-            {/* Box 3 */}
-            <div className="flex-1 bg-white rounded-xl p-1">
-            <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 text-center h-full">
-              <div className="w-10 h-10 rounded-full bg-green-50 border border-green-100 flex items-center justify-center mx-auto mb-3">
-                <UserCheck className="w-5 h-5 text-green-600" />
-              </div>
-              <h3 className="text-base font-semibold text-gray-900 mb-1">You review & execute</h3>
-              <p className="text-sm text-gray-500 leading-relaxed">
-                Course-correct the AI, send emails, and initiate payments with one click.
-              </p>
-            </div>
-            </div>
-          </div>
-
-          <p className="text-lg text-gray-500 text-center mt-12 bg-white rounded-xl py-2 px-4 w-fit mx-auto">
-            Quiet AI does the processing. You just check the work.
-          </p>
         </div>
       </section>
 
@@ -471,7 +532,7 @@ function LandingPage() {
       <section className="pt-4 pb-10 px-6">
         <div className="max-w-4xl mx-auto">
           {/* Badge + headline */}
-          <div className="text-center mb-8 w-fit mx-auto">
+          <div id="setup" className="text-center mb-8 w-fit mx-auto scroll-mt-20">
             <span className="inline-block px-4 py-1.5 bg-blue-50 text-blue-700 text-sm font-medium rounded-full">
               <Clock className="w-3.5 h-3.5 inline -mt-0.5" /> Under 30 minutes
             </span>
@@ -489,7 +550,7 @@ function LandingPage() {
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold">1</div>
               <div>
                 <h3 className="font-bold text-gray-900 mb-1">Sign into your purchasing mailbox</h3>
-                <p className="text-gray-600">All you need is your email login — like purchasing@company.com. Sign in, grant Quiet AI access, and you're connected. No forwarding rules, no migration, no IT involvement.</p>
+                <p className="text-gray-600">All you need is your email login, like purchasing@company.com. Sign in, grant Quiet AI access, and you're connected. No forwarding rules, no migration, no IT involvement.</p>
               </div>
             </div>
             <div className="flex gap-4 bg-white rounded-xl p-2">
@@ -503,21 +564,21 @@ function LandingPage() {
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold">3</div>
               <div>
                 <h3 className="font-bold text-gray-900 mb-1">Connect your bank account</h3>
-                <p className="text-gray-600">Link the account you pay vendors from. Quiet prepares payments for you — nothing moves until you approve it.</p>
+                <p className="text-gray-600">Link the account you pay vendors from. Quiet AI prepares payments for you. Nothing moves until you approve it.</p>
               </div>
             </div>
             <div className="flex gap-4 bg-white rounded-xl p-2">
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold">4</div>
               <div>
                 <h3 className="font-bold text-gray-900 mb-1">Set your approval rules</h3>
-                <p className="text-gray-600">Decide who can approve what — by amount, vendor, department, or however your team works.</p>
+                <p className="text-gray-600">Decide who can approve what: by amount, vendor, department, or however your team works.</p>
               </div>
             </div>
             <div className="flex gap-4 bg-white rounded-xl p-2">
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold">5</div>
               <div>
                 <h3 className="font-bold text-gray-900 mb-1">You're live</h3>
-                <p className="text-gray-600">Quiet starts organizing vendor emails, capturing invoices, coding line items, and drafting responses — immediately.</p>
+                <p className="text-gray-600">Quiet AI starts organizing vendor emails, capturing invoices, coding line items, and drafting responses. Immediately.</p>
               </div>
             </div>
           </div>
@@ -546,7 +607,7 @@ function LandingPage() {
             <div className="rounded-2xl border border-blue-200 bg-blue-50 p-8">
               <h3 className="font-bold text-gray-900 mb-2">Try it in read-only mode first.</h3>
               <p className="text-gray-600">
-                Quiet can run in observation mode — reading your inbox and organizing quotes, POs, and invoices without
+                Quiet AI can run in observation mode: reading your inbox and organizing quotes, POs, and invoices without
                 sending emails, making payments, or touching your ERP. See exactly what it would do,
                 with zero risk. Turn on automation when you're ready.
               </p>
@@ -564,7 +625,7 @@ function LandingPage() {
             </h2>
             <p className="mt-1 text-lg text-gray-500 text-center max-w-2xl mx-auto bg-white rounded-xl py-2 px-4 w-fit">
               Quiet AI processes invoices and drafts communications. But the AI operates inside
-              hard boundaries — not guidelines, not best-effort policies, but structural rules it
+              hard boundaries. Not guidelines, not best-effort policies, but structural rules it
               cannot override.
             </p>
           </div>
@@ -583,8 +644,8 @@ function LandingPage() {
             <div>
               <h3 className="text-base font-bold text-gray-900 bg-white rounded-xl py-2 px-3 w-fit">Traceable, not hallucinated</h3>
               <p className="mt-2 text-sm text-gray-600 leading-relaxed bg-white rounded-xl py-2 px-3 w-fit">
-                Every figure, date, and line item Quiet produces is tied to a source document in your
-                system. If it doesn't have the answer, it says so — it never makes something up.
+                Every figure, date, and line item Quiet AI produces is tied to a source document in your
+                system. If it doesn't have the answer, it says so. It never makes something up.
               </p>
             </div>
             <div>
