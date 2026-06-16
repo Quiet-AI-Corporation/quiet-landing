@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { Link2, BookOpen, Inbox, Landmark, Mail, Sparkles, UserCheck, ArrowRight, Clock } from 'lucide-react'
+import { Link2, BookOpen, Inbox, Landmark, Mail, Sparkles, UserCheck, ArrowRight, Clock, MessageSquare } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { TooltipProvider } from '@/components/ui/tooltip'
@@ -18,12 +18,13 @@ import sageLogo from '@/assets/images/sage_logo.webp'
 import plaidLogo from '@/assets/images/plaid_logo.webp'
 import xeroLogo from '@/assets/images/xero_logo.webp'
 import freshbooksLogo from '@/assets/images/freshbooks_logo.webp'
+import slackLogo from '@/assets/images/slack_logo.png'
 
 function LandingPage() {
   const [selectedItem, setSelectedItem] = useState<string>('mailbox')
   const diagramTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  const DIAGRAM_CYCLE = ['mailbox', 'mailbox-dot', 'quiet', 'bank-dot', 'bank', 'erp-dot', 'erp'] as const
+  const DIAGRAM_CYCLE = ['mailbox', 'slack', 'mailbox-dot', 'slack-dot', 'quiet', 'bank-dot', 'bank', 'erp-dot', 'erp'] as const
 
   const scheduleDiagramNext = useCallback((current: string) => {
     if (diagramTimerRef.current) clearTimeout(diagramTimerRef.current)
@@ -57,7 +58,7 @@ function LandingPage() {
 
   const diagramCaptions: Record<string, { title: string; subtitle: string; body: string[] }> = {
     'mailbox': {
-      title: 'Your Purchasing Mailbox',
+      title: 'Purchasing / AP Mailboxes',
       subtitle: 'Where purchase orders, invoices, and vendor correspondence land',
       body: [
         'Existing inbox — Hooks up to purchasing@yourcompany.com or wherever vendors send quotes and invoices today',
@@ -84,6 +85,25 @@ function LandingPage() {
         'Duplicate invoices & fraud attempts — Caught and flagged for your inspection',
         'Intelligent clarification — When something\'s ambiguous, Quiet asks you instead of guessing',
         'Your configuration — You can set approval workflows, GL coding guidelines, and validation rules',
+      ],
+    },
+    'slack-dot': {
+      title: 'API Connection',
+      subtitle: 'A conversational interface to your purchasing workflows',
+      body: [
+        'Direct channel — Talk to the Quiet agent right from Slack',
+        'Push & pull — Submit documents, ask questions, and get notified all in one place',
+        'Approvals in-thread — Approve or reject requests without leaving Slack',
+      ],
+    },
+    'slack': {
+      title: 'Slack',
+      subtitle: 'Talk to the agent over Slack',
+      body: [
+        'Submit documents — Send quotes, POs, and invoices directly to the Quiet agent',
+        'Approval requests — Handle approval requests and respond without switching apps',
+        'Clarifying asks — When the AI agent needs more info, it asks you in Slack and you reply in-thread',
+        'Full visibility — Check status, ask questions, and get updates on any purchase',
       ],
     },
     'bank-dot': {
@@ -190,35 +210,65 @@ function LandingPage() {
           <div className="flex flex-col md:flex-row gap-8 items-stretch">
             {/* Diagram column */}
             <div className="w-full md:w-96 md:shrink-0 flex flex-col items-center" onMouseLeave={handleDiagramLeave}>
-              {/* Mailbox */}
-              <div className="w-full bg-white rounded-xl p-1">
-              <div
-                className={`w-full rounded-xl px-6 py-4 text-center cursor-pointer transition-colors border ${selectedItem === 'mailbox' ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-white'}`}
-                onMouseEnter={() => handleItemHover('mailbox')}
-              >
-                <div className="text-sm font-bold text-gray-900">Your Purchasing Mailbox</div>
-                <div className="flex items-center justify-center gap-3 mt-1.5">
-                  <img src={gmailLogo} alt="Gmail" className="h-6" />
-                  <img src={outlookLogo} alt="Outlook" className="h-6" />
+              {/* Mailbox + Slack */}
+              <div className="w-full flex gap-3 items-stretch">
+                <div className="flex-1 bg-white rounded-xl p-1">
+                <div
+                  className={`h-full rounded-xl px-4 py-4 text-center cursor-pointer transition-colors border flex flex-col items-center ${selectedItem === 'mailbox' ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-white'}`}
+                  onMouseEnter={() => handleItemHover('mailbox')}
+                >
+                  <div className="text-sm font-bold text-gray-900">Purchasing / AP Mailboxes</div>
+                  <div className="flex items-center justify-center gap-3 mt-1.5">
+                    <img src={gmailLogo} alt="Gmail" className="h-6" />
+                    <img src={outlookLogo} alt="Outlook" className="h-6" />
+                  </div>
+                </div>
+                </div>
+                <div className="flex-1 bg-white rounded-xl p-1">
+                <div
+                  className={`h-full rounded-xl px-4 py-4 text-center cursor-pointer transition-colors border flex flex-col items-center ${selectedItem === 'slack' ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-white'}`}
+                  onMouseEnter={() => handleItemHover('slack')}
+                >
+                  <div className="text-sm font-bold text-gray-900">Slack</div>
+                  <div className="flex items-center justify-center mt-1.5">
+                    <img src={slackLogo} alt="Slack" className="h-6" />
+                  </div>
+                </div>
                 </div>
               </div>
-              </div>
 
-              {/* Arrow: Mailbox ↔ Quiet */}
-              <div className="relative flex justify-center" style={{ height: 56 }}>
-                <svg width="24" height="56" className="overflow-visible shrink-0">
-                  <defs>
-                    <marker id="arrowhead" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
-                      <path d="M 0 0 L 10 5 L 0 10 z" fill="#9ca3af" />
-                    </marker>
-                  </defs>
-                  <line x1="12" y1="2" x2="12" y2="54" stroke="#9ca3af" strokeWidth="1.5" markerStart="url(#arrowhead)" markerEnd="url(#arrowhead)" />
-                </svg>
-                <div
-                  className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-7 h-7 rounded-full border flex items-center justify-center cursor-pointer transition-colors ${selectedItem === 'mailbox-dot' ? 'bg-blue-50 border-blue-500' : 'bg-white border-gray-300'}`}
-                  onMouseEnter={() => handleItemHover('mailbox-dot')}
-                >
-                  <Link2 className={`w-3.5 h-3.5 ${selectedItem === 'mailbox-dot' ? 'text-blue-500' : 'text-gray-400'}`} />
+              {/* Top arrows — two side by side: Mailbox ↔ Quiet, Slack ↔ Quiet */}
+              <div className="w-full flex">
+                <div className="flex-1 flex justify-center">
+                  <div className="relative flex justify-center" style={{ height: 56 }}>
+                    <svg width="24" height="56" className="overflow-visible shrink-0">
+                      <defs>
+                        <marker id="arrowhead" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+                          <path d="M 0 0 L 10 5 L 0 10 z" fill="#9ca3af" />
+                        </marker>
+                      </defs>
+                      <line x1="12" y1="2" x2="12" y2="54" stroke="#9ca3af" strokeWidth="1.5" markerStart="url(#arrowhead)" markerEnd="url(#arrowhead)" />
+                    </svg>
+                    <div
+                      className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-7 h-7 rounded-full border flex items-center justify-center cursor-pointer transition-colors ${selectedItem === 'mailbox-dot' ? 'bg-blue-50 border-blue-500' : 'bg-white border-gray-300'}`}
+                      onMouseEnter={() => handleItemHover('mailbox-dot')}
+                    >
+                      <Link2 className={`w-3.5 h-3.5 ${selectedItem === 'mailbox-dot' ? 'text-blue-500' : 'text-gray-400'}`} />
+                    </div>
+                  </div>
+                </div>
+                <div className="flex-1 flex justify-center">
+                  <div className="relative flex justify-center" style={{ height: 56 }}>
+                    <svg width="24" height="56" className="overflow-visible shrink-0">
+                      <line x1="12" y1="2" x2="12" y2="54" stroke="#9ca3af" strokeWidth="1.5" markerStart="url(#arrowhead)" markerEnd="url(#arrowhead)" />
+                    </svg>
+                    <div
+                      className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-7 h-7 rounded-full border flex items-center justify-center cursor-pointer transition-colors ${selectedItem === 'slack-dot' ? 'bg-blue-50 border-blue-500' : 'bg-white border-gray-300'}`}
+                      onMouseEnter={() => handleItemHover('slack-dot')}
+                    >
+                      <Link2 className={`w-3.5 h-3.5 ${selectedItem === 'slack-dot' ? 'text-blue-500' : 'text-gray-400'}`} />
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -264,10 +314,10 @@ function LandingPage() {
               </div>
 
               {/* Bank + ERP */}
-              <div className="w-full flex gap-3">
+              <div className="w-full flex gap-3 items-stretch">
                 <div className="flex-1 bg-white rounded-xl p-1">
                 <div
-                  className={`rounded-xl px-4 py-4 text-center cursor-pointer transition-colors border ${selectedItem === 'bank' ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-white'}`}
+                  className={`h-full rounded-xl px-4 py-4 text-center cursor-pointer transition-colors border ${selectedItem === 'bank' ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-white'}`}
                   onMouseEnter={() => handleItemHover('bank')}
                 >
                   <div className="text-sm font-bold text-gray-900">Your Bank Account</div>
@@ -312,6 +362,8 @@ function LandingPage() {
                         <img src={logo} alt="Quiet" className="w-4 h-4 shrink-0" />
                       ) : selectedItem === 'mailbox' ? (
                         <Inbox className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+                      ) : selectedItem === 'slack' ? (
+                        <MessageSquare className="w-3.5 h-3.5 text-blue-500 shrink-0" />
                       ) : selectedItem === 'bank-dot' ? (
                         <img src={plaidLogo} alt="Plaid" className="w-4 h-4 shrink-0" />
                       ) : selectedItem === 'erp' ? (
