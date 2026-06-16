@@ -8,8 +8,8 @@ import POLifecyclePage from './pages/POLifecyclePage'
 import ThreeWayMatchPage from './pages/ThreeWayMatchPage'
 import CashManagementPage from './pages/CashManagementPage'
 import PricingPage from './pages/PricingPage'
-import SetupPage from './pages/SetupPage'
-import IntegrationsPage from './pages/IntegrationsPage'
+
+
 import AboutPage from './pages/AboutPage'
 import FraudPreventionPage from './pages/FraudPreventionPage'
 import './index.css'
@@ -28,8 +28,15 @@ function Root() {
     return () => window.removeEventListener('hashchange', onChange)
   }, [])
 
-  // Scroll to top on route change
+  // Scroll to section if element exists, otherwise scroll to top
   useEffect(() => {
+    if (route) {
+      const el = document.getElementById(route)
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' })
+        return
+      }
+    }
     window.scrollTo(0, 0)
   }, [route])
 
@@ -41,8 +48,7 @@ function Root() {
   if (route === 'cash-management') return <CashManagementPage />
   if (route === 'fraud-prevention') return <FraudPreventionPage />
   if (route === 'pricing') return <PricingPage />
-  if (route === 'setup') return <SetupPage />
-  if (route === 'integrations') return <IntegrationsPage />
+
   if (route === 'about') return <AboutPage />
   return <LandingPage />
 }
