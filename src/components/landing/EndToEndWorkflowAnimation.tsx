@@ -12,8 +12,8 @@ import {
   Mail,
   Clock,
   ArrowRight,
-  AlertCircle,
   FileText,
+  Check,
 } from 'lucide-react'
 import gmailLogo from '@/assets/images/gmail_logo.webp'
 import qboLogo from '@/assets/images/qbo_logo.webp'
@@ -32,50 +32,50 @@ export const SCENES: Scene[] = [
     id: 'email',
     label: 'Email arrives',
     caption: '9:42 AM — A vendor invoice lands in your AP mailbox.',
-    duration: 5.5,
+    duration: 9,
   },
   {
     id: 'extract',
     label: 'AI extracts',
     caption: 'Quiet pulls structured data straight from the PDF — no manual entry.',
-    duration: 6,
+    duration: 10,
   },
   {
     id: 'verify',
     label: 'Vendor outreach',
     caption:
       "Missing W-9 and remittance details — Quiet emails the vendor, parses the reply, updates your records.",
-    duration: 8,
+    duration: 10.5,
   },
   {
     id: 'code',
     label: 'GL coding',
     caption: 'Every line item is coded to the right account, following your rules.',
-    duration: 5.5,
+    duration: 10.5,
   },
   {
     id: 'approve',
     label: 'Approval routed',
     caption: 'Threshold rule triggers an approval request. Approver replies. Done.',
-    duration: 6.5,
+    duration: 9.5,
   },
   {
     id: 'stage',
     label: 'Payment staged',
     caption: 'Quiet drafts the transfer from your bank account — but nothing moves yet.',
-    duration: 4.5,
+    duration: 6.5,
   },
   {
     id: 'pay',
     label: 'You approve',
     caption: 'One click. The bank executes the transfer.',
-    duration: 4.5,
+    duration: 6.5,
   },
   {
     id: 'sync',
-    label: 'ERP & vendor',
+    label: 'ERP sync',
     caption: 'QuickBooks updated. Confirmation email sent. Loop closed.',
-    duration: 5.5,
+    duration: 8,
   },
 ]
 
@@ -83,198 +83,220 @@ export const SCENES: Scene[] = [
 function SceneEmail() {
   return (
     <div className="w-full h-full flex items-center justify-center px-6">
-        <div className="w-full max-w-2xl">
-          {/* Browser window */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="rounded-xl border border-gray-200 overflow-hidden bg-white shadow-sm"
-          >
-            <div className="bg-gray-100 border-b border-gray-200 px-3 pt-3 pb-0">
-              <div className="flex items-center gap-1.5 mb-2">
-                <div className="w-3 h-3 rounded-full bg-red-400" />
-                <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                <div className="w-3 h-3 rounded-full bg-green-400" />
-              </div>
-              <div className="flex">
-                <div className="flex items-center gap-2 bg-white rounded-t-lg px-4 py-2 border border-gray-200 border-b-0 -mb-px relative z-10">
-                  <img src={gmailLogo} alt="Gmail" className="w-4 h-4" />
-                  <span className="text-xs text-gray-700 truncate">ap@yourcompany.com</span>
-                </div>
+      <div className="w-full max-w-2xl">
+        {/* Browser window */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="rounded-xl border border-gray-200 overflow-hidden bg-white shadow-sm"
+        >
+          <div className="bg-gray-100 border-b border-gray-200 px-3 pt-3 pb-0">
+            <div className="flex items-center gap-1.5 mb-2">
+              <div className="w-3 h-3 rounded-full bg-red-400" />
+              <div className="w-3 h-3 rounded-full bg-yellow-400" />
+              <div className="w-3 h-3 rounded-full bg-green-400" />
+            </div>
+            <div className="flex">
+              <div className="flex items-center gap-2 bg-white rounded-t-lg px-4 py-2 border border-gray-200 border-b-0 -mb-px relative z-10">
+                <img src={gmailLogo} alt="Gmail" className="w-4 h-4" />
+                <span className="text-xs text-gray-700 truncate">ap@yourcompany.com</span>
               </div>
             </div>
+          </div>
 
-            {/* Inbox list */}
-            <div className="p-3 space-y-1.5">
-              {/* Older read emails */}
-              {[
-                { from: 'CloudOps', subject: 'Monthly usage report', time: 'Wed' },
-                { from: 'Stripe', subject: 'Payout completed', time: 'Wed' },
-              ].map((m) => (
-                <div
-                  key={m.subject}
-                  className="flex items-center gap-3 px-3 py-2 rounded-md text-xs text-gray-500"
-                >
-                  <div className="w-1.5 h-1.5 rounded-full bg-transparent flex-shrink-0" />
-                  <span className="w-24 truncate">{m.from}</span>
-                  <span className="flex-1 truncate">{m.subject}</span>
-                  <span>{m.time}</span>
-                </div>
-              ))}
+          {/* Inbox list */}
+          <div className="p-3 space-y-1.5">
+            {/* Placeholder row — gray pills */}
+            <div className="flex items-center gap-3 px-3 py-2 rounded-md">
+              <div className="w-1.5 h-1.5 rounded-full bg-transparent flex-shrink-0" />
+              <div className="w-28"><div className="h-2.5 w-12 rounded-full bg-gray-200" /></div>
+              <div className="flex-1"><div className="h-2.5 w-24 rounded-full bg-gray-200" /></div>
+              <div className="h-2.5 w-8 rounded-full bg-gray-200" />
+            </div>
+            {/* Placeholder row */}
+            <div className="flex items-center gap-3 px-3 py-2 rounded-md">
+              <div className="w-1.5 h-1.5 rounded-full bg-transparent flex-shrink-0" />
+              <div className="w-28"><div className="h-2.5 w-16 rounded-full bg-gray-200" /></div>
+              <div className="flex-1"><div className="h-2.5 w-32 rounded-full bg-gray-200" /></div>
+              <div className="h-2.5 w-8 rounded-full bg-gray-200" />
+            </div>
 
-              {/* New incoming email */}
+            {/* New incoming email — row that expands into detail card on "click" */}
+            <motion.div
+              initial={{ opacity: 0, y: -12, scale: 0.98 }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                scale: [1, 1, 1.02, 1],
+                backgroundColor: [
+                  'rgba(255,255,255,0)',
+                  'rgba(255,255,255,0)',
+                  'rgba(59,130,246,0.15)',
+                  'rgba(59,130,246,0.15)',
+                  'rgba(255,255,255,0)',
+                ],
+              }}
+              transition={{
+                opacity: { delay: 1.0, duration: 0.4 },
+                y: { delay: 1.0, duration: 0.4 },
+                scale: {
+                  delay: 2.2,
+                  duration: 0.5,
+                  times: [0, 0, 0.4, 1],
+                },
+                backgroundColor: {
+                  delay: 2.2,
+                  duration: 0.8,
+                  times: [0, 0.05, 0.2, 0.6, 1],
+                },
+              }}
+              className="rounded-lg text-sm overflow-hidden"
+            >
+              {/* Collapsed email row — hides after click */}
               <motion.div
-                initial={{ opacity: 0, y: -12, scale: 0.98 }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                  scale: 1,
-                  backgroundColor: [
-                    'rgba(59,130,246,0.15)',
-                    'rgba(59,130,246,0.15)',
-                    'rgba(255,255,255,1)',
-                  ],
-                }}
+                initial={{ opacity: 1, height: 'auto' }}
+                animate={{ opacity: 0, height: 0 }}
                 transition={{
-                  opacity: { delay: 0.4, duration: 0.4 },
-                  y: { delay: 0.4, duration: 0.4 },
-                  scale: { delay: 0.4, duration: 0.4 },
-                  backgroundColor: { delay: 0.4, duration: 1.6, times: [0, 0.5, 1] },
+                  opacity: { delay: 2.7, duration: 0.25 },
+                  height: { delay: 2.7, duration: 0.35 },
                 }}
-                className="flex items-center gap-3 px-3 py-2 rounded-md text-sm border border-gray-200"
+                className="flex items-center gap-3 px-3 py-2"
               >
                 <motion.div
                   initial={{ scale: 0 }}
-                  animate={{ scale: [0, 1, 1, 0.85] }}
-                  transition={{ delay: 0.4, duration: 1.6, times: [0, 0.2, 0.7, 1] }}
+                  animate={{ scale: [0, 1, 1, 0] }}
+                  transition={{
+                    delay: 1.0,
+                    duration: 1.8,
+                    times: [0, 0.15, 0.65, 0.75],
+                  }}
                   className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0"
                 />
-                <span className="w-24 truncate font-semibold text-gray-900">ar@acmecorp.com</span>
+                <span className="w-28 truncate font-semibold text-gray-900">
+                  ar@acmecorp.com
+                </span>
                 <span className="flex-1 truncate text-gray-800">
                   Invoice #2026-0381 — February services
                 </span>
                 <Paperclip className="w-3 h-3 text-gray-400" />
                 <span className="text-xs text-gray-500">9:42 AM</span>
               </motion.div>
-            </div>
 
-            {/* Preview of opened email */}
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              transition={{ delay: 2.0, duration: 0.5 }}
-              className="border-t border-gray-100"
-            >
-              <div className="p-4">
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-gray-200 text-gray-700 flex items-center justify-center text-xs font-medium flex-shrink-0">
-                    AR
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="text-sm font-medium text-gray-900 truncate">
-                        ar@acmecorp.com
-                      </span>
-                      <span className="text-xs text-gray-400 flex-shrink-0">9:42 AM</span>
+              {/* Expanded email detail card — appears after click */}
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                transition={{
+                  opacity: { delay: 2.85, duration: 0.4 },
+                  height: { delay: 2.7, duration: 0.45 },
+                }}
+                className="border border-gray-200 rounded-lg bg-white shadow-sm"
+              >
+                <div className="p-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full bg-gray-200 text-gray-700 flex items-center justify-center text-xs font-medium flex-shrink-0">
+                      AR
                     </div>
-                    <div className="text-sm font-semibold text-gray-900 mt-1">
-                      Invoice #2026-0381 — February services
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-sm font-medium text-gray-900 truncate">
+                          ar@acmecorp.com
+                        </span>
+                        <span className="text-xs text-gray-400 flex-shrink-0">9:42 AM</span>
+                      </div>
+                      <div className="text-sm font-semibold text-gray-900 mt-1">
+                        Invoice #2026-0381 — February services
+                      </div>
+                      <p className="text-sm text-gray-700 mt-2">
+                        Hi, please find attached our invoice for February. Net 30. Thanks!
+                      </p>
+                      <div className="mt-3">
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-xs text-gray-600">
+                          <Paperclip className="w-3.5 h-3.5" />
+                          <span>INV-2026-0381.pdf</span>
+                        </span>
+                      </div>
                     </div>
-                    <p className="text-sm text-gray-700 mt-2">
-                      Hi, please find attached our invoice for February. Net 30. Thanks!
-                    </p>
-                    <motion.div
-                      initial={{ opacity: 0, y: 4 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 2.6, duration: 0.4 }}
-                      className="mt-3"
-                    >
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-xs text-gray-600">
-                        <Paperclip className="w-3.5 h-3.5" />
-                        <span>INV-2026-0381.pdf</span>
-                      </span>
-                    </motion.div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </div>
+        </motion.div>
 
-          {/* Quiet detected pill */}
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 3.6, duration: 0.4 }}
-            className="mt-4 flex items-center justify-center gap-2"
-          >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full">
-              <img src={logo} alt="Quiet" className="h-3.5" />
-              <span className="text-xs font-medium text-blue-700">
-                Invoice detected — handing to Quiet AI
-              </span>
-              <Loader2 className="w-3 h-3 text-blue-600 animate-spin" />
-            </div>
-          </motion.div>
-        </div>
+        {/* Quiet detected pill */}
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 5.0, duration: 0.4 }}
+          className="mt-4 flex items-center justify-center gap-2"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full">
+            <img src={logo} alt="Quiet" className="h-3.5" />
+            <span className="text-xs font-medium text-blue-700">
+              Invoice detected. Quiet AI is on it
+            </span>
+            <Loader2 className="w-3 h-3 text-blue-600 animate-spin" />
+          </div>
+        </motion.div>
       </div>
+    </div>
   )
 }
 
 // ===== Scene 2: AI extracts =====
 const EXTRACT_FIELDS = [
-  { label: 'Vendor', value: 'Acme Corp', delay: 0.6 },
-  { label: 'Invoice #', value: '2026-0381', delay: 0.9 },
-  { label: 'Issue Date', value: 'Feb 28, 2026', delay: 1.2 },
-  { label: 'Due Date', value: 'Mar 30, 2026', delay: 1.5 },
+  { label: 'Vendor', value: 'Acme Corp', delay: 1.0 },
+  { label: 'Invoice #', value: '2026-0381', delay: 1.5 },
 ]
 const EXTRACT_LINES = [
-  { description: 'Strategy consulting — Feb 2026', amount: '$5,000.00', delay: 2.1 },
-  { description: 'Process optimization review', amount: '$4,500.00', delay: 2.4 },
-  { description: 'Travel & expenses', amount: '$2,500.00', delay: 2.7 },
+  { description: 'Strategy consulting — Feb 2026', amount: '$5,000.00', delay: 3.2 },
+  { description: 'Process optimization review', amount: '$4,500.00', delay: 3.7 },
+  { description: 'Travel & expenses', amount: '$2,500.00', delay: 4.2 },
 ]
 
 function SceneExtract() {
   return (
-    <div className="w-full h-full flex items-stretch gap-5 px-6 py-2">
+    <div className="w-full h-full flex items-center justify-center gap-5 px-6 py-2">
+      <div className="w-full flex items-stretch gap-5">
         {/* Left — PDF being scanned */}
         <div className="flex-1 min-w-0 flex items-center justify-center">
           <div className="relative w-full max-w-xs aspect-[8.5/11] bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
-            {/* Mock PDF content */}
             <div className="p-4 space-y-2">
-              <div className="text-[10px] font-bold uppercase tracking-wider text-gray-400">
-                ACME CORP
-              </div>
-              <div className="text-[8px] text-gray-400">123 Industry Way, Brooklyn, NY</div>
+              <div className="h-2 w-20 rounded-full bg-gray-200" />
+              <div className="h-1.5 w-28 rounded-full bg-gray-100" />
               <div className="h-px bg-gray-100 my-2" />
-              <div className="text-xs font-bold text-gray-900">Invoice #2026-0381</div>
-              <div className="space-y-0.5">
-                <div className="text-[8px] text-gray-400">Date: Feb 28, 2026</div>
-                <div className="text-[8px] text-gray-400">Due: Mar 30, 2026</div>
+              <div className="text-sm font-bold text-gray-900">
+                Invoice #2026-0381
               </div>
-              <div className="h-px bg-gray-100 my-2" />
               <div className="space-y-1">
-                <div className="text-[8px] text-gray-700">Strategy consulting — Feb 2026</div>
-                <div className="text-[8px] text-gray-400">$5,000.00</div>
-                <div className="text-[8px] text-gray-700">Process optimization review</div>
-                <div className="text-[8px] text-gray-400">$4,500.00</div>
-                <div className="text-[8px] text-gray-700">Travel & expenses</div>
-                <div className="text-[8px] text-gray-400">$2,500.00</div>
+                <div className="h-1.5 w-24 rounded-full bg-gray-200" />
+                <div className="h-1.5 w-32 rounded-full bg-gray-200" />
               </div>
               <div className="h-px bg-gray-100 my-2" />
-              <div className="flex justify-between text-[8px] font-bold text-gray-900">
-                <span>TOTAL</span>
-                <span>$12,000.00</span>
+              <div className="space-y-1.5">
+                <div className="h-1.5 w-full rounded-full bg-gray-200" />
+                <div className="h-1.5 w-20 rounded-full bg-gray-100" />
+                <div className="h-1.5 w-full rounded-full bg-gray-200" />
+                <div className="h-1.5 w-16 rounded-full bg-gray-100" />
+                <div className="h-1.5 w-3/4 rounded-full bg-gray-200" />
+                <div className="h-1.5 w-12 rounded-full bg-gray-100" />
+              </div>
+              <div className="h-px bg-gray-100 my-2" />
+              <div className="flex justify-between">
+                <div className="h-2 w-10 rounded-full bg-gray-300" />
+                <div className="h-2 w-14 rounded-full bg-gray-300" />
               </div>
             </div>
 
-            {/* Scanning line */}
+            {/* Scanning glow */}
             <motion.div
               initial={{ top: '0%' }}
               animate={{ top: ['0%', '100%', '0%'] }}
               transition={{
                 delay: 0.4,
-                duration: 3.0,
+                duration: 4.4,
                 times: [0, 0.5, 1],
                 ease: 'easeInOut',
               }}
@@ -289,15 +311,14 @@ function SceneExtract() {
               animate={{ top: ['0%', '100%', '0%'] }}
               transition={{
                 delay: 0.4,
-                duration: 3.0,
+                duration: 4.4,
                 times: [0, 0.5, 1],
                 ease: 'easeInOut',
               }}
               className="absolute left-0 right-0 h-px bg-blue-500"
             />
 
-            {/* PDF label */}
-            <div className="absolute top-2 right-2 px-1.5 py-0.5 bg-gray-900 text-white text-[8px] font-medium rounded">
+            <div className="absolute top-2 right-2 px-2 py-0.5 bg-gray-900 text-white text-[10px] font-medium rounded">
               PDF
             </div>
           </div>
@@ -308,20 +329,36 @@ function SceneExtract() {
           initial={{ opacity: 0, x: 8 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.2, duration: 0.4 }}
-          className="flex-1 min-w-0"
+          className="flex-[1.3] min-w-0"
         >
           <div className="bg-white rounded-lg border border-gray-200 overflow-hidden h-full flex flex-col shadow-sm">
-            <div className="px-4 py-2.5 border-b border-gray-100 flex items-center gap-2">
+            <div className="px-3 py-2 border-b border-gray-100 flex items-center gap-2">
               <img src={logo} alt="Quiet" className="h-4" />
               <span className="text-xs font-bold text-gray-600 uppercase tracking-wider">
-                Extracting fields
+                Extracting invoice
               </span>
-              <Loader2 className="w-3 h-3 text-blue-600 animate-spin ml-auto" />
+              <div className="ml-auto relative w-3 h-3">
+                <motion.div
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: 0 }}
+                  transition={{ delay: 4.8, duration: 0.2 }}
+                  className="absolute inset-0"
+                >
+                  <Loader2 className="w-3 h-3 text-blue-600 animate-spin" />
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 4.8, duration: 0.3 }}
+                  className="absolute inset-0"
+                >
+                  <Check className="w-3 h-3 text-blue-600" />
+                </motion.div>
+              </div>
             </div>
 
-            <div className="p-4 space-y-3 flex-1">
-              {/* Header fields */}
-              <div className="grid grid-cols-2 gap-2">
+            <div className="p-3 space-y-2 flex-1">
+              <div className="grid grid-cols-2 gap-1.5">
                 {EXTRACT_FIELDS.map((f) => (
                   <div key={f.label}>
                     <div className="text-xs text-gray-500">{f.label}</div>
@@ -346,270 +383,91 @@ function SceneExtract() {
                 ))}
               </div>
 
-              {/* Line items */}
               <div>
-                <div className="text-xs text-gray-500 mb-1.5 mt-2">Line items</div>
+                <div className="text-xs text-gray-500 mb-1 mt-1">Line items</div>
                 <div className="space-y-1">
                   {EXTRACT_LINES.map((l) => (
-                    <motion.div
-                      key={l.description}
-                      initial={{ opacity: 0, y: 4 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: l.delay, duration: 0.3 }}
-                      className="flex items-center justify-between text-sm gap-2"
-                    >
-                      <span className="text-gray-700 truncate flex-1 flex items-center gap-1">
-                        <Sparkles className="w-3 h-3 text-blue-600 flex-shrink-0" />
-                        {l.description}
-                      </span>
-                      <span className="font-medium text-gray-900">{l.amount}</span>
-                    </motion.div>
+                    <div key={l.description} className="relative h-6">
+                      <motion.div
+                        initial={{ opacity: 1 }}
+                        animate={{ opacity: 0 }}
+                        transition={{ delay: l.delay, duration: 0.15 }}
+                        className="absolute inset-0 bg-gray-100 rounded"
+                      />
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: l.delay, duration: 0.3 }}
+                        className="absolute inset-0 flex items-center justify-between text-sm gap-2 px-1"
+                      >
+                        <span className="text-gray-800 truncate flex-1 flex items-center gap-1">
+                          <Sparkles className="w-3 h-3 text-blue-600 flex-shrink-0" />
+                          {l.description}
+                        </span>
+                        <span className="font-medium text-gray-900">{l.amount}</span>
+                      </motion.div>
+                    </div>
                   ))}
                 </div>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 3.0, duration: 0.3 }}
-                  className="flex items-center justify-between text-sm font-semibold border-t border-gray-200 pt-1.5 mt-1.5"
-                >
-                  <span className="text-gray-700">Total</span>
-                  <span className="text-gray-900">$12,000.00</span>
-                </motion.div>
+                <div className="relative h-6 border-t border-gray-200 mt-1.5">
+                  <motion.div
+                    initial={{ opacity: 1 }}
+                    animate={{ opacity: 0 }}
+                    transition={{ delay: 4.8, duration: 0.15 }}
+                    className="absolute inset-0 mt-1.5 bg-gray-100 rounded"
+                  />
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 4.8, duration: 0.3 }}
+                    className="absolute inset-0 flex items-center justify-end text-sm font-semibold pt-1.5"
+                  >
+                    <span className="text-gray-900">$12,000.00</span>
+                  </motion.div>
+                </div>
               </div>
 
+              {/* Quiet AI pill */}
               <motion.div
                 initial={{ opacity: 0, y: 4 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 3.6, duration: 0.4 }}
-                className="flex items-center gap-2 pt-1"
+                transition={{ delay: 5.4, duration: 0.4 }}
+                className="flex items-center justify-center gap-2 pt-1"
               >
-                <CheckCircle2 className="w-4 h-4 text-green-500" />
-                <span className="text-xs text-gray-700">
-                  Fields extracted — every value linked to its source PDF.
-                </span>
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full">
+                  <img src={logo} alt="Quiet" className="h-3.5" />
+                  <span className="text-xs font-medium text-blue-700">
+                    Fields extracted — moving to verification
+                  </span>
+                  <Loader2 className="w-3 h-3 text-blue-600 animate-spin" />
+                </div>
               </motion.div>
             </div>
           </div>
         </motion.div>
       </div>
-    
+    </div>
   )
 }
 
 // ===== Scene 3: Vendor outreach — Quiet asks the vendor for missing tax/ACH details =====
 function SceneVerify() {
   // Phase timing
-  const T_VENDOR_OK = 0.5
-  const T_DUPE_OK = 0.9
-  const T_W9_MISSING = 1.4
-  const T_ACH_MISSING = 1.8
-  const T_REACH_OUT = 2.3
-  const T_EMAIL_DRAFT = 2.6
-  const T_EMAIL_SENT = 3.5
-  const T_REPLY = 4.5
-  const T_PARSE = 5.4
-  const T_SAVED_W9 = 6.0
-  const T_SAVED_ACH = 6.3
-  const T_ERP_SYNC = 6.7
+  const GAP = 1.2
+  const T_EMAIL_DRAFT = 0.5
+  const T_REPLY = T_EMAIL_DRAFT + GAP
+  const T_PARSE = T_REPLY + GAP
+  const T_VENDOR_PANEL = T_PARSE + GAP
+  const T_VENDOR_OK = T_VENDOR_PANEL + 0.4
+  const T_DUPE_OK = T_VENDOR_OK + 0.4
+  const T_W9_SAVED = T_DUPE_OK + 0.4
+  const T_ACH_SAVED = T_W9_SAVED + 0.3
+  const T_ERP_SYNC = T_ACH_SAVED + 0.4
 
   return (
     <div className="w-full h-full flex items-center justify-center px-6 py-2">
       <div className="w-full max-w-4xl grid grid-cols-2 gap-4">
-        {/* Left — Vendor file panel */}
-        <div className="bg-white rounded-xl border border-gray-200 p-4 shadow-sm flex flex-col">
-          <div className="flex items-center gap-2 text-xs font-bold text-gray-600 uppercase tracking-wider mb-3">
-            <img src={logo} alt="Quiet" className="h-4" />
-            Vendor file · Acme Corp
-            <Loader2 className="w-3 h-3 text-blue-600 animate-spin ml-auto" />
-          </div>
-
-          <div className="space-y-2 flex-1">
-            {/* Vendor matched */}
-            <motion.div
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: T_VENDOR_OK, duration: 0.35 }}
-              className="flex items-center gap-2.5 p-2.5 rounded-lg bg-gray-50 border border-gray-100"
-            >
-              <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
-                <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
-              </div>
-              <div className="min-w-0 flex-1">
-                <div className="text-sm font-medium text-gray-900">Vendor matched</div>
-                <div className="text-xs text-gray-500">Acme Corp · Vendor #1247</div>
-              </div>
-            </motion.div>
-
-            {/* No duplicates */}
-            <motion.div
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: T_DUPE_OK, duration: 0.35 }}
-              className="flex items-center gap-2.5 p-2.5 rounded-lg bg-gray-50 border border-gray-100"
-            >
-              <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
-                <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
-              </div>
-              <div className="min-w-0 flex-1">
-                <div className="text-sm font-medium text-gray-900">No duplicates</div>
-                <div className="text-xs text-gray-500">No matching invoice in 90 days</div>
-              </div>
-            </motion.div>
-
-            {/* W-9 missing → saved */}
-            <motion.div
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: T_W9_MISSING, duration: 0.35 }}
-              className="relative flex items-center gap-2.5 p-2.5 rounded-lg border"
-            >
-              <motion.div
-                initial={{ opacity: 1 }}
-                animate={{ opacity: 0 }}
-                transition={{ delay: T_SAVED_W9, duration: 0.3 }}
-                className="absolute inset-0 rounded-lg bg-amber-50 border border-amber-200"
-              />
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: T_SAVED_W9, duration: 0.3 }}
-                className="absolute inset-0 rounded-lg bg-green-50 border border-green-200"
-              />
-              <div className="relative w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0">
-                <motion.div
-                  initial={{ opacity: 1 }}
-                  animate={{ opacity: 0 }}
-                  transition={{ delay: T_SAVED_W9, duration: 0.3 }}
-                  className="absolute inset-0 rounded-full bg-amber-100 flex items-center justify-center"
-                >
-                  <AlertCircle className="w-3.5 h-3.5 text-amber-600" />
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: T_SAVED_W9, duration: 0.3, ease: 'backOut' }}
-                  className="absolute inset-0 rounded-full bg-green-100 flex items-center justify-center"
-                >
-                  <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
-                </motion.div>
-              </div>
-              <div className="relative min-w-0 flex-1">
-                <div className="text-sm font-medium text-gray-900">W-9 / Tax ID</div>
-                <div className="relative h-4">
-                  <motion.div
-                    initial={{ opacity: 1 }}
-                    animate={{ opacity: 0 }}
-                    transition={{ delay: T_SAVED_W9, duration: 0.3 }}
-                    className="absolute inset-0 text-xs text-amber-700"
-                  >
-                    Not on file — required for 1099
-                  </motion.div>
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: T_SAVED_W9, duration: 0.3 }}
-                    className="absolute inset-0 text-xs text-green-700 font-medium"
-                  >
-                    EIN 47-****1284 · Saved
-                  </motion.div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* ACH missing → saved */}
-            <motion.div
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: T_ACH_MISSING, duration: 0.35 }}
-              className="relative flex items-center gap-2.5 p-2.5 rounded-lg border"
-            >
-              <motion.div
-                initial={{ opacity: 1 }}
-                animate={{ opacity: 0 }}
-                transition={{ delay: T_SAVED_ACH, duration: 0.3 }}
-                className="absolute inset-0 rounded-lg bg-amber-50 border border-amber-200"
-              />
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: T_SAVED_ACH, duration: 0.3 }}
-                className="absolute inset-0 rounded-lg bg-green-50 border border-green-200"
-              />
-              <div className="relative w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0">
-                <motion.div
-                  initial={{ opacity: 1 }}
-                  animate={{ opacity: 0 }}
-                  transition={{ delay: T_SAVED_ACH, duration: 0.3 }}
-                  className="absolute inset-0 rounded-full bg-amber-100 flex items-center justify-center"
-                >
-                  <AlertCircle className="w-3.5 h-3.5 text-amber-600" />
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: T_SAVED_ACH, duration: 0.3, ease: 'backOut' }}
-                  className="absolute inset-0 rounded-full bg-green-100 flex items-center justify-center"
-                >
-                  <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
-                </motion.div>
-              </div>
-              <div className="relative min-w-0 flex-1">
-                <div className="text-sm font-medium text-gray-900">Remittance · ACH</div>
-                <div className="relative h-4">
-                  <motion.div
-                    initial={{ opacity: 1 }}
-                    animate={{ opacity: 0 }}
-                    transition={{ delay: T_SAVED_ACH, duration: 0.3 }}
-                    className="absolute inset-0 text-xs text-amber-700"
-                  >
-                    No payment instructions on file
-                  </motion.div>
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: T_SAVED_ACH, duration: 0.3 }}
-                    className="absolute inset-0 text-xs text-green-700 font-medium"
-                  >
-                    Chase ****6789 · Saved
-                  </motion.div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Bottom action bar */}
-          <div className="mt-3 relative h-7">
-            <motion.div
-              initial={{ opacity: 0, y: 4 }}
-              animate={{ opacity: [0, 1, 1, 0], y: [4, 0, 0, -4] }}
-              transition={{
-                delay: T_REACH_OUT,
-                duration: T_ERP_SYNC - T_REACH_OUT,
-                times: [0, 0.1, 0.85, 1],
-              }}
-              className="absolute inset-0 flex items-center gap-2 px-3 py-1.5 rounded-md bg-blue-50 border border-blue-100"
-            >
-              <Mail className="w-3.5 h-3.5 text-blue-600" />
-              <span className="text-xs text-blue-800">
-                Reaching out to vendor for the missing details…
-              </span>
-              <Loader2 className="w-3 h-3 text-blue-600 animate-spin ml-auto" />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 4 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: T_ERP_SYNC, duration: 0.35 }}
-              className="absolute inset-0 flex items-center gap-2 px-3 py-1.5 rounded-md bg-green-50 border border-green-100"
-            >
-              <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
-              <span className="text-xs text-green-800 font-medium">
-                Vendor record complete · synced to QuickBooks
-              </span>
-            </motion.div>
-          </div>
-        </div>
-
-        {/* Right — Email exchange */}
+        {/* Left — Email exchange */}
         <div className="flex flex-col gap-3">
           {/* Outgoing email */}
           <motion.div
@@ -618,32 +476,18 @@ function SceneVerify() {
             transition={{ delay: T_EMAIL_DRAFT, duration: 0.4 }}
             className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm"
           >
-            <div className="bg-gray-50 px-3 py-1.5 flex items-center gap-2 border-b border-gray-100">
+            <div className="bg-gray-50 px-3 py-2 flex items-center gap-2 border-b border-gray-100">
               <Send className="w-3.5 h-3.5 text-gray-500" />
-              <span className="text-xs font-medium text-gray-700">Outgoing draft</span>
-              <motion.span
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: T_EMAIL_SENT, duration: 0.25 }}
-                className="ml-auto px-2 py-0.5 bg-green-100 text-green-700 text-[10px] font-medium rounded-full"
-              >
-                Sent
-              </motion.span>
+              <span className="text-xs font-medium text-gray-700">To: ar@acmecorp.com</span>
             </div>
-            <div className="p-3 text-xs">
-              <div className="text-gray-500 mb-1">
-                To: <span className="text-gray-900 font-medium">ar@acmecorp.com</span>
+            <div className="p-3">
+              <div className="font-semibold text-sm text-gray-900 mb-1.5">
+                W-9 and remittance details
               </div>
-              <div className="font-semibold text-gray-900 mb-1.5">
-                Quick request — W-9 and remittance details
-              </div>
-              <p className="text-gray-700 leading-relaxed">
+              <p className="text-sm text-gray-700 leading-relaxed">
                 Hi! Before we process invoice #2026-0381, we need a current W-9 and your
                 preferred ACH remittance details on file. Could you reply with both? Thanks!
               </p>
-              <div className="mt-2 text-[10px] text-gray-400">
-                — Sent from ap@yourcompany.com (drafted by Quiet AI)
-              </div>
             </div>
           </motion.div>
 
@@ -654,112 +498,303 @@ function SceneVerify() {
             transition={{ delay: T_REPLY, duration: 0.4 }}
             className="bg-white rounded-xl border border-blue-200 overflow-hidden shadow-sm"
           >
-            <div className="bg-blue-50 px-3 py-1.5 flex items-center gap-2 border-b border-blue-100">
+            <div className="bg-blue-50 px-3 py-2 flex items-center gap-2 border-b border-blue-100">
               <Mail className="w-3.5 h-3.5 text-blue-600" />
-              <span className="text-xs font-medium text-blue-800">Reply from Acme Corp</span>
-              <span className="ml-auto text-[10px] text-blue-600">8 min later</span>
+              <span className="text-xs font-medium text-blue-800">From: ar@acmecorp.com</span>
             </div>
-            <div className="p-3 text-xs">
-              <div className="text-gray-500 mb-1">
-                From: <span className="text-gray-900 font-medium">ar@acmecorp.com</span>
+            <div className="p-3">
+              <div className="font-semibold text-sm text-gray-900 mb-1.5">
+                Re: W-9 and remittance details
               </div>
-              <p className="text-gray-700 leading-relaxed mb-2">
-                Of course — attached. Routing to Chase ****6789. Let me know if you need
-                anything else.
+              <p className="text-sm text-gray-700 leading-relaxed mb-2">
+                Of course, attached. Let me know if you need anything else.
               </p>
               <div className="flex flex-wrap gap-1.5">
-                <motion.span
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: T_REPLY + 0.3, duration: 0.25 }}
-                  className="inline-flex items-center gap-1 px-2 py-0.5 bg-gray-50 border border-gray-200 rounded-full text-[10px] text-gray-700"
-                >
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-gray-50 border border-gray-200 rounded-full text-xs text-gray-700">
                   <FileText className="w-2.5 h-2.5" />
                   W-9_AcmeCorp_2026.pdf
-                </motion.span>
-                <motion.span
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: T_REPLY + 0.45, duration: 0.25 }}
-                  className="inline-flex items-center gap-1 px-2 py-0.5 bg-gray-50 border border-gray-200 rounded-full text-[10px] text-gray-700"
-                >
+                </span>
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-gray-50 border border-gray-200 rounded-full text-xs text-gray-700">
                   <FileText className="w-2.5 h-2.5" />
                   ACH_remittance.pdf
-                </motion.span>
+                </span>
               </div>
             </div>
           </motion.div>
 
-          {/* Parsed pill */}
+          {/* Quiet AI parsed pill */}
           <motion.div
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: T_PARSE, duration: 0.35 }}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-blue-50 border border-blue-100"
+            className="flex items-center justify-center"
           >
-            <Sparkles className="w-3.5 h-3.5 text-blue-600" />
-            <span className="text-xs text-blue-900">
-              Parsed attachments — pulled EIN and bank routing automatically.
-            </span>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full">
+              <img src={logo} alt="Quiet" className="h-3.5" />
+              <span className="text-xs font-medium text-blue-700">
+                Quiet AI pulled tax &amp; payment info from attachments
+              </span>
+              <div className="relative w-3 h-3">
+                <motion.div
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: 0 }}
+                  transition={{ delay: T_VENDOR_PANEL, duration: 0.2 }}
+                  className="absolute inset-0"
+                >
+                  <Loader2 className="w-3 h-3 text-blue-600 animate-spin" />
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: T_VENDOR_PANEL, duration: 0.3 }}
+                  className="absolute inset-0"
+                >
+                  <Check className="w-3 h-3 text-blue-600" />
+                </motion.div>
+              </div>
+            </div>
           </motion.div>
         </div>
+
+        {/* Right — Vendor file panel */}
+        <motion.div
+          initial={{ opacity: 0, x: 10 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: T_VENDOR_PANEL, duration: 0.4 }}
+        >
+          <div className="bg-white rounded-xl border border-gray-200 p-4 shadow-sm flex flex-col h-full">
+            <div className="flex items-center gap-2 text-xs font-bold text-gray-600 uppercase tracking-wider mb-3">
+              <img src={logo} alt="Quiet" className="h-4" />
+              Vendor File Updated
+            </div>
+
+            <div className="space-y-2 flex-1">
+              {/* Vendor matched */}
+              <motion.div
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: T_VENDOR_OK, duration: 0.35 }}
+                className="flex items-center gap-2.5 p-2.5 rounded-lg bg-gray-50 border border-gray-100"
+              >
+                <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="text-sm font-medium text-gray-900">Vendor matched</div>
+                  <div className="text-xs text-gray-500">Acme Corp</div>
+                </div>
+              </motion.div>
+
+              {/* No duplicates */}
+              <motion.div
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: T_DUPE_OK, duration: 0.35 }}
+                className="flex items-center gap-2.5 p-2.5 rounded-lg bg-gray-50 border border-gray-100"
+              >
+                <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="text-sm font-medium text-gray-900">No duplicates</div>
+                  <div className="text-xs text-gray-500">Invoice number and contents are unique</div>
+                </div>
+              </motion.div>
+
+              {/* W-9 saved */}
+              <motion.div
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: T_W9_SAVED, duration: 0.35 }}
+                className="flex items-center gap-2.5 p-2.5 rounded-lg bg-green-50 border border-green-200"
+              >
+                <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="text-sm font-medium text-gray-900">W-9 / Tax ID</div>
+                  <div className="text-xs text-green-700 font-medium">EIN 47-****1284 · Saved</div>
+                </div>
+              </motion.div>
+
+              {/* ACH saved */}
+              <motion.div
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: T_ACH_SAVED, duration: 0.35 }}
+                className="flex items-center gap-2.5 p-2.5 rounded-lg bg-green-50 border border-green-200"
+              >
+                <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="text-sm font-medium text-gray-900">Remittance · ACH</div>
+                  <div className="text-xs text-green-700 font-medium">Chase ****6789 · Saved</div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Bottom status */}
+            <motion.div
+              initial={{ opacity: 0, y: 4 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: T_ERP_SYNC, duration: 0.35 }}
+              className="mt-3 flex items-center gap-2 px-3 py-1.5 rounded-md bg-green-50 border border-green-100"
+            >
+              <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
+              <span className="text-xs text-green-800 font-medium">
+                Synced to QuickBooks
+              </span>
+            </motion.div>
+          </div>
+        </motion.div>
       </div>
     </div>
   )
 }
 
 // ===== Scene 4: GL Coding =====
+// Phase 1: Consulting GL
+const INV_RULE1_FLASH = 0.6
+const INV_LINE1_FLASH = INV_RULE1_FLASH + 0.6
+const INV_GL1_ASSIGN = INV_LINE1_FLASH + 0.6
+// Phase 2: Travel GL
+const INV_RULE2_FLASH = INV_GL1_ASSIGN + 0.8
+const INV_LINE2_FLASH = INV_RULE2_FLASH + 0.6
+const INV_GL2_ASSIGN = INV_LINE2_FLASH + 0.6
+// Phase 3: Department
+const INV_RULE3_FLASH = INV_GL2_ASSIGN + 0.8
+const INV_DEPT_LINE_FLASH = INV_RULE3_FLASH + 0.6
+const INV_DEPT_ASSIGN = INV_DEPT_LINE_FLASH + 0.6
+// Wrap-up
+const INV_TOTAL_DELAY = INV_DEPT_ASSIGN + 0.5
+const INV_PILL_DELAY = INV_TOTAL_DELAY + 0.5
+
+const flashBgInv = (delay: number, duration = 1.6) => ({
+  initial: { backgroundColor: 'rgba(59,130,246,0)' },
+  animate: {
+    backgroundColor: [
+      'rgba(59,130,246,0)',
+      'rgba(59,130,246,0.15)',
+      'rgba(59,130,246,0.15)',
+      'rgba(59,130,246,0)',
+    ],
+    color: [
+      'rgb(55,65,81)',
+      'rgb(29,78,216)',
+      'rgb(29,78,216)',
+      'rgb(55,65,81)',
+    ],
+  },
+  transition: {
+    delay,
+    duration,
+    times: [0, 0.08, 0.75, 1] as number[],
+    ease: 'easeInOut' as const,
+  },
+})
+
 const CODE_LINES = [
   {
     description: 'Strategy consulting — Feb 2026',
     amount: '$5,000.00',
     gl: '6200 — Professional Services',
-    dept: 'Operations',
-    delay: 0.8,
+    dept: 'Finance',
+    lineFlashDelay: INV_LINE1_FLASH,
+    glDelay: INV_GL1_ASSIGN,
+    deptLineFlash: INV_DEPT_LINE_FLASH,
+    deptDelay: INV_DEPT_ASSIGN,
   },
   {
     description: 'Process optimization review',
     amount: '$4,500.00',
     gl: '6200 — Professional Services',
-    dept: 'Operations',
-    delay: 1.6,
+    dept: 'Finance',
+    lineFlashDelay: INV_LINE1_FLASH,
+    glDelay: INV_GL1_ASSIGN + 0.15,
+    deptLineFlash: INV_DEPT_LINE_FLASH,
+    deptDelay: INV_DEPT_ASSIGN + 0.15,
   },
   {
     description: 'Travel & expenses',
     amount: '$2,500.00',
     gl: '6500 — Travel & Entertainment',
     dept: 'Operations',
-    delay: 2.4,
+    lineFlashDelay: INV_LINE2_FLASH,
+    glDelay: INV_GL2_ASSIGN,
+    deptLineFlash: INV_DEPT_LINE_FLASH,
+    deptDelay: INV_DEPT_ASSIGN + 0.3,
   },
 ]
 
 function SceneCode() {
   return (
-    <div className="w-full h-full flex items-stretch gap-5 px-6 py-2">
-        {/* Left — Rules */}
+    <div className="w-full h-full flex items-center justify-center px-6">
+      <div className="w-full flex items-stretch gap-4">
+        {/* Left — Source + Coding rules */}
         <motion.div
           initial={{ opacity: 0, x: -8 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.4 }}
-          className="w-72 flex-shrink-0"
+          className="w-60 flex-shrink-0"
         >
-          <div className="bg-white rounded-xl border border-gray-200 p-4 shadow-sm h-full">
-            <div className="text-xs font-bold text-gray-600 uppercase tracking-wider mb-3">
+          <div className="bg-white rounded-xl border border-gray-200 p-3 shadow-sm h-full">
+            <div className="text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">
               Your coding rules
             </div>
-            <div className="space-y-2 text-xs">
-              <div className="p-2 rounded-md bg-gray-50 border border-gray-100">
-                <span className="text-gray-500">Consulting & advisory →</span>{' '}
-                <span className="font-semibold text-blue-700">6200</span>
-              </div>
-              <div className="p-2 rounded-md bg-gray-50 border border-gray-100">
-                <span className="text-gray-500">Travel-related →</span>{' '}
-                <span className="font-semibold text-blue-700">6500</span>
-              </div>
-              <div className="p-2 rounded-md bg-gray-50 border border-gray-100">
-                <span className="text-gray-500">All Acme Corp →</span>{' '}
-                <span className="font-semibold text-blue-700">Operations</span>
-              </div>
+            <div className="space-y-1 text-xs">
+              {(() => {
+                const flash = flashBgInv(INV_RULE1_FLASH)
+                return (
+                  <motion.div
+                    initial={flash.initial}
+                    animate={flash.animate}
+                    transition={flash.transition}
+                    className="rounded-md p-1.5 -mx-1"
+                  >
+                    <p className="text-gray-700">
+                      Code consulting &amp; advisory to{' '}
+                      <span className="font-semibold text-blue-700">6200 — Professional Services</span>
+                    </p>
+                  </motion.div>
+                )
+              })()}
+
+              {(() => {
+                const flash = flashBgInv(INV_RULE2_FLASH)
+                return (
+                  <motion.div
+                    initial={flash.initial}
+                    animate={flash.animate}
+                    transition={flash.transition}
+                    className="rounded-md p-1.5 -mx-1"
+                  >
+                    <p className="text-gray-700">
+                      Code travel to{' '}
+                      <span className="font-semibold text-blue-700">6500 — Travel &amp; Entertainment</span>
+                    </p>
+                  </motion.div>
+                )
+              })()}
+
+              {(() => {
+                const flash = flashBgInv(INV_RULE3_FLASH)
+                return (
+                  <motion.div
+                    initial={flash.initial}
+                    animate={flash.animate}
+                    transition={flash.transition}
+                    className="rounded-md p-1.5 -mx-1"
+                  >
+                    <p className="text-gray-700">
+                      Code consulting to{' '}
+                      <span className="font-semibold text-blue-700">Finance</span>.
+                      Travel to{' '}
+                      <span className="font-semibold text-blue-700">Operations</span>
+                    </p>
+                  </motion.div>
+                )
+              })()}
             </div>
           </div>
         </motion.div>
@@ -771,108 +806,134 @@ function SceneCode() {
           transition={{ duration: 0.4 }}
           className="flex-1 min-w-0"
         >
-          <div className="bg-white rounded-lg border border-gray-200 overflow-hidden h-full flex flex-col shadow-sm">
-            <div className="px-4 py-2 border-b border-gray-100 flex items-center justify-between">
+          <div className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm h-full flex flex-col">
+            <div className="px-3 py-2 border-b border-gray-100 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <div className="text-sm font-semibold text-gray-900">Invoice #2026-0381</div>
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-gray-100 rounded-full text-xs font-medium text-gray-700">
-                  <Building2 className="w-3 h-3" />
-                  Acme Corp
-                </span>
+                <FileText className="w-4 h-4 text-gray-500" />
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.3, duration: 0.3 }}
+                  className="text-sm font-semibold text-gray-900"
+                >
+                  Invoice #2026-0381
+                </motion.div>
               </div>
-              <Loader2 className="w-3.5 h-3.5 text-blue-600 animate-spin" />
+              <div className="relative w-3.5 h-3.5">
+                <motion.div
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: 0 }}
+                  transition={{ delay: INV_PILL_DELAY, duration: 0.2 }}
+                  className="absolute inset-0"
+                >
+                  <Loader2 className="w-3.5 h-3.5 text-blue-600 animate-spin" />
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: INV_PILL_DELAY, duration: 0.3 }}
+                  className="absolute inset-0"
+                >
+                  <Check className="w-3.5 h-3.5 text-blue-600" />
+                </motion.div>
+              </div>
             </div>
 
-            <div className="p-4 space-y-3 flex-1">
+            <div className="p-3 space-y-2 flex-1 flex flex-col">
               <div className="grid grid-cols-12 gap-2 text-xs font-medium text-gray-500 px-1">
-                <div className="col-span-6">Line item</div>
-                <div className="col-span-3">Code</div>
+                <div className="col-span-4">Line item</div>
+                <div className="col-span-3">GL Account</div>
+                <div className="col-span-2">Dept</div>
                 <div className="col-span-3 text-right">Amount</div>
               </div>
-              {CODE_LINES.map((l) => (
-                <div key={l.description} className="space-y-1">
-                  <motion.div
-                    initial={{ backgroundColor: 'rgba(59,130,246,0)' }}
-                    animate={{
-                      backgroundColor: [
-                        'rgba(59,130,246,0)',
-                        'rgba(59,130,246,0.15)',
-                        'rgba(59,130,246,0.15)',
-                        'rgba(59,130,246,0)',
-                      ],
-                    }}
-                    transition={{
-                      delay: l.delay - 0.2,
-                      duration: 1.8,
-                      times: [0, 0.1, 0.7, 1],
-                    }}
-                    className="grid grid-cols-12 gap-2 text-sm items-center px-1 py-1 rounded"
+              {CODE_LINES.map((l) => {
+                const lineFlash = flashBgInv(l.lineFlashDelay, 1.2)
+                const deptCellFlash = flashBgInv(l.deptLineFlash, 1.2)
+                return (
+                  <div
+                    key={l.description}
+                    className="grid grid-cols-12 gap-2 items-center px-1 py-0.5 rounded"
                   >
-                    <div className="col-span-6 text-gray-900 truncate">{l.description}</div>
-                    <div className="col-span-3 relative">
+                    {/* Description — flashes when rule highlights */}
+                    <motion.div
+                      initial={lineFlash.initial}
+                      animate={lineFlash.animate}
+                      transition={lineFlash.transition}
+                      className="col-span-4 text-gray-900 truncate text-sm rounded px-0.5"
+                    >
+                      {l.description}
+                    </motion.div>
+                    {/* GL Account */}
+                    <div className="col-span-3 relative h-4">
                       <motion.div
                         initial={{ opacity: 1 }}
                         animate={{ opacity: 0 }}
-                        transition={{ delay: l.delay, duration: 0.15 }}
-                        className="absolute inset-0 flex items-center"
+                        transition={{ delay: l.glDelay, duration: 0.15 }}
+                        className="absolute inset-0 flex items-center text-xs text-gray-300"
                       >
-                        <span className="text-xs text-gray-300">—</span>
+                        —
                       </motion.div>
                       <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        transition={{ delay: l.delay, duration: 0.3 }}
-                        className="flex items-center gap-1 text-xs"
+                        transition={{ delay: l.glDelay, duration: 0.3 }}
+                        className="absolute inset-0 flex items-center gap-1 text-xs"
                       >
                         <Sparkles className="w-3 h-3 text-blue-600 flex-shrink-0" />
-                        <span className="text-blue-700 font-medium">{l.gl.split(' — ')[0]}</span>
+                        <span className="text-blue-700 font-medium">{l.gl}</span>
                       </motion.div>
                     </div>
-                    <div className="col-span-3 text-right font-medium text-gray-900">
+                    {/* Dept — flashes during dept rule */}
+                    <motion.div
+                      initial={deptCellFlash.initial}
+                      animate={deptCellFlash.animate}
+                      transition={deptCellFlash.transition}
+                      className="col-span-2 relative h-4 rounded"
+                    >
+                      <motion.div
+                        initial={{ opacity: 1 }}
+                        animate={{ opacity: 0 }}
+                        transition={{ delay: l.deptDelay, duration: 0.15 }}
+                        className="absolute inset-0 flex items-center text-xs text-gray-300"
+                      >
+                        —
+                      </motion.div>
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: l.deptDelay, duration: 0.3 }}
+                        className="absolute inset-0 flex items-center gap-1 text-xs"
+                      >
+                        <Sparkles className="w-3 h-3 text-blue-600 flex-shrink-0" />
+                        <span className="text-blue-700 font-medium">{l.dept}</span>
+                      </motion.div>
+                    </motion.div>
+                    <div className="col-span-3 text-right font-medium text-gray-900 text-sm">
                       {l.amount}
                     </div>
-                  </motion.div>
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: l.delay + 0.15, duration: 0.3 }}
-                    className="pl-1 text-xs text-gray-500"
-                  >
-                    {l.gl} · Dept: {l.dept}
-                  </motion.div>
-                </div>
-              ))}
-
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 3.0, duration: 0.3 }}
-                className="grid grid-cols-12 gap-2 pt-2 border-t border-gray-200 px-1"
-              >
-                <div className="col-span-9 text-right text-sm font-medium text-gray-700">
-                  Total
-                </div>
-                <div className="col-span-3 text-right text-sm font-semibold text-gray-900">
-                  $12,000.00
-                </div>
-              </motion.div>
+                  </div>
+                )
+              })}
 
               <motion.div
                 initial={{ opacity: 0, y: 4 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 3.4, duration: 0.4 }}
-                className="flex items-center gap-2"
+                transition={{ delay: INV_PILL_DELAY, duration: 0.4 }}
+                className="flex items-center justify-center gap-2 pt-4 mt-auto"
               >
-                <CheckCircle2 className="w-4 h-4 text-green-500" />
-                <span className="text-xs text-gray-700">
-                  All line items coded per your rules.
-                </span>
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full">
+                  <img src={logo} alt="Quiet" className="h-3.5" />
+                  <span className="text-xs font-medium text-blue-700">
+                    All line items coded per your rules
+                  </span>
+                  <Check className="w-3 h-3 text-blue-600" />
+                </div>
               </motion.div>
             </div>
           </div>
         </motion.div>
       </div>
-    
+    </div>
   )
 }
 
@@ -880,120 +941,87 @@ function SceneCode() {
 function SceneApprove() {
   return (
     <div className="w-full h-full flex items-center justify-center px-6">
-        <div className="w-full max-w-3xl space-y-3">
-          {/* Top row: rule check */}
+      <div className="w-full max-w-3xl space-y-3">
+        {/* Top: Invoice approval rules card */}
+        <motion.div
+          initial={{ opacity: 0, y: -6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="bg-white border border-gray-200 rounded-xl p-3 shadow-sm"
+        >
+          <div className="text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">
+            Invoice approval rules
+          </div>
+          <p className="text-sm text-gray-700">
+            If total &gt; <span className="font-semibold text-gray-900">$10,000</span>,{' '}
+            <span className="font-semibold text-blue-700">kendall@yourcompany.com</span> must approve
+          </p>
+        </motion.div>
+
+        {/* Email exchange */}
+        <div className="grid grid-cols-2 gap-3">
+          {/* Outgoing */}
           <motion.div
-            initial={{ opacity: 0, y: -6 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="flex items-center gap-3 px-4 py-2.5 bg-white border border-gray-200 rounded-xl shadow-sm"
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 2.2, duration: 0.4 }}
+            className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm"
           >
-            <img src={logo} alt="Quiet" className="h-4" />
-            <span className="text-sm text-gray-700">
-              Invoice total{' '}
-              <span className="font-semibold text-gray-900">$12,000</span> exceeds your{' '}
-              <span className="font-semibold text-gray-900">$10,000</span> approval threshold —
-              routing to{' '}
-              <span className="font-semibold text-blue-700">kendall@yourcompany.com</span>
-            </span>
-            <Loader2 className="w-3.5 h-3.5 text-blue-600 animate-spin ml-auto" />
+            <div className="bg-gray-100 px-3 py-2 flex items-center gap-2">
+              <Send className="w-3.5 h-3.5 text-gray-500" />
+              <span className="text-sm font-medium text-gray-700">To: kendall@yourcompany.com</span>
+            </div>
+            <div className="p-3 text-sm space-y-2.5">
+              <div className="font-semibold text-gray-900">Approval needed — Acme Corp $12,000</div>
+              <p className="text-gray-700 leading-relaxed">
+                Kendall, the attached invoice requires your approval before we can schedule payment.
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-gray-50 border border-gray-200 rounded-full text-[10px] text-gray-600">
+                  <Paperclip className="w-2.5 h-2.5" />
+                  INV-2026-0381.pdf
+                </span>
+              </div>
+            </div>
           </motion.div>
 
-          {/* Email exchange */}
-          <div className="grid grid-cols-2 gap-3">
-            {/* Sent email */}
-            <motion.div
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.8, duration: 0.4 }}
-              className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm"
-            >
-              <div className="bg-gray-100 px-3 py-1.5 flex items-center gap-2">
-                <Send className="w-3.5 h-3.5 text-gray-500" />
-                <span className="text-xs font-medium text-gray-700">Outgoing</span>
-                <motion.span
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 2.0, duration: 0.3 }}
-                  className="ml-auto px-2 py-0.5 bg-green-100 text-green-700 text-xs font-medium rounded-full"
-                >
-                  Sent
-                </motion.span>
-              </div>
-              <div className="p-3 text-xs">
-                <div className="mb-1.5">
-                  <span className="text-gray-500">To: </span>
-                  <span className="text-gray-900 font-medium">kendall@yourcompany.com</span>
-                </div>
-                <div className="font-semibold text-gray-900 mb-1.5">
-                  Approval needed — Acme Corp $12,000
-                </div>
-                <p className="text-gray-700 leading-relaxed">
-                  Hi Kendall, Acme Corp's February invoice (#2026-0381) is ready to pay at
-                  $12,000. Total exceeds your $10,000 threshold — please review and approve.
-                </p>
-                <div className="mt-2">
-                  <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-gray-50 border border-gray-200 rounded-full text-[10px] text-gray-600">
-                    <Paperclip className="w-2.5 h-2.5" />
-                    INV-2026-0381.pdf
-                  </span>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Reply */}
-            <motion.div
-              initial={{ opacity: 0, x: 10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 3.2, duration: 0.4 }}
-              className="bg-white border border-blue-200 rounded-xl overflow-hidden shadow-sm"
-            >
-              <div className="bg-blue-50 px-3 py-1.5 flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-blue-600" />
-                <span className="text-xs font-medium text-blue-800">Reply</span>
-                <span className="ml-auto text-[10px] text-blue-600">2 min later</span>
-              </div>
-              <div className="p-3 text-xs">
-                <div className="mb-1.5">
-                  <span className="text-gray-500">From: </span>
-                  <span className="text-gray-900 font-medium">kendall@yourcompany.com</span>
-                </div>
-                <div className="font-semibold text-gray-900 mb-1.5">
-                  Re: Approval needed — Acme Corp $12,000
-                </div>
-                <p className="text-gray-700 leading-relaxed">
-                  Looks good. Approved.
-                </p>
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 4.0, duration: 0.3 }}
-                  className="mt-2 inline-flex items-center gap-1.5 px-2 py-1 bg-green-50 border border-green-200 rounded-md"
-                >
-                  <CheckCircle2 className="w-3 h-3 text-green-600" />
-                  <span className="text-[10px] font-medium text-green-800">
-                    Quiet parsed: APPROVED
-                  </span>
-                </motion.div>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Status pill */}
+          {/* Reply */}
           <motion.div
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 4.6, duration: 0.4 }}
-            className="flex items-center gap-2 px-3 py-2 rounded-lg bg-green-50 border border-green-100"
+            initial={{ opacity: 0, x: 10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 4.0, duration: 0.4 }}
+            className="bg-white border border-blue-200 rounded-xl overflow-hidden shadow-sm"
           >
-            <CheckCircle2 className="w-4 h-4 text-green-600" />
-            <span className="text-sm text-green-800 font-medium">
-              Approval recorded · Invoice moved to Ready to Pay
-            </span>
+            <div className="bg-blue-50 px-3 py-2 flex items-center gap-2">
+              <Mail className="w-3.5 h-3.5 text-blue-600" />
+              <span className="text-sm font-medium text-blue-800">From: kendall@yourcompany.com</span>
+            </div>
+            <div className="p-3 text-sm space-y-2.5">
+              <div className="font-semibold text-gray-900">Re: Approval needed — Acme Corp $12,000</div>
+              <p className="text-gray-700 leading-relaxed">
+                Approved.
+              </p>
+            </div>
           </motion.div>
         </div>
+
+        {/* Quiet AI status pill */}
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 5.4, duration: 0.4 }}
+          className="flex items-center justify-center gap-2"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full">
+            <img src={logo} alt="Quiet" className="h-3.5" />
+            <span className="text-xs font-medium text-blue-700">
+              Approval recorded. Staging payment
+            </span>
+            <Loader2 className="w-3 h-3 text-blue-600 animate-spin" />
+          </div>
+        </motion.div>
       </div>
-    
+    </div>
   )
 }
 
@@ -1088,14 +1116,14 @@ function SceneStage() {
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 2.0, duration: 0.4 }}
-                className="flex items-start gap-2 px-3 py-2 rounded-lg bg-blue-50 border border-blue-100"
+                className="flex items-center justify-center"
               >
-                <ShieldCheck className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
-                <span className="text-xs text-blue-900">
-                  <span className="font-semibold">Nothing has moved yet.</span> Quiet drafted
-                  this payment — your one-click approval is the only thing standing between
-                  here and money out.
-                </span>
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full">
+                  <img src={logo} alt="Quiet" className="h-3.5" />
+                  <span className="text-xs font-medium text-blue-700">
+                    Nothing has moved yet. Your one-click approval sends the payment
+                  </span>
+                </div>
               </motion.div>
             </div>
           </div>
@@ -1133,8 +1161,22 @@ function ScenePay() {
                     'rgb(37,99,235)',
                     'rgb(37,99,235)',
                     'rgb(29,78,216)',
-                    'rgb(22,163,74)',
-                    'rgb(22,163,74)',
+                    'rgb(255,255,255)',
+                    'rgb(255,255,255)',
+                  ],
+                  color: [
+                    'rgb(255,255,255)',
+                    'rgb(255,255,255)',
+                    'rgb(255,255,255)',
+                    'rgb(37,99,235)',
+                    'rgb(37,99,235)',
+                  ],
+                  borderColor: [
+                    'rgba(37,99,235,0)',
+                    'rgba(37,99,235,0)',
+                    'rgba(37,99,235,0)',
+                    'rgba(37,99,235,1)',
+                    'rgba(37,99,235,1)',
                   ],
                 }}
                 transition={{
@@ -1142,7 +1184,7 @@ function ScenePay() {
                   duration: 1.0,
                   times: [0, 0.4, 0.6, 0.8, 1],
                 }}
-                className="relative inline-flex items-center gap-2 px-10 py-3.5 rounded-lg text-white font-semibold shadow-lg"
+                className="relative inline-flex items-center gap-2 px-10 py-3.5 rounded-lg font-semibold shadow-lg border"
               >
                 <motion.span
                   initial={{ opacity: 1 }}
@@ -1162,49 +1204,42 @@ function ScenePay() {
                   Sent
                 </motion.span>
                 <span className="opacity-0">Pay $12,000.00</span>
-              </motion.div>
 
-              {/* Cursor */}
-              <motion.div
-                initial={{ x: 140, y: -40, opacity: 0 }}
-                animate={{
-                  x: [140, 30, 0, 0],
-                  y: [-40, -10, 4, 4],
-                  opacity: [0, 1, 1, 0],
-                }}
-                transition={{
-                  delay: 0.4,
-                  duration: 2.5,
-                  times: [0, 0.5, 0.7, 1],
-                  ease: 'easeInOut',
-                }}
-                className="absolute pointer-events-none"
-              >
-                <MousePointer2
-                  className="w-6 h-6 text-gray-900"
-                  fill="white"
-                  strokeWidth={1.5}
-                />
-              </motion.div>
+                {/* Cursor — positioned relative to button */}
+                <motion.div
+                  initial={{ x: 120, y: -50, opacity: 0 }}
+                  animate={{
+                    x: [120, 10, 0, 0],
+                    y: [-50, -5, 0, 0],
+                    opacity: [0, 1, 1, 0],
+                  }}
+                  transition={{
+                    delay: 0.4,
+                    duration: 2.5,
+                    times: [0, 0.5, 0.7, 1],
+                    ease: 'easeInOut',
+                  }}
+                  className="absolute top-1/2 left-1/2 pointer-events-none"
+                >
+                  <MousePointer2
+                    className="w-6 h-6 text-gray-900"
+                    fill="white"
+                    strokeWidth={1.5}
+                  />
+                </motion.div>
 
-              {/* Click ripple */}
-              <motion.div
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: [0, 1.6, 2.2], opacity: [0, 0.4, 0] }}
-                transition={{ delay: 1.8, duration: 0.7, times: [0, 0.3, 1] }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full border-2 border-blue-500"
-              />
+                {/* Click ripple — centered on button */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <motion.div
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: [0, 1.6, 2.2], opacity: [0, 0.4, 0] }}
+                    transition={{ delay: 1.8, duration: 0.7, times: [0, 0.3, 1] }}
+                    className="w-32 h-32 rounded-full border-2 border-blue-500"
+                  />
+                </div>
+              </motion.div>
             </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 2.4, duration: 0.4 }}
-              className="mt-6 flex items-center justify-center gap-2 text-sm text-gray-600"
-            >
-              <Clock className="w-4 h-4 text-gray-400" />
-              <span>Approved in under a second.</span>
-            </motion.div>
           </div>
         </div>
       </div>
@@ -1213,151 +1248,148 @@ function ScenePay() {
 }
 
 // ===== Scene 8: ERP + vendor sync =====
+const SYNC_PILL_CHECK = 3.6
+
 function SceneSync() {
   return (
     <div className="w-full h-full flex items-center justify-center px-6">
-        <div className="w-full max-w-3xl space-y-3">
-          {/* Top: header */}
+      <div className="w-full max-w-4xl space-y-3">
+        {/* Top: Quiet AI pill with spinner → checkmark */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
+          className="flex items-center justify-center"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full">
+            <img src={logo} alt="Quiet" className="h-3.5" />
+            <span className="text-xs font-medium text-blue-700">
+              Quiet AI is closing the loop
+            </span>
+            <div className="relative w-3 h-3">
+              <motion.div
+                initial={{ opacity: 1 }}
+                animate={{ opacity: 0 }}
+                transition={{ delay: SYNC_PILL_CHECK, duration: 0.2 }}
+                className="absolute inset-0"
+              >
+                <Loader2 className="w-3 h-3 text-blue-600 animate-spin" />
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: SYNC_PILL_CHECK, duration: 0.3 }}
+                className="absolute inset-0"
+              >
+                <Check className="w-3 h-3 text-blue-600" />
+              </motion.div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Three result cards */}
+        <div className="grid grid-cols-3 gap-3">
+          {/* Vendor confirmation */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.4 }}
-            className="text-center"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.4 }}
+            className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-50 border border-green-200 rounded-full">
-              <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
-              <span className="text-xs font-medium text-green-800">
-                Payment sent — closing the loop
-              </span>
+            <div className="bg-gray-50 px-3 py-2 border-b border-gray-100 flex items-center gap-2">
+              <Send className="w-3.5 h-3.5 text-gray-500" />
+              <span className="text-sm font-medium text-gray-700">To: ar@acmecorp.com</span>
+            </div>
+            <div className="p-3 text-sm space-y-2">
+              <div className="font-semibold text-gray-900">
+                Payment confirmation — $12,000
+              </div>
+              <p className="text-gray-700 leading-relaxed">
+                Hi there, invoice #2026-0381 has been paid in full via ACH. Funds should arrive within 1 business day.
+              </p>
             </div>
           </motion.div>
 
-          {/* Three result cards */}
-          <div className="grid grid-cols-3 gap-3">
-            {/* Vendor confirmation */}
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.4 }}
-              className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm"
-            >
-              <div className="bg-gray-50 px-3 py-2 border-b border-gray-100 flex items-center gap-2">
-                <Send className="w-3.5 h-3.5 text-gray-500" />
-                <span className="text-xs font-semibold text-gray-700">Vendor notified</span>
-              </div>
-              <div className="p-3 text-xs">
-                <div className="text-gray-500 mb-1">To: ar@acmecorp.com</div>
-                <div className="font-semibold text-gray-900 mb-1.5">
-                  Payment confirmation — $12,000
-                </div>
-                <p className="text-gray-700 leading-relaxed text-[11px]">
-                  Hi — invoice #2026-0381 has been paid in full via ACH. Funds should arrive
-                  within 1 business day.
-                </p>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1.0, duration: 0.3 }}
-                  className="mt-2 inline-flex items-center gap-1 px-1.5 py-0.5 bg-green-100 text-green-700 text-[10px] font-medium rounded-full"
-                >
-                  <CheckCircle2 className="w-2.5 h-2.5" /> Sent
-                </motion.div>
-              </div>
-            </motion.div>
-
-            {/* ERP sync */}
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.0, duration: 0.4 }}
-              className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm"
-            >
-              <div className="bg-gray-50 px-3 py-2 border-b border-gray-100 flex items-center gap-2">
-                <img src={qboLogo} alt="QuickBooks" className="w-3.5 h-3.5" />
-                <span className="text-xs font-semibold text-gray-700">ERP synced</span>
-              </div>
-              <div className="p-3 text-xs space-y-1.5">
-                <div className="flex items-center justify-between">
-                  <span className="text-gray-500">Bill</span>
-                  <span className="font-medium text-gray-900">#2026-0381</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-gray-500">Status</span>
-                  <span className="font-medium text-gray-900">Paid</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-gray-500">GL</span>
-                  <span className="font-medium text-gray-900">6200 / 6500</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-gray-500">Amount</span>
-                  <span className="font-medium text-gray-900">$12,000.00</span>
-                </div>
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 1.6, duration: 0.3 }}
-                  className="mt-1 inline-flex items-center gap-1 px-1.5 py-0.5 bg-blue-100 text-blue-700 text-[10px] font-medium rounded-full"
-                >
-                  <CheckCircle2 className="w-2.5 h-2.5" /> Booked
-                </motion.div>
-              </div>
-            </motion.div>
-
-            {/* Audit log */}
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.5, duration: 0.4 }}
-              className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm"
-            >
-              <div className="bg-gray-50 px-3 py-2 border-b border-gray-100 flex items-center gap-2">
-                <ShieldCheck className="w-3.5 h-3.5 text-gray-500" />
-                <span className="text-xs font-semibold text-gray-700">Audit trail</span>
-              </div>
-              <div className="p-3 space-y-1 text-[10px]">
-                {[
-                  '9:42 AM · Email received',
-                  '9:42 AM · Fields extracted',
-                  '9:42 AM · Vendor verified',
-                  '9:42 AM · GL coded',
-                  '9:43 AM · Approval requested',
-                  '9:45 AM · Kendall approved',
-                  '9:45 AM · You sent payment',
-                  '9:45 AM · ERP synced',
-                ].map((line, i) => (
-                  <motion.div
-                    key={line}
-                    initial={{ opacity: 0, x: -4 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 1.8 + i * 0.1, duration: 0.2 }}
-                    className="flex items-center gap-1.5 text-gray-700"
-                  >
-                    <div className="w-1 h-1 rounded-full bg-blue-400 flex-shrink-0" />
-                    {line}
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Closing line */}
+          {/* ERP sync */}
           <motion.div
-            initial={{ opacity: 0, y: 6 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 3.8, duration: 0.5 }}
-            className="flex items-center justify-center gap-2 text-sm text-gray-700"
+            transition={{ delay: 1.0, duration: 0.4 }}
+            className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm"
           >
-            <Clock className="w-4 h-4 text-gray-400" />
-            <span>
-              Start to finish in{' '}
-              <span className="font-semibold text-gray-900">about 3 minutes</span> — most of
-              that waiting on Kendall.
-            </span>
+            <div className="bg-gray-50 px-3 py-2 border-b border-gray-100 flex items-center gap-2">
+              <img src={logo} alt="Quiet" className="h-4" />
+              <span className="text-sm font-semibold text-gray-700">ERP synced</span>
+            </div>
+            <div className="p-3 text-sm space-y-1.5">
+              <div className="flex items-center justify-between">
+                <span className="text-gray-500">Bill</span>
+                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-green-50 border border-green-200 rounded-full text-sm font-medium text-green-800">
+                  <img src={qboLogo} alt="QBO" className="w-3 h-3" />
+                  #2026-0381
+                </span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-gray-500">Amount</span>
+                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-green-50 border border-green-200 rounded-full text-sm font-medium text-green-800">
+                  <img src={qboLogo} alt="QBO" className="w-3 h-3" />
+                  $12,000.00
+                </span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Audit trail */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.5, duration: 0.4 }}
+            className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm"
+          >
+            <div className="bg-gray-50 px-3 py-2 border-b border-gray-100 flex items-center gap-2">
+              <ShieldCheck className="w-3.5 h-3.5 text-gray-500" />
+              <span className="text-sm font-semibold text-gray-700">Audit trail</span>
+            </div>
+            <div className="p-3 space-y-1 text-xs">
+              {[
+                '9:42 AM · Email received',
+                '9:42 AM · Fields extracted',
+                '9:42 AM · Vendor verified',
+                '9:42 AM · GL coded',
+                '9:43 AM · Approval requested',
+                '9:45 AM · Kendall approved',
+                '9:45 AM · You sent payment',
+                '9:45 AM · ERP synced',
+              ].map((line, i) => (
+                <motion.div
+                  key={line}
+                  initial={{ opacity: 0, x: -4 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 1.8 + i * 0.08, duration: 0.2 }}
+                  className="flex items-center gap-1.5 text-gray-700"
+                >
+                  <div className="w-1 h-1 rounded-full bg-blue-400 flex-shrink-0" />
+                  {line}
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         </div>
+
+        {/* Closing line */}
+        <motion.div
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 3.8, duration: 0.5 }}
+          className="flex items-center justify-center gap-2 text-sm text-gray-700"
+        >
+          <Clock className="w-4 h-4 text-gray-400" />
+          <span>
+            Done at machine speed. The slowest part is waiting on human approvals.
+          </span>
+        </motion.div>
       </div>
-    
+    </div>
   )
 }
 
