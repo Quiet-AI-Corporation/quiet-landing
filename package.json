@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && node scripts/prerender.mjs",
     "preview": "vite preview",
     "encrypt-pricing": "staticrypt src/pages/pricing-boxbot.html -d . --template src/pages/pricing-password-template.html --template-title 'Quiet Pricing' --template-instructions 'Enter the password shared with you to view pricing.' --template-button 'View pricing' --template-placeholder 'Password' && cp pricing-boxbot.html public/pricing-boxbot.html",
     "encrypt-pricing-burkland": "staticrypt src/pages/pricing-burkland.html -d . --template src/pages/pricing-password-template.html --template-title 'Quiet Pricing' --template-instructions 'Enter the password shared with you to view pricing.' --template-button 'View pricing' --template-placeholder 'Password' && cp pricing-burkland.html public/pricing-burkland.html"
@@ -28,6 +28,7 @@
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
+    "puppeteer": "^25.1.0",
     "staticrypt": "^3.5.4",
     "tailwindcss": "^3.4.16",
     "typescript": "^5.7.2",

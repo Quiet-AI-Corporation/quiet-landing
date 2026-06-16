@@ -4,25 +4,25 @@ const columns = [
   {
     heading: 'Product',
     links: [
-      { label: 'Accounts Payable', href: '#accounts-payable' },
-      { label: 'PO Lifecycle', href: '#po-lifecycle' },
-      { label: '3 Way Match', href: '#three-way-match' },
-      { label: 'Cash Management', href: '#cash-management' },
-      { label: 'Integrations', href: '#integrations' },
+      { label: 'Accounts Payable', href: '/accounts-payable' },
+      { label: 'PO Lifecycle', href: '/po-lifecycle' },
+      { label: '3 Way Match', href: '/three-way-match' },
+      { label: 'Cash Management', href: '/cash-management' },
+      { label: 'Integrations', href: '/#integrations' },
     ],
   },
   {
     heading: 'Resources',
     links: [
-      { label: 'Pricing', href: '#pricing' },
-      { label: 'Setup', href: '#setup' },
+      { label: 'Pricing', href: '/pricing' },
+      { label: 'Setup', href: '/#setup' },
       { label: 'Contact', href: 'https://quietai.fillout.com/book' },
     ],
   },
   {
     heading: 'Company',
     links: [
-      { label: 'About', href: '#about' },
+      { label: 'About', href: '/about' },
       { label: 'Privacy Policy', href: '/privacy-policy.html' },
       { label: 'Terms of Service', href: '/eula.html' },
     ],
@@ -37,7 +37,7 @@ function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
           {/* Brand column */}
           <div className="col-span-2 md:col-span-1">
-            <a href="#" className="flex items-center gap-2 mb-4">
+            <a href="/" className="flex items-center gap-2 mb-4">
               <img src={logo} alt="Quiet" className="h-8" />
               <span className="text-white font-semibold text-lg">Quiet AI</span>
             </a>

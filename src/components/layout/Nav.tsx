@@ -15,11 +15,11 @@ import slackLogo from '@/assets/images/slack_logo.png'
 const APP_URL = 'https://tryquiet.app'
 
 const capabilities = [
-  { icon: FileText, title: 'Accounts Payable', caption: 'No humans needed until it\'s time to pay', href: '#accounts-payable' },
-  { icon: ClipboardList, title: 'PO Lifecycle Management', caption: 'AI turns quotes into POs and gets them approved', href: '#po-lifecycle' },
-  { icon: CheckSquare, title: '3 Way Match', caption: 'Touchless match between receipts, invoices, and purchase orders', href: '#three-way-match' },
-  { icon: DollarSign, title: 'Cash Management', caption: 'A complete picture of money in and money out', href: '#cash-management' },
-  { icon: ShieldAlert, title: 'Fraud & Duplicate Prevention', caption: 'Every invoice verified before it gets paid', href: '#fraud-prevention' },
+  { icon: FileText, title: 'Accounts Payable', caption: 'No humans needed until it\'s time to pay', href: '/accounts-payable' },
+  { icon: ClipboardList, title: 'PO Lifecycle Management', caption: 'AI turns quotes into POs and gets them approved', href: '/po-lifecycle' },
+  { icon: CheckSquare, title: '3 Way Match', caption: 'Touchless match between receipts, invoices, and purchase orders', href: '/three-way-match' },
+  { icon: DollarSign, title: 'Cash Management', caption: 'A complete picture of money in and money out', href: '/cash-management' },
+  { icon: ShieldAlert, title: 'Fraud & Duplicate Prevention', caption: 'Every invoice verified before it gets paid', href: '/fraud-prevention' },
 ]
 
 const integrations = {
@@ -53,7 +53,7 @@ function Nav() {
     <nav className="sticky top-0 z-50">
       <div className="bg-white/90 backdrop-blur border-b border-gray-100 relative z-10">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="#" className="flex items-center gap-2">
+          <a href="/" className="flex items-center gap-2">
             <img src={logo} alt="Quiet" className="h-8" />
             <span className="font-semibold text-lg text-gray-900">Quiet AI</span>
           </a>
@@ -76,8 +76,8 @@ function Nav() {
                 <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${openDropdown === id ? 'rotate-180' : ''}`} />
               </button>
             ))}
-            <a href="#setup" className="text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-colors px-3 py-2 rounded-lg cursor-pointer">Setup</a>
-            <a href="#pricing" className="text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-colors px-3 py-2 rounded-lg cursor-pointer">Pricing</a>
+            <a href="/#setup" className="text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-colors px-3 py-2 rounded-lg cursor-pointer">Setup</a>
+            <a href="/pricing" className="text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-colors px-3 py-2 rounded-lg cursor-pointer">Pricing</a>
           </div>
 
           <div className="flex items-center gap-3">
@@ -141,7 +141,7 @@ function Nav() {
                         {integrations.communication.map(({ title, caption, logoType }) => (
                           <a
                             key={title}
-                            href="#integrations"
+                            href="/#integrations"
                             className="group flex gap-3 p-3 rounded-xl border border-gray-100 hover:border-blue-300 hover:bg-blue-50/40 transition-all duration-150 cursor-pointer"
                           >
                             <div className="mt-0.5 flex-shrink-0 h-9 w-9 rounded-lg bg-gray-50 flex items-center justify-center relative overflow-hidden">
@@ -174,7 +174,7 @@ function Nav() {
                         {integrations.erp.map(({ logo: logoSrc, title }) => (
                           <a
                             key={title}
-                            href="#integrations"
+                            href="/#integrations"
                             className="group flex flex-col items-center gap-2 p-4 rounded-xl border border-gray-100 hover:border-blue-300 hover:bg-blue-50/40 transition-all duration-150 cursor-pointer"
                           >
                             <img src={logoSrc} alt={title} className="h-8 w-8 object-contain" />

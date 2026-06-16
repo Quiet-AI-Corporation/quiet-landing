@@ -349,7 +349,7 @@ function WorkflowDemoPage() {
                 </a>
               </Button>
               <Button variant="outline" size="lg" asChild>
-                <a href="#">Back to home</a>
+                <a href="/">Back to home</a>
               </Button>
             </div>
           </div>

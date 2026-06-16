@@ -1,57 +1,76 @@
 import { useState } from 'react'
-import { Check, ChevronDown, Package, MessageSquare } from 'lucide-react'
+import { Check, ChevronDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import Nav from '@/components/layout/Nav'
 import Footer from '@/components/layout/Footer'
 
-const tiers = [
+interface Feature {
+  text: string
+  detail?: string
+}
+
+const tiers: {
+  label: string
+  name: string
+  desc: string
+  features: Feature[]
+  cta: string
+  ctaHref: string
+  highlight: boolean
+  badge?: string
+}[] = [
   {
-    label: 'Core Plan',
+    label: 'AP Only',
     name: 'Autonomous AP Inbox',
     desc: 'Everything you need to automate accounts payable.',
     features: [
-      'Invoices processed & coded',
-      'Guided onboarding',
-      'Direct line to founder support',
-      'Unlimited vendor onboarding',
-      'Unlimited stakeholder comms',
-      'Fraud intelligence',
-      'Native ACH payments',
-      'ERP sync included',
-      '1099 data dump',
+      { text: 'Invoices processed, coded, and paid', detail: 'Per-invoice overage fee beyond included volume' },
+      { text: 'Guided onboarding' },
+      { text: 'Unlimited vendors onboarded' },
+      { text: 'Fraud intelligence' },
+      { text: 'ERP sync included' },
+      { text: 'Reporting', detail: 'AP aging, cash flow forecast, vendor spend breakdown' },
+      { text: 'Unlimited seats', detail: 'Users, approvers, and reviewers — no per-seat fees' },
+      { text: 'Direct line to founder support' },
+      { text: 'Unlimited stakeholder comms' },
+      { text: 'Native ACH payments' },
+      { text: '1099 data dump' },
     ],
-    cta: 'Get Pricing',
+    cta: 'Get Started',
     ctaHref: 'https://quietai.fillout.com/book',
     highlight: false,
   },
   {
     label: 'Procurement Plan',
-    name: 'AP Inbox + Purchase Orders',
-    desc: 'Everything in Core, plus full purchasing automation.',
+    name: 'Autonomous AP, POs, Receipts',
+    desc: 'Everything in AP Only, plus full purchasing automation.',
     badge: 'Most complete',
     features: [
-      'Everything in Core',
-      'Purchase orders',
-      'Automatic matching of line items to PO items & PO sync to ERP',
-      'Automated 1099 generation (full creation, not just the data dump)',
+      { text: 'Everything in AP Only' },
+      { text: 'Invoices processed, coded, 3-way-matched, and paid', detail: 'Per-invoice overage fee beyond included volume' },
+      { text: 'Unlimited POs and Receipts', detail: 'Includes 3-way matching and sync to ERP' },
+      { text: 'Order tracking', detail: 'Track orders from placement through delivery' },
+      { text: 'Slack integration for PO creation', detail: 'Create purchase orders directly from Slack' },
+      { text: 'Automated 1099 generation', detail: 'Full creation — not just the data dump' },
     ],
-    cta: 'Get Pricing',
+    cta: 'Get Started',
     ctaHref: 'https://quietai.fillout.com/book',
     highlight: true,
   },
-]
-
-const addons = [
   {
-    icon: Package,
-    name: 'Order Tracking Module',
-    desc: 'Track orders from placement through delivery.',
-  },
-  {
-    icon: MessageSquare,
-    name: 'Slack Integration for PO Creation',
-    desc: 'Create purchase orders directly from Slack.',
+    label: 'Enterprise',
+    name: 'Procurement + Custom Integrations',
+    desc: 'Everything in Procurement, plus tailored integrations for your stack.',
+    features: [
+      { text: 'Everything in Procurement' },
+      { text: 'Custom ERP & system integrations' },
+      { text: 'Dedicated implementation support' },
+      { text: 'Custom workflows & approval chains' },
+    ],
+    cta: 'Talk to Us',
+    ctaHref: 'https://quietai.fillout.com/book',
+    highlight: false,
   },
 ]
 
@@ -60,7 +79,7 @@ const faqs = [
   { q: 'What counts as an invoice?', a: 'Each unique invoice document processed through Quiet AI counts as one invoice, regardless of line items.' },
   { q: 'Can I change plans?', a: 'Upgrade or downgrade anytime. Changes take effect on your next billing cycle.' },
   { q: 'Is there a free trial?', a: 'Yes. No credit card required.' },
-  { q: 'What if I exceed my volume?', a: 'We\'ll let you know and help you move to the right plan. We never stop processing your invoices.' },
+  { q: 'What if I exceed my included volume?', a: 'You\'ll pay a simple per-invoice overage fee. We never stop processing your invoices — you\'ll just see the overage on your next bill.' },
 ]
 
 function PricingPage() {
@@ -75,17 +94,17 @@ function PricingPage() {
         <section className="py-20 px-6">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight">
-              Simple, flat pricing
+              Simple, predictable pricing
             </h1>
             <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
-              Two plans. No per-invoice fees. Add what you need.
+              A flat monthly fee with simple per-invoice pricing after. Pick the plan that fits.
             </p>
           </div>
         </section>
 
         {/* Tiers */}
         <section className="pb-20 px-6">
-          <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6">
+          <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-6">
             {tiers.map((tier) => (
               <div
                 key={tier.name}
@@ -107,7 +126,12 @@ function PricingPage() {
                   {tier.features.map((f, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
                       <Check className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
-                      {f}
+                      <div>
+                        <span>{f.text}</span>
+                        {f.detail && (
+                          <p className="text-xs text-gray-400 mt-0.5">{f.detail}</p>
+                        )}
+                      </div>
                     </li>
                   ))}
                 </ul>
@@ -120,26 +144,6 @@ function PricingPage() {
                 </Button>
               </div>
             ))}
-          </div>
-        </section>
-
-        {/* Add-ons */}
-        <section className="pb-20 px-6">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 text-center mb-8">Add-ons</h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              {addons.map((addon) => (
-                <div key={addon.name} className="rounded-2xl border border-gray-200 p-6 flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0">
-                    <addon.icon className="w-5 h-5 text-gray-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900">{addon.name}</h3>
-                    <p className="text-sm text-gray-500 mt-1">{addon.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
         </section>
 
