@@ -396,7 +396,7 @@ function AccountsPayablePage() {
                 <a href="https://quietai.fillout.com/book">Get a Demo</a>
               </Button>
               <Button asChild variant="outline" size="lg" className="border-gray-600 text-white hover:bg-gray-800">
-                <a href="#demo">Watch the Demo</a>
+                <a href="/demo">Watch the Demo</a>
               </Button>
             </div>
           </div>
