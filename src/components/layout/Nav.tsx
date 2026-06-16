@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react'
-import { ChevronDown, FileText, ClipboardList, CheckSquare, DollarSign } from 'lucide-react'
+import { ChevronDown, FileText, ClipboardList, CheckSquare, DollarSign, ShieldAlert } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import logo from '@/assets/images/logo.png'
@@ -19,6 +19,7 @@ const capabilities = [
   { icon: ClipboardList, title: 'PO Lifecycle Management', caption: 'AI turns quotes into POs and gets them approved', href: '#po-lifecycle' },
   { icon: CheckSquare, title: '3 Way Match', caption: 'Touchless match between receipts, invoices, and purchase orders', href: '#three-way-match' },
   { icon: DollarSign, title: 'Cash Management', caption: 'A complete picture of money in and money out', href: '#cash-management' },
+  { icon: ShieldAlert, title: 'Fraud & Duplicate Prevention', caption: 'Every invoice verified before it gets paid', href: '#fraud-prevention' },
 ]
 
 const integrations = {
