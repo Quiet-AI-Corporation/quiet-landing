@@ -8,6 +8,7 @@ import Footer from '@/components/layout/Footer'
 interface Feature {
   text: string
   detail?: string
+  beta?: boolean
 }
 
 const tiers: {
@@ -52,7 +53,8 @@ const tiers: {
       { text: 'Unlimited POs and Receipts', detail: 'Includes 3-way matching and sync to ERP' },
       { text: 'Order tracking', detail: 'Track orders from placement through delivery' },
       { text: 'Slack integration for PO creation', detail: 'Create purchase orders directly from Slack' },
-      { text: 'Automated 1099 generation', detail: 'Full creation — not just the data dump' },
+      { text: 'Automated 1099 generation', detail: 'Full creation, not just the data dump' },
+      { text: 'Cash management', detail: 'Real-time cash position, payment scheduling, and forecasting', beta: true },
     ],
     cta: 'Get Started',
     ctaHref: 'https://quietai.fillout.com/book',
@@ -127,7 +129,10 @@ function PricingPage() {
                     <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
                       <Check className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
                       <div>
-                        <span>{f.text}</span>
+                        <span>
+                          {f.text}
+                          {f.beta && <span className="ml-1.5 inline-flex px-1.5 py-0.5 bg-amber-100 text-amber-700 text-[10px] font-semibold uppercase rounded">Beta</span>}
+                        </span>
                         {f.detail && (
                           <p className="text-xs text-gray-400 mt-0.5">{f.detail}</p>
                         )}
