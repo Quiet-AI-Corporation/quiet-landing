@@ -11,6 +11,7 @@ import PricingPage from './pages/PricingPage'
 import SetupPage from './pages/SetupPage'
 import IntegrationsPage from './pages/IntegrationsPage'
 import AboutPage from './pages/AboutPage'
+import FraudPreventionPage from './pages/FraudPreventionPage'
 import './index.css'
 
 function readRoute(): string {
@@ -38,6 +39,7 @@ function Root() {
   if (route === 'po-lifecycle') return <POLifecyclePage />
   if (route === 'three-way-match') return <ThreeWayMatchPage />
   if (route === 'cash-management') return <CashManagementPage />
+  if (route === 'fraud-prevention') return <FraudPreventionPage />
   if (route === 'pricing') return <PricingPage />
   if (route === 'setup') return <SetupPage />
   if (route === 'integrations') return <IntegrationsPage />
