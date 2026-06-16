@@ -16,16 +16,16 @@ import logo from '@/assets/images/logo.png'
 const APP_URL = 'https://tryquiet.app'
 
 const steps = [
-  { icon: Mail, title: 'Intake', desc: 'Invoices arrive by email. Quiet reads every line, even handwritten ones.' },
+  { icon: Mail, title: 'Intake', desc: 'Invoices arrive by email. Quiet AI reads every line, even handwritten ones.' },
   { icon: FileSearch, title: 'Extract & Code', desc: 'AI pulls header, line items, tax, and maps to the right GL codes automatically.' },
   { icon: GitCompare, title: 'Match', desc: '3-way match against PO and receipt. Discrepancies get flagged, not ignored.' },
   { icon: MessageSquare, title: 'Route for Approval', desc: 'The right approver gets a Slack message or email. One click to approve.' },
-  { icon: CreditCard, title: 'Schedule Payment', desc: 'Approved invoices queue for payment on your terms — ACH, check, or card.' },
+  { icon: CreditCard, title: 'Schedule Payment', desc: 'Approved invoices queue for payment on your terms: ACH, check, or card.' },
   { icon: RefreshCw, title: 'Sync to ERP', desc: 'Bill, payment, and journal entry post to QuickBooks, NetSuite, Xero, or Sage.' },
 ]
 
 const differentiators = [
-  { icon: Brain, title: 'Learns your GL', desc: 'Quiet studies your historical coding patterns and gets smarter every invoice.' },
+  { icon: Brain, title: 'Learns your GL', desc: 'Quiet AI studies your historical coding patterns and gets smarter every invoice.' },
   { icon: Inbox, title: 'Works in your inbox', desc: 'Vendors keep emailing you. No portal migration, no vendor onboarding.' },
   { icon: UserCheck, title: 'Human-in-the-loop', desc: 'AI does the work. You approve the results. Nothing sends without your OK.' },
 ]
@@ -318,7 +318,7 @@ function AccountsPayablePage() {
             <div className="grid md:grid-cols-3 gap-6 text-left">
               {[
                 'Every invoice means data entry, coding, matching, chasing approvals, and cutting checks',
-                'One AP clerk costs $55K+/year — and still can\'t keep up with volume spikes',
+                'One AP clerk costs $55K+/year and still can\'t keep up with volume spikes',
                 'Late payments damage vendor relationships and cost you early-pay discounts',
               ].map((text, i) => (
                 <div key={i} className="bg-white rounded-xl p-6 border border-gray-200">
@@ -329,11 +329,11 @@ function AccountsPayablePage() {
           </div>
         </section>
 
-        {/* How Quiet Handles AP */}
+        {/* How Quiet AI Handles AP */}
         <section className="py-20 px-6">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-gray-900 text-center mb-4">End-to-end, no humans needed until it's time to pay</h2>
-            <p className="text-gray-500 text-center mb-12 max-w-2xl mx-auto">Six steps from inbox to books — all handled by AI</p>
+            <p className="text-gray-500 text-center mb-12 max-w-2xl mx-auto">Six steps from inbox to books, all handled by AI</p>
             <div className="space-y-6">
               {steps.map((step, i) => (
                 <div key={i} className="flex items-start gap-5 group">
@@ -353,7 +353,7 @@ function AccountsPayablePage() {
           </div>
         </section>
 
-        {/* What Makes Quiet Different */}
+        {/* What Makes Quiet AI Different */}
         <section className="py-16 px-6 bg-gray-50">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-gray-900 text-center mb-4">Not another portal. An actual AI teammate.</h2>
@@ -374,7 +374,7 @@ function AccountsPayablePage() {
         {/* By the Numbers */}
         <section className="py-16 px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-10">What AP looks like with Quiet</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-10">What AP looks like with Quiet AI</h2>
             <div className="grid md:grid-cols-3 gap-8">
               {stats.map((s, i) => (
                 <div key={i}>
@@ -390,7 +390,7 @@ function AccountsPayablePage() {
         <section className="py-16 px-6 bg-gray-900 text-white">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-4">See it handle your invoices</h2>
-            <p className="text-gray-400 mb-8">Watch Quiet process a real invoice in under 30 seconds.</p>
+            <p className="text-gray-400 mb-8">Watch Quiet AI process a real invoice in under 30 seconds.</p>
             <div className="flex items-center justify-center gap-4">
               <Button asChild size="lg" className="bg-white text-gray-900 hover:bg-gray-100">
                 <a href="https://quietai.fillout.com/book">Get a Demo</a>

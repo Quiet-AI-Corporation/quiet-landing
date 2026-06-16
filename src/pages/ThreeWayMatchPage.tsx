@@ -5,7 +5,7 @@ import Nav from '@/components/layout/Nav'
 import Footer from '@/components/layout/Footer'
 
 const steps = [
-  { icon: Search, title: 'Auto-Match', desc: 'Invoice arrives. Quiet finds the PO and receiving record instantly — by PO number, vendor, or line items.' },
+  { icon: Search, title: 'Auto-Match', desc: 'Invoice arrives. Quiet AI finds the PO and receiving record instantly by PO number, vendor, or line items.' },
   { icon: Layers, title: 'Line-Level Comparison', desc: 'Quantities, unit prices, tax, and totals compared line by line. Not just header amounts.' },
   { icon: SlidersHorizontal, title: 'Tolerance Rules', desc: 'You set the thresholds. $5 variance? Auto-approve. $500? Route to manager.' },
   { icon: AlertCircle, title: 'Exception Workflow', desc: 'Mismatches get flagged with the specific discrepancy. AI drafts a vendor inquiry email for you to send.' },
@@ -36,7 +36,7 @@ function ThreeWayMatchPage() {
               Touchless matching. Zero tolerance for overpayment.
             </h1>
             <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
-              AI matches invoices to purchase orders and receiving reports automatically — and flags what doesn't line up.
+              AI matches invoices to purchase orders and receiving reports automatically, and flags what doesn't line up.
             </p>
             <div className="mt-8 flex items-center justify-center gap-4">
               <Button asChild size="lg">
@@ -56,7 +56,7 @@ function ThreeWayMatchPage() {
             <div className="grid md:grid-cols-3 gap-6 text-left">
               {[
                 'Your team spends hours cross-referencing invoices, POs, and receipts in spreadsheets',
-                'Mismatches slip through and you overpay — or vendors escalate because you underpay',
+                'Mismatches slip through and you overpay, or vendors escalate because you underpay',
                 'Exceptions pile up with no clear workflow for resolution',
               ].map((text, i) => (
                 <div key={i} className="bg-white rounded-xl p-6 border border-gray-200">
@@ -67,7 +67,7 @@ function ThreeWayMatchPage() {
           </div>
         </section>
 
-        {/* How Quiet Matches */}
+        {/* How Quiet AI Matches */}
         <section className="py-20 px-6">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-gray-900 text-center mb-4">Every invoice checked. Every discrepancy surfaced.</h2>
@@ -94,7 +94,7 @@ function ThreeWayMatchPage() {
         {/* What Gets Caught */}
         <section className="py-16 px-6 bg-gray-50">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 text-center mb-10">Discrepancies Quiet catches that humans miss</h2>
+            <h2 className="text-3xl font-bold text-gray-900 text-center mb-10">Discrepancies Quiet AI catches that humans miss</h2>
             <div className="grid md:grid-cols-3 gap-4">
               {catches.map((c, i) => (
                 <div key={i} className="bg-white rounded-xl p-5 border border-gray-200 flex items-start gap-3">
@@ -112,7 +112,7 @@ function ThreeWayMatchPage() {
         <section className="py-16 px-6 bg-gray-900 text-white">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-4">See how matching works on your invoices</h2>
-            <p className="text-gray-400 mb-8">Watch Quiet match a real invoice in seconds.</p>
+            <p className="text-gray-400 mb-8">Watch Quiet AI match a real invoice in seconds.</p>
             <Button asChild size="lg" className="bg-white text-gray-900 hover:bg-gray-100">
               <a href="https://quietai.fillout.com/book">Get a Demo</a>
             </Button>
