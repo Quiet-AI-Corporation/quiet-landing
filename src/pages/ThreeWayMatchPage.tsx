@@ -1,8 +1,17 @@
-import { Search, Layers, SlidersHorizontal, AlertCircle, Copy, TrendingUp, DollarSign, Calculator, FileWarning, Receipt } from 'lucide-react'
+import { useState, useEffect, useRef, useCallback } from 'react'
+import { Search, Layers, SlidersHorizontal, AlertCircle, Copy, TrendingUp, DollarSign, Calculator, FileWarning, Receipt, Play, Pause } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { TooltipProvider } from '@/components/ui/tooltip'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
 import Nav from '@/components/layout/Nav'
 import Footer from '@/components/layout/Footer'
+import ThreeWayMatchAnimation from '@/components/landing/ThreeWayMatchAnimation'
+
+const CYCLE_DURATION = 14
 
 const steps = [
   { icon: Search, title: 'Auto-Match', desc: 'Invoice arrives. Quiet AI finds the PO and receiving record instantly by PO number, vendor, or line items.' },
@@ -21,6 +30,32 @@ const catches = [
 ]
 
 function ThreeWayMatchPage() {
+  const [looping, setLooping] = useState(true)
+  const [animKey, setAnimKey] = useState(0)
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const loopingRef = useRef(looping)
+
+  useEffect(() => {
+    loopingRef.current = looping
+  }, [looping])
+
+  const clearTimer = useCallback(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+      timeoutRef.current = null
+    }
+  }, [])
+
+  useEffect(() => {
+    timeoutRef.current = setTimeout(() => {
+      if (loopingRef.current) {
+        setAnimKey((k) => k + 1)
+      }
+    }, CYCLE_DURATION * 1000)
+
+    return clearTimer
+  }, [animKey, clearTimer])
+
   return (
     <TooltipProvider>
       <div className="min-h-screen bg-white">
@@ -45,6 +80,50 @@ function ThreeWayMatchPage() {
               <Button variant="outline" size="lg" onClick={() => { window.location.href = 'https://tryquiet.app' }}>
                 Sign In
               </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* 3-Way Match Animation */}
+        <section className="px-6 pb-16">
+          <div className="max-w-5xl mx-auto">
+            <div className="relative rounded-2xl border border-gray-200 bg-white shadow-xl overflow-hidden">
+              {/* Progress bar */}
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gray-100 z-10">
+                <div
+                  key={animKey}
+                  className="h-full bg-blue-500"
+                  style={{
+                    width: '100%',
+                    transform: 'scaleX(0)',
+                    transformOrigin: 'left',
+                    animation: `progress-fill ${CYCLE_DURATION}s linear forwards`,
+                  }}
+                />
+              </div>
+
+              {/* Pause / Play button */}
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button
+                    onClick={() => setLooping((l) => !l)}
+                    className="absolute top-3 right-3 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-white/60 hover:bg-white/90 text-gray-400 hover:text-gray-700 transition-all backdrop-blur-sm"
+                  >
+                    {looping ? (
+                      <Pause className="w-3.5 h-3.5" />
+                    ) : (
+                      <Play className="w-3.5 h-3.5" />
+                    )}
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent side="left">
+                  {looping ? 'Pause animation after one cycle' : 'Loop animation'}
+                </TooltipContent>
+              </Tooltip>
+
+              <div className="p-6 pt-12 h-[580px]" key={animKey}>
+                <ThreeWayMatchAnimation />
+              </div>
             </div>
           </div>
         </section>
@@ -120,6 +199,13 @@ function ThreeWayMatchPage() {
         </section>
 
         <Footer />
+
+        <style>{`
+          @keyframes progress-fill {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+          }
+        `}</style>
       </div>
     </TooltipProvider>
   )
