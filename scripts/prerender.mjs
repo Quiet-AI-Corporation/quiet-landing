@@ -69,7 +69,10 @@ async function prerender() {
   const port = server.address().port
   const origin = `http://localhost:${port}`
 
-  const browser = await puppeteer.launch({ headless: true })
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  })
   const page = await browser.newPage()
 
   for (const route of routes) {
