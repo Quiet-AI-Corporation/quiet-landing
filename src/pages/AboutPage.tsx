@@ -26,7 +26,7 @@ function AboutPage() {
               We're building the finance team of the future
             </h1>
             <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
-              Quiet AI automates the work that keeps finance teams stuck in spreadsheets — so they can focus on decisions that matter.
+              Quiet AI automates the work that keeps finance teams stuck in spreadsheets, so they can focus on decisions that matter.
             </p>
           </div>
         </section>
@@ -37,13 +37,13 @@ function AboutPage() {
             <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">The problem we're solving</h2>
             <div className="space-y-4 text-gray-700 leading-relaxed">
               <p>
-                Every company has an accounts payable process. Almost none of them work well.
+                Every company buys things. Almost none of them have a good system for it.
               </p>
               <p>
-                Invoices arrive by email, get re-keyed into spreadsheets, routed by Slack DM, and paid by someone remembering to log into the bank. It's 2026 and this is still how most companies run.
+                Vendor quotes arrive by email and get re-keyed into spreadsheets. Purchase orders are drafted manually, routed for approval over Slack DMs, and tracked in someone's head. Invoices pile up, nobody matches them to what was actually received, and payments only go out because someone remembered to log into the bank. It's 2026 and this is still how most companies run procurement.
               </p>
               <p>
-                We started Quiet because we believe AI is finally good enough to handle this end to end — not as a tool that helps humans do the same work faster, but as a teammate that does the work itself.
+                We started Quiet AI because we believe AI is finally good enough to handle this end to end. Not as a tool that helps humans do the same work faster, but as a teammate that owns the entire flow from quote to payment.
               </p>
             </div>
           </div>
@@ -64,6 +64,16 @@ function AboutPage() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Our Team */}
+        <section className="py-20 px-6 bg-gray-50">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Our team</h2>
+            <p className="text-gray-700 leading-relaxed text-center">
+              Our team's experience spans data research at Stanford, building financial tooling for small businesses, enterprise-grade cybersecurity product development, and being heads of finance at small businesses. We've seen the problem from both sides of the table and built Quiet AI to solve it.
+            </p>
           </div>
         </section>
 
