@@ -1,21 +1,24 @@
 import logo from '@/assets/images/logo.png'
 
-const columns = [
+const columns: { heading: string; links: { label: string; href: string; badge?: string }[] }[] = [
   {
     heading: 'Product',
     links: [
+      { label: 'Purchasing', href: '/purchasing' },
       { label: 'Accounts Payable', href: '/accounts-payable' },
       { label: 'PO Lifecycle', href: '/po-lifecycle' },
       { label: '3 Way Match', href: '/three-way-match' },
       { label: 'Cash Management', href: '/cash-management' },
-      { label: 'Integrations', href: '/#integrations' },
+      { label: 'Demand Planning', href: '/demand-planning', badge: 'Coming soon' },
+      { label: 'Sales Analytics', href: '/sales-analytics', badge: 'Coming soon' },
+      { label: 'Integrations', href: '/purchasing#integrations' },
     ],
   },
   {
     heading: 'Resources',
     links: [
       { label: 'Pricing', href: '/pricing' },
-      { label: 'Setup', href: '/#setup' },
+      { label: 'Setup', href: '/purchasing#setup' },
       { label: 'Contact', href: 'https://quietai.fillout.com/book' },
     ],
   },
@@ -60,6 +63,7 @@ function Footer() {
                       className="text-sm text-gray-400 hover:text-white transition-colors"
                     >
                       {link.label}
+                      {link.badge && <span className="ml-1.5 inline-flex px-1.5 py-0.5 bg-gray-800 text-gray-400 text-[10px] font-semibold uppercase rounded align-middle">{link.badge}</span>}
                     </a>
                   </li>
                 ))}

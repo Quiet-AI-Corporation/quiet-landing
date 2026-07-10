@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
 import LandingPage from './pages/LandingPage'
+import PurchasingPage from './pages/PurchasingPage'
+import DemandPlanningPage from './pages/DemandPlanningPage'
+import SalesAnalyticsPage from './pages/SalesAnalyticsPage'
 import WorkflowDemoPage from './pages/WorkflowDemoPage'
 import PurchasingDemoPage from './pages/PurchasingDemoPage'
 import AccountsPayablePage from './pages/AccountsPayablePage'
@@ -15,8 +18,20 @@ import './index.css'
 /** SEO metadata per route */
 const routeMeta: Record<string, { title: string; description: string }> = {
   '/': {
+    title: 'Quiet AI | Agentic AI for Your Back Office',
+    description: 'Pre-built AI software, adapted to your back office. Quiet AI runs AP, purchasing, and cash management for small and medium businesses — it learns how you already work.',
+  },
+  '/purchasing': {
     title: 'Purchasing on Autopilot | Quiet AI',
     description: 'Quiet AI automates accounts payable from vendor quote to booked bill. AI-powered purchasing automation that handles invoices, POs, GL coding, and payments — you just approve.',
+  },
+  '/demand-planning': {
+    title: 'Demand Planning | Quiet AI',
+    description: 'AI-driven demand forecasting that turns sales history and open orders into purchasing recommendations. Coming soon from Quiet AI.',
+  },
+  '/sales-analytics': {
+    title: 'Sales Analytics | Quiet AI',
+    description: 'AI-powered revenue and margin analytics on top of the data Quiet AI already syncs from your ERP. Coming soon.',
   },
   '/accounts-payable': {
     title: 'Accounts Payable Automation | Quiet AI',
@@ -111,11 +126,12 @@ function Root() {
       // Skip external links, new-tab links, and non-left-clicks
       if (href.startsWith('http') || href.startsWith('mailto:') || anchor.target === '_blank') return
       if (e.metaKey || e.ctrlKey || e.shiftKey) return
-      // Handle hash-only links on the current page (e.g. /#integrations)
-      if (href.startsWith('/#')) {
+      // Handle hash links (e.g. /#integrations, /purchasing#setup)
+      if (href.startsWith('/') && href.includes('#') && !href.endsWith('.html')) {
         e.preventDefault()
-        const id = href.slice(2)
-        if (route !== '/') {
+        const [path, id] = href.split('#')
+        const targetPath = path || '/'
+        if (route !== targetPath) {
           window.history.pushState(null, '', href)
           window.dispatchEvent(new PopStateEvent('popstate'))
         } else {
@@ -136,6 +152,9 @@ function Root() {
   }, [route])
 
   switch (route) {
+    case '/purchasing': return <PurchasingPage />
+    case '/demand-planning': return <DemandPlanningPage />
+    case '/sales-analytics': return <SalesAnalyticsPage />
     case '/demo': return <WorkflowDemoPage />
     case '/purchasing-demo': return <PurchasingDemoPage />
     case '/accounts-payable': return <AccountsPayablePage />

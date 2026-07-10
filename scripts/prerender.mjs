@@ -15,6 +15,9 @@ const DIST = new URL('../dist', import.meta.url).pathname
 
 const routes = [
   '/',
+  '/purchasing',
+  '/demand-planning',
+  '/sales-analytics',
   '/accounts-payable',
   '/po-lifecycle',
   '/three-way-match',

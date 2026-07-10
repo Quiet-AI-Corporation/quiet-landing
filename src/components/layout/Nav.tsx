@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react'
-import { ChevronDown, FileText, ClipboardList, CheckSquare, DollarSign, ShieldAlert } from 'lucide-react'
+import { ChevronDown, FileText, ClipboardList, CheckSquare, DollarSign, ShieldAlert, ShoppingCart, TrendingUp, BarChart3 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import logo from '@/assets/images/logo.png'
@@ -15,11 +15,14 @@ import slackLogo from '@/assets/images/slack_logo.png'
 const APP_URL = 'https://tryquiet.app'
 
 const capabilities = [
+  { icon: ShoppingCart, title: 'Purchasing', caption: 'From purchase request to booked bill, on autopilot', href: '/purchasing' },
   { icon: FileText, title: 'Accounts Payable', caption: 'No humans needed until it\'s time to pay', href: '/accounts-payable' },
   { icon: ClipboardList, title: 'PO Lifecycle Management', caption: 'AI turns quotes into POs and gets them approved', href: '/po-lifecycle' },
   { icon: CheckSquare, title: '3 Way Match', caption: 'Touchless match between receipts, invoices, and purchase orders', href: '/three-way-match' },
   { icon: DollarSign, title: 'Cash Management', caption: 'A complete picture of money in and money out', href: '/cash-management', beta: true },
   { icon: ShieldAlert, title: 'Fraud & Duplicate Prevention', caption: 'Every invoice verified before it gets paid', href: '/fraud-prevention' },
+  { icon: TrendingUp, title: 'Demand Planning', caption: 'Know what to buy before you need it', href: '/demand-planning', comingSoon: true },
+  { icon: BarChart3, title: 'Sales Analytics', caption: 'See what\'s selling, and why', href: '/sales-analytics', comingSoon: true },
 ]
 
 const integrations = {
@@ -76,7 +79,7 @@ function Nav() {
                 <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${openDropdown === id ? 'rotate-180' : ''}`} />
               </button>
             ))}
-            <a href="/#setup" className="text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-colors px-3 py-2 rounded-lg cursor-pointer">Setup</a>
+            <a href="/purchasing#setup" className="text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-colors px-3 py-2 rounded-lg cursor-pointer">Setup</a>
             <a href="/pricing" className="text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-colors px-3 py-2 rounded-lg cursor-pointer">Pricing</a>
           </div>
 
@@ -112,7 +115,7 @@ function Nav() {
                       Mix and match product modules. Let AI automate the pieces you need and do the rest yourself.
                     </p>
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                      {capabilities.map(({ icon: Icon, title, caption, href, beta }) => (
+                      {capabilities.map(({ icon: Icon, title, caption, href, beta, comingSoon }) => (
                         <a key={title} href={href}>
                           <div className="group flex flex-col gap-3 p-4 rounded-xl border border-gray-100 hover:border-blue-300 hover:bg-blue-50/40 transition-all duration-150 cursor-pointer">
                             <div className="h-9 w-9 rounded-lg bg-gray-100 group-hover:bg-blue-100 flex items-center justify-center transition-colors">
@@ -122,6 +125,7 @@ function Nav() {
                               <p className="text-sm font-semibold text-gray-900">
                                 {title}
                                 {beta && <span className="ml-1.5 inline-flex px-1.5 py-0.5 bg-amber-100 text-amber-700 text-[10px] font-semibold uppercase rounded">Beta</span>}
+                                {comingSoon && <span className="ml-1.5 inline-flex px-1.5 py-0.5 bg-gray-100 text-gray-500 text-[10px] font-semibold uppercase rounded">Coming soon</span>}
                               </p>
                               <p className="text-xs text-gray-500 mt-1 leading-relaxed">{caption}</p>
                             </div>
@@ -144,7 +148,7 @@ function Nav() {
                         {integrations.communication.map(({ title, caption, logoType }) => (
                           <a
                             key={title}
-                            href="/#integrations"
+                            href="/purchasing#integrations"
                             className="group flex gap-3 p-3 rounded-xl border border-gray-100 hover:border-blue-300 hover:bg-blue-50/40 transition-all duration-150 cursor-pointer"
                           >
                             <div className="mt-0.5 flex-shrink-0 h-9 w-9 rounded-lg bg-gray-50 flex items-center justify-center relative overflow-hidden">
@@ -177,7 +181,7 @@ function Nav() {
                         {integrations.erp.map(({ logo: logoSrc, title }) => (
                           <a
                             key={title}
-                            href="/#integrations"
+                            href="/purchasing#integrations"
                             className="group flex flex-col items-center gap-2 p-4 rounded-xl border border-gray-100 hover:border-blue-300 hover:bg-blue-50/40 transition-all duration-150 cursor-pointer"
                           >
                             <img src={logoSrc} alt={title} className="h-8 w-8 object-contain" />
