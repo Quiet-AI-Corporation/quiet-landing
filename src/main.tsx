@@ -4,6 +4,11 @@ import LandingPage from './pages/LandingPage'
 import PurchasingPage from './pages/PurchasingPage'
 import DemandPlanningPage from './pages/DemandPlanningPage'
 import SalesAnalyticsPage from './pages/SalesAnalyticsPage'
+import BusinessOwnersPage from './pages/BusinessOwnersPage'
+import HeadsOfFinancePage from './pages/HeadsOfFinancePage'
+import ControllersPage from './pages/ControllersPage'
+import ProcurementLeadersPage from './pages/ProcurementLeadersPage'
+import SetupPage from './pages/SetupPage'
 import WorkflowDemoPage from './pages/WorkflowDemoPage'
 import PurchasingDemoPage from './pages/PurchasingDemoPage'
 import AccountsPayablePage from './pages/AccountsPayablePage'
@@ -32,6 +37,26 @@ const routeMeta: Record<string, { title: string; description: string }> = {
   '/sales-analytics': {
     title: 'Sales Analytics | Quiet AI',
     description: 'AI-powered revenue and margin analytics on top of the data Quiet AI already syncs from your ERP. Coming soon.',
+  },
+  '/business-owners': {
+    title: 'Quiet AI for Business Owners | Quiet AI',
+    description: 'Run your back office without hiring for it. Quiet AI handles purchasing, AP, and cash management so you can stay focused on the business.',
+  },
+  '/heads-of-finance': {
+    title: 'Quiet AI for Heads of Finance | Quiet AI',
+    description: 'Leverage for your finance team. Automate the transactional work so your team can focus on planning, not processing.',
+  },
+  '/controllers': {
+    title: 'Quiet AI for Controllers | Quiet AI',
+    description: 'Close faster with cleaner books. Every invoice coded, matched, and audit-trailed automatically.',
+  },
+  '/procurement-leaders': {
+    title: 'Quiet AI for Procurement Leaders | Quiet AI',
+    description: 'Every purchase, on process. From request to PO to receipt, Quiet AI keeps purchasing compliant and visible.',
+  },
+  '/setup': {
+    title: 'Setup | Quiet AI',
+    description: 'We learn how your back office works, adapt our modules to your exact operations, and have you live in under 2 business days. No implementation project.',
   },
   '/accounts-payable': {
     title: 'Accounts Payable Automation | Quiet AI',
@@ -155,6 +180,11 @@ function Root() {
     case '/purchasing': return <PurchasingPage />
     case '/demand-planning': return <DemandPlanningPage />
     case '/sales-analytics': return <SalesAnalyticsPage />
+    case '/business-owners': return <BusinessOwnersPage />
+    case '/heads-of-finance': return <HeadsOfFinancePage />
+    case '/controllers': return <ControllersPage />
+    case '/procurement-leaders': return <ProcurementLeadersPage />
+    case '/setup': return <SetupPage />
     case '/demo': return <WorkflowDemoPage />
     case '/purchasing-demo': return <PurchasingDemoPage />
     case '/accounts-payable': return <AccountsPayablePage />

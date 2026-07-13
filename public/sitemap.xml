@@ -25,6 +25,36 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://www.tryquiet.ai/business-owners</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.tryquiet.ai/heads-of-finance</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.tryquiet.ai/controllers</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.tryquiet.ai/procurement-leaders</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.tryquiet.ai/setup</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.tryquiet.ai/accounts-payable</loc>
     <lastmod>2026-06-17</lastmod>
     <changefreq>monthly</changefreq>

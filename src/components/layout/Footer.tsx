@@ -15,10 +15,19 @@ const columns: { heading: string; links: { label: string; href: string; badge?: 
     ],
   },
   {
+    heading: 'Who we serve',
+    links: [
+      { label: 'Business Owners', href: '/business-owners' },
+      { label: 'Heads of Finance', href: '/heads-of-finance' },
+      { label: 'Controllers', href: '/controllers' },
+      { label: 'Procurement Leaders', href: '/procurement-leaders' },
+    ],
+  },
+  {
     heading: 'Resources',
     links: [
       { label: 'Pricing', href: '/pricing' },
-      { label: 'Setup', href: '/purchasing#setup' },
+      { label: 'Setup', href: '/setup' },
       { label: 'Contact', href: 'https://quietai.fillout.com/book' },
     ],
   },
@@ -37,7 +46,7 @@ function Footer() {
     <footer className="bg-gray-900 pt-16 pb-10 px-6">
       <div className="max-w-6xl mx-auto">
         {/* Columns */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-10">
           {/* Brand column */}
           <div className="col-span-2 md:col-span-1">
             <a href="/" className="flex items-center gap-2 mb-4">
