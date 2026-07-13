@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button'
 import DotGrid from '@/components/landing/DotGrid'
+import LivingDashboardAnimation from '@/components/landing/LivingDashboardAnimation'
 import Nav from '@/components/layout/Nav'
 import Footer from '@/components/layout/Footer'
 
@@ -24,6 +25,10 @@ function LandingPage() {
               We'll adapt our ready-made modules for procurement, finance, and admin to your exact operations
             </p>
           </div>
+        </div>
+        {/* Living dashboard */}
+        <div className="mt-8 md:mt-12 max-w-6xl mx-auto relative z-10 bg-white rounded-2xl p-4">
+          <LivingDashboardAnimation />
         </div>
       </section>
 
