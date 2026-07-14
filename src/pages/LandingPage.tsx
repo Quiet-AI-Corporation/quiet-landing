@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button'
 import DotGrid from '@/components/landing/DotGrid'
 import LivingDashboardAnimation from '@/components/landing/LivingDashboardAnimation'
+import SystemDiagram from '@/components/landing/SystemDiagram'
 import Nav from '@/components/layout/Nav'
 import Footer from '@/components/layout/Footer'
 
@@ -29,6 +30,26 @@ function LandingPage() {
         {/* Living dashboard */}
         <div className="mt-8 md:mt-12 max-w-6xl mx-auto relative z-10 bg-white rounded-2xl p-4">
           <LivingDashboardAnimation />
+        </div>
+      </section>
+
+      {/* System diagram */}
+      <section className="py-12 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="w-fit mx-auto">
+            <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 bg-white rounded-xl py-1.5 px-3 w-fit mx-auto">
+              How it works
+            </p>
+            <h2 className="mt-1 text-3xl font-bold text-gray-900 tracking-tight bg-white rounded-xl py-2 px-4 w-fit mx-auto">
+              Everything flows through Quiet
+            </h2>
+            <p className="mt-1 text-lg text-gray-600 max-w-2xl mx-auto bg-white rounded-xl py-1 px-4 w-fit">
+              Email it, Slack it, or drop in a file — Quiet runs it through the right module, grounded in your own data.
+            </p>
+          </div>
+        </div>
+        <div className="mt-8 max-w-6xl mx-auto relative z-10">
+          <SystemDiagram />
         </div>
       </section>
 
