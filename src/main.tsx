@@ -23,75 +23,75 @@ import './index.css'
 /** SEO metadata per route */
 const routeMeta: Record<string, { title: string; description: string }> = {
   '/': {
-    title: 'Quiet AI | Agentic AI for Your Back Office',
+    title: 'Quiet Software | Agentic AI for Your Back Office',
     description: 'Pre-built AI software, adapted to your back office. Quiet AI runs AP, purchasing, and cash management for small and medium businesses — it learns how you already work.',
   },
   '/purchasing': {
-    title: 'Purchasing on Autopilot | Quiet AI',
+    title: 'Quiet Software | Purchasing on Autopilot',
     description: 'Quiet AI automates accounts payable from vendor quote to booked bill. AI-powered purchasing automation that handles invoices, POs, GL coding, and payments — you just approve.',
   },
   '/demand-planning': {
-    title: 'Demand Planning | Quiet AI',
+    title: 'Quiet Software | Demand Planning',
     description: 'AI-driven demand forecasting that turns sales history and open orders into purchasing recommendations. Coming soon from Quiet AI.',
   },
   '/sales-analytics': {
-    title: 'Sales Analytics | Quiet AI',
+    title: 'Quiet Software | Sales Analytics',
     description: 'AI-powered revenue and margin analytics on top of the data Quiet AI already syncs from your ERP. Coming soon.',
   },
   '/business-owners': {
-    title: 'Quiet AI for Business Owners | Quiet AI',
+    title: 'Quiet Software | For Business Owners',
     description: 'Run your back office without hiring for it. Quiet AI handles purchasing, AP, and cash management so you can stay focused on the business.',
   },
   '/heads-of-finance': {
-    title: 'Quiet AI for Heads of Finance | Quiet AI',
+    title: 'Quiet Software | For Heads of Finance',
     description: 'Leverage for your finance team. Automate the transactional work so your team can focus on planning, not processing.',
   },
   '/controllers': {
-    title: 'Quiet AI for Controllers | Quiet AI',
+    title: 'Quiet Software | For Controllers',
     description: 'Close faster with cleaner books. Every invoice coded, matched, and audit-trailed automatically.',
   },
   '/procurement-leaders': {
-    title: 'Quiet AI for Procurement Leaders | Quiet AI',
+    title: 'Quiet Software | For Procurement Leaders',
     description: 'Every purchase, on process. From request to PO to receipt, Quiet AI keeps purchasing compliant and visible.',
   },
   '/setup': {
-    title: 'Setup | Quiet AI',
+    title: 'Quiet Software | Setup',
     description: 'We learn how your back office works, adapt our modules to your exact operations, and have you live in under 2 business days. No implementation project.',
   },
   '/accounts-payable': {
-    title: 'Accounts Payable Automation | Quiet AI',
+    title: 'Quiet Software | Accounts Payable Automation',
     description: 'End-to-end AP automation — from invoice intake to payment. Quiet AI handles GL coding, approvals, and vendor communication so no humans are needed until it\'s time to pay.',
   },
   '/po-lifecycle': {
-    title: 'PO Lifecycle Management | Quiet AI',
+    title: 'Quiet Software | PO Lifecycle Management',
     description: 'AI turns vendor quotes into purchase orders, routes them for approval, and tracks fulfillment. Fully automated PO lifecycle management.',
   },
   '/three-way-match': {
-    title: '3 Way Match Automation | Quiet AI',
+    title: 'Quiet Software | 3 Way Match Automation',
     description: 'Touchless three-way matching between purchase orders, receipts, and invoices. Catch discrepancies before they become problems.',
   },
   '/cash-management': {
-    title: 'Cash Management | Quiet AI',
+    title: 'Quiet Software | Cash Management',
     description: 'A complete picture of money in and money out. AI-powered cash flow tracking and payment scheduling.',
   },
   '/fraud-prevention': {
-    title: 'Fraud & Duplicate Prevention | Quiet AI',
+    title: 'Quiet Software | Fraud & Duplicate Prevention',
     description: 'Every invoice verified before it gets paid. AI catches duplicates, anomalies, and suspicious invoices automatically.',
   },
   '/pricing': {
-    title: 'Pricing | Quiet AI',
+    title: 'Quiet Software | Pricing',
     description: 'Simple, transparent pricing for AI-powered accounts payable automation. Get started with Quiet AI.',
   },
   '/about': {
-    title: 'About | Quiet AI',
+    title: 'Quiet Software | About',
     description: 'Learn about Quiet AI — the team building agentic AI for financial operations.',
   },
   '/demo': {
-    title: 'Workflow Demo | Quiet AI',
+    title: 'Quiet Software | Workflow Demo',
     description: 'See how Quiet AI automates accounts payable workflows from end to end.',
   },
   '/purchasing-demo': {
-    title: 'Purchasing Demo | Quiet AI',
+    title: 'Quiet Software | Purchasing Demo',
     description: 'Interactive demo of Quiet AI\'s purchasing automation capabilities.',
   },
 }

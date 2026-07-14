@@ -51,10 +51,10 @@ function Footer() {
           <div className="col-span-2 md:col-span-1">
             <a href="/" className="flex items-center gap-2 mb-4">
               <img src={logo} alt="Quiet" className="h-8" />
-              <span className="text-white font-semibold text-lg">Quiet AI</span>
+              <span className="text-white font-semibold text-lg">Quiet Software</span>
             </a>
             <p className="text-sm text-gray-400 leading-relaxed">
-              Agentic AI for financial operations. Don't make your human teammates do grunt work.
+              Your business isn't generic. Your software shouldn't be either.
             </p>
           </div>
 
