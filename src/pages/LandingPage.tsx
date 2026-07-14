@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button'
 import DotGrid from '@/components/landing/DotGrid'
 import LivingDashboardAnimation from '@/components/landing/LivingDashboardAnimation'
 import SystemDiagram from '@/components/landing/SystemDiagram'
+import AskQuietAnimation from '@/components/landing/AskQuietAnimation'
 import Nav from '@/components/layout/Nav'
 import Footer from '@/components/layout/Footer'
 
@@ -50,6 +51,26 @@ function LandingPage() {
         </div>
         <div className="mt-8 max-w-6xl mx-auto relative z-10">
           <SystemDiagram />
+        </div>
+      </section>
+
+      {/* Ask Quiet */}
+      <section className="py-12 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="w-fit mx-auto">
+            <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 bg-white rounded-xl py-1.5 px-3 w-fit mx-auto">
+              Ask anything
+            </p>
+            <h2 className="mt-1 text-3xl font-bold text-gray-900 tracking-tight bg-white rounded-xl py-2 px-4 w-fit mx-auto">
+              The questions your spreadsheets can't answer
+            </h2>
+            <p className="mt-1 text-lg text-gray-600 max-w-2xl mx-auto bg-white rounded-xl py-1 px-4 w-fit">
+              Quiet cross-references your forecasts, inventory, and payables — and answers in plain English.
+            </p>
+          </div>
+        </div>
+        <div className="mt-8 max-w-2xl mx-auto relative z-10 bg-white rounded-2xl">
+          <AskQuietAnimation />
         </div>
       </section>
 

@@ -1,19 +1,42 @@
 import { useEffect, useRef, useState } from 'react'
 import {
-  Mail, MessageSquare, MousePointerClick, FileStack, ShoppingCart, FileText,
+  Pencil, FileStack, ShoppingCart, FileText,
   ClipboardList, CheckSquare, DollarSign, ShieldAlert, TrendingUp, BarChart3,
-  Database, ChevronDown,
+  Database, ChevronDown, FileUp, Landmark, Mail, Layers,
 } from 'lucide-react'
 import { motion, useInView, useReducedMotion } from 'framer-motion'
 import logo from '@/assets/images/logo.png'
+import gmailLogo from '@/assets/images/gmail_logo.webp'
+import outlookLogo from '@/assets/images/outlook_logo.webp'
+import slackLogo from '@/assets/images/slack_logo.png'
+import qboLogo from '@/assets/images/qbo_logo.webp'
+import netsuiteLogo from '@/assets/images/netsuite_logo.webp'
+import xeroLogo from '@/assets/images/xero_logo.webp'
+import sageLogo from '@/assets/images/sage_logo.webp'
+import freshbooksLogo from '@/assets/images/freshbooks_logo.webp'
+
+// ---- Brand icons (repo image assets) ----
+
+function EmailIcon({ className }: { className?: string }) {
+  return (
+    <span className={`relative block ${className ?? ''}`} aria-hidden>
+      <img src={gmailLogo} alt="" className="absolute left-0 top-0 w-[62%]" />
+      <img src={outlookLogo} alt="" className="absolute right-0 bottom-0 w-[62%]" />
+    </span>
+  )
+}
+
+function SlackIcon({ className }: { className?: string }) {
+  return <img src={slackLogo} alt="" className={className} aria-hidden />
+}
 
 // ---- Data ----
 
 const INPUTS = [
-  { icon: Mail, title: 'Email', caption: 'Forward anything' },
-  { icon: MessageSquare, title: 'Slack', caption: 'Just ask' },
-  { icon: MousePointerClick, title: 'In-product', caption: 'Commands & clicks' },
-  { icon: FileStack, title: 'Any file', caption: 'PDF · XLSX · CSV' },
+  { icon: EmailIcon, title: 'Email', caption: 'Forward emails & attachments' },
+  { icon: SlackIcon, title: 'Slack', caption: 'Messages & attachments' },
+  { icon: Pencil, title: 'In-product', caption: 'File uploads & typed commands' },
+  { icon: FileStack, title: 'Files & Reports', caption: 'PDF · XLSX · CSV · DOCX' },
 ]
 
 // Mirrors the "What we do" set in layout/Nav.tsx
@@ -28,9 +51,46 @@ const MODULES = [
   { icon: BarChart3, title: 'Sales Analytics', href: '/sales-analytics', comingSoon: true },
 ]
 
-const DATA_SOURCES = [
-  'ERP', 'Emails', 'Inventory', 'Sales history',
-  'PO history', 'Invoices', 'Receipts', 'Bank statements',
+type DataConnection = {
+  title: string
+  icon: React.ComponentType<{ className?: string }>
+  items: string[]
+  connections?: { src: string; name: string }[]
+}
+
+const DATA_CONNECTIONS: DataConnection[] = [
+  {
+    title: 'Uploads',
+    icon: FileUp,
+    items: ['Sales reports', 'Inventory reports', 'Bank statements', 'Expense reports'],
+  },
+  {
+    title: 'Emails & Slack',
+    icon: Mail,
+    items: ['Historical emails', 'Attachments', 'Messages'],
+    connections: [
+      { src: gmailLogo, name: 'Gmail' },
+      { src: outlookLogo, name: 'Outlook' },
+      { src: slackLogo, name: 'Slack' },
+    ],
+  },
+  {
+    title: 'ERP',
+    icon: Layers,
+    items: ['Purchase Orders', 'Invoices', 'Vendors', 'Customers', 'Inventory'],
+    connections: [
+      { src: qboLogo, name: 'QuickBooks' },
+      { src: netsuiteLogo, name: 'NetSuite' },
+      { src: xeroLogo, name: 'Xero' },
+      { src: sageLogo, name: 'Sage' },
+      { src: freshbooksLogo, name: 'FreshBooks' },
+    ],
+  },
+  {
+    title: 'Bank',
+    icon: Landmark,
+    items: ['Bank Transactions', 'Account Balances'],
+  },
 ]
 
 // ---- Desktop connector geometry (all endpoints known statically) ----
@@ -51,6 +111,23 @@ const moduleY = (j: number) => MODULE_CARD_H / 2 + j * (MODULE_CARD_H + MODULE_G
 const leftPath = (i: number) => `M 0 ${inputY(i)} C 28 ${inputY(i)}, 36 ${HUB_Y}, ${GUTTER_W} ${HUB_Y}`
 const rightPath = (j: number) => `M 0 ${HUB_Y} C 28 ${HUB_Y}, 36 ${moduleY(j)}, ${GUTTER_W} ${moduleY(j)}`
 
+// The pulse is a comet: stacked dash layers of increasing length and decreasing
+// opacity, all sharing the 110-unit pattern period and centered on the same
+// moving point. Enough layers with round caps blend into one continuous
+// bright-center-fading-ends streak rather than reading as discrete bands.
+// A layer of dash length L stays centered when its offset runs L/2-5 → L/2-115.
+const PULSE_DASHES = [
+  { len: 4, opacity: 0.5 },
+  { len: 6, opacity: 0.35 },
+  { len: 8, opacity: 0.25 },
+  { len: 10, opacity: 0.18 },
+  { len: 13, opacity: 0.12 },
+  { len: 16, opacity: 0.07 },
+]
+const PULSE_KEYFRAMES = PULSE_DASHES.map(({ len }) =>
+  `@keyframes sd-pulse-${len} { from { stroke-dashoffset: ${len / 2 - 5} } to { stroke-dashoffset: ${len / 2 - 115} } }`
+).join('\n')
+
 const DASHED_H = 'h-px [background:repeating-linear-gradient(90deg,#d1d5db_0_4px,transparent_4px_8px)]'
 const DASHED_V = 'w-px [background:repeating-linear-gradient(180deg,#d1d5db_0_4px,transparent_4px_8px)]'
 
@@ -68,19 +145,20 @@ function ConnectorGutter({ paths, animate }: { paths: string[]; animate: boolean
       {paths.map((d, i) => (
         <g key={i}>
           <path d={d} fill="none" stroke="#e5e7eb" strokeWidth={1.5} />
-          {animate && (
+          {animate && PULSE_DASHES.map(({ len, opacity }) => (
             <path
+              key={len}
               d={d}
               fill="none"
-              stroke="#3b82f6"
+              stroke="#2563eb"
               strokeWidth={2}
               strokeLinecap="round"
               pathLength={100}
-              strokeDasharray="10 100"
-              opacity={0.8}
-              style={{ animation: 'sd-pulse 2.8s linear infinite', animationDelay: `${i * 0.35}s` }}
+              strokeDasharray={`${len} ${110 - len}`}
+              opacity={opacity}
+              style={{ animation: `sd-pulse-${len} 2.8s linear infinite`, animationDelay: `${i * 0.35}s` }}
             />
-          )}
+          ))}
         </g>
       ))}
     </svg>
@@ -129,9 +207,31 @@ function HubCard() {
 function DataBar() {
   return (
     <div className="rounded-xl border border-gray-200 bg-gray-50/80 px-5 py-4">
-      <div className="flex flex-wrap items-center justify-center gap-2">
-        {DATA_SOURCES.map(s => (
-          <span key={s} className="px-2.5 py-1 rounded-md bg-white border border-gray-200 text-xs text-gray-600">{s}</span>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        {DATA_CONNECTIONS.map(({ title, icon: Icon, items, connections }) => (
+          <div key={title} className="flex flex-col rounded-lg border border-gray-200 bg-white p-3">
+            <div className="flex items-center gap-1.5">
+              <Icon className="h-4 w-4 text-gray-500 shrink-0" />
+              <span className="text-xs font-semibold text-gray-900 truncate">{title}</span>
+            </div>
+            <div className="mt-2 flex flex-wrap gap-1">
+              {items.map(item => (
+                <span key={item} className="px-1.5 py-0.5 rounded bg-gray-50 border border-gray-100 text-[10px] text-gray-500">{item}</span>
+              ))}
+            </div>
+            {connections && (
+              <div className="mt-auto pt-2">
+                <div className="mt-1 pt-2 border-t border-gray-100">
+                  <p className="text-[9px] font-semibold uppercase tracking-wide text-gray-400">Supported connections</p>
+                  <div className="mt-1.5 flex items-center gap-1.5">
+                    {connections.map(({ src, name }) => (
+                      <img key={name} src={src} alt={name} title={name} className="h-4 w-4 object-contain shrink-0" />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         ))}
       </div>
       <p className="mt-3 text-center text-[11px] font-semibold uppercase tracking-widest text-gray-400 flex items-center justify-center gap-1.5">
@@ -182,11 +282,11 @@ function SystemDiagram() {
 
   return (
     <div ref={ref}>
-      <style>{'@keyframes sd-pulse { from { stroke-dashoffset: 0 } to { stroke-dashoffset: -110 } }'}</style>
+      <style>{PULSE_KEYFRAMES}</style>
 
       {/* Desktop: hub-and-spoke */}
       <div className="hidden lg:block rounded-2xl border border-gray-200 bg-white shadow-xl p-6">
-        <div className="grid grid-cols-[240px_64px_1fr_64px_240px] mb-3">
+        <div className="grid grid-cols-[280px_64px_1fr_64px_280px] mb-3">
           <ColumnLabel>Any input</ColumnLabel>
           <div />
           <div />
@@ -194,7 +294,7 @@ function SystemDiagram() {
           <ColumnLabel>Modules</ColumnLabel>
         </div>
 
-        <div className="grid grid-cols-[240px_64px_1fr_64px_240px] items-center">
+        <div className="grid grid-cols-[280px_64px_1fr_64px_280px] items-center">
           <motion.div className="flex flex-col gap-3" {...entrance(0)}>
             {INPUTS.map(input => <InputCard key={input.title} {...input} />)}
           </motion.div>
@@ -215,9 +315,9 @@ function SystemDiagram() {
         </div>
 
         <motion.div {...entrance(3)}>
-          <div className="flex items-center justify-center gap-2 my-1">
-            <div className={`h-10 ${DASHED_V}`} />
-            <p className="text-[11px] text-gray-400">draws on</p>
+          <div className="relative my-1">
+            <div className={`h-10 mx-auto ${DASHED_V}`} />
+            <p className="absolute top-1/2 -translate-y-1/2 left-[calc(50%+10px)] text-[11px] text-gray-400">draws on</p>
           </div>
           <DataBar />
         </motion.div>
