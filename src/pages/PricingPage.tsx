@@ -28,11 +28,11 @@ const tiers: {
     features: [
       { text: 'Invoices processed, coded, and paid', detail: 'Per-invoice overage fee beyond included volume' },
       { text: 'Guided onboarding' },
-      { text: 'Unlimited vendors onboarded' },
+      { text: 'Unlimited suppliers onboarded' },
       { text: 'Fraud intelligence' },
       { text: 'ERP sync included' },
-      { text: 'Reporting', detail: 'AP aging, cash flow forecast, vendor spend breakdown' },
-      { text: 'Unlimited seats', detail: 'Users, approvers, and reviewers — no per-seat fees' },
+      { text: 'Reporting', detail: 'AP aging, cash flow forecast, supplier spend breakdown' },
+      { text: 'Unlimited seats', detail: 'Users, approvers, and reviewers, no per-seat fees' },
       { text: 'Direct line to founder support' },
       { text: 'Unlimited stakeholder comms' },
       { text: 'Native ACH payments' },
@@ -54,7 +54,7 @@ const tiers: {
       { text: 'Order tracking', detail: 'Track orders from placement through delivery' },
       { text: 'Slack integration for PO creation', detail: 'Create purchase orders directly from Slack' },
       { text: 'Automated 1099 generation', detail: 'Full creation, not just the data dump' },
-      { text: 'Cash management', detail: 'Real-time cash position, payment scheduling, and forecasting', beta: true },
+      { text: 'Cash management', detail: 'Real-time cash position, payment scheduling, and forecasting' },
     ],
     cta: 'Get Started',
     ctaHref: 'https://quietai.fillout.com/book',
@@ -81,7 +81,7 @@ const faqs = [
   { q: 'What counts as an invoice?', a: 'Each unique invoice document processed through Quiet AI counts as one invoice, regardless of line items.' },
   { q: 'Can I change plans?', a: 'Upgrade or downgrade anytime. Changes take effect on your next billing cycle.' },
   { q: 'Is there a free trial?', a: 'Yes. No credit card required.' },
-  { q: 'What if I exceed my included volume?', a: 'You\'ll pay a simple per-invoice overage fee. We never stop processing your invoices — you\'ll just see the overage on your next bill.' },
+  { q: 'What if I exceed my included volume?', a: 'You\'ll pay a simple per-invoice overage fee. We never stop processing your invoices. You\'ll just see the overage on your next bill.' },
 ]
 
 function PricingPage() {
@@ -99,7 +99,7 @@ function PricingPage() {
               Simple, predictable pricing
             </h1>
             <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
-              A flat monthly fee with simple per-invoice pricing after. Pick the plan that fits.
+              A flat monthly fee with simple per-invoice pricing after. Pick the plan that fits your invoice volume.
             </p>
           </div>
         </section>

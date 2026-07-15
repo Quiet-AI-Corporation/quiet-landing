@@ -32,11 +32,11 @@ const routeMeta: Record<string, { title: string; description: string }> = {
   },
   '/demand-planning': {
     title: 'Quiet Software | Demand Planning',
-    description: 'AI-driven demand forecasting that turns sales history and open orders into purchasing recommendations. Coming soon from Quiet AI.',
+    description: 'AI-driven demand forecasting that turns sales history and open orders into purchasing recommendations from Quiet AI.',
   },
   '/sales-analytics': {
     title: 'Quiet Software | Sales Analytics',
-    description: 'AI-powered revenue and margin analytics on top of the data Quiet AI already syncs from your ERP. Coming soon.',
+    description: 'AI-powered revenue and margin analytics on top of the data Quiet AI already syncs from your ERP.',
   },
   '/business-owners': {
     title: 'Quiet Software | For Business Owners',

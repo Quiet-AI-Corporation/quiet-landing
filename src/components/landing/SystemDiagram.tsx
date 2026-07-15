@@ -45,10 +45,10 @@ const MODULES = [
   { icon: FileText, title: 'Accounts Payable', href: '/accounts-payable' },
   { icon: ClipboardList, title: 'PO Lifecycle Management', href: '/po-lifecycle' },
   { icon: CheckSquare, title: '3 Way Match', href: '/three-way-match' },
-  { icon: DollarSign, title: 'Cash Management', href: '/cash-management', beta: true },
+  { icon: DollarSign, title: 'Cash Management', href: '/cash-management' },
   { icon: ShieldAlert, title: 'Fraud & Duplicate Prevention', href: '/fraud-prevention' },
-  { icon: TrendingUp, title: 'Demand Planning', href: '/demand-planning', comingSoon: true },
-  { icon: BarChart3, title: 'Sales Analytics', href: '/sales-analytics', comingSoon: true },
+  { icon: TrendingUp, title: 'Demand Planning', href: '/demand-planning' },
+  { icon: BarChart3, title: 'Sales Analytics', href: '/sales-analytics' },
 ]
 
 type DataConnection = {
@@ -179,7 +179,7 @@ function InputCard({ icon: Icon, title, caption }: (typeof INPUTS)[number]) {
   )
 }
 
-function ModuleCard({ icon: Icon, title, href, beta, comingSoon }: (typeof MODULES)[number]) {
+function ModuleCard({ icon: Icon, title, href }: (typeof MODULES)[number]) {
   return (
     <a
       href={href}
@@ -189,8 +189,6 @@ function ModuleCard({ icon: Icon, title, href, beta, comingSoon }: (typeof MODUL
         <Icon className="h-4 w-4 text-gray-600 group-hover:text-blue-600 transition-colors" />
       </div>
       <p className="text-xs font-semibold text-gray-900 truncate">{title}</p>
-      {beta && <span className="ml-auto shrink-0 px-1.5 py-0.5 bg-amber-100 text-amber-700 text-[9px] font-semibold uppercase rounded">Beta</span>}
-      {comingSoon && <span className="ml-auto shrink-0 px-1.5 py-0.5 bg-gray-100 text-gray-500 text-[9px] font-semibold uppercase rounded">Soon</span>}
     </a>
   )
 }

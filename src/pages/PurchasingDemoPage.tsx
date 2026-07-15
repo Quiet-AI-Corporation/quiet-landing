@@ -20,8 +20,8 @@ function PurchasingDemoPage() {
               Watch automated purchasing run.
             </h1>
             <p className="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">
-              From the moment a vendor quote arrives to the moment the bill is
-              booked — Quiet AI drafts the PO, sends it, tracks the shipment,
+              From the moment a supplier quote arrives to the moment the bill is
+              booked, Quiet AI drafts the PO, sends it, tracks the shipment,
               logs the receipt, and 3-way-matches the invoice. You just approve.
             </p>
           </div>
@@ -42,7 +42,7 @@ function PurchasingDemoPage() {
                 Want to see this on your own Purchases?
               </h2>
               <p className="mt-2 text-gray-600">
-                We can have you live and ordering against real vendors in under
+                We can have you live and ordering against real suppliers in under
                 an hour.
               </p>
               <div className="mt-6 flex items-center justify-center gap-3">

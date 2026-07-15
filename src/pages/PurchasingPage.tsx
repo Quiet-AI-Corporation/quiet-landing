@@ -59,20 +59,20 @@ function PurchasingPage() {
   const diagramCaptions: Record<string, { title: string; subtitle: string; body: string[] }> = {
     'mailbox': {
       title: 'Purchasing / AP Mailboxes',
-      subtitle: 'Where purchase orders, invoices, and vendor correspondence land',
+      subtitle: 'Where supplier quotes, POs, and invoices land',
       body: [
-        'Existing inbox — Hooks up to purchasing@yourcompany.com or wherever vendors send quotes and invoices today',
-        'Full visibility — Sees quotes, purchase orders, invoices, payment inquiries, W-9s, and everything else your vendors and team send',
-        'No change for vendors — No new portals for them, no manual file uploading for you',
+        'Existing inbox — Hooks up to purchasing@yourcompany.com or wherever suppliers send quotes and invoices today',
+        'Full visibility — Sees quotes, purchase orders, invoices, payment inquiries, W-9s, and everything else your suppliers and team send',
+        'No change for suppliers — No new portals for them, no manual file uploading for you',
         'Gmail and Outlook — Both fully supported',
       ],
     },
     'mailbox-dot': {
       title: 'API Connection',
-      subtitle: 'Vendor emails in. Email drafts, approval requests, and confirmations back out',
+      subtitle: 'Supplier emails in. Email drafts, approval requests, and confirmations back out',
       body: [
         'Inbound — All emails and attachments flow into Quiet AI automatically',
-        'Outbound — Drafts flow back: vendor replies, clarification requests, payment confirmations',
+        'Outbound — Drafts flow back: supplier replies, clarification requests, payment confirmations',
         'Approvals — Approval requests and responses route through the same mailbox connection',
         'Your control — Nothing sends until you approve it inside Quiet AI',
       ],
@@ -81,7 +81,7 @@ function PurchasingPage() {
       title: 'Quiet AI',
       subtitle: 'Intelligent AP orchestration engine',
       body: [
-        'Workflow orchestration — for quote intake, PO drafting, invoice processing, vendor onboarding, line item coding, approval orchestration, and fuzzy edge cases where deterministic logic fails',
+        'Workflow orchestration — for quote intake, PO drafting, invoice processing, supplier onboarding, line item coding, approval orchestration, and fuzzy edge cases where deterministic logic fails',
         'Duplicate invoices & fraud attempts — Caught and flagged for your inspection',
         'Intelligent clarification — When something\'s ambiguous, Quiet AI asks you instead of guessing',
         'Your configuration — You can set approval workflows, GL coding guidelines, and validation rules',
@@ -111,7 +111,7 @@ function PurchasingPage() {
       subtitle: 'Payments staged but never auto-sent',
       body: [
         'Review first — Quiet AI prepares each payment and presents it for your review',
-        'You approve — Quiet AI moves the money from your bank account to the vendor',
+        'You approve — Quiet AI moves the money from your bank account to the supplier',
         'Auto-sync — Payment status syncs back so your records stay current automatically',
       ],
     },
@@ -128,7 +128,7 @@ function PurchasingPage() {
       title: 'API Connection',
       subtitle: 'Two-way sync keeps everything current',
       body: [
-        'Pulls in — Your vendor list, GL accounts, POs, and other accounting categories stay current',
+        'Pulls in — Your supplier list, GL accounts, POs, and other accounting categories stay current',
         'Pushes back — New POs, coded invoices, and payment records sync automatically',
         'No drift — No duplicate entry, no divergence between systems',
       ],
@@ -159,10 +159,10 @@ function PurchasingPage() {
               Purchasing
             </p>
             <h1 className="mt-1 text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight bg-white rounded-xl py-2 px-4 w-fit mx-auto">
-              Purchasing on autopilot
+              Purchasing on autopilot, from raw materials to MRO
             </h1>
             <p className="mt-1 text-xl text-gray-600 max-w-2xl mx-auto bg-white rounded-xl py-2 px-4 w-fit">
-              From purchase request to booked bill — Quiet AI drafts POs, codes invoices, and prepares payments. You just approve.
+              From material request to booked bill, Quiet AI drafts POs, codes invoices, and prepares payments for everything you buy. You just approve.
             </p>
           </div>
         </div>
@@ -198,7 +198,7 @@ function PurchasingPage() {
               </div>
               <h3 className="text-base font-semibold text-gray-900">Message arrives</h3>
               <p className="text-sm text-gray-500 leading-relaxed pt-2">
-                A purchase request from your team in Slack, an inbound invoice from a vendor, a pricing inquiry, a W-9. Anything that touches your purchasing workflow.
+                A material request from the shop floor in Slack, an inbound supplier invoice, a pricing inquiry, a W-9. Anything that touches your purchasing workflow.
               </p>
             </div>
             </div>
@@ -216,7 +216,7 @@ function PurchasingPage() {
               </div>
               <h3 className="text-base font-semibold text-gray-900">Quiet AI handles it</h3>
               <p className="text-sm text-gray-500 leading-relaxed pt-2">
-                Reads the message, figures out what it is, and takes the next step: drafting a PO, coding an invoice, responding to a vendor, requesting approval, or flagging something that needs your attention.
+                Reads the message, figures out what it is, and takes the next step: drafting a PO, coding an invoice, responding to a supplier, requesting approval, or flagging something that needs your attention.
               </p>
             </div>
             </div>
@@ -253,7 +253,7 @@ function PurchasingPage() {
               </div>
               <h3 className="text-base font-semibold text-gray-900 mb-1">Message arrives</h3>
               <p className="text-sm text-gray-500 leading-relaxed">
-                A purchase request from your team in Slack, an inbound invoice from a vendor, a pricing inquiry, a W-9. Anything that touches your purchasing workflow.
+                A material request from the shop floor in Slack, an inbound supplier invoice, a pricing inquiry, a W-9. Anything that touches your purchasing workflow.
               </p>
             </div>
             </div>
@@ -264,7 +264,7 @@ function PurchasingPage() {
               </div>
               <h3 className="text-base font-semibold text-gray-900 mb-1">Quiet AI handles it</h3>
               <p className="text-sm text-gray-500 leading-relaxed">
-                Reads the message, figures out what it is, and takes the next step: drafting a PO, coding an invoice, responding to a vendor, requesting approval, or flagging something that needs your attention.
+                Reads the message, figures out what it is, and takes the next step: drafting a PO, coding an invoice, responding to a supplier, requesting approval, or flagging something that needs your attention.
               </p>
             </div>
             </div>
@@ -491,7 +491,7 @@ function PurchasingPage() {
                         {diagramCaptions[selectedItem].body.map((item, i) => (
                           <li key={i}>
                             {item.includes(' — ') ? (
-                              <><span className="font-semibold">{item.split(' — ')[0]}</span> — {item.split(' — ').slice(1).join(' — ')}</>
+                              <><span className="font-semibold">{item.split(' — ')[0]}:</span> {item.split(' — ').slice(1).join(' — ')}</>
                             ) : item}
                           </li>
                         ))}
@@ -540,7 +540,7 @@ function PurchasingPage() {
               Set up once. Automate forever.
             </h2>
             <p className="mt-1 text-lg text-gray-500 bg-white rounded-xl py-2 px-4 w-fit mx-auto">
-              No implementation fees. No long-term contracts. No IT involvement. No vendor disruption.
+              No implementation fees. No long-term contracts. No IT involvement. No supplier disruption.
             </p>
           </div>
 
@@ -557,28 +557,28 @@ function PurchasingPage() {
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold">2</div>
               <div>
                 <h3 className="font-bold text-gray-900 mb-1">Connect your accounting system</h3>
-                <p className="text-gray-600">Link QuickBooks, NetSuite, Sage, or whatever you use. Vendors, GL codes, and payment records stay in sync automatically.</p>
+                <p className="text-gray-600">Link QuickBooks, NetSuite, Sage, or whatever you use. Suppliers, GL codes, and payment records stay in sync automatically.</p>
               </div>
             </div>
             <div className="flex gap-4 bg-white rounded-xl p-2">
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold">3</div>
               <div>
                 <h3 className="font-bold text-gray-900 mb-1">Connect your bank account</h3>
-                <p className="text-gray-600">Link the account you pay vendors from. Quiet AI prepares payments for you. Nothing moves until you approve it.</p>
+                <p className="text-gray-600">Link the account you pay suppliers from. Quiet AI prepares payments for you. Nothing moves until you approve it.</p>
               </div>
             </div>
             <div className="flex gap-4 bg-white rounded-xl p-2">
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold">4</div>
               <div>
                 <h3 className="font-bold text-gray-900 mb-1">Set your approval rules</h3>
-                <p className="text-gray-600">Decide who can approve what: by amount, vendor, department, or however your team works.</p>
+                <p className="text-gray-600">Decide who can approve what: by amount, supplier, department, or however your team works.</p>
               </div>
             </div>
             <div className="flex gap-4 bg-white rounded-xl p-2">
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold">5</div>
               <div>
                 <h3 className="font-bold text-gray-900 mb-1">You're live</h3>
-                <p className="text-gray-600">Quiet AI starts organizing vendor emails, capturing invoices, coding line items, and drafting responses. Immediately.</p>
+                <p className="text-gray-600">Quiet AI starts organizing supplier emails, capturing invoices, coding line items, and drafting responses. Immediately.</p>
               </div>
             </div>
           </div>
@@ -586,7 +586,7 @@ function PurchasingPage() {
           <div className="grid md:grid-cols-2 gap-6">
             {/* Callout box */}
             <div className="rounded-2xl border border-gray-200 bg-gray-50 p-8">
-              <h3 className="font-bold text-gray-900 mb-4">Zero disruption for your vendors.</h3>
+              <h3 className="font-bold text-gray-900 mb-4">Zero disruption for your suppliers.</h3>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
                   <span className="text-green-500 font-bold mt-0.5">✓</span>
@@ -636,8 +636,8 @@ function PurchasingPage() {
             <div>
               <h3 className="text-base font-bold text-gray-900 bg-white rounded-xl py-2 px-3 w-fit">Data access is scoped, not trusted</h3>
               <p className="mt-2 text-sm text-gray-600 leading-relaxed bg-white rounded-xl py-2 px-3 w-fit">
-                The AI can only access data relevant to the recipient it's drafting for. A vendor
-                asking about their invoice simply cannot surface another vendor's terms, your
+                The AI can only access data relevant to the recipient it's drafting for. A supplier
+                asking about their invoice simply cannot surface another supplier's terms, your
                 internal notes, or your banking details.
               </p>
             </div>

@@ -7,15 +7,15 @@ import Footer from '@/components/layout/Footer'
 const APP_URL = 'https://tryquiet.app'
 
 const steps = [
-  { icon: FileText, title: 'Quote Intake', desc: 'Forward a vendor quote to your purchasing inbox. Quiet AI extracts line items, pricing, and terms.' },
-  { icon: FilePlus, title: 'Draft PO', desc: 'AI generates a purchase order pre-filled with vendor info, GL codes, and your approval matrix.' },
+  { icon: FileText, title: 'Quote Intake', desc: 'Forward a supplier quote to your purchasing inbox. Quiet AI extracts line items, pricing, and lead times.' },
+  { icon: FilePlus, title: 'Draft PO', desc: 'AI generates a purchase order pre-filled with supplier info, GL codes, and your approval matrix.' },
   { icon: Route, title: 'Approval Routing', desc: 'PO routes to the right manager based on amount, department, or category. Approve from Slack or email.' },
-  { icon: Send, title: 'Send to Vendor', desc: 'Approved PO goes out to the vendor automatically. No copy-paste, no PDF exports.' },
-  { icon: PackageCheck, title: 'Receipt & Close', desc: 'When goods arrive, mark received. Quiet AI updates the PO status and adjusts committed spend.' },
+  { icon: Send, title: 'Send to Supplier', desc: 'Approved PO goes out to the supplier automatically. No copy-paste, no PDF exports.' },
+  { icon: PackageCheck, title: 'Receipt & Close', desc: 'When materials arrive at the dock, mark received. Quiet AI updates the PO status and adjusts committed spend.' },
 ]
 
 const visibility = [
-  { icon: Eye, text: 'See open POs by vendor, department, or GL account' },
+  { icon: Eye, text: 'See open POs by supplier, department, or GL account' },
   { icon: BarChart3, text: 'Budget vs. committed vs. spent, in real time' },
   { icon: AlertTriangle, text: 'Flag POs that exceed thresholds before they\'re approved' },
 ]
@@ -33,10 +33,10 @@ function POLifecyclePage() {
               PO Lifecycle Management
             </p>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight">
-              From quote to closed PO, without the spreadsheet
+              From supplier quote to closed PO, without the spreadsheet
             </h1>
             <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
-              AI turns vendor quotes into purchase orders, routes them for approval, and tracks every dollar against budget.
+              AI turns supplier quotes into purchase orders, routes them for approval, and tracks committed spend on materials against budget.
             </p>
             <div className="mt-8 flex items-center justify-center gap-4">
               <Button asChild size="lg">
@@ -56,7 +56,7 @@ function POLifecyclePage() {
             <div className="grid md:grid-cols-3 gap-6 text-left">
               {[
                 'Teams email quotes back and forth, manually re-key data into the ERP, and lose track of what\'s been approved',
-                'Open POs pile up and nobody knows what\'s been received vs. what\'s still outstanding',
+                'Open POs pile up and nobody knows what\'s been received at the dock vs. what\'s still on order',
                 'Budget overruns happen because there\'s no real-time visibility into committed spend',
               ].map((text, i) => (
                 <div key={i} className="bg-white rounded-xl p-6 border border-gray-200">
@@ -71,7 +71,7 @@ function POLifecyclePage() {
         <section className="py-20 px-6">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-gray-900 text-center mb-4">How it works</h2>
-            <p className="text-gray-500 text-center mb-12 max-w-2xl mx-auto">Five steps from vendor quote to closed PO</p>
+            <p className="text-gray-500 text-center mb-12 max-w-2xl mx-auto">Five steps from supplier quote to closed PO</p>
             <div className="space-y-6">
               {steps.map((step, i) => (
                 <div key={i} className="flex items-start gap-5 group">
@@ -94,7 +94,7 @@ function POLifecyclePage() {
         {/* Real-Time Spend Visibility */}
         <section className="py-16 px-6 bg-gray-50">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 text-center mb-10">Know what you've committed before the invoice arrives</h2>
+            <h2 className="text-3xl font-bold text-gray-900 text-center mb-10">Know what you've committed to suppliers before the invoice arrives</h2>
             <div className="grid md:grid-cols-3 gap-6">
               {visibility.map((v, i) => (
                 <div key={i} className="bg-white rounded-xl p-6 border border-gray-200 text-center">

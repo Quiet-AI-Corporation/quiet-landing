@@ -23,10 +23,10 @@ function AboutPage() {
               About
             </p>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight">
-              We're building the finance team of the future
+              We're building the back office manufacturers deserve
             </h1>
             <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
-              Quiet AI automates the work that keeps finance teams stuck in spreadsheets, so they can focus on decisions that matter.
+              Quiet AI automates the work that keeps manufacturing finance teams stuck in spreadsheets, so they can focus on decisions that matter.
             </p>
           </div>
         </section>
@@ -37,10 +37,10 @@ function AboutPage() {
             <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">The problem we're solving</h2>
             <div className="space-y-4 text-gray-700 leading-relaxed">
               <p>
-                Every company buys things. Almost none of them have a good system for it.
+                Every manufacturer buys things: steel, ingredients, components, packaging. Almost none of them have a good system for it.
               </p>
               <p>
-                Vendor quotes arrive by email and get re-keyed into spreadsheets. Purchase orders are drafted manually, routed for approval over Slack DMs, and tracked in someone's head. Invoices pile up, nobody matches them to what was actually received, and payments only go out because someone remembered to log into the bank. It's 2026 and this is still how most companies run procurement.
+                Supplier quotes arrive by email and get re-keyed into spreadsheets. Purchase orders are drafted manually, routed for approval over Slack DMs, and tracked in someone's head. Invoices pile up, nobody matches them to what actually arrived at the dock, and payments only go out because someone remembered to log into the bank. It's 2026 and this is still how most manufacturers run procurement.
               </p>
               <p>
                 We started Quiet AI because we believe AI is finally good enough to handle this end to end. Not as a tool that helps humans do the same work faster, but as a teammate that owns the entire flow from quote to payment.

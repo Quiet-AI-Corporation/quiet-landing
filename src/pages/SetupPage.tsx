@@ -7,12 +7,12 @@ const steps = [
   {
     icon: MessagesSquare,
     title: 'We learn your process',
-    desc: 'Walk us through how purchasing, AP, and approvals work today — your inboxes, your ERP, your rules. No process documentation required; a conversation is enough.',
+    desc: 'Walk us through how purchasing, AP, and approvals work today: your purchasing inbox, your ERP, your receiving process. No process documentation required; a conversation is enough.',
   },
   {
     icon: Wrench,
     title: 'We mold our modules to it',
-    desc: 'We adapt our ready-made modules to your exact operations: your approval matrix, your GL coding conventions, your vendor quirks.',
+    desc: 'We adapt our ready-made modules to your exact operations: your approval matrix, your GL coding conventions, your supplier quirks.',
   },
   {
     icon: Rocket,
@@ -33,10 +33,10 @@ function SetupPage() {
             Setup
           </p>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight">
-            We learn how you work, then get to work
+            We learn how your shop works, then get to work
           </h1>
           <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
-            No implementation project, no consultants. We adapt Quiet AI to your operations and have you up and running.
+            No implementation project, no consultants. We adapt Quiet AI to how you already buy and pay, and have you up and running.
           </p>
           <span className="mt-6 inline-block px-4 py-1.5 bg-blue-50 text-blue-700 text-sm font-medium rounded-full">
             Live in under 2 business days

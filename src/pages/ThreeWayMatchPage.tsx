@@ -14,19 +14,19 @@ import ThreeWayMatchAnimation from '@/components/landing/ThreeWayMatchAnimation'
 const CYCLE_DURATION = 14
 
 const steps = [
-  { icon: Search, title: 'Auto-Match', desc: 'Invoice arrives. Quiet AI finds the PO and receiving record instantly by PO number, vendor, or line items.' },
+  { icon: Search, title: 'Auto-Match', desc: 'Invoice arrives. Quiet AI finds the PO and receiving record instantly by PO number, supplier, or line items.' },
   { icon: Layers, title: 'Line-Level Comparison', desc: 'Quantities, unit prices, tax, and totals compared line by line. Not just header amounts.' },
   { icon: SlidersHorizontal, title: 'Tolerance Rules', desc: 'You set the thresholds. $5 variance? Auto-approve. $500? Route to manager.' },
-  { icon: AlertCircle, title: 'Exception Workflow', desc: 'Mismatches get flagged with the specific discrepancy. AI drafts a vendor inquiry email for you to send.' },
+  { icon: AlertCircle, title: 'Exception Workflow', desc: 'Mismatches get flagged with the specific discrepancy. AI drafts a supplier inquiry email for you to send.' },
 ]
 
 const catches = [
   { icon: Copy, text: 'Duplicate invoices for the same PO' },
-  { icon: TrendingUp, text: 'Quantity billed > quantity received' },
+  { icon: TrendingUp, text: 'Quantity billed > quantity received at the dock' },
   { icon: DollarSign, text: 'Unit price doesn\'t match the PO' },
   { icon: Calculator, text: 'Invoice total doesn\'t equal line item sum' },
   { icon: FileWarning, text: 'Tax calculated incorrectly' },
-  { icon: Receipt, text: 'Vendor invoiced for items not on the PO' },
+  { icon: Receipt, text: 'Supplier invoiced for items not on the PO' },
 ]
 
 function ThreeWayMatchPage() {
@@ -68,10 +68,10 @@ function ThreeWayMatchPage() {
               3 Way Match
             </p>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight">
-              Touchless matching. Zero tolerance for overpayment.
+              PO, packing slip, invoice. Matched touchless.
             </h1>
             <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
-              AI matches invoices to purchase orders and receiving reports automatically, and flags what doesn't line up.
+              AI matches supplier invoices to purchase orders and receiving records line by line, and flags what doesn't add up.
             </p>
             <div className="mt-8 flex items-center justify-center gap-4">
               <Button asChild size="lg">
@@ -134,8 +134,8 @@ function ThreeWayMatchPage() {
             <h2 className="text-3xl font-bold text-gray-900 mb-8">Manual matching is where AP hours go to die</h2>
             <div className="grid md:grid-cols-3 gap-6 text-left">
               {[
-                'Your team spends hours cross-referencing invoices, POs, and receipts in spreadsheets',
-                'Mismatches slip through and you overpay, or vendors escalate because you underpay',
+                'Your team spends hours cross-referencing invoices, POs, and packing slips in spreadsheets',
+                'Mismatches slip through and you overpay, or suppliers escalate because you underpay',
                 'Exceptions pile up with no clear workflow for resolution',
               ].map((text, i) => (
                 <div key={i} className="bg-white rounded-xl p-6 border border-gray-200">

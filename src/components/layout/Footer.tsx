@@ -9,8 +9,8 @@ const columns: { heading: string; links: { label: string; href: string; badge?: 
       { label: 'PO Lifecycle', href: '/po-lifecycle' },
       { label: '3 Way Match', href: '/three-way-match' },
       { label: 'Cash Management', href: '/cash-management' },
-      { label: 'Demand Planning', href: '/demand-planning', badge: 'Coming soon' },
-      { label: 'Sales Analytics', href: '/sales-analytics', badge: 'Coming soon' },
+      { label: 'Demand Planning', href: '/demand-planning' },
+      { label: 'Sales Analytics', href: '/sales-analytics' },
       { label: 'Integrations', href: '/purchasing#integrations' },
     ],
   },
@@ -54,7 +54,7 @@ function Footer() {
               <span className="text-white font-semibold text-lg">Quiet Software</span>
             </a>
             <p className="text-sm text-gray-400 leading-relaxed">
-              Your business isn't generic. Your software shouldn't be either.
+              Manufacturing isn't generic. Your back-office software shouldn't be either.
             </p>
           </div>
 

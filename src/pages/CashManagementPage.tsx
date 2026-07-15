@@ -26,9 +26,9 @@ const advantages = [
   { icon: CalendarClock, title: 'Due-date-driven forecasting', desc: 'Every invoice due date feeds directly into your forward cash picture, so projections are always grounded in real obligations.' },
   { icon: ShieldAlert, title: 'Cash threshold warnings', desc: 'Get alerts before a payment would push you below your desired cash floor, so you can act before it\'s a problem.' },
   { icon: BadgePercent, title: 'Capture early-pay discounts', desc: 'Quiet AI flags discount windows and lets you capture them at the moments when your cash position allows it.' },
-  { icon: ReceiptText, title: 'Tactical credit application', desc: 'Apply vendor credits strategically to optimize your net cash position across payables.' },
+  { icon: ReceiptText, title: 'Tactical credit application', desc: 'Apply supplier credits strategically to optimize your net cash position across payables.' },
   { icon: Zap, title: 'Just-in-time funding', desc: 'Maximize yield by transferring funds to your operating account only when payments are due, not a day earlier.' },
-  { icon: Lightbulb, title: 'Optimal timing recommendations', desc: 'See data-driven suggestions for when to pay each bill based on your cash forecast, discount terms, and vendor priority.' },
+  { icon: Lightbulb, title: 'Optimal timing recommendations', desc: 'See data-driven suggestions for when to pay each bill based on your cash forecast, discount terms, and supplier priority.' },
   { icon: Unplug, title: 'No rekeying, no file exports', desc: 'Payments flow straight from approval to execution. No toggling between an AP tool and a banking portal, and no uploading payment files.' },
 ]
 
@@ -65,7 +65,7 @@ function CashManagementPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: CARD_DURATION, delay: HERO_STAGGER }}
             >
-              A complete picture of money in and money out
+              See your cash before the next big material buy
             </motion.h1>
             <motion.p
               className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto"
@@ -101,12 +101,12 @@ function CashManagementPage() {
               viewport={VIEWPORT_ONCE}
               transition={{ duration: SECTION_DURATION }}
             >
-              You can't manage cash if you can't see it
+              You can't manage cash when it's sitting in inventory
             </motion.h2>
             <div className="grid md:grid-cols-3 gap-6 text-left">
               {[
                 'Cash position lives in a spreadsheet that\'s out of date the moment it\'s saved',
-                'Upcoming payables and receivables aren\'t connected, so you\'re guessing at runway',
+                'Material buys commit cash weeks before revenue lands, and payables and receivables aren\'t connected',
                 'Payment timing decisions are made on gut feel, not data',
               ].map((text, i) => (
                 <motion.div

@@ -112,7 +112,7 @@ function WorkflowDemoPage() {
             Watch automated AP run.
           </h1>
           <p className="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">
-            From the moment a vendor email lands to the moment the payment is booked —
+            From the moment a supplier email lands to the moment the payment is booked,
             every step Quiet AI runs on autopilot, with you in the loop only where it
             matters.
           </p>
@@ -242,7 +242,7 @@ function WorkflowDemoPage() {
                       transition={{ delay: 0.55, duration: 0.4 }}
                       className="mt-2 text-gray-600"
                     >
-                      Eight steps, two human touches, one happy vendor.
+                      Eight steps, two human touches, one happy supplier.
                     </motion.p>
                     <motion.div
                       initial={{ opacity: 0, y: 8 }}
@@ -324,13 +324,13 @@ function WorkflowDemoPage() {
             <div className="rounded-xl bg-white border border-gray-200 p-5">
               <div className="text-3xl font-bold text-gray-900">2 clicks</div>
               <div className="mt-1 text-sm text-gray-600">
-                One to approve, one to pay — everything else runs on autopilot
+                One to approve, one to pay. Everything else runs on autopilot
               </div>
             </div>
             <div className="rounded-xl bg-white border border-gray-200 p-5">
               <div className="text-3xl font-bold text-gray-900">0 portals</div>
               <div className="mt-1 text-sm text-gray-600">
-                Vendors keep emailing the same address they always have
+                Suppliers keep emailing the same address they always have
               </div>
             </div>
           </div>

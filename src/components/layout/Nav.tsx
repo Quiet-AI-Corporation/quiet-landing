@@ -7,20 +7,20 @@ import logo from '@/assets/images/logo.png'
 const APP_URL = 'https://tryquiet.app'
 
 const capabilities = [
-  { icon: ShoppingCart, title: 'Purchasing', caption: 'From purchase request to booked bill, on autopilot', href: '/purchasing' },
-  { icon: FileText, title: 'Accounts Payable', caption: 'No humans needed until it\'s time to pay', href: '/accounts-payable' },
-  { icon: ClipboardList, title: 'PO Lifecycle Management', caption: 'AI turns quotes into POs and gets them approved', href: '/po-lifecycle' },
-  { icon: CheckSquare, title: '3 Way Match', caption: 'Touchless match between receipts, invoices, and purchase orders', href: '/three-way-match' },
-  { icon: DollarSign, title: 'Cash Management', caption: 'A complete picture of money in and money out', href: '/cash-management', beta: true },
-  { icon: ShieldAlert, title: 'Fraud & Duplicate Prevention', caption: 'Every invoice verified before it gets paid', href: '/fraud-prevention' },
-  { icon: TrendingUp, title: 'Demand Planning', caption: 'Know what to buy before you need it', href: '/demand-planning', comingSoon: true },
-  { icon: BarChart3, title: 'Sales Analytics', caption: 'See what\'s selling, and why', href: '/sales-analytics', comingSoon: true },
+  { icon: ShoppingCart, title: 'Purchasing', caption: 'From material request to booked bill, on autopilot', href: '/purchasing' },
+  { icon: FileText, title: 'Accounts Payable', caption: 'Supplier invoices handled. No humans until it\'s time to pay', href: '/accounts-payable' },
+  { icon: ClipboardList, title: 'PO Lifecycle Management', caption: 'AI turns supplier quotes into POs and gets them approved', href: '/po-lifecycle' },
+  { icon: CheckSquare, title: '3 Way Match', caption: 'Touchless match between packing slips, invoices, and POs', href: '/three-way-match' },
+  { icon: DollarSign, title: 'Cash Management', caption: 'Money in, money out, and what\'s already committed', href: '/cash-management' },
+  { icon: ShieldAlert, title: 'Fraud & Duplicate Prevention', caption: 'Every supplier invoice verified before it gets paid', href: '/fraud-prevention' },
+  { icon: TrendingUp, title: 'Demand Planning', caption: 'Know what to buy before the line needs it', href: '/demand-planning' },
+  { icon: BarChart3, title: 'Sales Analytics', caption: 'See what\'s selling, and what it\'s costing you', href: '/sales-analytics' },
 ]
 
 const audiences = [
   { icon: Briefcase, title: 'Business Owners', caption: 'Your back office, off your plate', href: '/business-owners' },
-  { icon: LineChart, title: 'Heads of Finance', caption: 'Give your team leverage, not busywork', href: '/heads-of-finance' },
-  { icon: Calculator, title: 'Controllers', caption: 'Clean books, faster close', href: '/controllers' },
+  { icon: LineChart, title: 'Heads of Finance', caption: 'Leverage for a lean manufacturing finance team', href: '/heads-of-finance' },
+  { icon: Calculator, title: 'Controllers', caption: 'Clean books and a faster close, even at volume', href: '/controllers' },
   { icon: Handshake, title: 'Procurement Leaders', caption: 'Compliant purchasing without the chasing', href: '/procurement-leaders' },
 ]
 
@@ -102,20 +102,18 @@ function Nav() {
                 {openDropdown === 'capabilities' && (
                   <div>
                     <p className="text-sm text-gray-500 mb-5">
-                      Mix and match product modules. Let AI automate the pieces you need and do the rest yourself.
+                      Mix and match modules for how you buy and pay. Automate the pieces you need, keep the rest.
                     </p>
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                      {capabilities.map(({ icon: Icon, title, caption, href, beta, comingSoon }) => (
-                        <a key={title} href={href}>
-                          <div className="group flex flex-col gap-3 p-4 rounded-xl border border-gray-100 hover:border-blue-300 hover:bg-blue-50/40 transition-all duration-150 cursor-pointer">
+                      {capabilities.map(({ icon: Icon, title, caption, href }) => (
+                        <a key={title} href={href} className="h-full">
+                          <div className="group h-full flex flex-col gap-3 p-4 rounded-xl border border-gray-100 hover:border-blue-300 hover:bg-blue-50/40 transition-all duration-150 cursor-pointer">
                             <div className="h-9 w-9 rounded-lg bg-gray-100 group-hover:bg-blue-100 flex items-center justify-center transition-colors">
                               <Icon className="h-[18px] w-[18px] text-gray-600 group-hover:text-blue-600 transition-colors" />
                             </div>
                             <div>
                               <p className="text-sm font-semibold text-gray-900">
                                 {title}
-                                {beta && <span className="ml-1.5 inline-flex px-1.5 py-0.5 bg-amber-100 text-amber-700 text-[10px] font-semibold uppercase rounded">Beta</span>}
-                                {comingSoon && <span className="ml-1.5 inline-flex px-1.5 py-0.5 bg-gray-100 text-gray-500 text-[10px] font-semibold uppercase rounded">Coming soon</span>}
                               </p>
                               <p className="text-xs text-gray-500 mt-1 leading-relaxed">{caption}</p>
                             </div>
@@ -129,12 +127,12 @@ function Nav() {
                 {openDropdown === 'audiences' && (
                   <div>
                     <p className="text-sm text-gray-500 mb-5">
-                      Built for the people who own the back office.
+                      Built for the people who run a manufacturer's back office.
                     </p>
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                       {audiences.map(({ icon: Icon, title, caption, href }) => (
-                        <a key={title} href={href}>
-                          <div className="group flex flex-col gap-3 p-4 rounded-xl border border-gray-100 hover:border-blue-300 hover:bg-blue-50/40 transition-all duration-150 cursor-pointer">
+                        <a key={title} href={href} className="h-full">
+                          <div className="group h-full flex flex-col gap-3 p-4 rounded-xl border border-gray-100 hover:border-blue-300 hover:bg-blue-50/40 transition-all duration-150 cursor-pointer">
                             <div className="h-9 w-9 rounded-lg bg-gray-100 group-hover:bg-blue-100 flex items-center justify-center transition-colors">
                               <Icon className="h-[18px] w-[18px] text-gray-600 group-hover:text-blue-600 transition-colors" />
                             </div>

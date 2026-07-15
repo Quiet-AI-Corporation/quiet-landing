@@ -17,16 +17,16 @@ const APP_URL = 'https://tryquiet.app'
 const CYCLE_DURATION = 10 // seconds per cycle
 
 const threats = [
-  { icon: Mail, title: 'Business Email Compromise', desc: 'Fraudsters impersonate vendors and request payment detail changes. Quiet AI verifies sender identity against known contacts before any action is taken.' },
+  { icon: Mail, title: 'Business Email Compromise', desc: 'Fraudsters impersonate suppliers and request payment detail changes. Quiet AI verifies sender identity against known contacts before any action is taken.' },
   { icon: Copy, title: 'Duplicate Invoices', desc: 'The same invoice submitted twice, sometimes months apart. Quiet AI matches invoice numbers, amounts, and line items to catch duplicates instantly.' },
-  { icon: FileWarning, title: 'Fake Invoice Attacks', desc: 'Invoices from unknown vendors or spoofed domains. Quiet AI cross-references every sender against your onboarded vendor list and flags imposters.' },
+  { icon: FileWarning, title: 'Fake Invoice Attacks', desc: 'Invoices from unknown suppliers or spoofed domains. Quiet AI cross-references every sender against your onboarded supplier list and flags imposters.' },
 ]
 
 const catches = [
   { icon: UserX, text: 'Unknown sender requesting payment detail changes' },
   { icon: AlertTriangle, text: 'Spoofed domains mimicking internal employees' },
   { icon: Copy, text: 'Duplicate invoices submitted weeks, months, or years apart' },
-  { icon: Search, text: 'Invoices from vendors not in your system' },
+  { icon: Search, text: 'Invoices from suppliers not in your system' },
   { icon: Ban, text: 'Payment requests with mismatched contact info' },
   { icon: ShieldAlert, text: 'Potential impersonation attacks on your AP inbox' },
 ]
@@ -129,10 +129,10 @@ function FraudPreventionPage() {
               Fraud & Duplicate Prevention
             </p>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight">
-              Every invoice verified. Every threat stopped.
+              Every supplier invoice verified. Every threat stopped.
             </h1>
             <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
-              AI checks every invoice against your vendor records, contact lists, and payment history before anything gets paid.
+              AI checks every invoice against your supplier records, contact lists, and payment history before anything gets paid.
             </p>
             <div className="mt-8 flex items-center justify-center gap-4">
               <Button asChild size="lg">
@@ -152,7 +152,7 @@ function FraudPreventionPage() {
             <div className="grid md:grid-cols-3 gap-6 text-left">
               {[
                 'Business email compromise cost companies $2.9 billion in 2023, and AP teams are the #1 target',
-                'Duplicate invoices slip through when teams process hundreds of bills a month across email and portals',
+                'Duplicate invoices slip through when a lean office processes hundreds of supplier bills a month across email and portals',
                 'Fake invoices from unknown senders look legitimate enough to fool a busy AP clerk',
               ].map((text, i) => (
                 <div key={i} className="bg-white rounded-xl p-6 border border-gray-200">
@@ -167,7 +167,7 @@ function FraudPreventionPage() {
         <section className="py-20 px-6">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-gray-900 text-center mb-4">Three layers of protection, fully automated</h2>
-            <p className="text-gray-500 text-center mb-12 max-w-2xl mx-auto">Every invoice is checked for fraud, duplicates, and vendor legitimacy before it enters your workflow</p>
+            <p className="text-gray-500 text-center mb-12 max-w-2xl mx-auto">Every invoice is checked for fraud, duplicates, and supplier legitimacy before it enters your workflow</p>
             <div className="space-y-6">
               {threats.map((threat, i) => (
                 <div key={i} className="flex items-start gap-5 group">
@@ -187,7 +187,7 @@ function FraudPreventionPage() {
         {/* Animation: Business Email Compromise */}
         <AnimationPlayer
           title="Business Email Compromise Detection"
-          subtitle="A vendor contact requests a payment info change. Quiet AI verifies the sender before acting"
+          subtitle="A supplier contact requests a payment info change. Quiet AI verifies the sender before acting"
           bg="bg-gray-50"
         >
           <BusinessEmailCompromiseAnimation />

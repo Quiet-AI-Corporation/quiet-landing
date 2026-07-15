@@ -14,10 +14,10 @@ function HeadsOfFinancePage() {
             Heads of Finance
           </p>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight">
-            Leverage for your finance team
+            Leverage for manufacturing finance teams
           </h1>
           <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
-            Automate the transactional work so your team can focus on planning, not processing.
+            Automate supplier invoices, POs, and payments so your team plans margins instead of keying data.
           </p>
           <div className="mt-8 flex items-center justify-center">
             <Button asChild size="lg">

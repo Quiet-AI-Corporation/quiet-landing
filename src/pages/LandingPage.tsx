@@ -18,13 +18,13 @@ function LandingPage() {
         <div className="max-w-4xl mx-auto text-center">
           <div className="w-fit mx-auto">
             <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 bg-white rounded-xl py-1.5 px-3 w-fit mx-auto">
-              Agentic AI for Your Back Office
+              Agentic AI for Manufacturing Back Offices
             </p>
             <h1 className="mt-1 text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight bg-white rounded-xl py-2 px-4 w-fit max-w-3xl mx-auto">
-              Software molded to how you work
+              Software molded to how your operation runs
             </h1>
             <p className="mt-1 text-xl text-gray-600 max-w-2xl mx-auto bg-white rounded-xl py-2 px-4 w-fit">
-              We'll adapt our ready-made modules for procurement, finance, and admin to your exact operations
+              We adapt our ready-made purchasing, AP, and finance modules to the way you already buy, receive, and pay
             </p>
           </div>
         </div>
@@ -45,7 +45,7 @@ function LandingPage() {
               Everything flows through Quiet
             </h2>
             <p className="mt-1 text-lg text-gray-600 max-w-2xl mx-auto bg-white rounded-xl py-1 px-4 w-fit">
-              Email it, Slack it, or drop in a file — Quiet runs it through the right module, grounded in your own data.
+              Email it, Slack it, or drop in a packing slip. Quiet runs it through the right module, grounded in your own data.
             </p>
           </div>
         </div>
@@ -65,7 +65,7 @@ function LandingPage() {
               The questions your spreadsheets can't answer
             </h2>
             <p className="mt-1 text-lg text-gray-600 max-w-2xl mx-auto bg-white rounded-xl py-1 px-4 w-fit">
-              Quiet cross-references your forecasts, inventory, and payables — and answers in plain English.
+              Quiet cross-references your open POs, inventory, and payables and answers in plain English.
             </p>
           </div>
         </div>
@@ -81,7 +81,7 @@ function LandingPage() {
             We're just getting started
           </h2>
           <p className="mt-1 text-lg text-gray-600 mb-8 bg-white rounded-xl py-1 px-4 w-fit mx-auto">
-            Want to shape what comes next? We build with our customers.
+            Want to shape what comes next? We build alongside our manufacturing customers.
           </p>
           <div className="flex items-center justify-center bg-white rounded-xl w-fit mx-auto">
             <Button size="lg" asChild className="text-lg px-8 py-6">

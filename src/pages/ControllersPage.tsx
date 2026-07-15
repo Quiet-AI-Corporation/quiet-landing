@@ -14,10 +14,10 @@ function ControllersPage() {
             Controllers
           </p>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight">
-            Close faster with cleaner books
+            Close the month, even when production doesn't slow down
           </h1>
           <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
-            Every invoice coded, matched, and audit-trailed automatically.
+            Every supplier invoice coded, matched to its PO and receipt, and audit-trailed automatically.
           </p>
           <div className="mt-8 flex items-center justify-center">
             <Button asChild size="lg">

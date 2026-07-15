@@ -18,7 +18,7 @@ const APP_URL = 'https://tryquiet.app'
 const steps = [
   { icon: Mail, title: 'Intake', desc: 'Invoices arrive by email. Quiet AI reads every line, even handwritten ones.' },
   { icon: FileSearch, title: 'Extract & Code', desc: 'AI pulls header, line items, tax, and maps to the right GL codes automatically.' },
-  { icon: GitCompare, title: 'Match', desc: '3-way match against PO and receipt. Discrepancies get flagged, not ignored.' },
+  { icon: GitCompare, title: 'Match', desc: '3-way match against PO and packing slip. Discrepancies get flagged, not ignored.' },
   { icon: MessageSquare, title: 'Route for Approval', desc: 'The right approver gets a Slack message or email. One click to approve.' },
   { icon: CreditCard, title: 'Schedule Payment', desc: 'Approved invoices queue for payment on your terms: ACH, check, or card.' },
   { icon: RefreshCw, title: 'Sync to ERP', desc: 'Bill, payment, and journal entry post to QuickBooks, NetSuite, Xero, or Sage.' },
@@ -26,14 +26,14 @@ const steps = [
 
 const differentiators = [
   { icon: Brain, title: 'Learns your GL', desc: 'Quiet AI studies your historical coding patterns and gets smarter every invoice.' },
-  { icon: Inbox, title: 'Works in your inbox', desc: 'Vendors keep emailing you. No portal migration, no vendor onboarding.' },
+  { icon: Inbox, title: 'Works in your inbox', desc: 'Suppliers keep emailing you. No portal migration, no supplier onboarding.' },
   { icon: UserCheck, title: 'Human-in-the-loop', desc: 'AI does the work. You approve the results. Nothing sends without your OK.' },
 ]
 
 const stats = [
   { value: '< 30s', label: 'Average invoice processing time' },
   { value: '95%+', label: 'Invoices processed without human touch' },
-  { value: '0', label: 'New portals your vendors need to learn' },
+  { value: '0', label: 'New portals your suppliers need to learn' },
 ]
 
 function AccountsPayablePage() {
@@ -124,10 +124,10 @@ function AccountsPayablePage() {
               Accounts Payable
             </p>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight">
-              One AP clerk, forever
+              One AP clerk for the whole operation
             </h1>
             <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
-              With AI handling the busywork, AP becomes a single staffer's part-time job.
+              With AI handling the busywork, hundreds of supplier invoices a month become one person's part-time job.
             </p>
             <div className="mt-8 flex items-center justify-center gap-4">
               <Button asChild size="lg">
@@ -287,7 +287,7 @@ function AccountsPayablePage() {
                         transition={{ delay: 0.55, duration: 0.4 }}
                         className="mt-2 text-gray-600"
                       >
-                        Eight steps, two human touches, one happy vendor.
+                        Eight steps, two human touches, one happy supplier.
                       </motion.p>
                       <motion.div
                         initial={{ opacity: 0, y: 8 }}
@@ -314,12 +314,12 @@ function AccountsPayablePage() {
         {/* The Problem */}
         <section className="py-16 px-6 bg-gray-50">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">Your AP team is drowning in paper</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-8">Your office is drowning in supplier invoices</h2>
             <div className="grid md:grid-cols-3 gap-6 text-left">
               {[
                 'Every invoice means data entry, coding, matching, chasing approvals, and cutting checks',
                 'One AP clerk costs $55K+/year and still can\'t keep up with volume spikes',
-                'Late payments damage vendor relationships and cost you early-pay discounts',
+                'Late payments damage supplier relationships and cost you early-pay discounts',
               ].map((text, i) => (
                 <div key={i} className="bg-white rounded-xl p-6 border border-gray-200">
                   <p className="text-gray-700 text-sm leading-relaxed">{text}</p>

@@ -14,14 +14,11 @@ function DemandPlanningPage() {
             Demand Planning
           </p>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight">
-            Know what to buy before you need it
+            Know what to buy before the line needs it
           </h1>
           <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
-            AI-driven demand forecasting that turns sales history and open orders into purchasing recommendations.
+            AI-driven forecasting that turns sales history and open orders into purchasing recommendations for materials and components.
           </p>
-          <span className="mt-6 inline-block px-4 py-1.5 bg-blue-50 text-blue-700 text-sm font-medium rounded-full">
-            Coming soon
-          </span>
           <div className="mt-8 flex items-center justify-center">
             <Button asChild size="lg">
               <a href="https://quietai.fillout.com/book">Get a Demo</a>

@@ -14,14 +14,11 @@ function SalesAnalyticsPage() {
             Sales Analytics
           </p>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight">
-            See what's selling, and why
+            See what's selling, and what it's costing you
           </h1>
           <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
             AI-powered revenue and margin analytics on top of the data Quiet AI already syncs from your ERP.
           </p>
-          <span className="mt-6 inline-block px-4 py-1.5 bg-blue-50 text-blue-700 text-sm font-medium rounded-full">
-            Coming soon
-          </span>
           <div className="mt-8 flex items-center justify-center">
             <Button asChild size="lg">
               <a href="https://quietai.fillout.com/book">Get a Demo</a>
