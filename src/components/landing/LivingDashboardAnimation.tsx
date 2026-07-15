@@ -65,7 +65,7 @@ const EVENTS: DashEvent[] = [
   { id: 'inv-paid', at: 6.0, target: 'cash', payload: { delta: -1240 } },
   {
     id: 'slack-sales', at: 6.5, target: 'sales',
-    chip: { img: slackLogo, label: 'west region is up' },
+    chip: { img: slackLogo, label: 'Meridian doubled their order' },
     path: { spawn: { left: '-6%', top: '62%' }, mid: { left: '32%', top: '86%' } },
     payload: { bars: [5], label: '+18%' },
   },

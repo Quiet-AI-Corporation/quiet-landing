@@ -36,7 +36,7 @@ const routeMeta: Record<string, { title: string; description: string }> = {
   },
   '/sales-analytics': {
     title: 'Quiet Software | Sales Analytics',
-    description: 'AI-powered revenue and margin analytics on top of the data Quiet AI already syncs from your ERP.',
+    description: 'Quiet tracks the products that are selling, the accounts gaining or losing spend, and the salespeople behind every number, on data it already syncs from your ERP.',
   },
   '/business-owners': {
     title: 'Quiet Software | For Business Owners',

@@ -14,7 +14,7 @@ const capabilities = [
   { icon: DollarSign, title: 'Cash Management', caption: 'Money in, money out, and what\'s already committed', href: '/cash-management' },
   { icon: ShieldAlert, title: 'Fraud & Duplicate Prevention', caption: 'Every supplier invoice verified before it gets paid', href: '/fraud-prevention' },
   { icon: TrendingUp, title: 'Demand Planning', caption: 'Know what to buy before the line needs it', href: '/demand-planning' },
-  { icon: BarChart3, title: 'Sales Analytics', caption: 'See what\'s selling, and what it\'s costing you', href: '/sales-analytics' },
+  { icon: BarChart3, title: 'Sales Analytics', caption: 'What\'s selling, which accounts are moving, and who\'s closing', href: '/sales-analytics' },
 ]
 
 const audiences = [

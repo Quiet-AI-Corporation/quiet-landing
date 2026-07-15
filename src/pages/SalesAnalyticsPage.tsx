@@ -4,9 +4,9 @@ import Footer from '@/components/layout/Footer'
 import ModuleIncludes, { type IncludedFeature } from '@/components/landing/ModuleIncludes'
 
 const included: IncludedFeature[] = [
-  { text: 'Revenue and margin analytics' },
-  { text: 'SKU-level sales breakdowns' },
-  { text: 'Trends built on data already synced from your ERP' },
+  { text: 'Product and SKU-level sales trends' },
+  { text: 'Account-level spend: who\'s growing, who\'s slipping' },
+  { text: 'Performance by salesperson' },
   { text: 'Plain-English answers to sales questions' },
 ]
 
@@ -22,10 +22,10 @@ function SalesAnalyticsPage() {
             Sales Analytics
           </p>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight">
-            See what's selling, and what it's costing you
+            What's selling, which accounts are moving, and who's closing
           </h1>
           <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
-            AI-powered revenue and margin analytics on top of the data Quiet AI already syncs from your ERP.
+            Quiet tracks the products that are selling, the accounts gaining or losing spend, and the salespeople behind every number, on data it already syncs from your ERP.
           </p>
           <div className="mt-8 flex items-center justify-center">
             <Button asChild size="lg">
