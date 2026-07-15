@@ -101,8 +101,14 @@ function Nav() {
               <div className="bg-white rounded-xl shadow-xl border border-gray-200 p-6">
                 {openDropdown === 'capabilities' && (
                   <div>
+                    <p className="text-xs font-bold uppercase tracking-widest text-gray-900 mb-1">
+                      Product Modules
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      Mix and match modules for how you buy, plan, and pay.
+                    </p>
                     <p className="text-sm text-gray-500 mb-5">
-                      Mix and match modules for how you buy and pay. Automate the pieces you need, keep the rest.
+                      Used together they compound: each module makes the others smarter, because they share one source of truth.
                     </p>
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                       {capabilities.map(({ icon: Icon, title, caption, href }) => (

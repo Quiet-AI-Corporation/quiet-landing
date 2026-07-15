@@ -14,6 +14,8 @@ interface Feature {
 const tiers: {
   label: string
   name: string
+  price: string
+  priceDetail: string
   desc: string
   features: Feature[]
   cta: string
@@ -22,66 +24,51 @@ const tiers: {
   badge?: string
 }[] = [
   {
-    label: 'AP Only',
-    name: 'Autonomous AP Inbox',
-    desc: 'Everything you need to automate accounts payable.',
+    label: 'Start',
+    name: 'Your First Module',
+    price: '$250',
+    priceDetail: 'per month, flat',
+    desc: 'Pick the module that hurts most. Purchasing, AP, cash management, demand planning, or any other.',
     features: [
-      { text: 'Invoices processed, coded, and paid', detail: 'Per-invoice overage fee beyond included volume' },
+      { text: 'Any one module of your choice' },
       { text: 'Guided onboarding' },
-      { text: 'Unlimited suppliers onboarded' },
-      { text: 'Fraud intelligence' },
       { text: 'ERP sync included' },
-      { text: 'Reporting', detail: 'AP aging, cash flow forecast, supplier spend breakdown' },
       { text: 'Unlimited seats', detail: 'Users, approvers, and reviewers, no per-seat fees' },
-      { text: 'Direct line to founder support' },
       { text: 'Unlimited stakeholder comms' },
-      { text: 'Native ACH payments' },
-      { text: '1099 data dump' },
+      { text: 'Fraud intelligence' },
+      { text: 'Direct line to founder support' },
     ],
     cta: 'Get Started',
     ctaHref: 'https://quietai.fillout.com/book',
     highlight: false,
   },
   {
-    label: 'Procurement Plan',
-    name: 'Autonomous AP, POs, Receipts',
-    desc: 'Everything in AP Only, plus full purchasing automation.',
-    badge: 'Most complete',
+    label: 'Grow',
+    name: 'Multiple Modules',
+    price: 'Custom',
+    priceDetail: 'priced for what they do together',
+    desc: 'Modules multiply each other. Every one you add makes the rest smarter, because they share one source of truth.',
+    badge: 'Best value',
     features: [
-      { text: 'Everything in AP Only' },
-      { text: 'Invoices processed, coded, 3-way-matched, and paid', detail: 'Per-invoice overage fee beyond included volume' },
-      { text: 'Unlimited POs and Receipts', detail: 'Includes 3-way matching and sync to ERP' },
-      { text: 'Order tracking', detail: 'Track orders from placement through delivery' },
-      { text: 'Slack integration for PO creation', detail: 'Create purchase orders directly from Slack' },
-      { text: 'Automated 1099 generation', detail: 'Full creation, not just the data dump' },
-      { text: 'Cash management', detail: 'Real-time cash position, payment scheduling, and forecasting' },
-    ],
-    cta: 'Get Started',
-    ctaHref: 'https://quietai.fillout.com/book',
-    highlight: true,
-  },
-  {
-    label: 'Enterprise',
-    name: 'Procurement + Custom Integrations',
-    desc: 'Everything in Procurement, plus tailored integrations for your stack.',
-    features: [
-      { text: 'Everything in Procurement' },
+      { text: 'Everything in your first module' },
+      { text: 'Any combination of modules' },
+      { text: 'Compounding intelligence', detail: 'Purchasing data sharpens demand planning, receipts power 3-way match, invoices feed your cash forecast' },
       { text: 'Custom ERP & system integrations' },
-      { text: 'Dedicated implementation support' },
       { text: 'Custom workflows & approval chains' },
+      { text: 'Dedicated implementation support' },
     ],
     cta: 'Talk to Us',
     ctaHref: 'https://quietai.fillout.com/book',
-    highlight: false,
+    highlight: true,
   },
 ]
 
 const faqs = [
-  { q: 'How does billing work?', a: 'Monthly subscription, billed at the start of each period. Any overages are billed retroactively after the end of the month. No long-term contracts required. Annual billing is also available.' },
-  { q: 'What counts as an invoice?', a: 'Each unique invoice document processed through Quiet AI counts as one invoice, regardless of line items.' },
-  { q: 'Can I change plans?', a: 'Upgrade or downgrade anytime. Changes take effect on your next billing cycle.' },
+  { q: 'How does billing work?', a: 'Monthly subscription, billed at the start of each period. No long-term contracts required. Annual billing is also available.' },
+  { q: 'What counts as a module?', a: 'Any one of our capabilities: Purchasing, Accounts Payable, PO Lifecycle Management, 3 Way Match, Cash Management, Fraud & Duplicate Prevention, Demand Planning, or Sales Analytics.' },
+  { q: 'Why is multi-module pricing custom?', a: 'Because modules compound. Purchasing data sharpens demand planning, receipts power 3-way matching, and invoices feed your cash forecast. We price the combination for the value it creates in your operation, not per seat or per document.' },
+  { q: 'Can I change plans?', a: 'Add or remove modules anytime. Changes take effect on your next billing cycle.' },
   { q: 'Is there a free trial?', a: 'Yes. No credit card required.' },
-  { q: 'What if I exceed my included volume?', a: 'You\'ll pay a simple per-invoice overage fee. We never stop processing your invoices. You\'ll just see the overage on your next bill.' },
 ]
 
 function PricingPage() {
@@ -99,14 +86,14 @@ function PricingPage() {
               Simple, predictable pricing
             </h1>
             <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
-              A flat monthly fee with simple per-invoice pricing after. Pick the plan that fits your invoice volume.
+              Your first module is $250 a month, flat. Add more and we price the combination for what it does together.
             </p>
           </div>
         </section>
 
         {/* Tiers */}
         <section className="pb-20 px-6">
-          <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-6">
+          <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6">
             {tiers.map((tier) => (
               <div
                 key={tier.name}
@@ -123,6 +110,10 @@ function PricingPage() {
                 )}
                 <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-1">{tier.label}</p>
                 <h3 className="text-xl font-bold text-gray-900 mb-1">{tier.name}</h3>
+                <div className="flex items-baseline gap-2 mt-3 mb-1">
+                  <span className="text-4xl font-bold text-gray-900">{tier.price}</span>
+                  <span className="text-sm text-gray-500">{tier.priceDetail}</span>
+                </div>
                 <p className="text-gray-500 text-sm mb-6">{tier.desc}</p>
                 <ul className="space-y-3 mb-8 flex-1">
                   {tier.features.map((f, i) => (

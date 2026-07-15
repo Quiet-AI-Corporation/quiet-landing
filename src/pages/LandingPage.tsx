@@ -18,13 +18,13 @@ function LandingPage() {
         <div className="max-w-4xl mx-auto text-center">
           <div className="w-fit mx-auto">
             <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 bg-white rounded-xl py-1.5 px-3 w-fit mx-auto">
-              Agentic AI for Manufacturing Back Offices
+              Agentic AI for Manufacturers
             </p>
             <h1 className="mt-1 text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight bg-white rounded-xl py-2 px-4 w-fit max-w-3xl mx-auto">
-              Software molded to how your operation runs
+              The finance and planning layer your ERP is missing
             </h1>
             <p className="mt-1 text-xl text-gray-600 max-w-2xl mx-auto bg-white rounded-xl py-2 px-4 w-fit">
-              We adapt our ready-made purchasing, AP, and finance modules to the way you already buy, receive, and pay
+              Quiet handles purchasing, payables, and production planning, grounded in your data and shaped to your operation
             </p>
           </div>
         </div>
