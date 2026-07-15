@@ -3,8 +3,18 @@ import { Button } from '@/components/ui/button'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import Nav from '@/components/layout/Nav'
 import Footer from '@/components/layout/Footer'
+import ModuleIncludes, { type IncludedFeature } from '@/components/landing/ModuleIncludes'
 
 const APP_URL = 'https://tryquiet.app'
+
+const included: IncludedFeature[] = [
+  { text: 'Quote intake from your purchasing inbox' },
+  { text: 'Draft POs with supplier info and GL codes' },
+  { text: 'Approval routing by amount, department, or category' },
+  { text: 'POs sent to suppliers automatically' },
+  { text: 'Receipt tracking and PO close-out' },
+  { text: 'Committed-spend visibility against budget' },
+]
 
 const steps = [
   { icon: FileText, title: 'Quote Intake', desc: 'Forward a supplier quote to your purchasing inbox. Quiet AI extracts line items, pricing, and lead times.' },
@@ -107,6 +117,9 @@ function POLifecyclePage() {
             </div>
           </div>
         </section>
+
+        {/* What's included */}
+        <ModuleIncludes features={included} />
 
         {/* CTA */}
         <section className="py-16 px-6 bg-gray-900 text-white">

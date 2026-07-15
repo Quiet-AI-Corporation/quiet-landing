@@ -12,8 +12,18 @@ import Footer from '@/components/layout/Footer'
 import BusinessEmailCompromiseAnimation from '@/components/landing/BusinessEmailCompromiseAnimation'
 import DuplicateDetectionAnimation from '@/components/landing/DuplicateDetectionAnimation'
 import FakeInvoiceDeflectionAnimation from '@/components/landing/FakeInvoiceDeflectionAnimation'
+import ModuleIncludes, { type IncludedFeature } from '@/components/landing/ModuleIncludes'
 
 const APP_URL = 'https://tryquiet.app'
+
+const included: IncludedFeature[] = [
+  { text: 'Business email compromise detection' },
+  { text: 'Duplicate invoice detection' },
+  { text: 'Fake invoice deflection' },
+  { text: 'Sender verification against supplier records' },
+  { text: 'Flagged threats routed for your review' },
+  { text: 'Full audit trail on every check' },
+]
 const CYCLE_DURATION = 10 // seconds per cycle
 
 const threats = [
@@ -227,6 +237,9 @@ function FraudPreventionPage() {
             </div>
           </div>
         </section>
+
+        {/* What's included */}
+        <ModuleIncludes features={included} />
 
         {/* CTA */}
         <section className="py-16 px-6 bg-gray-900 text-white">

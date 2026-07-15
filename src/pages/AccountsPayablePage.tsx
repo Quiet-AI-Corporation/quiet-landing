@@ -11,6 +11,7 @@ import {
 import Nav from '@/components/layout/Nav'
 import Footer from '@/components/layout/Footer'
 import EndToEndWorkflowAnimation, { SCENES } from '@/components/landing/EndToEndWorkflowAnimation'
+import ModuleIncludes, { type IncludedFeature } from '@/components/landing/ModuleIncludes'
 import logo from '@/assets/images/logo.png'
 
 const APP_URL = 'https://tryquiet.app'
@@ -34,6 +35,20 @@ const stats = [
   { value: '< 30s', label: 'Average invoice processing time' },
   { value: '95%+', label: 'Invoices processed without human touch' },
   { value: '0', label: 'New portals your suppliers need to learn' },
+]
+
+const included: IncludedFeature[] = [
+  { text: 'Invoices processed, coded, and paid', detail: 'Per-invoice overage fee beyond included volume' },
+  { text: 'Guided onboarding' },
+  { text: 'Unlimited suppliers onboarded' },
+  { text: 'Fraud intelligence' },
+  { text: 'ERP sync included' },
+  { text: 'Reporting', detail: 'AP aging, cash flow forecast, supplier spend breakdown' },
+  { text: 'Unlimited seats', detail: 'Users, approvers, and reviewers, no per-seat fees' },
+  { text: 'Direct line to founder support' },
+  { text: 'Unlimited stakeholder comms' },
+  { text: 'Native ACH payments' },
+  { text: '1099 data dump' },
 ]
 
 function AccountsPayablePage() {
@@ -385,6 +400,9 @@ function AccountsPayablePage() {
             </div>
           </div>
         </section>
+
+        {/* What's included */}
+        <ModuleIncludes features={included} />
 
         {/* CTA */}
         <section className="py-16 px-6 bg-gray-900 text-white">

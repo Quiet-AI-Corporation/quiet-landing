@@ -10,8 +10,18 @@ import {
 import Nav from '@/components/layout/Nav'
 import Footer from '@/components/layout/Footer'
 import ThreeWayMatchAnimation from '@/components/landing/ThreeWayMatchAnimation'
+import ModuleIncludes, { type IncludedFeature } from '@/components/landing/ModuleIncludes'
 
 const CYCLE_DURATION = 14
+
+const included: IncludedFeature[] = [
+  { text: 'Automatic invoice-to-PO-and-receipt matching' },
+  { text: 'Line-level comparison of quantities, prices, tax, and totals' },
+  { text: 'Configurable tolerance rules' },
+  { text: 'Exception workflow with drafted supplier inquiries' },
+  { text: 'Duplicate invoice detection' },
+  { text: 'Match results synced to your ERP' },
+]
 
 const steps = [
   { icon: Search, title: 'Auto-Match', desc: 'Invoice arrives. Quiet AI finds the PO and receiving record instantly by PO number, supplier, or line items.' },
@@ -186,6 +196,9 @@ function ThreeWayMatchPage() {
             </div>
           </div>
         </section>
+
+        {/* What's included */}
+        <ModuleIncludes features={included} />
 
         {/* CTA */}
         <section className="py-16 px-6 bg-gray-900 text-white">

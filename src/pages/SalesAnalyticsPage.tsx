@@ -1,6 +1,14 @@
 import { Button } from '@/components/ui/button'
 import Nav from '@/components/layout/Nav'
 import Footer from '@/components/layout/Footer'
+import ModuleIncludes, { type IncludedFeature } from '@/components/landing/ModuleIncludes'
+
+const included: IncludedFeature[] = [
+  { text: 'Revenue and margin analytics' },
+  { text: 'SKU-level sales breakdowns' },
+  { text: 'Trends built on data already synced from your ERP' },
+  { text: 'Plain-English answers to sales questions' },
+]
 
 function SalesAnalyticsPage() {
   return (
@@ -26,6 +34,9 @@ function SalesAnalyticsPage() {
           </div>
         </div>
       </section>
+
+      {/* What's included */}
+      <ModuleIncludes features={included} />
 
       <Footer />
     </div>

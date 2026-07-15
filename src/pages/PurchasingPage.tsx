@@ -6,6 +6,7 @@ import { TooltipProvider } from '@/components/ui/tooltip'
 import PurchasingWorkflowPlayer from '@/components/landing/PurchasingWorkflowPlayer'
 import PurchasingWorkflowStatic from '@/components/landing/PurchasingWorkflowStatic'
 import AuditLogAnimation from '@/components/landing/AuditLogAnimation'
+import ModuleIncludes, { type IncludedFeature } from '@/components/landing/ModuleIncludes'
 import DotGrid from '@/components/landing/DotGrid'
 import Nav from '@/components/layout/Nav'
 import Footer from '@/components/layout/Footer'
@@ -19,6 +20,16 @@ import plaidLogo from '@/assets/images/plaid_logo.webp'
 import xeroLogo from '@/assets/images/xero_logo.webp'
 import freshbooksLogo from '@/assets/images/freshbooks_logo.webp'
 import slackLogo from '@/assets/images/slack_logo.png'
+
+const included: IncludedFeature[] = [
+  { text: 'Everything in AP Only' },
+  { text: 'Invoices processed, coded, 3-way-matched, and paid', detail: 'Per-invoice overage fee beyond included volume' },
+  { text: 'Unlimited POs and Receipts', detail: 'Includes 3-way matching and sync to ERP' },
+  { text: 'Order tracking', detail: 'Track orders from placement through delivery' },
+  { text: 'Slack integration for PO creation', detail: 'Create purchase orders directly from Slack' },
+  { text: 'Automated 1099 generation', detail: 'Full creation, not just the data dump' },
+  { text: 'Cash management', detail: 'Real-time cash position, payment scheduling, and forecasting' },
+]
 
 function PurchasingPage() {
   const [selectedItem, setSelectedItem] = useState<string>('mailbox')
@@ -658,6 +669,9 @@ function PurchasingPage() {
           </div>
         </div>
       </section>
+
+      {/* What's included */}
+      <ModuleIncludes features={included} />
 
       {/* Footer */}
       <Footer />

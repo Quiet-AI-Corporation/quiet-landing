@@ -4,8 +4,18 @@ import { Button } from '@/components/ui/button'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import Nav from '@/components/layout/Nav'
 import Footer from '@/components/layout/Footer'
+import ModuleIncludes, { type IncludedFeature } from '@/components/landing/ModuleIncludes'
 
 const APP_URL = 'https://tryquiet.app'
+
+const included: IncludedFeature[] = [
+  { text: 'Real-time cash position via bank sync' },
+  { text: 'Committed outflows and expected inflows in one view' },
+  { text: 'Cash forecasting at 7, 14, 30, 60, and 90 days' },
+  { text: 'Payment scheduling and batching' },
+  { text: 'Cash threshold warnings' },
+  { text: 'Early-pay discount capture' },
+]
 
 const dashboard = [
   { icon: Landmark, title: 'Cash on hand', desc: 'Real-time bank balance via Plaid' },
@@ -233,6 +243,9 @@ function CashManagementPage() {
             </div>
           </div>
         </section>
+
+        {/* What's included */}
+        <ModuleIncludes features={included} />
 
         {/* CTA */}
         <section className="py-16 px-6 bg-gray-900 text-white">

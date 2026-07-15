@@ -1,6 +1,14 @@
 import { Button } from '@/components/ui/button'
 import Nav from '@/components/layout/Nav'
 import Footer from '@/components/layout/Footer'
+import ModuleIncludes, { type IncludedFeature } from '@/components/landing/ModuleIncludes'
+
+const included: IncludedFeature[] = [
+  { text: 'Demand forecasts from sales history and open orders' },
+  { text: 'Purchasing recommendations for materials and components' },
+  { text: 'Inventory-aware buy suggestions' },
+  { text: 'Draft POs ready for approval' },
+]
 
 function DemandPlanningPage() {
   return (
@@ -26,6 +34,9 @@ function DemandPlanningPage() {
           </div>
         </div>
       </section>
+
+      {/* What's included */}
+      <ModuleIncludes features={included} />
 
       <Footer />
     </div>
