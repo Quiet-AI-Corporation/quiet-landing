@@ -40,10 +40,10 @@ function AboutPage() {
                 Every manufacturer buys things: steel, ingredients, components, packaging. Almost none of them have a good system for it.
               </p>
               <p>
-                Supplier quotes arrive by email and get re-keyed into spreadsheets. Purchase orders are drafted manually, routed for approval over Slack DMs, and tracked in someone's head. Invoices pile up, nobody matches them to what actually arrived at the dock, and payments only go out because someone remembered to log into the bank. It's 2026 and this is still how most manufacturers run procurement.
+                Supplier quotes arrive by email and get re-keyed into spreadsheets. Purchase orders are drafted manually, routed for approval over Slack DMs, and tracked in someone's head. Invoices pile up, nobody matches them to what actually arrived at the dock, and duplicate or fraudulent bills slip through because no one has time to check. Payments only go out because someone remembered to log into the bank. Nobody knows how much cash is already committed until the invoices land, purchasing runs on gut feel instead of what the line will actually need, and answering "what's selling?" takes a week of spreadsheet work. It's 2026 and this is still how most manufacturers run their back office.
               </p>
               <p>
-                We started Quiet AI because we believe AI is finally good enough to handle this end to end. Not as a tool that helps humans do the same work faster, but as a teammate that owns the entire flow from quote to payment.
+                We started Quiet AI because we believe AI is finally good enough to handle this end to end. Not as a tool that helps humans do the same work faster, but as a teammate that owns the entire flow: from demand signal to purchase order, from invoice to verified payment, from cash position to sales numbers.
               </p>
             </div>
           </div>
@@ -72,7 +72,7 @@ function AboutPage() {
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Our team</h2>
             <p className="text-gray-700 leading-relaxed text-center">
-              Our team's experience spans data research at Stanford, building financial tooling for small businesses, enterprise-grade cybersecurity product development, and being heads of finance at small businesses. We've seen the problem from both sides of the table and built Quiet AI to solve it.
+              Our team's experience spans data research at Stanford, building financial tooling for small businesses, enterprise-grade cybersecurity product development, and running operations at manufacturing startups. We've seen the problem from both sides of the table and built Quiet AI to solve it.
             </p>
           </div>
         </section>

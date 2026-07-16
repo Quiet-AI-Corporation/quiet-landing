@@ -7,7 +7,6 @@ import PurchasingWorkflowPlayer from '@/components/landing/PurchasingWorkflowPla
 import PurchasingWorkflowStatic from '@/components/landing/PurchasingWorkflowStatic'
 import AuditLogAnimation from '@/components/landing/AuditLogAnimation'
 import ModuleIncludes, { type IncludedFeature } from '@/components/landing/ModuleIncludes'
-import DotGrid from '@/components/landing/DotGrid'
 import Nav from '@/components/layout/Nav'
 import Footer from '@/components/layout/Footer'
 import logo from '@/assets/images/logo.png'
@@ -158,8 +157,6 @@ function PurchasingPage() {
   return (
     <TooltipProvider>
     <div className="min-h-screen bg-background">
-      <DotGrid />
-    <div className="relative z-10">
       <Nav />
 
       {/* Hero */}
@@ -675,7 +672,6 @@ function PurchasingPage() {
 
       {/* Footer */}
       <Footer />
-    </div>
     </div>
     </TooltipProvider>
   )
