@@ -109,7 +109,7 @@ function DemandPlanAnswer() {
             <span className="text-gray-700">{sku}</span>
             <span className="tabular-nums text-gray-900 text-right">{onHand}</span>
             <span className="tabular-nums text-gray-900 text-right">{demand}</span>
-            <span className={`text-right font-semibold ${balanced ? 'text-emerald-600 font-medium' : 'text-blue-600'}`}>{make}</span>
+            <span className={`text-right font-semibold ${balanced ? 'text-green-600 font-medium' : 'text-blue-600'}`}>{make}</span>
           </div>
         ))}
       </div>
@@ -139,7 +139,7 @@ function MaterialsAnswer() {
           </div>
         ))}
       </div>
-      <div className="mt-2 flex items-center gap-1.5 rounded-lg bg-emerald-50 border border-emerald-200 px-2.5 py-1.5 text-xs font-medium text-emerald-700">
+      <div className="mt-2 flex items-center gap-1.5 rounded-lg bg-green-50 border border-green-200 px-2.5 py-1.5 text-xs font-medium text-green-700">
         <FileText className="w-3.5 h-3.5 shrink-0" />3 draft POs ready for approval
       </div>
     </>
@@ -156,7 +156,7 @@ function CashFlagAnswer() {
         </p>
       </div>
       <div className="mt-2 flex items-center gap-2 text-xs text-gray-700">
-        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+        <CheckCircle2 className="w-3.5 h-3.5 text-green-500 shrink-0" />
         <span><span className="font-semibold text-gray-900">Fix:</span> shift the Baxter bill one week — keeps you positive</span>
       </div>
       <Sparkline variant="dip" />

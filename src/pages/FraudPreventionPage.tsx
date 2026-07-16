@@ -129,7 +129,7 @@ function AnimationPlayer({ title, subtitle, children, height = 'h-[500px]', bg =
 function FraudPreventionPage() {
   return (
     <TooltipProvider>
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-background">
         <Nav />
 
         {/* Hero */}

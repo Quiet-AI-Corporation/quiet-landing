@@ -209,8 +209,8 @@ const BUCKETS_HEALED: WeekBucket[] = BUCKETS.map((b, i) => {
   return b
 })
 
-const IN_COLORS = ['#059669', '#34d399']
-const OUT_COLORS = ['#ef4444', '#f97316']
+const IN_COLORS = ['#0f8b5f', '#47c293']
+const OUT_COLORS = ['#b83a30', '#c1861f']
 const LINE_COLOR = '#1e3a5f'
 
 const BASELINE = 62 // % from top where the zero line sits
@@ -428,7 +428,7 @@ function ForecastChart({
             <div className="relative w-2.5 h-2.5">
               {!applied && <span className="absolute inset-0 rounded-full bg-red-400 animate-ping" />}
               <motion.span
-                animate={{ backgroundColor: applied ? '#059669' : '#ef4444' }}
+                animate={{ backgroundColor: applied ? '#0f8b5f' : '#b83a30' }}
                 className="absolute inset-0 rounded-full border-2 border-white shadow"
               />
             </div>

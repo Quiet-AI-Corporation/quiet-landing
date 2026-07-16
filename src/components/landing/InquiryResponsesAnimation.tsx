@@ -60,7 +60,7 @@ function InquiryResponsesAnimation() {
               >
                 <div className="rounded-lg bg-white p-4">
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-medium flex-shrink-0">
+                    <div className="w-8 h-8 rounded-full bg-green-100 text-green-700 flex items-center justify-center text-xs font-medium flex-shrink-0">
                       KE
                     </div>
                     <div className="min-w-0 flex-1">

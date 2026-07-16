@@ -13,7 +13,7 @@ const beliefs = [
 function AboutPage() {
   return (
     <TooltipProvider>
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-background">
         <Nav />
 
         {/* Hero */}

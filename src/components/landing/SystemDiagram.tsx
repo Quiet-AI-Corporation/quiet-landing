@@ -128,8 +128,8 @@ const PULSE_KEYFRAMES = PULSE_DASHES.map(({ len }) =>
   `@keyframes sd-pulse-${len} { from { stroke-dashoffset: ${len / 2 - 5} } to { stroke-dashoffset: ${len / 2 - 115} } }`
 ).join('\n')
 
-const DASHED_H = 'h-px [background:repeating-linear-gradient(90deg,#d1d5db_0_4px,transparent_4px_8px)]'
-const DASHED_V = 'w-px [background:repeating-linear-gradient(180deg,#d1d5db_0_4px,transparent_4px_8px)]'
+const DASHED_H = 'h-px [background:repeating-linear-gradient(90deg,#d3d9df_0_4px,transparent_4px_8px)]'
+const DASHED_V = 'w-px [background:repeating-linear-gradient(180deg,#d3d9df_0_4px,transparent_4px_8px)]'
 
 // ---- Subcomponents ----
 
@@ -144,13 +144,13 @@ function ConnectorGutter({ paths, animate }: { paths: string[]; animate: boolean
     >
       {paths.map((d, i) => (
         <g key={i}>
-          <path d={d} fill="none" stroke="#e5e7eb" strokeWidth={1.5} />
+          <path d={d} fill="none" stroke="#e4e8ec" strokeWidth={1.5} />
           {animate && PULSE_DASHES.map(({ len, opacity }) => (
             <path
               key={len}
               d={d}
               fill="none"
-              stroke="#2563eb"
+              stroke="#2b59c3"
               strokeWidth={2}
               strokeLinecap="round"
               pathLength={100}

@@ -11,6 +11,8 @@
     "encrypt-pricing-burkland": "staticrypt src/pages/pricing-burkland.html -d . --template src/pages/pricing-password-template.html --template-title 'Quiet Pricing' --template-instructions 'Enter the password shared with you to view pricing.' --template-button 'View pricing' --template-placeholder 'Password' && cp pricing-burkland.html public/pricing-burkland.html"
   },
   "dependencies": {
+    "@fontsource/hanken-grotesk": "^5.2.8",
+    "@fontsource/ibm-plex-mono": "^5.2.7",
     "@radix-ui/react-slot": "^1.1.1",
     "@radix-ui/react-tooltip": "^1.2.8",
     "class-variance-authority": "^0.7.1",

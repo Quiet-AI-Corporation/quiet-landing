@@ -8,7 +8,7 @@ import Footer from '@/components/layout/Footer'
 
 function LandingPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <DotGrid />
     <div className="relative z-10">
       <Nav />
@@ -16,20 +16,18 @@ function LandingPage() {
       {/* Hero */}
       <section className="py-12 px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="w-fit mx-auto">
-            <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 bg-white rounded-xl py-1.5 px-3 w-fit mx-auto">
-              Agentic AI for Manufacturers
-            </p>
-            <h1 className="mt-1 text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight bg-white rounded-xl py-2 px-4 w-fit max-w-3xl mx-auto">
-              The finance and planning layer your ERP is missing
-            </h1>
-            <p className="mt-1 text-xl text-gray-600 max-w-2xl mx-auto bg-white rounded-xl py-2 px-4 w-fit">
-              Quiet handles purchasing, payables, and production planning, grounded in your data and shaped to your operation
-            </p>
-          </div>
+          <p className="text-xs font-semibold uppercase tracking-widest text-gray-500">
+            Agentic AI for Manufacturers
+          </p>
+          <h1 className="mt-3 text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight max-w-3xl mx-auto">
+            The finance and planning layer your ERP is missing
+          </h1>
+          <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
+            Quiet handles purchasing, payables, and production planning, grounded in your data and shaped to your operation
+          </p>
         </div>
         {/* Living dashboard */}
-        <div className="mt-8 md:mt-12 max-w-6xl mx-auto relative z-10 bg-white rounded-2xl p-4">
+        <div className="mt-8 md:mt-12 max-w-6xl mx-auto relative z-10">
           <LivingDashboardAnimation />
         </div>
       </section>
@@ -37,17 +35,15 @@ function LandingPage() {
       {/* System diagram */}
       <section className="py-12 px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="w-fit mx-auto">
-            <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 bg-white rounded-xl py-1.5 px-3 w-fit mx-auto">
-              How it works
-            </p>
-            <h2 className="mt-1 text-3xl font-bold text-gray-900 tracking-tight bg-white rounded-xl py-2 px-4 w-fit mx-auto">
-              Everything flows through Quiet
-            </h2>
-            <p className="mt-1 text-lg text-gray-600 max-w-2xl mx-auto bg-white rounded-xl py-1 px-4 w-fit">
-              Email it, Slack it, or drop in a packing slip. Quiet runs it through the right module, grounded in your own data.
-            </p>
-          </div>
+          <p className="text-xs font-semibold uppercase tracking-widest text-gray-500">
+            How it works
+          </p>
+          <h2 className="mt-3 text-3xl font-bold text-gray-900 tracking-tight">
+            Everything flows through Quiet
+          </h2>
+          <p className="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">
+            Email it, Slack it, or drop in a packing slip. Quiet runs it through the right module, grounded in your own data.
+          </p>
         </div>
         <div className="mt-8 max-w-6xl mx-auto relative z-10">
           <SystemDiagram />
@@ -57,19 +53,17 @@ function LandingPage() {
       {/* Ask Quiet */}
       <section className="py-12 px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="w-fit mx-auto">
-            <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 bg-white rounded-xl py-1.5 px-3 w-fit mx-auto">
-              Ask anything
-            </p>
-            <h2 className="mt-1 text-3xl font-bold text-gray-900 tracking-tight bg-white rounded-xl py-2 px-4 w-fit mx-auto">
-              The questions your spreadsheets can't answer
-            </h2>
-            <p className="mt-1 text-lg text-gray-600 max-w-2xl mx-auto bg-white rounded-xl py-1 px-4 w-fit">
-              Quiet cross-references your open POs, inventory, and payables and answers in plain English.
-            </p>
-          </div>
+          <p className="text-xs font-semibold uppercase tracking-widest text-gray-500">
+            Ask anything
+          </p>
+          <h2 className="mt-3 text-3xl font-bold text-gray-900 tracking-tight">
+            The questions your spreadsheets can't answer
+          </h2>
+          <p className="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">
+            Quiet cross-references your open POs, inventory, and payables and answers in plain English.
+          </p>
         </div>
-        <div className="mt-8 max-w-2xl mx-auto relative z-10 bg-white rounded-2xl">
+        <div className="mt-8 max-w-2xl mx-auto relative z-10">
           <AskQuietAnimation />
         </div>
       </section>
@@ -77,13 +71,13 @@ function LandingPage() {
       {/* Roadmap */}
       <section className="py-12 px-6">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-gray-900 bg-white rounded-xl py-2 px-4 w-fit mx-auto">
+          <h2 className="text-3xl font-bold text-gray-900">
             We're just getting started
           </h2>
-          <p className="mt-1 text-lg text-gray-600 mb-8 bg-white rounded-xl py-1 px-4 w-fit mx-auto">
+          <p className="mt-3 text-lg text-gray-600 mb-8">
             Want to shape what comes next? We build alongside our manufacturing customers.
           </p>
-          <div className="flex items-center justify-center bg-white rounded-xl w-fit mx-auto">
+          <div className="flex items-center justify-center">
             <Button size="lg" asChild className="text-lg px-8 py-6">
               <a href="https://quietai.fillout.com/book">Build with Us</a>
             </Button>

@@ -369,8 +369,8 @@ const ApTile = memo(function ApTile({ impact }: { impact: Impact | null; reduced
         <motion.span
           key={count}
           className="inline-block font-bold text-gray-900 tabular-nums"
-          initial={{ scale: 1.35, color: '#2563eb' }}
-          animate={{ scale: 1, color: '#111827' }}
+          initial={{ scale: 1.35, color: '#2b59c3' }}
+          animate={{ scale: 1, color: '#16202a' }}
           transition={{ duration: 0.5 }}
         >
           {count}
@@ -481,10 +481,10 @@ const SalesTile = memo(function SalesTile({ impact }: { impact: Impact | null; r
           <motion.div
             key={i}
             className="flex-1 rounded-sm"
-            initial={{ height: 0, backgroundColor: '#bfdbfe' }}
+            initial={{ height: 0, backgroundColor: '#b5caed' }}
             animate={{
               height: `${h}%`,
-              backgroundColor: boosted.includes(i) || i === BASE_BARS.length - 1 ? '#3b82f6' : '#bfdbfe',
+              backgroundColor: boosted.includes(i) || i === BASE_BARS.length - 1 ? '#4771d1' : '#b5caed',
             }}
             transition={{
               height: { type: 'spring', stiffness: 300, damping: 20, delay: i * 0.05 },

@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 
 const DOT_SPACING = 20
 const DOT_RADIUS = 1
-const DOT_OPACITY = 0.12
+const DOT_OPACITY = 0.14
 const WARP_RADIUS = 120
 const WARP_STRENGTH = 14
 const HERO_FADE_HEIGHT = 250 // px from page top where dots fade in
@@ -65,7 +65,7 @@ function DotGrid() {
             y += (dy / dist) * force
           }
 
-          ctx!.fillStyle = `rgba(0, 0, 0, ${DOT_OPACITY * heroAlpha})`
+          ctx!.fillStyle = `rgba(22, 32, 42, ${DOT_OPACITY * heroAlpha})`
           ctx!.beginPath()
           ctx!.arc(x, y, DOT_RADIUS, 0, Math.PI * 2)
           ctx!.fill()

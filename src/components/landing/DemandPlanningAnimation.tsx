@@ -343,8 +343,8 @@ const CHART_X_LABELS = [
   { i: 36, label: "Jul '25" },
 ]
 
-const COBALT = '#2563eb'
-const AMBER = '#f59e0b'
+const COBALT = '#2b59c3'
+const AMBER = '#daa43e'
 
 function DemandChart({
   axesDelay,

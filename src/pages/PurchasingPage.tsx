@@ -157,7 +157,7 @@ function PurchasingPage() {
 
   return (
     <TooltipProvider>
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <DotGrid />
     <div className="relative z-10">
       <Nav />
@@ -166,19 +166,19 @@ function PurchasingPage() {
       <section className="py-12 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <div className="w-fit mx-auto">
-            <p className="text-xs font-semibold uppercase tracking-widest text-blue-600 bg-white rounded-xl py-1.5 px-3 w-fit mx-auto">
+            <p className="text-xs font-semibold uppercase tracking-widest text-blue-600">
               Purchasing
             </p>
-            <h1 className="mt-1 text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight bg-white rounded-xl py-2 px-4 w-fit mx-auto">
+            <h1 className="mt-3 text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight">
               Purchasing on autopilot, from raw materials to MRO
             </h1>
-            <p className="mt-1 text-xl text-gray-600 max-w-2xl mx-auto bg-white rounded-xl py-2 px-4 w-fit">
+            <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
               From material request to booked bill, Quiet AI drafts POs, codes invoices, and prepares payments for everything you buy. You just approve.
             </p>
           </div>
         </div>
         {/* Purchasing workflow player */}
-        <div className="mt-2 md:mt-12 max-w-6xl mx-auto relative z-10 bg-white rounded-2xl p-4">
+        <div className="mt-2 md:mt-12 max-w-6xl mx-auto relative z-10">
           <div className="hidden md:block">
             <PurchasingWorkflowPlayer />
           </div>
@@ -189,10 +189,10 @@ function PurchasingPage() {
         {/* How it works */}
         <div className="mt-12 max-w-5xl mx-auto relative z-10">
           <div className="mb-8 w-fit mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 text-center bg-white rounded-xl py-2 px-4 w-fit mx-auto">
+            <h2 className="text-3xl font-bold text-gray-900 text-center">
               How it works
             </h2>
-            <p className="mt-1 text-lg text-gray-500 text-center max-w-2xl mx-auto bg-white rounded-xl py-2 px-4 w-fit">
+            <p className="mt-3 text-lg text-gray-500 text-center max-w-2xl mx-auto">
               Zero-touch until you're needed. Full control, always.
             </p>
           </div>
@@ -200,7 +200,7 @@ function PurchasingPage() {
           {/* 3-box diagram — CSS grid aligns icon/heading/paragraph rows across all 3 boxes */}
           <div className="hidden md:grid md:grid-cols-[1fr_auto_1fr_auto_1fr] items-start">
             {/* Box 1 */}
-            <div className="bg-white rounded-xl p-1 h-full">
+            <div className="h-full">
             <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 text-center h-full grid grid-rows-[40px_auto_1fr] gap-y-1">
               <div className="flex items-center justify-center gap-2 mx-auto">
                 <img src={gmailLogo} alt="Gmail" className="h-6 w-6 object-contain" />
@@ -220,7 +220,7 @@ function PurchasingPage() {
             </div>
 
             {/* Box 2 */}
-            <div className="bg-white rounded-xl p-1 h-full">
+            <div className="h-full">
             <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 text-center h-full grid grid-rows-[40px_auto_1fr] gap-y-1">
               <div className="flex items-center justify-center mx-auto">
                 <img src={logo} alt="Quiet AI" className="h-8" />
@@ -238,7 +238,7 @@ function PurchasingPage() {
             </div>
 
             {/* Box 3 */}
-            <div className="bg-white rounded-xl p-1 h-full">
+            <div className="h-full">
             <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 text-center h-full grid grid-rows-[40px_auto_1fr] gap-y-1">
               <div className="flex items-center justify-center mx-auto">
                 <div className="w-10 h-10 rounded-full bg-green-50 border border-green-100 flex items-center justify-center">
@@ -255,7 +255,7 @@ function PurchasingPage() {
 
           {/* Mobile stacked layout */}
           <div className="flex flex-col gap-4 md:hidden">
-            <div className="bg-white rounded-xl p-1">
+            <div className="">
             <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 text-center">
               <div className="h-10 flex items-center justify-center gap-2 mx-auto mb-3">
                 <img src={gmailLogo} alt="Gmail" className="h-6 w-6 object-contain" />
@@ -268,7 +268,7 @@ function PurchasingPage() {
               </p>
             </div>
             </div>
-            <div className="bg-white rounded-xl p-1">
+            <div className="">
             <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 text-center">
               <div className="h-10 flex items-center justify-center mx-auto mb-3">
                 <img src={logo} alt="Quiet AI" className="h-8" />
@@ -279,7 +279,7 @@ function PurchasingPage() {
               </p>
             </div>
             </div>
-            <div className="bg-white rounded-xl p-1">
+            <div className="">
             <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 text-center">
               <div className="h-10 flex items-center justify-center mx-auto mb-3">
                 <div className="w-10 h-10 rounded-full bg-green-50 border border-green-100 flex items-center justify-center">
@@ -295,11 +295,11 @@ function PurchasingPage() {
           </div>
         </div>
 
-        <div className="mt-12 text-center relative z-10 bg-white rounded-2xl py-8 px-4 max-w-4xl mx-auto">
+        <div className="mt-12 text-center relative z-10 max-w-4xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
             Want to see this on your own purchases?
           </h2>
-          <p className="mt-1 text-lg text-gray-500 text-center max-w-2xl mx-auto bg-white rounded-xl py-2 px-4 w-fit">
+          <p className="mt-3 text-lg text-gray-500 text-center max-w-2xl mx-auto">
             Live in &lt; 1 hour. Or start in Observation Mode to see what Quiet AI <em>would</em> do.
           </p>
           <div className="mt-6 flex items-center justify-center gap-3">
@@ -316,10 +316,10 @@ function PurchasingPage() {
       <section className="py-10 px-6">
         <div className="max-w-4xl mx-auto">
           <div id="integrations" className="mb-6 scroll-mt-20">
-            <h2 className="text-3xl font-bold text-gray-900 text-center bg-white rounded-xl py-2 px-4 w-fit mx-auto">
+            <h2 className="text-3xl font-bold text-gray-900 text-center">
               Plugs into the tools you already use
             </h2>
-            <p className="mt-1 text-lg text-gray-500 text-center max-w-2xl mx-auto bg-white rounded-xl py-2 px-4 w-fit">
+            <p className="mt-3 text-lg text-gray-500 text-center max-w-2xl mx-auto">
               Quiet AI sits between your inbox, your bank, and your ERP so your existing workflows
               don't change, they just get faster.
             </p>
@@ -331,7 +331,7 @@ function PurchasingPage() {
             <div className="w-full md:w-96 md:shrink-0 flex flex-col items-center" onMouseLeave={handleDiagramLeave}>
               {/* Mailbox + Slack */}
               <div className="w-full flex gap-3 items-stretch">
-                <div className="flex-1 bg-white rounded-xl p-1">
+                <div className="flex-1">
                 <div
                   className={`h-full rounded-xl px-4 py-4 text-center cursor-pointer transition-colors border flex flex-col items-center ${selectedItem === 'mailbox' ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-white'}`}
                   onMouseEnter={() => handleItemHover('mailbox')}
@@ -343,7 +343,7 @@ function PurchasingPage() {
                   </div>
                 </div>
                 </div>
-                <div className="flex-1 bg-white rounded-xl p-1">
+                <div className="flex-1">
                 <div
                   className={`h-full rounded-xl px-4 py-4 text-center cursor-pointer transition-colors border flex flex-col items-center ${selectedItem === 'slack' ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-white'}`}
                   onMouseEnter={() => handleItemHover('slack')}
@@ -363,10 +363,10 @@ function PurchasingPage() {
                     <svg width="24" height="56" className="overflow-visible shrink-0">
                       <defs>
                         <marker id="arrowhead" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
-                          <path d="M 0 0 L 10 5 L 0 10 z" fill="#9ca3af" />
+                          <path d="M 0 0 L 10 5 L 0 10 z" fill="#9ba5b0" />
                         </marker>
                       </defs>
-                      <line x1="12" y1="2" x2="12" y2="54" stroke="#9ca3af" strokeWidth="1.5" markerStart="url(#arrowhead)" markerEnd="url(#arrowhead)" />
+                      <line x1="12" y1="2" x2="12" y2="54" stroke="#9ba5b0" strokeWidth="1.5" markerStart="url(#arrowhead)" markerEnd="url(#arrowhead)" />
                     </svg>
                     <div
                       className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-7 h-7 rounded-full border flex items-center justify-center cursor-pointer transition-colors ${selectedItem === 'mailbox-dot' ? 'bg-blue-50 border-blue-500' : 'bg-white border-gray-300'}`}
@@ -379,7 +379,7 @@ function PurchasingPage() {
                 <div className="flex-1 flex justify-center">
                   <div className="relative flex justify-center" style={{ height: 56 }}>
                     <svg width="24" height="56" className="overflow-visible shrink-0">
-                      <line x1="12" y1="2" x2="12" y2="54" stroke="#9ca3af" strokeWidth="1.5" markerStart="url(#arrowhead)" markerEnd="url(#arrowhead)" />
+                      <line x1="12" y1="2" x2="12" y2="54" stroke="#9ba5b0" strokeWidth="1.5" markerStart="url(#arrowhead)" markerEnd="url(#arrowhead)" />
                     </svg>
                     <div
                       className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-7 h-7 rounded-full border flex items-center justify-center cursor-pointer transition-colors ${selectedItem === 'slack-dot' ? 'bg-blue-50 border-blue-500' : 'bg-white border-gray-300'}`}
@@ -392,7 +392,7 @@ function PurchasingPage() {
               </div>
 
               {/* Quiet AI */}
-              <div className="w-full bg-white rounded-xl p-1">
+              <div className="w-full">
               <div
                 className={`w-full rounded-xl px-6 py-4 flex items-center justify-center gap-2 cursor-pointer transition-colors border ${selectedItem === 'quiet' ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-white'}`}
                 onMouseEnter={() => handleItemHover('quiet')}
@@ -407,7 +407,7 @@ function PurchasingPage() {
                 <div className="flex-1 flex justify-center">
                   <div className="relative flex justify-center" style={{ height: 56 }}>
                     <svg width="24" height="56" className="overflow-visible shrink-0">
-                      <line x1="12" y1="2" x2="12" y2="54" stroke="#9ca3af" strokeWidth="1.5" markerStart="url(#arrowhead)" markerEnd="url(#arrowhead)" />
+                      <line x1="12" y1="2" x2="12" y2="54" stroke="#9ba5b0" strokeWidth="1.5" markerStart="url(#arrowhead)" markerEnd="url(#arrowhead)" />
                     </svg>
                     <div
                       className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-7 h-7 rounded-full border flex items-center justify-center cursor-pointer transition-colors ${selectedItem === 'bank-dot' ? 'bg-blue-50 border-blue-500' : 'bg-white border-gray-300'}`}
@@ -420,7 +420,7 @@ function PurchasingPage() {
                 <div className="flex-1 flex justify-center">
                   <div className="relative flex justify-center" style={{ height: 56 }}>
                     <svg width="24" height="56" className="overflow-visible shrink-0">
-                      <line x1="12" y1="2" x2="12" y2="54" stroke="#9ca3af" strokeWidth="1.5" markerStart="url(#arrowhead)" markerEnd="url(#arrowhead)" />
+                      <line x1="12" y1="2" x2="12" y2="54" stroke="#9ba5b0" strokeWidth="1.5" markerStart="url(#arrowhead)" markerEnd="url(#arrowhead)" />
                     </svg>
                     <div
                       className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-7 h-7 rounded-full border flex items-center justify-center cursor-pointer transition-colors ${selectedItem === 'erp-dot' ? 'bg-blue-50 border-blue-500' : 'bg-white border-gray-300'}`}
@@ -434,7 +434,7 @@ function PurchasingPage() {
 
               {/* Bank + ERP */}
               <div className="w-full flex gap-3 items-stretch">
-                <div className="flex-1 bg-white rounded-xl p-1">
+                <div className="flex-1">
                 <div
                   className={`h-full rounded-xl px-4 py-4 text-center cursor-pointer transition-colors border ${selectedItem === 'bank' ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-white'}`}
                   onMouseEnter={() => handleItemHover('bank')}
@@ -443,7 +443,7 @@ function PurchasingPage() {
                   <p className="text-xs text-gray-400 italic mt-1">Most financial institutions supported</p>
                 </div>
                 </div>
-                <div className="flex-1 bg-white rounded-xl p-1">
+                <div className="flex-1">
                 <div
                   className={`rounded-xl px-4 py-4 text-center cursor-pointer transition-colors border ${selectedItem === 'erp' ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-white'}`}
                   onMouseEnter={() => handleItemHover('erp')}
@@ -519,7 +519,7 @@ function PurchasingPage() {
       {/* Enterprise Security */}
       <section className="py-10 pb-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 text-center bg-white rounded-xl py-2 px-4 w-fit mx-auto mb-10">Your data, locked down</h2>
+          <h2 className="text-3xl font-bold text-gray-900 text-center mb-10">Your data, locked down</h2>
           <div className="grid md:grid-cols-4 gap-6">
             {[
               { icon: Lock, title: 'Encrypted end-to-end', text: 'AES-256 at rest, HTTPS-only in transit, with full HSTS and security headers' },
@@ -547,45 +547,45 @@ function PurchasingPage() {
             <span className="inline-block px-4 py-1.5 bg-blue-50 text-blue-700 text-sm font-medium rounded-full">
               <Clock className="w-3.5 h-3.5 inline -mt-0.5" /> Under 30 minutes
             </span>
-            <h2 className="mt-3 text-3xl font-bold text-gray-900 bg-white rounded-xl py-2 px-4 w-fit mx-auto">
+            <h2 className="mt-3 text-3xl font-bold text-gray-900">
               Set up once. Automate forever.
             </h2>
-            <p className="mt-1 text-lg text-gray-500 bg-white rounded-xl py-2 px-4 w-fit mx-auto">
+            <p className="mt-3 text-lg text-gray-500">
               No implementation fees. No long-term contracts. No IT involvement. No supplier disruption.
             </p>
           </div>
 
           {/* Steps */}
           <div className="space-y-2 mb-10">
-            <div className="flex gap-4 bg-white rounded-xl p-2">
+            <div className="flex gap-4">
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold">1</div>
               <div>
                 <h3 className="font-bold text-gray-900 mb-1">Sign into your purchasing mailbox</h3>
                 <p className="text-gray-600">All you need is your email login, like purchasing@company.com. Sign in, grant Quiet AI access, and you're connected. No forwarding rules, no migration, no IT involvement.</p>
               </div>
             </div>
-            <div className="flex gap-4 bg-white rounded-xl p-2">
+            <div className="flex gap-4">
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold">2</div>
               <div>
                 <h3 className="font-bold text-gray-900 mb-1">Connect your accounting system</h3>
                 <p className="text-gray-600">Link QuickBooks, NetSuite, Sage, or whatever you use. Suppliers, GL codes, and payment records stay in sync automatically.</p>
               </div>
             </div>
-            <div className="flex gap-4 bg-white rounded-xl p-2">
+            <div className="flex gap-4">
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold">3</div>
               <div>
                 <h3 className="font-bold text-gray-900 mb-1">Connect your bank account</h3>
                 <p className="text-gray-600">Link the account you pay suppliers from. Quiet AI prepares payments for you. Nothing moves until you approve it.</p>
               </div>
             </div>
-            <div className="flex gap-4 bg-white rounded-xl p-2">
+            <div className="flex gap-4">
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold">4</div>
               <div>
                 <h3 className="font-bold text-gray-900 mb-1">Set your approval rules</h3>
                 <p className="text-gray-600">Decide who can approve what: by amount, supplier, department, or however your team works.</p>
               </div>
             </div>
-            <div className="flex gap-4 bg-white rounded-xl p-2">
+            <div className="flex gap-4">
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold">5</div>
               <div>
                 <h3 className="font-bold text-gray-900 mb-1">You're live</h3>
@@ -631,37 +631,37 @@ function PurchasingPage() {
       <section className="py-10 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="mb-10 w-fit mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 text-center bg-white rounded-xl py-2 px-4 w-fit mx-auto">
+            <h2 className="text-3xl font-bold text-gray-900 text-center">
               Hard guardrails. Full paper trail.
             </h2>
-            <p className="mt-1 text-lg text-gray-500 text-center max-w-2xl mx-auto bg-white rounded-xl py-2 px-4 w-fit">
+            <p className="mt-3 text-lg text-gray-500 text-center max-w-2xl mx-auto">
               Quiet AI processes invoices and drafts communications. But the AI operates inside
               hard boundaries. Not guidelines, not best-effort policies, but structural rules it
               cannot override.
             </p>
           </div>
-          <div className="mb-6 bg-white rounded-2xl p-1 w-fit mx-auto">
+          <div className="mb-6 w-fit mx-auto">
             <AuditLogAnimation />
           </div>
           <div className="grid md:grid-cols-3 gap-12">
             <div>
-              <h3 className="text-base font-bold text-gray-900 bg-white rounded-xl py-2 px-3 w-fit">Data access is scoped, not trusted</h3>
-              <p className="mt-2 text-sm text-gray-600 leading-relaxed bg-white rounded-xl py-2 px-3 w-fit">
+              <h3 className="text-base font-bold text-gray-900">Data access is scoped, not trusted</h3>
+              <p className="mt-2 text-sm text-gray-600 leading-relaxed">
                 The AI can only access data relevant to the recipient it's drafting for. A supplier
                 asking about their invoice simply cannot surface another supplier's terms, your
                 internal notes, or your banking details.
               </p>
             </div>
             <div>
-              <h3 className="text-base font-bold text-gray-900 bg-white rounded-xl py-2 px-3 w-fit">Traceable, not hallucinated</h3>
-              <p className="mt-2 text-sm text-gray-600 leading-relaxed bg-white rounded-xl py-2 px-3 w-fit">
+              <h3 className="text-base font-bold text-gray-900">Traceable, not hallucinated</h3>
+              <p className="mt-2 text-sm text-gray-600 leading-relaxed">
                 Every figure, date, and line item Quiet AI produces is tied to a source document in your
                 system. If it doesn't have the answer, it says so. It never makes something up.
               </p>
             </div>
             <div>
-              <h3 className="text-base font-bold text-gray-900 bg-white rounded-xl py-2 px-3 w-fit">Everything is auditable</h3>
-              <p className="mt-2 text-sm text-gray-600 leading-relaxed bg-white rounded-xl py-2 px-3 w-fit">
+              <h3 className="text-base font-bold text-gray-900">Everything is auditable</h3>
+              <p className="mt-2 text-sm text-gray-600 leading-relaxed">
                 Every action has a paper trail. Who approved what, what the AI drafted, what changed,
                 and when. If a question comes up six months from now, the answer is already logged.
               </p>

@@ -50,7 +50,7 @@ const solutions = [
 
 function BusinessOwnersPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <Nav />
 
       {/* Hero */}

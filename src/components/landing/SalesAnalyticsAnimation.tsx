@@ -51,7 +51,7 @@ export const SCENES: Scene[] = [
   },
 ]
 
-const COBALT = '#2563eb'
+const COBALT = '#2b59c3'
 
 const moneyK = (v: number) => `$${v.toFixed(1)}K`
 const deltaK = (d: number) => `${d > 0 ? '+' : ''}${d.toFixed(1)}`
@@ -1269,7 +1269,7 @@ function SkuRowItem({ row, index }: { row: SkuRow; index: number }) {
         <div className="text-right text-[10px] font-semibold text-gray-900 tabular-nums">
           ${row.trailing}K
         </div>
-        <Sparkline values={row.spark} delay={rowDelay + 0.3} stroke={up ? COBALT : '#9ca3af'} />
+        <Sparkline values={row.spark} delay={rowDelay + 0.3} stroke={up ? COBALT : '#9ba5b0'} />
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}

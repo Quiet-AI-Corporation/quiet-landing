@@ -9,7 +9,7 @@ function ModuleIncludes({ features, className = '' }: { features: IncludedFeatur
   return (
     <section className={`py-16 px-6 ${className}`}>
       <div className="max-w-3xl mx-auto">
-        <h2 className="text-3xl font-bold text-gray-900 text-center mb-10 bg-white rounded-xl py-2 px-4 w-fit mx-auto">
+        <h2 className="text-3xl font-bold text-gray-900 text-center mb-10">
           What's included in this module
         </h2>
         <div className="rounded-2xl border border-gray-200 bg-white p-8">
