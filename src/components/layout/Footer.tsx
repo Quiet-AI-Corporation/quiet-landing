@@ -51,7 +51,7 @@ function Footer() {
           <div className="col-span-2 md:col-span-1">
             <a href="/" className="flex items-center gap-2 mb-4">
               <img src={logo} alt="Quiet" className="h-8" />
-              <span className="text-white font-semibold text-lg">Quiet Software</span>
+              <span className="text-white font-semibold text-lg">Quiet AI</span>
             </a>
             <p className="text-sm text-gray-400 leading-relaxed">
               Manufacturing isn't generic. Your back-office software shouldn't be either.

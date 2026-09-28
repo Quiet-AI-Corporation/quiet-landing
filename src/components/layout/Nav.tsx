@@ -48,7 +48,7 @@ function Nav() {
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <a href="/" className="flex items-center gap-2">
             <img src={logo} alt="Quiet" className="h-8" />
-            <span className="font-semibold text-lg text-gray-900">Quiet Software</span>
+            <span className="font-semibold text-lg text-gray-900">Quiet AI</span>
           </a>
 
           {/* Center nav triggers */}
