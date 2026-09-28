@@ -13,26 +13,9 @@ import puppeteer from 'puppeteer'
 
 const DIST = new URL('../dist', import.meta.url).pathname
 
-const routes = [
-  '/',
-  '/purchasing',
-  '/demand-planning',
-  '/sales-analytics',
-  '/business-owners',
-  '/heads-of-finance',
-  '/controllers',
-  '/procurement-leaders',
-  '/setup',
-  '/accounts-payable',
-  '/po-lifecycle',
-  '/three-way-match',
-  '/cash-management',
-  '/fraud-prevention',
-  '/pricing',
-  '/about',
-  '/demo',
-  '/purchasing-demo',
-]
+// Only the landing page is served. Previous routes are kept in src/pages/ but are
+// intentionally not pre-rendered, so their URLs no longer resolve.
+const routes = ['/']
 
 const mimeTypes = {
   '.html': 'text/html',
